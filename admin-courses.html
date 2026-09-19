@@ -4,441 +4,851 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Manage Courses | Al Noor Islamic Academy</title>
+<title>Admin Courses - Al Noor Islamic Academy</title>
 
 <style>
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
 }
 
 body{
+    font-family:Arial,sans-serif;
     background:#071c16;
     color:white;
 }
 
-/* Header */
-
 header{
-    background:#0b261e;
+    background:#0d2b22;
     padding:18px 20px;
+    border-bottom:1px solid #c9a227;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    border-bottom:1px solid #d4af37;
 }
 
 .logo{
     color:#d4af37;
-    font-size:21px;
+    font-size:20px;
     font-weight:bold;
 }
 
-.admin{
+.back{
     color:#d4af37;
-    font-size:14px;
+    text-decoration:none;
 }
 
-/* Main */
-
 .container{
-    max-width:900px;
+    max-width:1000px;
     margin:auto;
-    padding:30px 18px;
+    padding:25px 18px;
 }
 
 h1{
-    text-align:center;
+    margin-bottom:20px;
+}
+
+.form-box,
+.course{
+    background:#0d2b22;
+    border:1px solid #21473b;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+label{
     color:#d4af37;
+    font-weight:bold;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:13px;
+    margin-top:8px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #31584b;
+    background:#071c16;
+    color:white;
+    outline:none;
+}
+
+textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+button{
+    border:none;
+    padding:11px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.save-btn{
+    background:#d4af37;
+    color:#071c16;
+}
+
+.cancel-btn{
+    background:#555;
+    color:white;
+    margin-left:7px;
+    display:none;
+}
+
+.course h3{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.course p{
+    color:#c8d2ce;
+    line-height:1.5;
     margin-bottom:8px;
 }
 
-.subtitle{
-    text-align:center;
-    color:#9fb3ab;
-    margin-bottom:30px;
-}
-
-/* Add Course */
-
-.add-btn{
-    display:block;
-    width:100%;
-    padding:14px;
-    margin-bottom:20px;
-    background:#d4af37;
-    color:#071c16;
-    border:none;
-    border-radius:10px;
-    font-size:16px;
+.price{
+    color:#ffd86a;
     font-weight:bold;
 }
-
-/* Course Card */
-
-.course{
-    background:#0b261e;
-    border:1px solid #31594d;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:15px;
-}
-
-.course:hover{
-    border-color:#d4af37;
-}
-
-.course-top{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.icon{
-    width:50px;
-    height:50px;
-    border-radius:12px;
-    background:#183d31;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:25px;
-}
-
-.course h2{
-    font-size:18px;
-    margin-bottom:5px;
-}
-
-.teacher{
-    color:#8fa69e;
-    font-size:13px;
-}
-
-.details{
-    margin-top:15px;
-    padding-top:15px;
-    border-top:1px solid #23463b;
-    color:#b9c9c3;
-    line-height:1.8;
-}
-
-/* Status */
-
-.status{
-    display:inline-block;
-    margin-top:10px;
-    padding:5px 10px;
-    border-radius:7px;
-    background:#183d31;
-    color:#6fd39b;
-    font-size:12px;
-    font-weight:bold;
-}
-
-/* Buttons */
 
 .actions{
-    display:flex;
-    gap:10px;
     margin-top:15px;
 }
 
-.action{
-    flex:1;
-    padding:10px;
-    border-radius:8px;
-    text-align:center;
-    text-decoration:none;
-    font-size:13px;
-    font-weight:bold;
-}
-
-.edit{
+.edit-btn{
     background:#d4af37;
     color:#071c16;
 }
 
-.delete{
-    border:1px solid #a94442;
-    color:#ff8a87;
+.delete-btn{
+    background:#a83232;
+    color:white;
+    margin-left:7px;
 }
 
-/* Back */
-
-.back{
-    display:block;
+.empty{
     text-align:center;
-    margin-top:30px;
+    padding:30px;
+    color:#9eb0a9;
+}
+
+#loading{
+    text-align:center;
+    padding:60px 20px;
     color:#d4af37;
-    text-decoration:none;
 }
 
-/* Footer */
+#content{
+    display:none;
+}
+  .delete-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
 
-footer{
+.delete-box{
+    background:#0d2b22;
+    border:1px solid #c9a227;
+    border-radius:14px;
+    padding:25px;
+    width:100%;
+    max-width:350px;
     text-align:center;
-    color:#718b82;
-    padding:30px 10px;
-    margin-top:20px;
-    border-top:1px solid #193b31;
 }
 
+.delete-box h3{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.delete-box p{
+    color:#c8d2ce;
+    margin-bottom:20px;
+}
+
+.modal-cancel{
+    background:#555;
+    color:white;
+}
+
+.modal-delete{
+    background:#a83232;
+    color:white;
+    margin-left:8px;
+}
 </style>
 </head>
 
 <body>
+  <div id="deleteModal" class="delete-modal">
+
+    <div class="delete-box">
+
+        <h3>Delete Course?</h3>
+
+        <p>
+            Are you sure you want to delete this course?
+        </p>
+
+        <button
+            class="modal-cancel"
+            id="modalCancel">
+            Cancel
+        </button>
+
+        <button
+            class="modal-delete"
+            id="modalDelete">
+            Yes, Delete
+        </button>
+
+    </div>
+
+  </div>
+
+<div id="loading">
+    Checking admin access...
+</div>
+
+<div id="content">
 
 <header>
 
     <div class="logo">
-        AL NOOR
+        AL NOOR ADMIN
     </div>
 
-    <div class="admin">
-        👑 Admin
-    </div>
+    <a href="admin.html" class="back">
+        ← Dashboard
+    </a>
 
 </header>
 
 
 <div class="container">
 
-    <h1>Manage Courses</h1>
-
-    <p class="subtitle">
-        Manage Al Noor Islamic Academy courses
-    </p>
+    <h1>📚 Course Management</h1>
 
 
-    <button class="add-btn" onclick="addCourse()">
-        + Add New Course
-    </button>
+    <div class="form-box">
+
+        <label>Course Name</label>
+
+        <input
+            type="text"
+            id="courseName"
+            placeholder="Example: Quran Reading"
+        >
 
 
-    <!-- Course 1 -->
+        <label>Description</label>
 
-    <div class="course">
-
-        <div class="course-top">
-
-            <div class="icon">
-                📖
-            </div>
-
-            <div>
-
-                <h2>
-                    Quran Reading
-                </h2>
-
-                <div class="teacher">
-                    Teacher: Qualified Ustadh
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="details">
-
-            ⏱️ Duration: 12 Weeks<br>
-            📚 Lessons: 30<br>
-
-            <span class="status">
-                ACTIVE
-            </span>
-
-        </div>
-
-        <div class="actions">
-
-            <a href="#" class="action edit">
-                ✏️ Edit
-            </a>
-
-            <a href="#" class="action delete">
-                🗑️ Delete
-            </a>
-
-        </div>
-
-    </div>
+        <textarea
+            id="courseDescription"
+            placeholder="Write course description..."
+        ></textarea>
 
 
-    <!-- Course 2 -->
+        <label>Price (₹)</label>
 
-    <div class="course">
+        <input
+            type="number"
+            id="coursePrice"
+            placeholder="Example: 299"
+        >
 
-        <div class="course-top">
 
-            <div class="icon">
-                🕌
-            </div>
+        <label>Course Type</label>
 
-            <div>
+        <select id="courseType">
 
-                <h2>
-                    Tajweed
-                </h2>
+            <option value="Paid">
+                Paid
+            </option>
 
-                <div class="teacher">
-                    Teacher: Tajweed Teacher
-                </div>
+            <option value="Free">
+                Free
+            </option>
 
-            </div>
+        </select>
 
-        </div>
 
-        <div class="details">
+        <button
+            class="save-btn"
+            id="saveBtn"
+        >
+            Add Course
+        </button>
 
-            ⏱️ Duration: 8 Weeks<br>
-            📚 Lessons: 20<br>
-
-            <span class="status">
-                ACTIVE
-            </span>
-
-        </div>
-
-        <div class="actions">
-
-            <a href="#" class="action edit">
-                ✏️ Edit
-            </a>
-
-            <a href="#" class="action delete">
-                🗑️ Delete
-            </a>
-
-        </div>
+        <button
+            class="cancel-btn"
+            id="cancelBtn"
+        >
+            Cancel
+        </button>
 
     </div>
 
 
-    <!-- Course 3 -->
+    <h2 style="margin-bottom:15px;">
+        All Courses
+    </h2>
 
-    <div class="course">
 
-        <div class="course-top">
-
-            <div class="icon">
-                📗
-            </div>
-
-            <div>
-
-                <h2>
-                    Arabic Language
-                </h2>
-
-                <div class="teacher">
-                    Teacher: Arabic Teacher
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="details">
-
-            ⏱️ Duration: 16 Weeks<br>
-            📚 Lessons: 40<br>
-
-            <span class="status">
-                ACTIVE
-            </span>
-
-        </div>
-
-        <div class="actions">
-
-            <a href="#" class="action edit">
-                ✏️ Edit
-            </a>
-
-            <a href="#" class="action delete">
-                🗑️ Delete
-            </a>
-
-        </div>
-
+    <div id="courseList">
+        Loading courses...
     </div>
 
-
-    <!-- Course 4 -->
-
-    <div class="course">
-
-        <div class="course-top">
-
-            <div class="icon">
-                📜
-            </div>
-
-            <div>
-
-                <h2>
-                    Hadith Studies
-                </h2>
-
-                <div class="teacher">
-                    Teacher: Islamic Studies Teacher
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="details">
-
-            ⏱️ Duration: 12 Weeks<br>
-            📚 Lessons: 24<br>
-
-            <span class="status">
-                ACTIVE
-            </span>
-
-        </div>
-
-        <div class="actions">
-
-            <a href="#" class="action edit">
-                ✏️ Edit
-            </a>
-
-            <a href="#" class="action delete">
-                🗑️ Delete
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <a href="admin.html" class="back">
-        ← Back to Admin Dashboard
-    </a>
+</div>
 
 </div>
 
 
-<footer>
+<script type="module">
 
-    © 2026 Al Noor Islamic Academy
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-</footer>
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+    getDoc,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-<script>
+const firebaseConfig = {
 
-function addCourse(){
+    apiKey:
+    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
 
-    alert("Add Course feature will be connected to the database later.");
+    authDomain:
+    "al-noor-islamic-academy.firebaseapp.com",
 
+    projectId:
+    "al-noor-islamic-academy",
+
+    storageBucket:
+    "al-noor-islamic-academy.firebasestorage.app",
+
+    messagingSenderId:
+    "571799539455",
+
+    appId:
+    "1:571799539455:web:d42728685908430296c6ca"
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
+
+
+const loading =
+document.getElementById("loading");
+
+const content =
+document.getElementById("content");
+
+const courseList =
+document.getElementById("courseList");
+
+const nameInput =
+document.getElementById("courseName");
+
+const descriptionInput =
+document.getElementById("courseDescription");
+
+const priceInput =
+document.getElementById("coursePrice");
+
+const typeInput =
+document.getElementById("courseType");
+
+const saveBtn =
+document.getElementById("saveBtn");
+
+const cancelBtn =
+document.getElementById("cancelBtn");
+
+
+let editingId = null;
+
+
+// ADMIN CHECK
+onAuthStateChanged(auth, async (user) => {
+
+    if(!user){
+
+        window.location.href =
+        "admin-login.html";
+
+        return;
+    }
+
+
+    try{
+
+        const adminRef =
+        doc(db,"admins",user.uid);
+
+        const adminSnap =
+        await getDoc(adminRef);
+
+
+        if(!adminSnap.exists()){
+
+            alert(
+                "Access denied. Admin only."
+            );
+
+            await signOut(auth);
+
+            window.location.href =
+            "admin-login.html";
+
+            return;
+        }
+
+
+        loading.style.display =
+        "none";
+
+        content.style.display =
+        "block";
+
+        loadCourses();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Admin verification failed."
+        );
+
+        await signOut(auth);
+
+        window.location.href =
+        "admin-login.html";
+    }
+
+});
+
+
+// LOAD COURSES
+async function loadCourses(){
+
+    courseList.innerHTML =
+    "Loading courses...";
+
+
+    try{
+
+        const snapshot =
+        await getDocs(
+            collection(db,"courses")
+        );
+
+
+        courseList.innerHTML = "";
+
+
+        if(snapshot.empty){
+
+            courseList.innerHTML =
+            '<div class="empty">No courses available.</div>';
+
+            return;
+        }
+
+
+        snapshot.forEach((item) => {
+
+            const data =
+            item.data();
+
+
+            const div =
+            document.createElement("div");
+
+            div.className =
+            "course";
+
+
+            div.innerHTML = `
+
+                <h3>
+                    ${escapeHtml(
+                        data.name || "Untitled Course"
+                    )}
+                </h3>
+
+                <p>
+                    ${escapeHtml(
+                        data.description || ""
+                    )}
+                </p>
+
+                <p class="price">
+                    ${
+                        data.type === "Free"
+                        ? "Free"
+                        : "₹" + (data.price || 0)
+                    }
+                </p>
+
+                <p>
+                    Type:
+                    ${escapeHtml(
+                        data.type || "Paid"
+                    )}
+                </p>
+
+                <div class="actions">
+
+                    <button
+                        class="edit-btn"
+                    >
+                        Edit
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+            `;
+
+
+            div.querySelector(".edit-btn")
+            .addEventListener(
+                "click",
+                () => editCourse(
+                    item.id,
+                    data
+                )
+            );
+
+
+            div.querySelector(".delete-btn")
+            .addEventListener(
+                "click",
+                () => deleteCourse(
+                    item.id
+                )
+            );
+
+
+            courseList.appendChild(div);
+
+        });
+
+
+    }catch(error){
+
+        console.error(error);
+
+        courseList.innerHTML =
+        '<div class="empty">Failed to load courses.</div>';
+    }
+}
+
+
+// ADD / UPDATE
+saveBtn.addEventListener(
+    "click",
+    async () => {
+
+        const name =
+        nameInput.value.trim();
+
+        const description =
+        descriptionInput.value.trim();
+
+        const price =
+        Number(priceInput.value);
+
+        const type =
+        typeInput.value;
+
+
+        if(!name || !description){
+
+            alert(
+                "Please enter course name and description."
+            );
+
+            return;
+        }
+
+
+        if(type === "Paid" && price <= 0){
+
+            alert(
+                "Please enter a valid price."
+            );
+
+            return;
+        }
+
+
+        saveBtn.disabled = true;
+
+
+        try{
+
+            if(editingId){
+
+                await updateDoc(
+                    doc(
+                        db,
+                        "courses",
+                        editingId
+                    ),
+                    {
+                        name:name,
+                        description:description,
+                        price:type === "Free"
+                            ? 0
+                            : price,
+                        type:type,
+                        updatedAt:
+                            serverTimestamp()
+                    }
+                );
+
+                alert(
+                    "Course updated successfully."
+                );
+
+            }else{
+
+                await addDoc(
+                    collection(db,"courses"),
+                    {
+                        name:name,
+                        description:description,
+                        price:type === "Free"
+                            ? 0
+                            : price,
+                        type:type,
+                        createdAt:
+                            serverTimestamp()
+                    }
+                );
+
+                alert(
+                    "Course added successfully."
+                );
+            }
+
+
+            clearForm();
+
+            await loadCourses();
+
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Operation failed: " +
+                error.message
+            );
+
+
+        }finally{
+
+            saveBtn.disabled = false;
+
+        }
+
+    }
+);
+
+
+// EDIT COURSE
+function editCourse(id,data){
+
+    editingId = id;
+
+    nameInput.value =
+    data.name || "";
+
+    descriptionInput.value =
+    data.description || "";
+
+    priceInput.value =
+    data.price || 0;
+
+    typeInput.value =
+    data.type || "Paid";
+
+
+    saveBtn.textContent =
+    "Update Course";
+
+    cancelBtn.style.display =
+    "inline-block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+// CANCEL
+cancelBtn.addEventListener(
+    "click",
+    clearForm
+);
+
+
+function clearForm(){
+
+    editingId = null;
+
+    nameInput.value = "";
+
+    descriptionInput.value = "";
+
+    priceInput.value = "";
+
+    typeInput.value = "Paid";
+
+    saveBtn.textContent =
+    "Add Course";
+
+    cancelBtn.style.display =
+    "none";
+}
+
+
+// DELETE
+let deleteCourseId = null;
+
+const deleteModal =
+document.getElementById("deleteModal");
+
+const modalCancel =
+document.getElementById("modalCancel");
+
+const modalDelete =
+document.getElementById("modalDelete");
+
+
+function deleteCourse(id){
+
+    deleteCourseId = id;
+
+    deleteModal.style.display =
+    "flex";
+}
+
+
+modalCancel.addEventListener(
+    "click",
+    () => {
+
+        deleteCourseId = null;
+
+        deleteModal.style.display =
+        "none";
+    }
+);
+
+
+modalDelete.addEventListener(
+    "click",
+    async () => {
+
+        if(!deleteCourseId){
+            return;
+        }
+
+        modalDelete.disabled = true;
+
+        try{
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "courses",
+                    deleteCourseId
+                )
+            );
+
+            deleteCourseId = null;
+
+            deleteModal.style.display =
+            "none";
+
+            await loadCourses();
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Delete failed: " +
+                error.message
+            );
+
+        }finally{
+
+            modalDelete.disabled = false;
+        }
+    }
+);
+
+
+// SECURITY
+function escapeHtml(value){
+
+    return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 </script>
