@@ -4,38 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Notifications - Admin | Al Noor Islamic Academy</title>
+<title>Admin Notifications - Al Noor Islamic Academy</title>
 
 <style>
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
 }
 
 body{
-    background:#071d17;
+    font-family:Arial,sans-serif;
+    background:#071c16;
     color:white;
 }
 
-.header{
-    background:#0d3027;
+header{
+    background:#0d2b22;
     padding:18px 20px;
+    border-bottom:1px solid #c9a227;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    border-bottom:1px solid #c9a227;
 }
 
 .logo{
     color:#d4af37;
-    font-size:22px;
+    font-size:20px;
     font-weight:bold;
 }
 
-.admin{
+.back{
     color:#d4af37;
+    text-decoration:none;
 }
 
 .container{
@@ -45,21 +46,15 @@ body{
 }
 
 h1{
-    color:#d4af37;
     margin-bottom:20px;
 }
 
-.box{
-    background:#0d3027;
+.form-box{
+    background:#0d2b22;
     padding:20px;
-    border-radius:15px;
-    border:1px solid #80691d;
+    border-radius:14px;
+    border:1px solid #21473b;
     margin-bottom:30px;
-}
-
-.box h2{
-    color:#d4af37;
-    margin-bottom:18px;
 }
 
 input,
@@ -67,34 +62,50 @@ textarea,
 select{
     width:100%;
     padding:13px;
-    margin-bottom:12px;
-    border:none;
+    margin-top:8px;
+    margin-bottom:15px;
     border-radius:8px;
-    background:#f5f5f5;
-    color:#111;
+    border:1px solid #31584b;
+    background:#071c16;
+    color:white;
+    outline:none;
 }
 
 textarea{
-    height:120px;
-    resize:none;
+    min-height:100px;
+    resize:vertical;
+}
+
+label{
+    color:#d4af37;
+    font-weight:bold;
 }
 
 button{
-    width:100%;
-    padding:13px;
     border:none;
+    padding:12px 18px;
     border-radius:8px;
-    background:#d4af37;
-    color:#071d17;
-    font-weight:bold;
     cursor:pointer;
+    font-weight:bold;
+}
+
+.send-btn{
+    background:#d4af37;
+    color:#071c16;
+}
+
+.cancel-btn{
+    background:#555;
+    color:white;
+    margin-left:8px;
+    display:none;
 }
 
 .notification{
-    background:#0d3027;
-    border:1px solid #80691d;
+    background:#0d2b22;
+    border:1px solid #21473b;
+    border-radius:14px;
     padding:18px;
-    border-radius:15px;
     margin-bottom:15px;
 }
 
@@ -104,267 +115,582 @@ button{
 }
 
 .notification p{
-    color:#ddd;
-    line-height:1.6;
+    color:#c8d2ce;
+    line-height:1.5;
+    margin-bottom:10px;
 }
 
 .date{
-    color:#aaa;
+    color:#8da39a;
     font-size:13px;
-    margin-top:8px;
 }
 
 .actions{
-    display:flex;
-    gap:10px;
     margin-top:15px;
 }
 
-.actions button{
-    width:50%;
+.edit-btn{
+    background:#d4af37;
+    color:#071c16;
 }
 
-.delete{
-    background:#8b2525;
+.delete-btn{
+    background:#a83232;
     color:white;
+    margin-left:7px;
 }
 
-.back{
-    display:block;
+#loading{
     text-align:center;
-    margin-top:25px;
+    padding:60px 20px;
     color:#d4af37;
-    text-decoration:none;
+}
+
+#content{
+    display:none;
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#9eb0a9;
 }
 </style>
 </head>
 
 <body>
 
-<header class="header">
-    <div class="logo">AL NOOR</div>
-    <div class="admin">👑 Admin</div>
+<div id="loading">
+    Checking admin access...
+</div>
+
+<div id="content">
+
+<header>
+
+    <div class="logo">
+        AL NOOR ADMIN
+    </div>
+
+    <a href="admin.html" class="back">
+        ← Dashboard
+    </a>
+
 </header>
 
 <div class="container">
 
-<h1>🔔 Notifications Management</h1>
+    <h1>🔔 Notifications</h1>
 
-<div class="box">
+    <div class="form-box">
 
-<h2>➕ Send Notification</h2>
+        <label>Notification Title</label>
+        <input
+            type="text"
+            id="title"
+            placeholder="Enter notification title"
+        >
 
-<input
-type="text"
-id="title"
-placeholder="Notification Title">
+        <label>Message</label>
+        <textarea
+            id="message"
+            placeholder="Write notification message..."
+        ></textarea>
 
-<select id="type">
+        <label>Icon</label>
+        <select id="icon">
+            <option value="🔔">🔔 Notification</option>
+            <option value="📢">📢 Announcement</option>
+            <option value="📚">📚 Course</option>
+            <option value="🎥">🎥 Live Class</option>
+            <option value="💳">💳 Payment</option>
+            <option value="📖">📖 Quran</option>
+        </select>
 
-<option value="">Select Notification Type</option>
-<option value="Live Class">Live Class</option>
-<option value="Course">New Course</option>
-<option value="Membership">Membership</option>
-<option value="Announcement">Announcement</option>
+        <br>
 
-</select>
-
-<textarea
-id="message"
-placeholder="Write your notification..."></textarea>
-
-<button onclick="addNotification()">
-📢 Send Notification
-</button>
-
-</div>
-
-
-<h2 style="color:#d4af37;margin-bottom:15px;">
-Recent Notifications
-</h2>
-
-
-<div id="notificationList">
-
-<div class="notification">
-
-<h3>🔴 Live Quran Class</h3>
-
-<p>
-Quran Reading with Tajweed live class will start today at 8:00 PM.
-</p>
-
-<div class="date">
-Today • Live Class
-</div>
-
-<div class="actions">
-
-<button onclick="alert('Edit feature will be connected later.')">
-✏️ Edit
-</button>
-
-<button
-class="delete"
-onclick="deleteNotification(this)">
-🗑️ Delete
-</button>
-
-</div>
-
-</div>
-
-
-<div class="notification">
-
-<h3>📚 New Course Available</h3>
-
-<p>
-Arabic Language course is now available for students.
-</p>
-
-<div class="date">
-Yesterday • New Course
-</div>
-
-<div class="actions">
-
-<button onclick="alert('Edit feature will be connected later.')">
-✏️ Edit
-</button>
-
-<button
-class="delete"
-onclick="deleteNotification(this)">
-🗑️ Delete
-</button>
-
-</div>
-
-</div>
-
-
-<div class="notification">
-
-<h3>📢 Academy Announcement</h3>
-
-<p>
-Welcome to Al Noor Islamic Academy. Please check your upcoming classes.
-</p>
-
-<div class="date">
-2 days ago • Announcement
-</div>
-
-<div class="actions">
-
-<button onclick="alert('Edit feature will be connected later.')">
-✏️ Edit
-</button>
-
-<button
-class="delete"
-onclick="deleteNotification(this)">
-🗑️ Delete
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<a href="admin.html" class="back">
-← Back to Admin Dashboard
-</a>
-
-</div>
-
-
-<script>
-
-function addNotification(){
-
-    let title =
-    document.getElementById("title").value;
-
-    let type =
-    document.getElementById("type").value;
-
-    let message =
-    document.getElementById("message").value;
-
-    if(
-        title === "" ||
-        type === "" ||
-        message === ""
-    ){
-        alert("Please fill all fields.");
-        return;
-    }
-
-    let notification =
-    document.createElement("div");
-
-    notification.className =
-    "notification";
-
-    notification.innerHTML = `
-
-        <h3>🔔 ${title}</h3>
-
-        <p>${message}</p>
-
-        <div class="date">
-        Just now • ${type}
-        </div>
-
-        <div class="actions">
-
-        <button onclick="alert('Edit feature will be connected later.')">
-        ✏️ Edit
+        <button
+            class="send-btn"
+            id="sendBtn"
+        >
+            Send Notification
         </button>
 
         <button
-        class="delete"
-        onclick="deleteNotification(this)">
-        🗑️ Delete
+            class="cancel-btn"
+            id="cancelBtn"
+        >
+            Cancel
         </button>
 
-        </div>
-    `;
+    </div>
 
-    document
-    .getElementById("notificationList")
-    .prepend(notification);
 
-    document.getElementById("title").value="";
-    document.getElementById("type").value="";
-    document.getElementById("message").value="";
+    <h2 style="margin-bottom:15px;">
+        All Notifications
+    </h2>
 
-    alert("Notification sent successfully!");
+    <div id="notificationList">
+        Loading...
+    </div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+    getDoc,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+    authDomain:
+    "al-noor-islamic-academy.firebaseapp.com",
+
+    projectId:
+    "al-noor-islamic-academy",
+
+    storageBucket:
+    "al-noor-islamic-academy.firebasestorage.app",
+
+    messagingSenderId:
+    "571799539455",
+
+    appId:
+"1:571799539455:web:d42728685908430296c6ca"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+const loading =
+document.getElementById("loading");
+
+const content =
+document.getElementById("content");
+
+const titleInput =
+document.getElementById("title");
+
+const messageInput =
+document.getElementById("message");
+
+const iconInput =
+document.getElementById("icon");
+
+const sendBtn =
+document.getElementById("sendBtn");
+
+const cancelBtn =
+document.getElementById("cancelBtn");
+
+const list =
+document.getElementById("notificationList");
+
+
+let editingId = null;
+
+
+// ADMIN CHECK
+onAuthStateChanged(auth, async (user) => {
+
+    if(!user){
+
+        window.location.href =
+        "admin-login.html";
+
+        return;
+    }
+
+    try{
+
+        const adminRef =
+        doc(db,"admins",user.uid);
+
+        const adminSnap =
+        await getDoc(adminRef);
+
+        if(!adminSnap.exists()){
+
+            alert(
+                "Access denied. Admin only."
+            );
+
+            await signOut(auth);
+
+            window.location.href =
+            "admin-login.html";
+
+            return;
+        }
+
+        loading.style.display = "none";
+
+        content.style.display = "block";
+
+        loadNotifications();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Admin verification failed."
+        );
+
+        await signOut(auth);
+
+        window.location.href =
+        "admin-login.html";
+    }
+
+});
+
+
+// LOAD NOTIFICATIONS
+async function loadNotifications(){
+
+    list.innerHTML = "Loading...";
+
+    try{
+
+        const snapshot =
+        await getDocs(
+            collection(db,"notifications")
+        );
+
+        list.innerHTML = "";
+
+        if(snapshot.empty){
+
+            list.innerHTML =
+            '<div class="empty">No notifications available.</div>';
+
+            return;
+        }
+
+
+        snapshot.forEach((item) => {
+
+            const data = item.data();
+
+            let dateText = "";
+
+            if(data.createdAt){
+
+                try{
+
+                    dateText =
+                    data.createdAt
+                    .toDate()
+                    .toLocaleString();
+
+                }catch(e){
+
+                    dateText = "";
+                }
+            }
+
+
+            const div =
+            document.createElement("div");
+
+            div.className =
+            "notification";
+
+
+            div.innerHTML = `
+
+                <h3>
+                    ${data.icon || "🔔"}
+                    ${escapeHtml(data.title || "")}
+                </h3>
+
+                <p>
+                    ${escapeHtml(data.message || "")}
+                </p>
+
+                <div class="date">
+                    ${dateText}
+                </div>
+
+                <div class="actions">
+
+                    <button
+                        class="edit-btn"
+                        data-id="${item.id}"
+                    >
+                        Edit
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                        data-id="${item.id}"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+            `;
+
+
+            div.querySelector(".edit-btn")
+            .addEventListener("click", () => {
+
+                editNotification(
+                    item.id,
+                    data
+                );
+
+            });
+
+
+            div.querySelector(".delete-btn")
+            .addEventListener("click", () => {
+
+                removeNotification(
+                    item.id
+                );
+
+            });
+
+
+            list.appendChild(div);
+
+        });
+
+    }catch(error){
+
+        console.error(error);
+
+        list.innerHTML =
+        '<div class="empty">Failed to load notifications.</div>';
+    }
 }
 
 
-function deleteNotification(button){
+// SEND / UPDATE
+sendBtn.addEventListener("click", async () => {
 
-    if(
-        confirm(
-        "Are you sure you want to delete this notification?"
-        )
-    ){
+    const title =
+    titleInput.value.trim();
 
-        button
-        .closest(".notification")
-        .remove();
+    const message =
+    messageInput.value.trim();
 
+    const icon =
+    iconInput.value;
+
+
+    if(!title || !message){
+
+        alert(
+            "Please enter title and message."
+        );
+
+        return;
     }
 
+
+    sendBtn.disabled = true;
+
+    try{
+
+        if(editingId){
+
+            await updateDoc(
+                doc(
+                    db,
+                    "notifications",
+                    editingId
+                ),
+                {
+                    title: title,
+                    message: message,
+                    icon: icon,
+                    updatedAt: serverTimestamp()
+                }
+            );
+
+            alert(
+                "Notification updated successfully."
+            );
+
+        }else{
+
+            await addDoc(
+                collection(db,"notifications"),
+                {
+                    title: title,
+                    message: message,
+                    icon: icon,
+                    isNew: true,
+                    createdAt: serverTimestamp()
+                }
+            );
+
+            alert(
+                "Notification sent successfully."
+            );
+        }
+
+
+        clearForm();
+
+        await loadNotifications();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Operation failed: " +
+            error.message
+        );
+
+    }finally{
+
+        sendBtn.disabled = false;
+    }
+
+});
+
+
+// EDIT
+function editNotification(id,data){
+
+    editingId = id;
+
+    titleInput.value =
+    data.title || "";
+
+    messageInput.value =
+    data.message || "";
+
+    iconInput.value =
+    data.icon || "🔔";
+
+    sendBtn.textContent =
+    "Update Notification";
+
+    cancelBtn.style.display =
+    "inline-block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+// CANCEL EDIT
+cancelBtn.addEventListener(
+    "click",
+    clearForm
+);
+
+
+function clearForm(){
+
+    editingId = null;
+
+    titleInput.value = "";
+
+    messageInput.value = "";
+
+    iconInput.value = "🔔";
+
+    sendBtn.textContent =
+    "Send Notification";
+
+    cancelBtn.style.display =
+    "none";
+}
+
+
+// DELETE
+async function removeNotification(id){
+
+    const confirmDelete =
+    confirm(
+        "Are you sure you want to delete this notification?"
+    );
+
+    if(!confirmDelete) return;
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "notifications",
+                id
+            )
+        );
+
+        alert(
+            "Notification deleted."
+        );
+
+        await loadNotifications();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Delete failed: " +
+            error.message
+        );
+    }
+
+}
+
+
+// SECURITY: prevent HTML injection
+function escapeHtml(value){
+
+    return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 </script>
 
 </body>
-</html>
+    </html>
