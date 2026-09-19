@@ -4,353 +4,537 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Students | Al Noor Islamic Academy</title>
+<title>Students - Al Noor Islamic Academy</title>
 
 <style>
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
 }
 
 body{
+    font-family:Arial,sans-serif;
     background:#071c16;
     color:white;
 }
 
-/* Header */
-
 header{
-    background:#0b261e;
+    background:#0d2b22;
     padding:18px 20px;
+    border-bottom:1px solid #c9a227;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    border-bottom:1px solid #d4af37;
 }
 
 .logo{
     color:#d4af37;
-    font-size:21px;
+    font-size:20px;
     font-weight:bold;
 }
-
-.admin{
-    color:#d4af37;
-    font-size:14px;
-}
-
-/* Container */
-
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:30px 18px;
-}
-
-h1{
-    text-align:center;
-    color:#d4af37;
-    margin-bottom:8px;
-}
-
-.subtitle{
-    text-align:center;
-    color:#9fb3ab;
-    margin-bottom:30px;
-}
-
-/* Search */
-
-.search{
-    width:100%;
-    padding:14px;
-    background:#0b261e;
-    border:1px solid #31594d;
-    border-radius:10px;
-    color:white;
-    outline:none;
-    margin-bottom:20px;
-}
-
-.search:focus{
-    border-color:#d4af37;
-}
-
-.search::placeholder{
-    color:#718b82;
-}
-
-/* Student Card */
-
-.student{
-    background:#0b261e;
-    border:1px solid #31594d;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:15px;
-}
-
-.student-top{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.avatar{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:#d4af37;
-    color:#071c16;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-}
-
-.name{
-    font-size:18px;
-    font-weight:bold;
-}
-
-.email{
-    color:#8fa69e;
-    font-size:13px;
-    margin-top:4px;
-}
-
-.details{
-    margin-top:15px;
-    padding-top:15px;
-    border-top:1px solid #23463b;
-    line-height:1.8;
-    color:#b9c9c3;
-}
-
-.badge{
-    display:inline-block;
-    margin-top:10px;
-    padding:5px 10px;
-    border-radius:7px;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.premium{
-    background:#d4af37;
-    color:#071c16;
-}
-
-.basic{
-    background:#183d31;
-    color:#d4af37;
-}
-
-.active{
-    color:#6fd39b;
-}
-
-/* Back */
 
 .back{
-    display:block;
-    text-align:center;
-    margin-top:30px;
     color:#d4af37;
     text-decoration:none;
 }
 
-/* Footer */
-
-footer{
-    text-align:center;
-    color:#718b82;
-    padding:30px 10px;
-    margin-top:20px;
-    border-top:1px solid #193b31;
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:25px 18px;
 }
 
+h1{
+    margin-bottom:20px;
+}
+
+.search{
+    width:100%;
+    padding:14px;
+    margin-bottom:20px;
+    border-radius:9px;
+    border:1px solid #31584b;
+    background:#0d2b22;
+    color:white;
+    outline:none;
+}
+
+.student{
+    background:#0d2b22;
+    border:1px solid #21473b;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:15px;
+}
+
+.student h3{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.info{
+    color:#c8d2ce;
+    line-height:1.8;
+}
+
+.label{
+    color:#d4af37;
+    font-weight:bold;
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#9eb0a9;
+}
+
+#loading{
+    text-align:center;
+    padding:60px 20px;
+    color:#d4af37;
+}
+
+#content{
+    display:none;
+}
+
+.status{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    background:#174d38;
+    color:#8ff0bd;
+    font-size:12px;
+}
+
+.membership{
+    color:#ffd86a;
+}
+
+@media(max-width:600px){
+    header{
+        padding:15px;
+    }
+
+    .container{
+        padding:20px 14px;
+    }
+}
 </style>
 </head>
 
 <body>
 
+<div id="loading">
+    Checking admin access...
+</div>
+
+<div id="content">
+
 <header>
 
     <div class="logo">
-        AL NOOR
+        AL NOOR ADMIN
     </div>
 
-    <div class="admin">
-        👑 Admin
-    </div>
+    <a href="admin.html" class="back">
+        ← Dashboard
+    </a>
 
 </header>
 
-
 <div class="container">
 
-    <h1>Students</h1>
-
-    <p class="subtitle">
-        Manage registered academy students
-    </p>
-
+    <h1>👨‍🎓 Students</h1>
 
     <input
-        type="text"
+        type="search"
+        id="searchInput"
         class="search"
-        placeholder="🔍 Search student..."
+        placeholder="Search by name, email or mobile..."
     >
 
-
-    <!-- Student 1 -->
-
-    <div class="student">
-
-        <div class="student-top">
-
-            <div class="avatar">
-                SA
-            </div>
-
-            <div>
-                <div class="name">
-                    Student A
-                </div>
-
-                <div class="email">
-                    studenta@email.com
-                </div>
-            </div>
-
-        </div>
-
-        <div class="details">
-
-            📱 Mobile: +91 XXXXX XXXXX<br>
-
-            📅 Joined: January 2026<br>
-
-            💎 Membership:
-            <span class="badge premium">
-                PREMIUM
-            </span>
-            <br>
-
-            🟢 Status:
-            <span class="active">
-                Active
-            </span>
-
-        </div>
-
+    <div id="studentList">
+        Loading students...
     </div>
 
-
-    <!-- Student 2 -->
-
-    <div class="student">
-
-        <div class="student-top">
-
-            <div class="avatar">
-                AR
-            </div>
-
-            <div>
-                <div class="name">
-                    Student B
-                </div>
-
-                <div class="email">
-                    studentb@email.com
-                </div>
-            </div>
-
-        </div>
-
-        <div class="details">
-
-            📱 Mobile: +91 XXXXX XXXXX<br>
-
-            📅 Joined: February 2026<br>
-
-            💎 Membership:
-            <span class="badge basic">
-                BASIC
-            </span>
-            <br>
-
-            🟢 Status:
-            <span class="active">
-                Active
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <!-- Student 3 -->
-
-    <div class="student">
-
-        <div class="student-top">
-
-            <div class="avatar">
-                MK
-            </div>
-
-            <div>
-                <div class="name">
-                    Student C
-                </div>
-
-                <div class="email">
-                    studentc@email.com
-                </div>
-            </div>
-
-        </div>
-
-        <div class="details">
-
-            📱 Mobile: +91 XXXXX XXXXX<br>
-
-            📅 Joined: March 2026<br>
-
-            💎 Membership:
-            <span class="badge premium">
-                PREMIUM
-            </span>
-            <br>
-
-            🟢 Status:
-            <span class="active">
-                Active
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <a href="admin.html" class="back">
-        ← Back to Admin Dashboard
-    </a>
+</div>
 
 </div>
 
 
-<footer>
+<script type="module">
 
-    © 2026 Al Noor Islamic Academy
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-</footer>
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+    authDomain:
+    "al-noor-islamic-academy.firebaseapp.com",
+
+    projectId:
+    "al-noor-islamic-academy",
+
+    storageBucket:
+    "al-noor-islamic-academy.firebasestorage.app",
+
+    messagingSenderId:
+    "571799539455",
+
+    appId:
+    "1:571799539455:web:d42728685908430296c6ca"
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
+
+
+const loading =
+document.getElementById("loading");
+
+const content =
+document.getElementById("content");
+
+const studentList =
+document.getElementById("studentList");
+
+const searchInput =
+document.getElementById("searchInput");
+
+
+let students = [];
+
+
+// ADMIN VERIFICATION
+onAuthStateChanged(auth, async (user) => {
+
+    if(!user){
+
+        window.location.href =
+        "admin-login.html";
+
+        return;
+    }
+
+    try{
+
+        const adminRef =
+        doc(db,"admins",user.uid);
+
+        const adminSnap =
+        await getDoc(adminRef);
+
+        if(!adminSnap.exists()){
+
+            alert(
+                "Access denied. Admin only."
+            );
+
+            await signOut(auth);
+
+            window.location.href =
+            "admin-login.html";
+
+            return;
+        }
+
+
+        loading.style.display =
+        "none";
+
+        content.style.display =
+        "block";
+
+        await loadStudents();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Admin verification failed."
+        );
+
+        await signOut(auth);
+
+        window.location.href =
+        "admin-login.html";
+    }
+
+});
+
+
+// LOAD STUDENTS
+async function loadStudents(){
+
+    studentList.innerHTML =
+    "Loading students...";
+
+    try{
+
+        const snapshot =
+        await getDocs(
+            collection(db,"students")
+        );
+
+
+        students = [];
+
+        snapshot.forEach((item) => {
+
+            students.push({
+                id:item.id,
+                ...item.data()
+            });
+
+        });
+
+
+        renderStudents(students);
+
+    }catch(error){
+
+        console.error(error);
+
+        studentList.innerHTML =
+        '<div class="empty">Failed to load students.</div>';
+    }
+}
+
+
+// DISPLAY STUDENTS
+function renderStudents(list){
+
+    studentList.innerHTML = "";
+
+
+    if(list.length === 0){
+
+        studentList.innerHTML =
+        '<div class="empty">No students found.</div>';
+
+        return;
+    }
+
+
+    list.forEach((student) => {
+
+        const div =
+        document.createElement("div");
+
+        div.className =
+        "student";
+
+
+        const name =
+        escapeHtml(
+            student.name || "No name"
+        );
+
+        const email =
+        escapeHtml(
+            student.email || "No email"
+        );
+
+        const mobile =
+        escapeHtml(
+            student.mobile || "Not provided"
+        );
+
+        const membership =
+        escapeHtml(
+            student.membership || "None"
+        );
+
+        const status =
+        escapeHtml(
+            student.status || "Unknown"
+        );
+
+
+        let paymentInfo = "";
+
+        if(student.paymentId){
+
+            paymentInfo += `
+                <div>
+                    <span class="label">
+                        Payment ID:
+                    </span>
+                    ${escapeHtml(student.paymentId)}
+                </div>
+            `;
+        }
+
+        if(student.orderId){
+
+            paymentInfo += `
+                <div>
+                    <span class="label">
+                        Order ID:
+                    </span>
+                    ${escapeHtml(student.orderId)}
+                </div>
+            `;
+        }
+
+        if(student.membershipAmount){
+
+            paymentInfo += `
+                <div>
+                    <span class="label">
+                        Amount:
+                    </span>
+                    ₹${escapeHtml(student.membershipAmount)}
+                </div>
+            `;
+        }
+
+
+        div.innerHTML = `
+
+            <h3>
+                ${name}
+            </h3>
+
+            <div class="info">
+
+                <div>
+                    <span class="label">
+                        Email:
+                    </span>
+                    ${email}
+                </div>
+
+                <div>
+                    <span class="label">
+                        Mobile:
+                    </span>
+                    ${mobile}
+                </div>
+
+                <div>
+                    <span class="label">
+                        Membership:
+                    </span>
+
+                    <span class="membership">
+                        ${membership}
+                    </span>
+                </div>
+
+                <div>
+                    <span class="label">
+                        Status:
+                    </span>
+
+                    <span class="status">
+                        ${status}
+                    </span>
+                </div>
+
+                ${paymentInfo}
+
+                <div>
+                    <span class="label">
+                        User ID:
+                    </span>
+                    ${escapeHtml(student.id)}
+                </div>
+
+            </div>
+        `;
+
+
+        studentList.appendChild(div);
+
+    });
+}
+
+
+// SEARCH
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        const search =
+        searchInput.value
+        .trim()
+        .toLowerCase();
+
+
+        const filtered =
+        students.filter((student) => {
+
+            const name =
+            String(student.name || "")
+            .toLowerCase();
+
+            const email =
+            String(student.email || "")
+            .toLowerCase();
+
+            const mobile =
+            String(student.mobile || "")
+            .toLowerCase();
+
+
+            return (
+                name.includes(search) ||
+                email.includes(search) ||
+                mobile.includes(search)
+            );
+
+        });
+
+
+        renderStudents(filtered);
+
+    }
+);
+
+
+// SECURITY
+function escapeHtml(value){
+
+    return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+</script>
 
 </body>
 </html>
