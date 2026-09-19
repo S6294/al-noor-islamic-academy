@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,8 +21,6 @@ body{
     background:#071c16;
     color:white;
 }
-
-/* Header */
 
 header{
     background:#0b261e;
@@ -49,8 +49,6 @@ header{
     font-weight:bold;
 }
 
-/* Container */
-
 .container{
     max-width:850px;
     margin:auto;
@@ -68,8 +66,6 @@ h1{
     color:#aebdb8;
     margin-bottom:30px;
 }
-
-/* Notification */
 
 .notification{
     background:#0b261e;
@@ -100,6 +96,7 @@ h1{
     align-items:center;
     justify-content:center;
     font-size:21px;
+    flex-shrink:0;
 }
 
 .notification h3{
@@ -119,8 +116,6 @@ h1{
     margin-top:8px;
 }
 
-/* Badge */
-
 .new{
     display:inline-block;
     background:#d4af37;
@@ -132,7 +127,23 @@ h1{
     margin-left:auto;
 }
 
-/* Back */
+.loading{
+    text-align:center;
+    color:#d4af37;
+    padding:30px 10px;
+}
+
+.empty{
+    text-align:center;
+    color:#aebdb8;
+    padding:30px 10px;
+}
+
+.error{
+    text-align:center;
+    color:#ff8a80;
+    padding:30px 10px;
+}
 
 .back{
     display:block;
@@ -141,8 +152,6 @@ h1{
     color:#d4af37;
     text-decoration:none;
 }
-
-/* Footer */
 
 footer{
     text-align:center;
@@ -153,9 +162,12 @@ footer{
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -163,8 +175,8 @@ footer{
         AL NOOR
     </div>
 
-    <div class="profile">
-        AN
+    <div class="profile" id="profile">
+        ?
     </div>
 
 </header>
@@ -179,121 +191,10 @@ footer{
     </p>
 
 
-    <!-- Notification 1 -->
+    <div id="notificationsList">
 
-    <div class="notification">
-
-        <div class="notification-header">
-
-            <div class="icon">🔴</div>
-
-            <div>
-                <h3>Live Quran Class</h3>
-                <div class="date">Today • 10 minutes ago</div>
-            </div>
-
-            <span class="new">NEW</span>
-
-        </div>
-
-        <div class="message">
-            Your Quran Reading with Tajweed live class
-            will start today at 8:00 PM.
-        </div>
-
-    </div>
-
-
-    <!-- Notification 2 -->
-
-    <div class="notification">
-
-        <div class="notification-header">
-
-            <div class="icon">📚</div>
-
-            <div>
-                <h3>New Course Available</h3>
-                <div class="date">Today</div>
-            </div>
-
-            <span class="new">NEW</span>
-
-        </div>
-
-        <div class="message">
-            Arabic Language course is now available.
-            Start learning Arabic step by step with our
-            qualified teacher.
-        </div>
-
-    </div>
-
-
-    <!-- Notification 3 -->
-
-    <div class="notification">
-
-        <div class="notification-header">
-
-            <div class="icon">🕌</div>
-
-            <div>
-                <h3>Hifz-ul-Quran Update</h3>
-                <div class="date">Yesterday</div>
-            </div>
-
-        </div>
-
-        <div class="message">
-            Weekly Hifz revision class will be held
-            every Thursday at 6:00 PM.
-        </div>
-
-    </div>
-
-
-    <!-- Notification 4 -->
-
-    <div class="notification">
-
-        <div class="notification-header">
-
-            <div class="icon">💳</div>
-
-            <div>
-                <h3>Membership</h3>
-                <div class="date">2 days ago</div>
-            </div>
-
-        </div>
-
-        <div class="message">
-            Premium membership includes live classes,
-            all courses and teacher guidance.
-        </div>
-
-    </div>
-
-
-    <!-- Notification 5 -->
-
-    <div class="notification">
-
-        <div class="notification-header">
-
-            <div class="icon">📢</div>
-
-            <div>
-                <h3>Academy Announcement</h3>
-                <div class="date">5 days ago</div>
-            </div>
-
-        </div>
-
-        <div class="message">
-            Welcome to Al Noor Islamic Academy.
-            May Allah bless your journey of seeking knowledge.
+        <div class="loading">
+            Loading notifications...
         </div>
 
     </div>
@@ -312,5 +213,241 @@ footer{
 
 </footer>
 
+
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+    authDomain:
+    "al-noor-islamic-academy.firebaseapp.com",
+
+    projectId:
+    "al-noor-islamic-academy",
+
+    storageBucket:
+    "al-noor-islamic-academy.firebasestorage.app",
+
+    messagingSenderId:
+    "571799539455",
+
+    appId:
+    "1:571799539455:web:d42728685908430296c6ca"
+
+};
+
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+
+const list =
+document.getElementById(
+    "notificationsList"
+);
+
+
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+
+        if (!user) {
+
+            window.location.href =
+            "login.html";
+
+            return;
+
+        }
+
+
+
+        try {
+
+
+            // Student name initial
+
+            const name =
+            user.displayName ||
+            user.email ||
+            "Student";
+
+
+            document.getElementById(
+                "profile"
+            ).textContent =
+            name
+            .charAt(0)
+            .toUpperCase();
+
+
+
+            // Get notifications
+
+            const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "notifications"
+                )
+            );
+
+
+
+            list.innerHTML = "";
+
+
+
+            if (
+                snapshot.empty
+            ) {
+
+                list.innerHTML = `
+                    <div class="empty">
+                        No notifications available.
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+
+            snapshot.forEach(
+                (docSnap) => {
+
+
+                    const data =
+                    docSnap.data();
+
+
+
+                    const notification =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                    notification.className =
+                    "notification";
+
+
+
+                    notification.innerHTML = `
+
+                        <div class="notification-header">
+
+                            <div class="icon">
+                                ${data.icon || "📢"}
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    ${data.title || "Notification"}
+                                </h3>
+
+                                <div class="date">
+                                    ${data.date || "Recently"}
+                                </div>
+
+                            </div>
+
+                            ${
+                                data.isNew
+                                ? `<span class="new">NEW</span>`
+                                : ""
+                            }
+
+                        </div>
+
+
+                        <div class="message">
+
+                            ${data.message || ""}
+
+                        </div>
+
+                    `;
+
+
+
+                    list.appendChild(
+                        notification
+                    );
+
+                }
+            );
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                error
+            );
+
+
+            list.innerHTML = `
+
+                <div class="error">
+
+                    Unable to load notifications.
+
+                </div>
+
+            `;
+
+        }
+
+    }
+);
+
+</script>
+
+
 </body>
+
 </html>
