@@ -1,742 +1,621 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Classes - Al Noor Islamic Academy</title>
 
-<title>Live Classes | Al Noor Islamic Academy</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #071f18;
+            color: #ffffff;
+            min-height: 100vh;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+        header {
+            background: #0b2d23;
+            padding: 18px 20px;
+            border-bottom: 1px solid #c9a227;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-body{
-    background:#071c16;
-    color:#fff;
-}
+        .logo {
+            color: #d4af37;
+            font-size: 21px;
+            font-weight: bold;
+        }
 
-/* Header */
+        .back-btn {
+            color: #ffffff;
+            text-decoration: none;
+            border: 1px solid #c9a227;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
 
-header{
-    background:#0b261e;
-    padding:18px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #c9a227;
-}
+        .container {
+            width: 92%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
 
-.logo{
-    color:#d4af37;
-    font-size:22px;
-    font-weight:bold;
-}
+        h1 {
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 8px;
+        }
 
-.profile{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:#d4af37;
-    color:#071c16;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:bold;
-}
+        .subtitle {
+            text-align: center;
+            color: #b8c8c1;
+            margin-bottom: 28px;
+        }
 
+        .loading {
+            text-align: center;
+            color: #d4af37;
+            padding: 30px;
+        }
 
-/* Main */
+        .empty {
+            background: #0b2d23;
+            border: 1px solid #244d40;
+            padding: 30px;
+            border-radius: 14px;
+            text-align: center;
+            color: #b8c8c1;
+        }
 
-.container{
-    max-width:900px;
-    margin:auto;
-    padding:30px 18px;
-}
+        .class-card {
+            background: #0b2d23;
+            border: 1px solid #244d40;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+        }
 
-h1{
-    text-align:center;
-    color:#d4af37;
-    margin-bottom:8px;
-}
+        .class-title {
+            color: #d4af37;
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
 
-.subtitle{
-    text-align:center;
-    color:#b8c8c2;
-    margin-bottom:30px;
-}
+        .info {
+            color: #d7e2dd;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
 
+        .info strong {
+            color: #ffffff;
+        }
 
-/* Live Box */
+        .status {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 12px;
+            text-transform: uppercase;
+        }
 
-.live-box{
-    background:#0d3025;
-    border:2px solid #d4af37;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:35px;
-    box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
+        .status.upcoming {
+            background: #263b56;
+            color: #8fc5ff;
+        }
 
-.live-label{
-    display:inline-block;
-    background:#c62828;
-    color:white;
-    padding:7px 14px;
-    border-radius:20px;
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:15px;
-}
+        .status.live {
+            background: #164d32;
+            color: #6dffae;
+        }
 
-.live-box h2{
-    color:#fff;
-    margin-bottom:10px;
-}
+        .status.ended {
+            background: #3b3030;
+            color: #ff9b9b;
+        }
 
-.info{
-    color:#c8d5d0;
-    line-height:1.8;
-    margin-bottom:20px;
-}
+        .join-btn {
+            display: block;
+            width: 100%;
+            margin-top: 16px;
+            background: #d4af37;
+            color: #071f18;
+            text-decoration: none;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
 
+        .join-btn:hover {
+            background: #e5c354;
+        }
 
-/* Buttons */
-
-.join-btn{
-    display:inline-block;
-    background:#d4af37;
-    color:#071c16;
-    text-decoration:none;
-    padding:12px 22px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-
-/* Upcoming */
-
-.section-title{
-    color:#d4af37;
-    margin-bottom:18px;
-}
-
-.class-card{
-    background:#0b261e;
-    border:1px solid #31594d;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:15px;
-}
-
-.class-card h3{
-    color:#fff;
-    margin-bottom:10px;
-}
-
-.class-info{
-    color:#b8c8c2;
-    line-height:1.8;
-}
-
-.status{
-    display:inline-block;
-    margin-top:12px;
-    padding:6px 12px;
-    border-radius:8px;
-    background:#183d31;
-    color:#d4af37;
-    font-size:13px;
-}
-
-.empty{
-    text-align:center;
-    color:#8da39b;
-    padding:30px 10px;
-}
-
-
-/* Back */
-
-.back{
-    display:block;
-    text-align:center;
-    margin-top:30px;
-    color:#d4af37;
-    text-decoration:none;
-}
-
-
-/* Footer */
-
-footer{
-    text-align:center;
-    color:#7f9990;
-    padding:30px 10px;
-    margin-top:20px;
-    border-top:1px solid #193b31;
-}
-
-</style>
-
+        .refresh-text {
+            text-align: center;
+            color: #7f9990;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+    </style>
 </head>
-
 
 <body>
 
-
 <header>
-
-    <div class="logo">
-        AL NOOR
-    </div>
-
-    <div class="profile" id="profile">
-        A
-    </div>
-
+    <div class="logo">AL NOOR</div>
+    <a href="dashboard.html" class="back-btn">← Dashboard</a>
 </header>
-
 
 <div class="container">
 
-    <h1>
-        Live Classes
-    </h1>
+    <h1>Live Classes</h1>
 
     <p class="subtitle">
-        Learn Islamic knowledge with qualified teachers
+        Attend your scheduled online Islamic classes
     </p>
 
-
-    <!-- LIVE CLASS -->
-
-    <div id="liveSection"></div>
-
-
-    <!-- UPCOMING -->
-
-    <h2 class="section-title">
-        Upcoming Classes
-    </h2>
-
-    <div id="classList">
-
-        <div class="empty">
-            Loading classes...
-        </div>
-
+    <div id="loading" class="loading">
+        Loading live classes...
     </div>
 
+    <div id="classesContainer"></div>
 
-    <a href="dashboard.html" class="back">
-        ← Back to Dashboard
-    </a>
+    <div class="refresh-text">
+        Class status updates automatically
+    </div>
 
 </div>
 
 
-<footer>
+<script type="module">
 
-    © 2026 Al Noor Islamic Academy
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-</footer>
+    import {
+        getAuth,
+        onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-
-
-  <script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
-import {
-    getAuth,
-    onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-import {
-    getFirestore,
-    collection,
-    getDocs
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+    import {
+        getFirestore,
+        collection,
+        getDocs
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
-    authDomain: "al-noor-islamic-academy.firebaseapp.com",
-    projectId: "al-noor-islamic-academy",
-    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
-    messagingSenderId: "571799539455",
-    appId: "1:571799539455:web:d42728685908430296c6ca"
-};
+    // =========================
+    // FIREBASE CONFIG
+    // =========================
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+        authDomain: "al-noor-islamic-academy.firebaseapp.com",
+        projectId: "al-noor-islamic-academy",
+        storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+        messagingSenderId: "571799539455",
+        appId: "1:571799539455:web:d42728685908430296c6ca"
+    };
 
 
-const app = initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+    const auth = getAuth(app);
 
-const db = getFirestore(app);
-
-
-const classList =
-    document.getElementById("classList");
-
-const liveSection =
-    document.getElementById("liveSection");
-
-const profile =
-    document.getElementById("profile");
+    const db = getFirestore(app);
 
 
-onAuthStateChanged(auth, async (user) => {
+    const loading =
+        document.getElementById("loading");
 
-    if (!user) {
+    const classesContainer =
+        document.getElementById("classesContainer");
 
-        window.location.href = "login.html";
 
-        return;
+    let allClasses = [];
+
+
+    // =========================
+    // HTML SECURITY
+    // =========================
+
+    function escapeHtml(value) {
+
+        if (value === null || value === undefined) {
+            return "";
+        }
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
     }
 
 
-    const name =
-        user.displayName ||
-        user.email ||
-        "A";
+    // =========================
+    // CLASS STATUS
+    // =========================
 
-    profile.textContent =
-        name.charAt(0).toUpperCase();
+    function getStatus(item) {
 
+        if (!item.date || !item.time) {
+            return "upcoming";
+        }
 
-    await loadClasses();
-
-});
-
-
-async function loadClasses() {
-
-    try {
-
-        classList.innerHTML = `
-            <div class="empty">
-                Loading classes...
-            </div>
-        `;
-
-
-        const snapshot =
-            await getDocs(
-                collection(db, "liveClasses")
+        const start =
+            new Date(
+                `${item.date}T${item.time}:00`
             );
 
 
-        console.log(
-            "Live Classes:",
-            snapshot.size
+        // Admin panel থেকে duration আসবে
+        // না থাকলে old class-এর জন্য 60 minutes
+        const duration =
+            Number(item.duration || 60);
+
+
+        const end =
+            new Date(
+                start.getTime() +
+                duration * 60 * 1000
+            );
+
+
+        const now = new Date();
+
+
+        if (now < start) {
+            return "upcoming";
+        }
+
+
+        if (
+            now >= start &&
+            now < end
+        ) {
+            return "live";
+        }
+
+
+        return "ended";
+    }
+
+
+    // =========================
+    // DATE FORMAT
+    // =========================
+
+    function formatDate(dateValue) {
+
+        if (!dateValue) {
+            return "Not specified";
+        }
+
+        const date =
+            new Date(dateValue + "T00:00:00");
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
         );
+    }
 
 
-        if (snapshot.empty) {
+    // =========================
+    // TIME FORMAT
+    // =========================
 
-            classList.innerHTML = `
+    function formatTime(timeValue) {
+
+        if (!timeValue) {
+            return "Not specified";
+        }
+
+        const parts =
+            timeValue.split(":");
+
+        let hour =
+            Number(parts[0]);
+
+        const minute =
+            parts[1] || "00";
+
+
+        const ampm =
+            hour >= 12 ? "PM" : "AM";
+
+
+        hour =
+            hour % 12 || 12;
+
+
+        return `${hour}:${minute} ${ampm}`;
+    }
+
+
+    // =========================
+    // SORT CLASSES
+    // =========================
+
+    function sortClasses(classes) {
+
+        return classes.sort(
+            (a, b) => {
+
+                const dateA =
+                    new Date(
+                        `${a.date || "9999-12-31"}T${a.time || "23:59"}:00`
+                    );
+
+                const dateB =
+                    new Date(
+                        `${b.date || "9999-12-31"}T${b.time || "23:59"}:00`
+                    );
+
+                return dateA - dateB;
+            }
+        );
+    }
+
+
+    // =========================
+    // DISPLAY CLASSES
+    // =========================
+
+    function displayClasses() {
+
+        classesContainer.innerHTML = "";
+
+
+        if (allClasses.length === 0) {
+
+            classesContainer.innerHTML = `
                 <div class="empty">
-                    No live classes scheduled yet.
+                    No live classes available right now.
                 </div>
             `;
-
-            liveSection.innerHTML = "";
 
             return;
         }
 
 
-        let classes = [];
+        const sortedClasses =
+            sortClasses([...allClasses]);
 
 
-        snapshot.forEach((item) => {
+        sortedClasses.forEach(item => {
 
-            classes.push({
-                id: item.id,
-                ...item.data()
-            });
-
-        });
+            const status =
+                getStatus(item);
 
 
-        classes.sort((a, b) => {
-
-            const dateA =
-                new Date(
-                    `${a.date}T${a.time || "00:00"}`
-                );
-
-            const dateB =
-                new Date(
-                    `${b.date}T${b.time || "00:00"}`
-                );
-
-            return dateA - dateB;
-
-        });
+            let statusText =
+                "UPCOMING";
 
 
-        /*
-        Find LIVE class
-        */
+            if (status === "live") {
+                statusText = "LIVE NOW";
+            }
 
-        const liveClass =
-            classes.find(
-                item =>
-                    getStatus(item) === "live"
-            );
+            if (status === "ended") {
+                statusText = "ENDED";
+            }
 
 
-        /*
-        Find next UPCOMING class
-        */
-
-        const upcomingClass =
-            classes.find(
-                item =>
-                    getStatus(item) === "upcoming"
-            );
+            let joinButton = "";
 
 
-        const mainClass =
-            liveClass || upcomingClass;
+            // শুধু Live class হলে Join button
+            if (
+                status === "live" &&
+                item.link
+            ) {
+
+                joinButton = `
+                    <a
+                        href="${escapeHtml(item.link)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="join-btn"
+                    >
+                        Join Live Class
+                    </a>
+                `;
+            }
 
 
-        liveSection.innerHTML = "";
+            const duration =
+                Number(item.duration || 60);
 
 
-        if (mainClass) {
+            const card = document.createElement("div");
 
-            showMainClass(mainClass);
-
-        }
-
-
-        classList.innerHTML = "";
+            card.className =
+                "class-card";
 
 
-        const otherClasses =
-            classes.filter(
-                item =>
-                    !mainClass ||
-                    item.id !== mainClass.id
-            );
+            card.innerHTML = `
 
-
-        if (otherClasses.length === 0) {
-
-            classList.innerHTML = `
-                <div class="empty">
-                    No other classes scheduled.
+                <div class="class-title">
+                    ${escapeHtml(
+                        item.course || "Islamic Class"
+                    )}
                 </div>
+
+
+                <div class="info">
+                    <strong>Teacher:</strong>
+                    ${escapeHtml(
+                        item.teacher || "Not specified"
+                    )}
+                </div>
+
+
+                <div class="info">
+                    <strong>Date:</strong>
+                    ${formatDate(item.date)}
+                </div>
+
+
+                <div class="info">
+                    <strong>Time:</strong>
+                    ${formatTime(item.time)}
+                </div>
+
+
+                <div class="info">
+                    <strong>Duration:</strong>
+                    ${duration} Minutes
+                </div>
+
+
+                <div class="info">
+                    <strong>Platform:</strong>
+                    ${escapeHtml(
+                        item.platform || "Online"
+                    )}
+                </div>
+
+
+                <div class="status ${status}">
+                    ${statusText}
+                </div>
+
+
+                ${joinButton}
+
             `;
 
-        } else {
 
-            otherClasses.forEach(item => {
+            classesContainer.appendChild(card);
 
-                showClassCard(item);
+        });
+
+    }
+
+
+    // =========================
+    // LOAD CLASSES
+    // =========================
+
+    async function loadClasses() {
+
+        try {
+
+            loading.style.display =
+                "block";
+
+
+            const snapshot =
+                await getDocs(
+                    collection(
+                        db,
+                        "liveClasses"
+                    )
+                );
+
+
+            allClasses = [];
+
+
+            snapshot.forEach(docSnap => {
+
+                allClasses.push({
+                    id: docSnap.id,
+                    ...docSnap.data()
+                });
 
             });
 
+
+            loading.style.display =
+                "none";
+
+
+            displayClasses();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            loading.textContent =
+                "Unable to load live classes.";
+
+
+            loading.style.color =
+                "#ff9b9b";
         }
 
-
-    } catch (error) {
-
-        console.error(error);
-
-
-        liveSection.innerHTML = "";
-
-
-        classList.innerHTML = `
-
-            <div class="empty">
-
-                ❌ Unable to load live classes.
-
-                <br><br>
-
-                ${escapeHtml(error.message)}
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-/*
-Status:
-Upcoming = before class
-Live = during first 60 minutes
-Ended = after 60 minutes
-*/
-
-function getStatus(item) {
-
-    if (!item.date || !item.time) {
-
-        return "upcoming";
-
     }
 
 
-    const start =
-        new Date(
-            `${item.date}T${item.time}:00`
-        );
+    // =========================
+    // LOGIN CHECK
+    // =========================
 
+    onAuthStateChanged(
+        auth,
+        user => {
 
-    const end =
-        new Date(
-            start.getTime() +
-            60 * 60 * 1000
-        );
+            if (!user) {
 
+                window.location.href =
+                    "login.html";
 
-    const now =
-        new Date();
+                return;
+            }
 
 
-    if (now < start) {
+            loadClasses();
 
-        return "upcoming";
-
-    }
-
-
-    if (now >= start && now < end) {
-
-        return "live";
-
-    }
-
-
-    return "ended";
-
-}
-
-
-/*
-Main class
-*/
-
-function showMainClass(item) {
-
-    const status =
-        getStatus(item);
-
-
-    let label = "● UPCOMING";
-
-
-    if (status === "live") {
-
-        label = "● LIVE NOW";
-
-    }
-
-
-    liveSection.innerHTML = `
-
-        <div class="live-box">
-
-            <span class="live-label">
-
-                ${label}
-
-            </span>
-
-
-            <h2>
-                ${escapeHtml(item.course || "Live Class")}
-            </h2>
-
-
-            <div class="info">
-
-                👨‍🏫 Teacher:
-                ${escapeHtml(item.teacher || "")}
-                <br>
-
-                📅 Date:
-                ${formatDate(item.date)}
-                <br>
-
-                🕐 Time:
-                ${escapeHtml(item.time || "")}
-                <br>
-
-                📚 Course:
-                ${escapeHtml(item.course || "")}
-                <br>
-
-                🌐 Platform:
-                ${escapeHtml(item.platform || "")}
-
-            </div>
-
-
-            <a
-                href="${escapeHtml(item.link || "#")}"
-                class="join-btn"
-                target="_blank"
-                rel="noopener"
-            >
-                Join Live Class
-            </a>
-
-        </div>
-
-    `;
-
-}
-
-
-/*
-Other classes
-*/
-
-function showClassCard(item) {
-
-    const status =
-        getStatus(item);
-
-
-    let statusText = "Upcoming";
-
-
-    if (status === "live") {
-
-        statusText = "🔴 LIVE NOW";
-
-    }
-
-
-    if (status === "ended") {
-
-        statusText = "Ended";
-
-    }
-
-
-    const card =
-        document.createElement("div");
-
-
-    card.className =
-        "class-card";
-
-
-    card.innerHTML = `
-
-        <h3>
-            📖 ${escapeHtml(item.course || "Live Class")}
-        </h3>
-
-
-        <div class="class-info">
-
-            👨‍🏫 Teacher:
-            ${escapeHtml(item.teacher || "")}
-            <br>
-
-            📅 Date:
-            ${formatDate(item.date)}
-            <br>
-
-            🕐 Time:
-            ${escapeHtml(item.time || "")}
-            <br>
-
-            🌐 Platform:
-            ${escapeHtml(item.platform || "")}
-
-        </div>
-
-
-        <span class="status">
-
-            ${statusText}
-
-        </span>
-
-    `;
-
-
-    classList.appendChild(card);
-
-}
-
-
-/*
-Date
-*/
-
-function formatDate(dateString) {
-
-    if (!dateString) {
-
-        return "Date not available";
-
-    }
-
-
-    const date =
-        new Date(
-            dateString + "T00:00:00"
-        );
-
-
-    return date.toLocaleDateString(
-        "en-IN",
-        {
-            day: "numeric",
-            month: "short",
-            year: "numeric"
         }
     );
 
-}
 
+    // =========================
+    // AUTO UPDATE
+    // EVERY 30 SECONDS
+    // =========================
 
-/*
-Security
-*/
+    setInterval(
+        () => {
 
-function escapeHtml(value) {
+            if (allClasses.length > 0) {
+                displayClasses();
+            }
 
-    return String(value)
+        },
+        30000
+    );
 
-        .replaceAll("&", "&amp;")
-
-        .replaceAll("<", "&lt;")
-
-        .replaceAll(">", "&gt;")
-
-        .replaceAll('"', "&quot;")
-
-        .replaceAll("'", "&#039;");
-
-}
-
-</scrip>
-
-
+</script>
 
 </body>
 </html>
