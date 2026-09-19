@@ -1,42 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Courses - Al Noor Islamic Academy</title>
 
 <style>
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 body{
     font-family:Arial,sans-serif;
-    background:#071a17;
-    color:#fff;
-    min-height:100vh;
+    background:#071c16;
+    color:white;
 }
 
-/* HEADER */
-
 header{
+    background:#0d2b22;
+    padding:18px 20px;
+    border-bottom:1px solid #c9a227;
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    padding:18px 20px;
-
-    background:#0b2520;
-
-    border-bottom:1px solid #d4af37;
 }
 
 .logo{
@@ -48,192 +37,104 @@ header{
 .back{
     color:#d4af37;
     text-decoration:none;
-    font-size:14px;
 }
 
-/* HERO */
-
-.hero{
-    text-align:center;
-    padding:40px 20px 25px;
-}
-
-.hero h1{
-    color:#d4af37;
-    font-size:32px;
-    margin-bottom:12px;
-}
-
-.hero p{
-    color:#aaa;
-    line-height:1.6;
-    max-width:600px;
-    margin:auto;
-}
-
-/* COURSES */
-
-.courses{
+.container{
     max-width:1100px;
     margin:auto;
-
-    padding:25px 20px 60px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
-
-    gap:22px;
+    padding:30px 18px;
 }
 
-/* COURSE CARD */
-
-.course-card{
-    background:#0c2923;
-
-    border:1px solid #29453e;
-
-    border-radius:18px;
-
-    padding:25px;
-
-    overflow:hidden;
-
-    transition:0.3s;
-}
-
-.course-card:hover{
-    transform:translateY(-5px);
-    border-color:#d4af37;
-}
-
-/* ICON */
-
-.course-icon{
-    width:70px;
-    height:70px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#071a17;
-
-    border:1px solid #d4af37;
-
-    border-radius:15px;
-
-    font-size:38px;
-
-    margin-bottom:18px;
-}
-
-/* TITLE */
-
-.course-card h2{
+h1{
     color:#d4af37;
+    margin-bottom:8px;
+}
 
-    font-size:21px;
+.subtitle{
+    color:#b9c8c2;
+    margin-bottom:25px;
+}
 
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.course{
+    background:#0d2b22;
+    border:1px solid #21473b;
+    border-radius:15px;
+    padding:22px;
+}
+
+.course h2{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.course p{
+    color:#c8d2ce;
+    line-height:1.6;
     margin-bottom:12px;
 }
 
-/* DESCRIPTION */
-
-.course-card p{
-    color:#bbb;
-
-    line-height:1.6;
-
-    font-size:14px;
-
-    margin-bottom:18px;
+.price{
+    color:#ffd86a !important;
+    font-weight:bold;
 }
 
-/* INFO */
-
-.course-info{
-    color:#ddd;
-
-    font-size:14px;
-
-    line-height:2;
-
-    margin-bottom:20px;
+.type{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    background:#174d38;
+    color:#8ff0bd;
+    font-size:12px;
+    margin-bottom:15px;
 }
-
-/* BUTTON */
 
 .course-btn{
-    display:block;
-
-    width:100%;
-
-    text-align:center;
-
+    display:inline-block;
     background:#d4af37;
-
-    color:#071a17;
-
-    padding:13px;
-
-    border-radius:9px;
-
+    color:#071c16;
     text-decoration:none;
-
+    padding:11px 16px;
+    border-radius:8px;
     font-weight:bold;
-
-    transition:0.2s;
 }
 
-.course-btn:hover{
-    background:#e5c04a;
-}
-
-/* FOOTER */
-
-footer{
+.empty{
     text-align:center;
-
-    padding:25px;
-
-    background:#051310;
-
-    color:#888;
+    padding:40px;
+    color:#9eb0a9;
 }
 
-/* MOBILE */
-
-@media(max-width:600px){
-
-    .hero{
-        padding-top:35px;
-    }
-
-    .hero h1{
-        font-size:27px;
-    }
-
-    .courses{
-        padding:20px 15px 50px;
-    }
-
-    .course-card{
-        padding:22px;
-    }
-
+#loading{
+    text-align:center;
+    padding:60px 20px;
+    color:#d4af37;
 }
 
+#content{
+    display:none;
+}
+
+@media(max-width:700px){
+    .course-grid{
+        grid-template-columns:1fr;
+    }
+}
 </style>
-
 </head>
-
 
 <body>
 
+<div id="loading">
+    Loading courses...
+</div>
 
-<!-- HEADER -->
+<div id="content">
 
 <header>
 
@@ -241,271 +142,255 @@ footer{
         AL NOOR
     </div>
 
-    <a href="dashboard.html"
-       class="back">
-
+    <a href="dashboard.html" class="back">
         ← Dashboard
-
     </a>
 
 </header>
 
 
-<!-- HERO -->
+<div class="container">
 
-<section class="hero">
+    <h1>📚 Our Courses</h1>
 
-    <h1>
-        Our Courses
-    </h1>
-
-    <p>
-        Learn Quran, Arabic and Islamic Studies
-        with our structured online courses.
+    <p class="subtitle">
+        Learn Quran, Arabic and Islamic studies online.
     </p>
 
-</section>
-
-
-<!-- COURSES -->
-
-<section class="courses">
-
-
-<!-- QURAN READING -->
-
-<div class="course-card">
-
-    <div class="course-icon">
-        📖
+    <div id="courseList" class="course-grid">
     </div>
 
-    <h2>
-        Quran Reading
-    </h2>
-
-    <p>
-        Learn to read the Holy Quran
-        correctly with proper pronunciation.
-    </p>
-
-    <div class="course-info">
-
-        📚 Nazira Quran<br>
-
-        🎥 Video Lessons<br>
-
-        🕌 Tajweed Included
-
-    </div>
-
-    <a href="quran-course.html"
-       class="course-btn">
-
-        View Course
-
-    </a>
+</div>
 
 </div>
 
 
-<!-- TAJWEED -->
+<script type="module">
 
-<div class="course-card">
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-    <div class="course-icon">
-        🕌
-    </div>
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-    <h2>
-        Tajweed
-    </h2>
+import {
+    getFirestore,
+    collection,
+    getDocs
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-    <p>
-        Learn the rules of Quranic
-        recitation and pronunciation.
-    </p>
 
-    <div class="course-info">
+const firebaseConfig = {
 
-        📚 Tajweed Rules<br>
+    apiKey:
+    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
 
-        🎥 Recorded Lessons<br>
+    authDomain:
+    "al-noor-islamic-academy.firebaseapp.com",
 
-        🔴 Live Practice
+    projectId:
+    "al-noor-islamic-academy",
 
-    </div>
+    storageBucket:
+    "al-noor-islamic-academy.firebasestorage.app",
 
-    <a href="membership.html"
-       class="course-btn">
+    messagingSenderId:
+    "571799539455",
 
-        View Course
+    appId:
+    "1:571799539455:web:d42728685908430296c6ca"
+};
 
-    </a>
 
-</div>
+const app =
+initializeApp(firebaseConfig);
 
+const auth =
+getAuth(app);
 
-<!-- HIFZ -->
+const db =
+getFirestore(app);
 
-<div class="course-card">
 
-    <div class="course-icon">
-        📕
-    </div>
+const loading =
+document.getElementById("loading");
 
-    <h2>
-        Hifz-ul-Quran
-    </h2>
+const content =
+document.getElementById("content");
 
-    <p>
-        A structured Quran memorization
-        program with regular revision.
-    </p>
+const courseList =
+document.getElementById("courseList");
 
-    <div class="course-info">
 
-        📖 Memorization<br>
+onAuthStateChanged(auth, async (user) => {
 
-        🔄 Daily Revision<br>
+    if(!user){
 
-        👨‍🏫 Teacher Guidance
+        window.location.href =
+        "login.html";
 
-    </div>
+        return;
+    }
 
-    <a href="membership.html"
-       class="course-btn">
 
-        View Course
+    loading.style.display =
+    "none";
 
-    </a>
+    content.style.display =
+    "block";
 
-</div>
+    await loadCourses();
 
+});
 
-<!-- ARABIC -->
 
-<div class="course-card">
+async function loadCourses(){
 
-    <div class="course-icon">
-        🌙
-    </div>
+    courseList.innerHTML =
+    "Loading courses...";
 
-    <h2>
-        Arabic Language
-    </h2>
 
-    <p>
-        Learn Arabic reading, grammar,
-        vocabulary and conversation.
-    </p>
+    try{
 
-    <div class="course-info">
+        const snapshot =
+        await getDocs(
+            collection(db,"courses")
+        );
 
-        🔤 Grammar<br>
 
-        🗣️ Conversation<br>
+        courseList.innerHTML = "";
 
-        📚 Vocabulary
 
-    </div>
+        if(snapshot.empty){
 
-    <a href="membership.html"
-       class="course-btn">
+            courseList.innerHTML = `
+                <div class="empty">
+                    No courses available yet.
+                </div>
+            `;
 
-        View Course
+            return;
+        }
 
-    </a>
 
-</div>
+        snapshot.forEach((item) => {
 
+            const data =
+            item.data();
 
-<!-- HADITH -->
 
-<div class="course-card">
+            const name =
+            escapeHtml(
+                data.name || "Course"
+            );
 
-    <div class="course-icon">
-        📜
-    </div>
+            const description =
+            escapeHtml(
+                data.description || ""
+            );
 
-    <h2>
-        Hadith Studies
-    </h2>
+            const type =
+            data.type || "Paid";
 
-    <p>
-        Study selected Hadith with
-        explanation and lessons.
-    </p>
+            const price =
+            Number(data.price || 0);
 
-    <div class="course-info">
 
-        📖 Selected Hadith<br>
+            let buttonLink =
+            "membership.html";
 
-        📝 Explanation<br>
+            let buttonText =
+            "Enroll Now";
 
-        🎥 Recorded Lessons
 
-    </div>
+            // Quran Reading detail page
+            if(
+                name.toLowerCase()
+                === "quran reading"
+            ){
 
-    <a href="membership.html"
-       class="course-btn">
+                buttonLink =
+                "quran-course.html";
 
-        View Course
+                buttonText =
+                "View Course";
+            }
 
-    </a>
 
-</div>
+            const div =
+            document.createElement("div");
 
+            div.className =
+            "course";
 
-<!-- ISLAMIC STUDIES -->
 
-<div class="course-card">
+            div.innerHTML = `
 
-    <div class="course-icon">
-        🕋
-    </div>
+                <h2>
+                    📚 ${name}
+                </h2>
 
-    <h2>
-        Islamic Studies
-    </h2>
+                <p>
+                    ${description}
+                </p>
 
-    <p>
-        Learn Seerah, Aqeedah, Fiqh
-        and Islamic manners.
-    </p>
+                <span class="type">
+                    ${escapeHtml(type)}
+                </span>
 
-    <div class="course-info">
+                <p class="price">
+                    ${
+                        type === "Free"
+                        ? "Free"
+                        : "₹" + price
+                    }
+                </p>
 
-        🕌 Seerah<br>
+                <a
+                    href="${buttonLink}"
+                    class="course-btn"
+                >
+                    ${buttonText}
+                </a>
 
-        📚 Aqeedah & Fiqh<br>
+            `;
 
-        ❤️ Islamic Manners
 
-    </div>
+            courseList.appendChild(div);
 
-    <a href="membership.html"
-       class="course-btn">
+        });
 
-        View Course
 
-    </a>
+    }catch(error){
 
-</div>
+        console.error(error);
 
+        courseList.innerHTML = `
+            <div class="empty">
+                Failed to load courses.
+            </div>
+        `;
 
-</section>
+    }
 
+}
 
-<!-- FOOTER -->
 
-<footer>
+function escapeHtml(value){
 
-    © 2026 Al Noor Islamic Academy
+    return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
 
-</footer>
-
+</script>
 
 </body>
-
 </html>
