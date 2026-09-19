@@ -3,428 +3,358 @@
 
 <head>
 
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Dashboard - Al Noor Islamic Academy</title>
-
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-        body {
-            font-family: Arial, sans-serif;
-
-            background: #071a17;
-
-            color: white;
-
-            min-height: 100vh;
-        }
-
-
-        /* HEADER */
-
-        header {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            padding: 18px 20px;
-
-            background: #0b2520;
-
-            border-bottom: 1px solid #29453e;
-        }
-
-
-        .logo {
-            color: #d4af37;
-
-            font-size: 20px;
-
-            font-weight: bold;
-        }
-
-
-        .profile {
-            width: 42px;
-            height: 42px;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            border-radius: 50%;
-
-            background: #d4af37;
-
-            color: #071a17;
-
-            font-weight: bold;
-        }
-
-
-        /* MAIN */
-
-        .container {
-            max-width: 1100px;
-
-            margin: auto;
-
-            padding: 30px 20px;
-        }
-
-
-        .welcome {
-            margin-bottom: 30px;
-        }
-
-
-        .welcome h1 {
-            font-size: 28px;
-
-            color: #d4af37;
-
-            margin-bottom: 8px;
-        }
-
-
-        .welcome p {
-            color: #aaa;
-        }
-
-
-        /* MEMBERSHIP */
-
-        .membership {
-            background: linear-gradient(
-                135deg,
-                #183f35,
-                #0c2923
-            );
-
-            border: 1px solid #4a665e;
-
-            border-radius: 18px;
-
-            padding: 25px;
-
-            margin-bottom: 30px;
-        }
-
-
-        .membership-title {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            margin-bottom: 15px;
-        }
-
-
-        .membership h2 {
-            color: #d4af37;
-
-            font-size: 21px;
-        }
-
-
-        .premium {
-            background: #d4af37;
-
-            color: #071a17;
-
-            padding: 7px 12px;
-
-            border-radius: 20px;
-
-            font-size: 12px;
-
-            font-weight: bold;
-        }
-
-
-        .membership p {
-            color: #ddd;
-
-            line-height: 1.6;
-        }
-
-
-        .membership-button {
-            display: inline-block;
-
-            margin-top: 18px;
-
-            background: #d4af37;
-
-            color: #071a17;
-
-            padding: 11px 18px;
-
-            border-radius: 8px;
-
-            text-decoration: none;
-
-            font-weight: bold;
-
-            font-size: 14px;
-        }
-
-
-        /* SECTION TITLE */
-
-        .section-title {
-            color: #d4af37;
-
-            font-size: 24px;
-
-            margin-bottom: 20px;
-        }
-
-
-        /* DASHBOARD CARDS */
-
-        .dashboard-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(210px, 1fr));
-
-            gap: 18px;
-
-            margin-bottom: 35px;
-        }
-
-
-        .dashboard-card {
-            background: #0c2923;
-
-            border: 1px solid #29453e;
-
-            border-radius: 15px;
-
-            padding: 22px;
-        }
-
-
-        .icon {
-            font-size: 28px;
-
-            margin-bottom: 12px;
-        }
-
-
-        .dashboard-card h3 {
-            color: #d4af37;
-
-            margin-bottom: 8px;
-        }
-
-
-        .dashboard-card p {
-            color: #aaa;
-
-            font-size: 14px;
-
-            line-height: 1.5;
-        }
-
-
-        /* LIVE CLASS */
-
-        .live-class {
-            background: #0c2923;
-
-            border: 1px solid #29453e;
-
-            border-radius: 18px;
-
-            padding: 25px;
-
-            margin-bottom: 30px;
-        }
-
-
-        .live-header {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            margin-bottom: 20px;
-        }
-
-
-        .live-header h2 {
-            color: #d4af37;
-
-            font-size: 22px;
-        }
-
-
-        .live-badge {
-            background: #b91c1c;
-
-            padding: 7px 12px;
-
-            border-radius: 20px;
-
-            font-size: 12px;
-
-            font-weight: bold;
-        }
-
-
-        .class-name {
-            font-size: 20px;
-
-            margin-bottom: 8px;
-        }
-
-
-        .class-info {
-            color: #aaa;
-
-            line-height: 1.7;
-
-            margin-bottom: 18px;
-        }
-
-
-        .join-button {
-            display: inline-block;
-
-            background: #d4af37;
-
-            color: #071a17;
-
-            padding: 12px 20px;
-
-            border-radius: 9px;
-
-            text-decoration: none;
-
-            font-weight: bold;
-        }
-
-
-        /* COURSES */
-
-        .courses {
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-
-            gap: 18px;
-        }
-
-
-        .course {
-            background: #0c2923;
-
-            border: 1px solid #29453e;
-
-            border-radius: 15px;
-
-            padding: 22px;
-        }
-
-
-        .course h3 {
-            color: #d4af37;
-
-            margin-bottom: 10px;
-        }
-
-
-        .course p {
-            color: #aaa;
-
-            font-size: 14px;
-
-            margin-bottom: 15px;
-        }
-
-
-        .progress {
-            height: 7px;
-
-            background: #071a17;
-
-            border-radius: 10px;
-
-            overflow: hidden;
-
-            margin-bottom: 8px;
-        }
-
-
-        .progress-bar {
-            height: 100%;
-
-            width: 65%;
-
-            background: #d4af37;
-        }
-
-
-        .progress-text {
-            color: #999;
-
-            font-size: 12px;
-        }
-
-
-        /* FOOTER */
-
-        footer {
-            text-align: center;
-
-            padding: 25px;
-
-            margin-top: 30px;
-
-            background: #051310;
-
-            color: #888;
-        }
-
-
-        /* MOBILE */
-
-        @media (max-width: 600px) {
-
-            .welcome h1 {
-                font-size: 24px;
-            }
-
-            .membership-title {
-                align-items: flex-start;
-
-                gap: 10px;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard - Al Noor Islamic Academy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#061713;
+    color:#fff;
+    min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+    background:#0a241d;
+    border-bottom:1px solid #29483f;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:21px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logout{
+    border:1px solid #d4af37;
+    background:transparent;
+    color:#d4af37;
+    padding:9px 13px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.logout:hover{
+    background:#d4af37;
+    color:#061713;
+}
+
+.profile{
+    width:42px;
+    height:42px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    background:#d4af37;
+    color:#061713;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:30px 20px 40px;
+}
+
+/* WELCOME */
+
+.welcome{
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    color:#d4af37;
+    font-size:29px;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#aebdb8;
+    font-size:15px;
+}
+
+/* QUICK STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:#0b2921;
+    border:1px solid #29483f;
+    border-radius:15px;
+    padding:20px;
+}
+
+.stat-icon{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.stat-label{
+    color:#9eaea8;
+    font-size:13px;
+    margin-bottom:6px;
+}
+
+.stat-value{
+    color:#d4af37;
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* MEMBERSHIP */
+
+.membership{
+    background:
+    linear-gradient(
+        135deg,
+        #173f34,
+        #0a251e
+    );
+
+    border:1px solid #4c685f;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:30px;
+}
+
+.membership-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:13px;
+}
+
+.membership h2{
+    color:#d4af37;
+    font-size:21px;
+}
+
+.membership-badge{
+    background:#d4af37;
+    color:#061713;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.membership p{
+    color:#d4ddd9;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.membership-button{
+    display:inline-block;
+    margin-top:17px;
+    background:#d4af37;
+    color:#061713;
+    padding:11px 18px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* SECTION */
+
+.section-title{
+    color:#d4af37;
+    font-size:22px;
+    margin-bottom:17px;
+}
+
+/* DASHBOARD CARDS */
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(210px,1fr));
+
+    gap:17px;
+    margin-bottom:30px;
+}
+
+.dashboard-card{
+    display:block;
+    background:#0b2921;
+    border:1px solid #29483f;
+    border-radius:15px;
+    padding:22px;
+    color:white;
+    text-decoration:none;
+    transition:0.2s;
+}
+
+.dashboard-card:hover{
+    border-color:#d4af37;
+    transform:translateY(-2px);
+}
+
+.icon{
+    font-size:28px;
+    margin-bottom:11px;
+}
+
+.dashboard-card h3{
+    color:#d4af37;
+    margin-bottom:7px;
+    font-size:18px;
+}
+
+.dashboard-card p{
+    color:#aebdb8;
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* LIVE CLASS */
+
+.live-class{
+    background:#0b2921;
+    border:1px solid #29483f;
+    border-radius:18px;
+    padding:24px;
+    margin-bottom:30px;
+}
+
+.live-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.live-header h2{
+    color:#d4af37;
+    font-size:21px;
+}
+
+.live-badge{
+    background:#263b56;
+    color:#8fc5ff;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.live-badge.live{
+    background:#164d32;
+    color:#6dffae;
+}
+
+.live-badge.ended{
+    background:#3b3030;
+    color:#ff9b9b;
+}
+
+.class-name{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.class-info{
+    color:#aebdb8;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.join-button{
+    display:inline-block;
+    margin-top:17px;
+    background:#d4af37;
+    color:#061713;
+    padding:12px 20px;
+    border-radius:9px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.no-class{
+    color:#9eaea8;
+    font-size:14px;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:25px;
+    background:#04100d;
+    color:#788984;
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .container{
+        padding:25px 15px 35px;
+    }
+
+    .welcome h1{
+        font-size:24px;
+    }
+
+    .logout{
+        padding:8px 9px;
+        font-size:12px;
+    }
+
+    .profile{
+        width:39px;
+        height:39px;
+    }
+
+    .membership-title{
+        align-items:flex-start;
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -432,291 +362,1011 @@
 <body>
 
 
-    <!-- HEADER -->
+<header>
 
-    <header>
-
-        <div class="logo">
-            AL NOOR
-        </div>
+    <div class="logo">
+        AL NOOR
+    </div>
 
 
-        <a href="profile.html" style="text-decoration:none;">
-    <div class="profile">AN</div>
+    <div class="header-right">
+
+        <button
+        id="logoutButton"
+        class="logout">
+
+            Logout
+
+        </button>
+
+
+        <a
+        href="profile.html"
+        class="profile">
+
+            <span id="profileInitial">
+                A
+            </span>
+
         </a>
 
-    </header>
+    </div>
+
+</header>
 
 
 
-    <!-- MAIN -->
-
-    <main class="container">
+<main class="container">
 
 
-        <!-- WELCOME -->
+<!-- WELCOME -->
 
-        <div class="welcome">
+<section class="welcome">
 
-            <h1>
-                Assalamu Alaikum 👋
-            </h1>
+    <h1>
 
-            <p>
-                Welcome to your student dashboard.
-            </p>
+        Assalamu Alaikum 👋
+        <span id="userName"></span>
+
+    </h1>
+
+    <p>
+        Welcome to your Al Noor Islamic Academy dashboard.
+    </p>
+
+</section>
+
+
+
+<!-- STATS -->
+
+<section class="stats">
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            📚
+        </div>
+
+        <div class="stat-label">
+            Available Courses
+        </div>
+
+        <div
+        class="stat-value"
+        id="courseCount">
+
+            —
 
         </div>
 
+    </div>
 
 
-        <!-- MEMBERSHIP -->
+    <div class="stat-card">
 
-        <div class="membership">
+        <div class="stat-icon">
+            🎥
+        </div>
 
+        <div class="stat-label">
+            Upcoming Classes
+        </div>
 
-            <div class="membership-title">
+        <div
+        class="stat-value"
+        id="classCount">
 
-                <h2>
-                    Your Membership
-                </h2>
-
-                <span class="premium">
-                    PREMIUM
-                </span>
-
-            </div>
-
-
-            <p>
-                You have access to premium courses,
-                live classes and learning materials.
-            </p>
-
-
-        <a href="membership.html" class="membership-btn">
-    View Membership
-        </a>
-
+            —
 
         </div>
 
+    </div>
 
 
-        <!-- DASHBOARD -->
+    <div class="stat-card">
 
-        <h2 class="section-title">
-            My Dashboard
+        <div class="stat-icon">
+            💳
+        </div>
+
+        <div class="stat-label">
+            Membership
+        </div>
+
+        <div
+        class="stat-value"
+        id="membershipStatus">
+
+            —
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🔔
+        </div>
+
+        <div class="stat-label">
+            Notifications
+        </div>
+
+        <div
+        class="stat-value"
+        id="notificationCount">
+
+            —
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- MEMBERSHIP -->
+
+<section class="membership">
+
+    <div class="membership-title">
+
+        <h2>
+            Your Membership
         </h2>
 
+        <span
+        class="membership-badge"
+        id="membershipBadge">
 
-        <div class="dashboard-grid">
+            CHECKING...
 
+        </span>
 
-            <div class="dashboard-card">
-
-                <div class="icon">
-                    📚
-                </div>
-
-                <h3>
-                    My Courses
-                </h3>
-
-                <p>
-                    View and continue your enrolled courses.
-                </p>
-
-            </div>
+    </div>
 
 
+    <p id="membershipText">
 
-            <a href="live-classes.html" class="dashboard-card" style="text-decoration:none; color:inherit;">
+        Checking your membership information...
 
-                <div class="icon">
-                    🔴
-                </div>
+    </p>
 
-                <h3>
-                    Live Classes
-                </h3>
 
-            
+    <a
+    href="membership.html"
+    class="membership-button">
+
+        View Membership
+
+    </a>
+
+</section>
 
 
 
-            <a href="notifications.html" class="dashboard-card" style="text-decoration: none; color: inherit;">
+<!-- DASHBOARD -->
 
-                <div class="icon">
-                    🔔
-                </div>
+<h2 class="section-title">
+    My Dashboard
+</h2>
 
-                <h3>
-                    Notifications
-                </h3>
 
-                <>
-                    See important academy announcements.
-                </
+<div class="dashboard-grid">
 
-            </
 
+    <a
+    href="courses.html"
+    class="dashboard-card">
+
+        <div class="icon">
+            📚
         </div>
 
-
-
-        <!-- LIVE CLASS -->
-
-        <div class="live-class">
-
-
-            <div class="live-header">
-
-                <h2>
-                    Live Class
-                </h2>
-
-                <span class="live-badge">
-                    LIVE
-                </span>
-
-            </div>
-
-
-            <div class="class-name">
-                Quran with Tajweed
-            </div>
-
-
-            <div class="class-info">
-
-                👨‍🏫 Teacher: Ustadh<br>
-
-                🕐 Today — 8:00 PM<br>
-
-                📖 Tajweed & Quran Recitation
-
-            </div>
-
-
-            <a href="#" class="join-button">
-                Join Live Class
-            </a>
-
-
-        </div>
-
-
-
-        <!-- MY COURSES -->
-
-        <h2 class="section-title">
+        <h3>
             My Courses
-        </h2>
+        </h3>
 
+        <p>
+            View available courses and continue your learning.
+        </p>
 
-        <div class="courses">
-
-
-            <div class="course">
-
-                <h3>
-                    Quran Reading
-                </h3>
-
-                <p>
-                    Quran reading with Tajweed.
-                </p>
-
-
-                <div class="progress">
-
-                    <div class="progress-bar"
-                         style="width: 65%;">
-                    </div>
-
-                </div>
-
-
-                <div class="progress-text">
-                    65% Completed
-                </div>
-
-            </div>
+    </a>
 
 
 
-            <div class="course">
+    <a
+    href="live-classes.html"
+    class="dashboard-card">
 
-                <h3>
-                    Arabic Language
-                </h3>
-
-                <p>
-                    Arabic grammar and conversation.
-                </p>
-
-
-                <div class="progress">
-
-                    <div class="progress-bar"
-                         style="width: 40%;">
-                    </div>
-
-                </div>
-
-
-                <div class="progress-text">
-                    40% Completed
-                </div>
-
-            </div>
-
-
-
-            <div class="course">
-
-                <h3>
-                    Islamic Studies
-                </h3>
-
-                <p>
-                    Seerah, Aqeedah and Fiqh.
-                </p>
-
-
-                <div class="progress">
-
-                    <div class="progress-bar"
-                         style="width: 25%;">
-                    </div>
-
-                </div>
-
-
-                <div class="progress-text">
-                    25% Completed
-                </div>
-
-            </div>
-
-
+        <div class="icon">
+            🎥
         </div>
 
+        <h3>
+            Live Classes
+        </h3>
 
-    </main>
+        <p>
+            Check upcoming classes and join when they are live.
+        </p>
+
+    </a>
 
 
 
-    <!-- FOOTER -->
+    <a
+    href="notifications.html"
+    class="dashboard-card">
 
-    <footer>
+        <div class="icon">
+            🔔
+        </div>
 
-        © 2026 Al Noor Islamic Academy
+        <h3>
+            Notifications
+        </h3>
 
-    </footer>
+        <p>
+            See important academy announcements.
+        </p>
+
+    </a>
+
+
+
+    <a
+    href="profile.html"
+    class="dashboard-card">
+
+        <div class="icon">
+            👤
+        </div>
+
+        <h3>
+            My Profile
+        </h3>
+
+        <p>
+            View your account and payment information.
+        </p>
+
+    </a>
+
+
+</div>
+
+
+
+<!-- LIVE CLASS -->
+
+<section class="live-class">
+
+
+    <div class="live-header">
+
+        <h2>
+            Next Live Class
+        </h2>
+
+        <span
+        id="liveBadge"
+        class="live-badge">
+
+            CHECKING...
+
+        </span>
+
+    </div>
+
+
+    <div
+    id="liveClassContent">
+
+        <div class="no-class">
+            Loading class information...
+        </div>
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
+
+
+
+<script type="module">
+
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    collection,
+    getDocs
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+    authDomain:
+    "al-noor-islamic-academy.firebaseapp.com",
+
+    projectId:
+    "al-noor-islamic-academy",
+
+    storageBucket:
+    "al-noor-islamic-academy.firebasestorage.app",
+
+    messagingSenderId:
+    "571799539455",
+
+    appId:
+    "1:571799539455:web:d42728685908430296c6ca"
+
+};
+
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+
+/* ELEMENTS */
+
+const userName =
+document.getElementById("userName");
+
+const profileInitial =
+document.getElementById("profileInitial");
+
+const logoutButton =
+document.getElementById("logoutButton");
+
+const courseCount =
+document.getElementById("courseCount");
+
+const classCount =
+document.getElementById("classCount");
+
+const membershipStatus =
+document.getElementById("membershipStatus");
+
+const notificationCount =
+document.getElementById("notificationCount");
+
+const membershipBadge =
+document.getElementById("membershipBadge");
+
+const membershipText =
+document.getElementById("membershipText");
+
+const liveBadge =
+document.getElementById("liveBadge");
+
+const liveClassContent =
+document.getElementById("liveClassContent");
+
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+        return "";
+    }
+
+    return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* CLASS STATUS */
+
+function getStatus(item){
+
+    if(
+        !item.date ||
+        !item.time
+    ){
+        return "upcoming";
+    }
+
+
+    const start =
+    new Date(
+        `${item.date}T${item.time}:00`
+    );
+
+
+    const duration =
+    Number(item.duration || 60);
+
+
+    const end =
+    new Date(
+        start.getTime() +
+        duration * 60 * 1000
+    );
+
+
+    const now =
+    new Date();
+
+
+    if(now < start){
+
+        return "upcoming";
+
+    }
+
+
+    if(
+        now >= start &&
+        now < end
+    ){
+
+        return "live";
+
+    }
+
+
+    return "ended";
+
+}
+
+
+
+/* FORMAT DATE */
+
+function formatDate(value){
+
+    if(!value){
+
+        return "Not specified";
+
+    }
+
+
+    const date =
+    new Date(
+        value + "T00:00:00"
+    );
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+
+/* FORMAT TIME */
+
+function formatTime(value){
+
+    if(!value){
+
+        return "Not specified";
+
+    }
+
+
+    const parts =
+    value.split(":");
+
+
+    let hour =
+    Number(parts[0]);
+
+
+    const minute =
+    parts[1] || "00";
+
+
+    const ampm =
+    hour >= 12
+    ? "PM"
+    : "AM";
+
+
+    hour =
+    hour % 12 || 12;
+
+
+    return `${hour}:${minute} ${ampm}`;
+
+}
+
+
+
+/* LOAD DASHBOARD */
+
+async function loadDashboard(user){
+
+    try{
+
+
+        /* STUDENT DATA */
+
+        const studentRef =
+        doc(
+            db,
+            "students",
+            user.uid
+        );
+
+
+        const studentSnap =
+        await getDoc(studentRef);
+
+
+        let studentData = {};
+
+
+        if(studentSnap.exists()){
+
+            studentData =
+            studentSnap.data();
+
+        }
+
+
+
+        /* USER NAME */
+
+        const name =
+        studentData.name ||
+        user.displayName ||
+        "Student";
+
+
+        userName.textContent =
+        ", " + name;
+
+
+        profileInitial.textContent =
+        name
+        .trim()
+        .charAt(0)
+        .toUpperCase();
+
+
+
+        /* MEMBERSHIP */
+
+        const membership =
+        studentData.membership ||
+        "No Membership";
+
+
+        const status =
+        studentData.membershipStatus ||
+        "Inactive";
+
+
+        membershipStatus.textContent =
+        status;
+
+
+        membershipBadge.textContent =
+        status.toUpperCase();
+
+
+        if(
+            status.toLowerCase() ===
+            "active"
+        ){
+
+            membershipText.textContent =
+            `${membership} is active. You can access your academy services according to your membership.`;
+
+        }
+        else{
+
+            membershipText.textContent =
+            "You currently do not have an active membership. Choose a membership plan to continue.";
+
+        }
+
+
+
+        /* COURSES */
+
+        const coursesSnap =
+        await getDocs(
+            collection(
+                db,
+                "courses"
+            )
+        );
+
+
+        courseCount.textContent =
+        coursesSnap.size;
+
+
+
+        /* LIVE CLASSES */
+
+        const classesSnap =
+        await getDocs(
+            collection(
+                db,
+                "liveClasses"
+            )
+        );
+
+
+        let classes = [];
+
+
+        classesSnap.forEach(
+            item => {
+
+                classes.push({
+                    id:item.id,
+                    ...item.data()
+                });
+
+            }
+        );
+
+
+
+        const upcoming =
+        classes.filter(
+            item =>
+            getStatus(item) !== "ended"
+        );
+
+
+        classCount.textContent =
+        upcoming.length;
+
+
+
+        /* NEXT CLASS */
+
+        if(upcoming.length === 0){
+
+            liveBadge.textContent =
+            "NO CLASS";
+
+
+            liveBadge.className =
+            "live-badge";
+
+
+            liveClassContent.innerHTML = `
+
+                <div class="no-class">
+
+                    No upcoming live classes scheduled.
+
+                </div>
+
+            `;
+
+        }
+        else{
+
+
+            upcoming.sort(
+                (a,b) => {
+
+                    const dateA =
+                    new Date(
+                        `${a.date || "9999-12-31"}T${a.time || "23:59"}:00`
+                    );
+
+
+                    const dateB =
+                    new Date(
+                        `${b.date || "9999-12-31"}T${b.time || "23:59"}:00`
+                    );
+
+
+                    return dateA - dateB;
+
+                }
+            );
+
+
+            const item =
+            upcoming[0];
+
+
+            const currentStatus =
+            getStatus(item);
+
+
+
+            if(
+                currentStatus ===
+                "live"
+            ){
+
+                liveBadge.textContent =
+                "LIVE NOW";
+
+
+                liveBadge.className =
+                "live-badge live";
+
+            }
+            else{
+
+                liveBadge.textContent =
+                "UPCOMING";
+
+
+                liveBadge.className =
+                "live-badge";
+
+            }
+
+
+
+            let button = "";
+
+
+            if(
+                currentStatus === "live" &&
+                item.link
+            ){
+
+                button = `
+
+                    <a
+                    href="${escapeHtml(item.link)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="join-button">
+
+                        Join Live Class
+
+                    </a>
+
+                `;
+
+            }
+            else{
+
+                button = `
+
+                    <a
+                    href="live-classes.html"
+                    class="join-button">
+
+                        View Live Classes
+
+                    </a>
+
+                `;
+
+            }
+
+
+
+            liveClassContent.innerHTML = `
+
+                <div class="class-name">
+
+                    ${escapeHtml(
+                        item.course ||
+                        "Islamic Class"
+                    )}
+
+                </div>
+
+
+                <div class="class-info">
+
+                    👨‍🏫 Teacher:
+                    ${escapeHtml(
+                        item.teacher ||
+                        "Not specified"
+                    )}
+                    <br>
+
+                    📅 Date:
+                    ${formatDate(item.date)}
+                    <br>
+
+                    🕐 Time:
+                    ${formatTime(item.time)}
+                    <br>
+
+                    ⏱ Duration:
+                    ${Number(item.duration || 60)}
+                    Minutes
+                    <br>
+
+                    💻 Platform:
+                    ${escapeHtml(
+                        item.platform ||
+                        "Online"
+                    )}
+
+                </div>
+
+
+                ${button}
+
+            `;
+
+        }
+
+
+
+        /* NOTIFICATIONS */
+
+        const notificationsSnap =
+        await getDocs(
+            collection(
+                db,
+                "notifications"
+            )
+        );
+
+
+        notificationCount.textContent =
+        notificationsSnap.size;
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Dashboard error:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* AUTH */
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        if(!user){
+
+            window.location.replace(
+                "login.html"
+            );
+
+            return;
+
+        }
+
+
+        loadDashboard(user);
+
+    }
+);
+
+
+
+/* LOGOUT */
+
+logoutButton.addEventListener(
+    "click",
+    async () => {
+
+        try{
+
+            await signOut(auth);
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }
+        catch(error){
+
+            alert(
+                "Logout failed: " +
+                error.message
+            );
+
+        }
+
+    }
+);
+
+
+
+/* AUTO REFRESH */
+
+setInterval(
+    () => {
+
+        const user =
+        auth.currentUser;
+
+
+        if(user){
+
+            loadDashboard(user);
+
+        }
+
+    },
+    30000
+);
+
+
+</script>
 
 
 </body>
 
-</html>
+            </html>
