@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Manage Courses | Al Noor Islamic Academy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#071c16;
+    color:white;
+}
+
+/* Header */
+
+header{
+    background:#0b261e;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #d4af37;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.admin{
+    color:#d4af37;
+    font-size:14px;
+}
+
+/* Main */
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:30px 18px;
+}
+
+h1{
+    text-align:center;
+    color:#d4af37;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#9fb3ab;
+    margin-bottom:30px;
+}
+
+/* Add Course */
+
+.add-btn{
+    display:block;
+    width:100%;
+    padding:14px;
+    margin-bottom:20px;
+    background:#d4af37;
+    color:#071c16;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+/* Course Card */
+
+.course{
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:15px;
+}
+
+.course:hover{
+    border-color:#d4af37;
+}
+
+.course-top{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.icon{
+    width:50px;
+    height:50px;
+    border-radius:12px;
+    background:#183d31;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:25px;
+}
+
+.course h2{
+    font-size:18px;
+    margin-bottom:5px;
+}
+
+.teacher{
+    color:#8fa69e;
+    font-size:13px;
+}
+
+.details{
+    margin-top:15px;
+    padding-top:15px;
+    border-top:1px solid #23463b;
+    color:#b9c9c3;
+    line-height:1.8;
+}
+
+/* Status */
+
+.status{
+    display:inline-block;
+    margin-top:10px;
+    padding:5px 10px;
+    border-radius:7px;
+    background:#183d31;
+    color:#6fd39b;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* Buttons */
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.action{
+    flex:1;
+    padding:10px;
+    border-radius:8px;
+    text-align:center;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.edit{
+    background:#d4af37;
+    color:#071c16;
+}
+
+.delete{
+    border:1px solid #a94442;
+    color:#ff8a87;
+}
+
+/* Back */
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:30px;
+    color:#d4af37;
+    text-decoration:none;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    color:#718b82;
+    padding:30px 10px;
+    margin-top:20px;
+    border-top:1px solid #193b31;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <div class="admin">
+        👑 Admin
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <h1>Manage Courses</h1>
+
+    <p class="subtitle">
+        Manage Al Noor Islamic Academy courses
+    </p>
+
+
+    <button class="add-btn" onclick="addCourse()">
+        + Add New Course
+    </button>
+
+
+    <!-- Course 1 -->
+
+    <div class="course">
+
+        <div class="course-top">
+
+            <div class="icon">
+                📖
+            </div>
+
+            <div>
+
+                <h2>
+                    Quran Reading
+                </h2>
+
+                <div class="teacher">
+                    Teacher: Qualified Ustadh
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="details">
+
+            ⏱️ Duration: 12 Weeks<br>
+            📚 Lessons: 30<br>
+
+            <span class="status">
+                ACTIVE
+            </span>
+
+        </div>
+
+        <div class="actions">
+
+            <a href="#" class="action edit">
+                ✏️ Edit
+            </a>
+
+            <a href="#" class="action delete">
+                🗑️ Delete
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- Course 2 -->
+
+    <div class="course">
+
+        <div class="course-top">
+
+            <div class="icon">
+                🕌
+            </div>
+
+            <div>
+
+                <h2>
+                    Tajweed
+                </h2>
+
+                <div class="teacher">
+                    Teacher: Tajweed Teacher
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="details">
+
+            ⏱️ Duration: 8 Weeks<br>
+            📚 Lessons: 20<br>
+
+            <span class="status">
+                ACTIVE
+            </span>
+
+        </div>
+
+        <div class="actions">
+
+            <a href="#" class="action edit">
+                ✏️ Edit
+            </a>
+
+            <a href="#" class="action delete">
+                🗑️ Delete
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- Course 3 -->
+
+    <div class="course">
+
+        <div class="course-top">
+
+            <div class="icon">
+                📗
+            </div>
+
+            <div>
+
+                <h2>
+                    Arabic Language
+                </h2>
+
+                <div class="teacher">
+                    Teacher: Arabic Teacher
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="details">
+
+            ⏱️ Duration: 16 Weeks<br>
+            📚 Lessons: 40<br>
+
+            <span class="status">
+                ACTIVE
+            </span>
+
+        </div>
+
+        <div class="actions">
+
+            <a href="#" class="action edit">
+                ✏️ Edit
+            </a>
+
+            <a href="#" class="action delete">
+                🗑️ Delete
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- Course 4 -->
+
+    <div class="course">
+
+        <div class="course-top">
+
+            <div class="icon">
+                📜
+            </div>
+
+            <div>
+
+                <h2>
+                    Hadith Studies
+                </h2>
+
+                <div class="teacher">
+                    Teacher: Islamic Studies Teacher
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="details">
+
+            ⏱️ Duration: 12 Weeks<br>
+            📚 Lessons: 24<br>
+
+            <span class="status">
+                ACTIVE
+            </span>
+
+        </div>
+
+        <div class="actions">
+
+            <a href="#" class="action edit">
+                ✏️ Edit
+            </a>
+
+            <a href="#" class="action delete">
+                🗑️ Delete
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <a href="admin.html" class="back">
+        ← Back to Admin Dashboard
+    </a>
+
+</div>
+
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
+
+
+<script>
+
+function addCourse(){
+
+    alert("Add Course feature will be connected to the database later.");
+
+}
+
+</script>
+
+</body>
+</html>

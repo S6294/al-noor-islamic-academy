@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notifications - Admin | Al Noor Islamic Academy</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#071d17;
+    color:white;
+}
+
+.header{
+    background:#0d3027;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #c9a227;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.admin{
+    color:#d4af37;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:25px 18px;
+}
+
+h1{
+    color:#d4af37;
+    margin-bottom:20px;
+}
+
+.box{
+    background:#0d3027;
+    padding:20px;
+    border-radius:15px;
+    border:1px solid #80691d;
+    margin-bottom:30px;
+}
+
+.box h2{
+    color:#d4af37;
+    margin-bottom:18px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:13px;
+    margin-bottom:12px;
+    border:none;
+    border-radius:8px;
+    background:#f5f5f5;
+    color:#111;
+}
+
+textarea{
+    height:120px;
+    resize:none;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:#d4af37;
+    color:#071d17;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.notification{
+    background:#0d3027;
+    border:1px solid #80691d;
+    padding:18px;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+.notification h3{
+    color:#d4af37;
+    margin-bottom:8px;
+}
+
+.notification p{
+    color:#ddd;
+    line-height:1.6;
+}
+
+.date{
+    color:#aaa;
+    font-size:13px;
+    margin-top:8px;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.actions button{
+    width:50%;
+}
+
+.delete{
+    background:#8b2525;
+    color:white;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:25px;
+    color:#d4af37;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">AL NOOR</div>
+    <div class="admin">👑 Admin</div>
+</header>
+
+<div class="container">
+
+<h1>🔔 Notifications Management</h1>
+
+<div class="box">
+
+<h2>➕ Send Notification</h2>
+
+<input
+type="text"
+id="title"
+placeholder="Notification Title">
+
+<select id="type">
+
+<option value="">Select Notification Type</option>
+<option value="Live Class">Live Class</option>
+<option value="Course">New Course</option>
+<option value="Membership">Membership</option>
+<option value="Announcement">Announcement</option>
+
+</select>
+
+<textarea
+id="message"
+placeholder="Write your notification..."></textarea>
+
+<button onclick="addNotification()">
+📢 Send Notification
+</button>
+
+</div>
+
+
+<h2 style="color:#d4af37;margin-bottom:15px;">
+Recent Notifications
+</h2>
+
+
+<div id="notificationList">
+
+<div class="notification">
+
+<h3>🔴 Live Quran Class</h3>
+
+<p>
+Quran Reading with Tajweed live class will start today at 8:00 PM.
+</p>
+
+<div class="date">
+Today • Live Class
+</div>
+
+<div class="actions">
+
+<button onclick="alert('Edit feature will be connected later.')">
+✏️ Edit
+</button>
+
+<button
+class="delete"
+onclick="deleteNotification(this)">
+🗑️ Delete
+</button>
+
+</div>
+
+</div>
+
+
+<div class="notification">
+
+<h3>📚 New Course Available</h3>
+
+<p>
+Arabic Language course is now available for students.
+</p>
+
+<div class="date">
+Yesterday • New Course
+</div>
+
+<div class="actions">
+
+<button onclick="alert('Edit feature will be connected later.')">
+✏️ Edit
+</button>
+
+<button
+class="delete"
+onclick="deleteNotification(this)">
+🗑️ Delete
+</button>
+
+</div>
+
+</div>
+
+
+<div class="notification">
+
+<h3>📢 Academy Announcement</h3>
+
+<p>
+Welcome to Al Noor Islamic Academy. Please check your upcoming classes.
+</p>
+
+<div class="date">
+2 days ago • Announcement
+</div>
+
+<div class="actions">
+
+<button onclick="alert('Edit feature will be connected later.')">
+✏️ Edit
+</button>
+
+<button
+class="delete"
+onclick="deleteNotification(this)">
+🗑️ Delete
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<a href="admin.html" class="back">
+← Back to Admin Dashboard
+</a>
+
+</div>
+
+
+<script>
+
+function addNotification(){
+
+    let title =
+    document.getElementById("title").value;
+
+    let type =
+    document.getElementById("type").value;
+
+    let message =
+    document.getElementById("message").value;
+
+    if(
+        title === "" ||
+        type === "" ||
+        message === ""
+    ){
+        alert("Please fill all fields.");
+        return;
+    }
+
+    let notification =
+    document.createElement("div");
+
+    notification.className =
+    "notification";
+
+    notification.innerHTML = `
+
+        <h3>🔔 ${title}</h3>
+
+        <p>${message}</p>
+
+        <div class="date">
+        Just now • ${type}
+        </div>
+
+        <div class="actions">
+
+        <button onclick="alert('Edit feature will be connected later.')">
+        ✏️ Edit
+        </button>
+
+        <button
+        class="delete"
+        onclick="deleteNotification(this)">
+        🗑️ Delete
+        </button>
+
+        </div>
+    `;
+
+    document
+    .getElementById("notificationList")
+    .prepend(notification);
+
+    document.getElementById("title").value="";
+    document.getElementById("type").value="";
+    document.getElementById("message").value="";
+
+    alert("Notification sent successfully!");
+}
+
+
+function deleteNotification(button){
+
+    if(
+        confirm(
+        "Are you sure you want to delete this notification?"
+        )
+    ){
+
+        button
+        .closest(".notification")
+        .remove();
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

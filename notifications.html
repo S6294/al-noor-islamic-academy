@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notifications | Al Noor Islamic Academy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#071c16;
+    color:white;
+}
+
+/* Header */
+
+header{
+    background:#0b261e;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #d4af37;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.profile{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#d4af37;
+    color:#071c16;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+/* Container */
+
+.container{
+    max-width:850px;
+    margin:auto;
+    padding:30px 18px;
+}
+
+h1{
+    text-align:center;
+    color:#d4af37;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#aebdb8;
+    margin-bottom:30px;
+}
+
+/* Notification */
+
+.notification{
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:15px;
+    transition:.2s;
+}
+
+.notification:hover{
+    border-color:#d4af37;
+}
+
+.notification-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:10px;
+}
+
+.icon{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#183d31;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
+
+.notification h3{
+    color:#fff;
+    font-size:17px;
+}
+
+.date{
+    color:#7f9990;
+    font-size:12px;
+    margin-top:4px;
+}
+
+.message{
+    color:#b9c9c3;
+    line-height:1.7;
+    margin-top:8px;
+}
+
+/* Badge */
+
+.new{
+    display:inline-block;
+    background:#d4af37;
+    color:#071c16;
+    padding:4px 9px;
+    border-radius:6px;
+    font-size:11px;
+    font-weight:bold;
+    margin-left:auto;
+}
+
+/* Back */
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:30px;
+    color:#d4af37;
+    text-decoration:none;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    color:#718b82;
+    padding:30px 10px;
+    margin-top:20px;
+    border-top:1px solid #193b31;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <div class="profile">
+        AN
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <h1>Notifications</h1>
+
+    <p class="subtitle">
+        Stay updated with Al Noor Islamic Academy
+    </p>
+
+
+    <!-- Notification 1 -->
+
+    <div class="notification">
+
+        <div class="notification-header">
+
+            <div class="icon">🔴</div>
+
+            <div>
+                <h3>Live Quran Class</h3>
+                <div class="date">Today • 10 minutes ago</div>
+            </div>
+
+            <span class="new">NEW</span>
+
+        </div>
+
+        <div class="message">
+            Your Quran Reading with Tajweed live class
+            will start today at 8:00 PM.
+        </div>
+
+    </div>
+
+
+    <!-- Notification 2 -->
+
+    <div class="notification">
+
+        <div class="notification-header">
+
+            <div class="icon">📚</div>
+
+            <div>
+                <h3>New Course Available</h3>
+                <div class="date">Today</div>
+            </div>
+
+            <span class="new">NEW</span>
+
+        </div>
+
+        <div class="message">
+            Arabic Language course is now available.
+            Start learning Arabic step by step with our
+            qualified teacher.
+        </div>
+
+    </div>
+
+
+    <!-- Notification 3 -->
+
+    <div class="notification">
+
+        <div class="notification-header">
+
+            <div class="icon">🕌</div>
+
+            <div>
+                <h3>Hifz-ul-Quran Update</h3>
+                <div class="date">Yesterday</div>
+            </div>
+
+        </div>
+
+        <div class="message">
+            Weekly Hifz revision class will be held
+            every Thursday at 6:00 PM.
+        </div>
+
+    </div>
+
+
+    <!-- Notification 4 -->
+
+    <div class="notification">
+
+        <div class="notification-header">
+
+            <div class="icon">💳</div>
+
+            <div>
+                <h3>Membership</h3>
+                <div class="date">2 days ago</div>
+            </div>
+
+        </div>
+
+        <div class="message">
+            Premium membership includes live classes,
+            all courses and teacher guidance.
+        </div>
+
+    </div>
+
+
+    <!-- Notification 5 -->
+
+    <div class="notification">
+
+        <div class="notification-header">
+
+            <div class="icon">📢</div>
+
+            <div>
+                <h3>Academy Announcement</h3>
+                <div class="date">5 days ago</div>
+            </div>
+
+        </div>
+
+        <div class="message">
+            Welcome to Al Noor Islamic Academy.
+            May Allah bless your journey of seeking knowledge.
+        </div>
+
+    </div>
+
+
+    <a href="dashboard.html" class="back">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
+
+</body>
+</html>

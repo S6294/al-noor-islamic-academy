@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Quran Reading | Al Noor Islamic Academy</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+
+            background: #071a17;
+
+            color: white;
+        }
+
+
+        /* HEADER */
+
+        header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px 20px;
+
+            background: #0b2520;
+
+            border-bottom: 1px solid #29453e;
+        }
+
+
+        .logo {
+            color: #d4af37;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+
+        .back {
+            color: #d4af37;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding: 45px 20px;
+
+            text-align: center;
+        }
+
+
+        .course-icon {
+            font-size: 55px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .hero h1 {
+            color: #d4af37;
+
+            font-size: 34px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .hero p {
+            color: #aaa;
+
+            max-width: 650px;
+
+            margin: auto;
+
+            line-height: 1.7;
+        }
+
+
+        /* COURSE INFO */
+
+        .info-container {
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding: 0 20px 40px;
+        }
+
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 18px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .info-card {
+            background: #0c2923;
+
+            border: 1px solid #29453e;
+
+            border-radius: 15px;
+
+            padding: 22px;
+
+            text-align: center;
+        }
+
+
+        .info-card h3 {
+            color: #d4af37;
+
+            margin-bottom: 8px;
+
+            font-size: 16px;
+        }
+
+
+        .info-card p {
+            color: #ccc;
+
+            font-size: 14px;
+        }
+
+
+        /* DETAILS */
+
+        .details {
+            background: #0c2923;
+
+            border: 1px solid #29453e;
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .details h2 {
+            color: #d4af37;
+
+            margin-bottom: 15px;
+        }
+
+
+        .details p {
+            color: #ccc;
+
+            line-height: 1.8;
+
+            margin-bottom: 15px;
+        }
+
+
+        .details ul {
+            list-style: none;
+
+            color: #ccc;
+
+            line-height: 2;
+        }
+
+
+        /* LESSONS */
+
+        .lessons {
+            background: #0c2923;
+
+            border: 1px solid #29453e;
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .lessons h2 {
+            color: #d4af37;
+
+            margin-bottom: 18px;
+        }
+
+
+        .lesson {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 15px;
+
+            margin-bottom: 10px;
+
+            background: #071a17;
+
+            border-radius: 10px;
+        }
+
+
+        .lesson-name {
+            color: #ddd;
+
+            font-size: 14px;
+        }
+
+
+        .lesson-status {
+            color: #d4af37;
+
+            font-size: 12px;
+        }
+
+
+        /* ENROLL */
+
+        .enroll {
+            text-align: center;
+
+            padding: 20px;
+        }
+
+
+        .enroll-button {
+            display: inline-block;
+
+            background: #d4af37;
+
+            color: #071a17;
+
+            padding: 14px 35px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 16px;
+        }
+
+
+        .enroll p {
+            color: #999;
+
+            font-size: 13px;
+
+            margin-top: 12px;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            background: #051310;
+
+            color: #888;
+
+            margin-top: 20px;
+        }
+
+
+        @media (max-width: 600px) {
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+
+            .lesson {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 5px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            AL NOOR
+        </div>
+
+
+        <a href="courses.html"
+           class="back">
+
+            ← Courses
+
+        </a>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="course-icon">
+            📖
+        </div>
+
+
+        <h1>
+            Quran Reading
+        </h1>
+
+
+        <p>
+            Learn to read the Holy Quran correctly
+            with proper pronunciation and Tajweed.
+        </p>
+
+    </section>
+
+
+
+    <!-- COURSE INFORMATION -->
+
+    <section class="info-container">
+
+
+        <div class="info-grid">
+
+
+            <div class="info-card">
+
+                <h3>
+                    👨‍🏫 Teacher
+                </h3>
+
+                <p>
+                    Qualified Ustadh
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <h3>
+                    ⏱️ Duration
+                </h3>
+
+                <p>
+                    12 Weeks
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <h3>
+                    📚 Lessons
+                </h3>
+
+                <p>
+                    30 Lessons
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <h3>
+                    🎓 Level
+                </h3>
+
+                <p>
+                    Beginner
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- COURSE DETAILS -->
+
+        <div class="details">
+
+            <h2>
+                About This Course
+            </h2>
+
+
+            <p>
+                This course is designed for students who
+                want to learn Quran reading from the basics.
+                Students will gradually improve their
+                pronunciation and Quran reading skills.
+            </p>
+
+
+            <ul>
+
+                <li>✓ Quran Nazira</li>
+
+                <li>✓ Correct Pronunciation</li>
+
+                <li>✓ Basic Tajweed</li>
+
+                <li>✓ Regular Practice</li>
+
+                <li>✓ Online Learning Materials</li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- LESSONS -->
+
+        <div class="lessons">
+
+            <h2>
+                Course Lessons
+            </h2>
+
+
+            <div class="lesson">
+
+                <span class="lesson-name">
+                    Lesson 01 — Arabic Letters
+                </span>
+
+                <span class="lesson-status">
+                    🔒 Premium
+                </span>
+
+            </div>
+
+
+            <div class="lesson">
+
+                <span class="lesson-name">
+                    Lesson 02 — Letter Pronunciation
+                </span>
+
+                <span class="lesson-status">
+                    🔒 Premium
+                </span>
+
+            </div>
+
+
+            <div class="lesson">
+
+                <span class="lesson-name">
+                    Lesson 03 — Harakat
+                </span>
+
+                <span class="lesson-status">
+                    🔒 Premium
+                </span>
+
+            </div>
+
+
+            <div class="lesson">
+
+                <span class="lesson-name">
+                    Lesson 04 — Joining Letters
+                </span>
+
+                <span class="lesson-status">
+                    🔒 Premium
+                </span>
+
+            </div>
+
+
+            <div class="lesson">
+
+                <span class="lesson-name">
+                    Lesson 05 — Quran Reading Practice
+                </span>
+
+                <span class="lesson-status">
+                    🔒 Premium
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ENROLL -->
+
+        <div class="enroll">
+
+            <a href="membership.html"
+               class="enroll-button">
+
+                Enroll Now
+
+            </a>
+
+
+            <p>
+                Membership is required to access
+                the complete course.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <footer>
+
+        © 2026 Al Noor Islamic Academy
+
+    </footer>
+
+
+</body>
+
+</html>

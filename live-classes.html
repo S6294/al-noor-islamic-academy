@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Live Classes | Al Noor Islamic Academy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#071c16;
+    color:#fff;
+}
+
+/* Header */
+
+header{
+    background:#0b261e;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #c9a227;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.profile{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#d4af37;
+    color:#071c16;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
+
+
+/* Main */
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:30px 18px;
+}
+
+h1{
+    text-align:center;
+    color:#d4af37;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#b8c8c2;
+    margin-bottom:30px;
+}
+
+
+/* Live Box */
+
+.live-box{
+    background:#0d3025;
+    border:2px solid #d4af37;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.live-label{
+    display:inline-block;
+    background:#c62828;
+    color:white;
+    padding:7px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.live-box h2{
+    color:#fff;
+    margin-bottom:10px;
+}
+
+.info{
+    color:#c8d5d0;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+
+/* Buttons */
+
+.join-btn{
+    display:inline-block;
+    background:#d4af37;
+    color:#071c16;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+
+/* Upcoming */
+
+.section-title{
+    color:#d4af37;
+    margin-bottom:18px;
+}
+
+.class-card{
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:15px;
+}
+
+.class-card h3{
+    color:#fff;
+    margin-bottom:10px;
+}
+
+.class-info{
+    color:#b8c8c2;
+    line-height:1.8;
+}
+
+.status{
+    display:inline-block;
+    margin-top:12px;
+    padding:6px 12px;
+    border-radius:8px;
+    background:#183d31;
+    color:#d4af37;
+    font-size:13px;
+}
+
+.empty{
+    text-align:center;
+    color:#8da39b;
+    padding:30px 10px;
+}
+
+
+/* Back */
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:30px;
+    color:#d4af37;
+    text-decoration:none;
+}
+
+
+/* Footer */
+
+footer{
+    text-align:center;
+    color:#7f9990;
+    padding:30px 10px;
+    margin-top:20px;
+    border-top:1px solid #193b31;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <div class="profile" id="profile">
+        A
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <h1>
+        Live Classes
+    </h1>
+
+    <p class="subtitle">
+        Learn Islamic knowledge with qualified teachers
+    </p>
+
+
+    <!-- LIVE CLASS -->
+
+    <div id="liveSection"></div>
+
+
+    <!-- UPCOMING -->
+
+    <h2 class="section-title">
+        Upcoming Classes
+    </h2>
+
+    <div id="classList">
+
+        <div class="empty">
+            Loading classes...
+        </div>
+
+    </div>
+
+
+    <a href="dashboard.html" class="back">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
+
+
+
+  <script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+    authDomain: "al-noor-islamic-academy.firebaseapp.com",
+    projectId: "al-noor-islamic-academy",
+    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+    messagingSenderId: "571799539455",
+    appId: "1:571799539455:web:d42728685908430296c6ca"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+const classList =
+    document.getElementById("classList");
+
+const liveSection =
+    document.getElementById("liveSection");
+
+const profile =
+    document.getElementById("profile");
+
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    const name =
+        user.displayName ||
+        user.email ||
+        "A";
+
+    profile.textContent =
+        name.charAt(0).toUpperCase();
+
+
+    await loadClasses();
+
+});
+
+
+async function loadClasses() {
+
+    try {
+
+        classList.innerHTML = `
+            <div class="empty">
+                Loading classes...
+            </div>
+        `;
+
+
+        const snapshot =
+            await getDocs(
+                collection(db, "liveClasses")
+            );
+
+
+        console.log(
+            "Live Classes:",
+            snapshot.size
+        );
+
+
+        if (snapshot.empty) {
+
+            classList.innerHTML = `
+                <div class="empty">
+                    No live classes scheduled yet.
+                </div>
+            `;
+
+            liveSection.innerHTML = "";
+
+            return;
+        }
+
+
+        let classes = [];
+
+
+        snapshot.forEach((item) => {
+
+            classes.push({
+                id: item.id,
+                ...item.data()
+            });
+
+        });
+
+
+        classes.sort((a, b) => {
+
+            const dateA =
+                new Date(
+                    `${a.date}T${a.time || "00:00"}`
+                );
+
+            const dateB =
+                new Date(
+                    `${b.date}T${b.time || "00:00"}`
+                );
+
+            return dateA - dateB;
+
+        });
+
+
+        /*
+        Find LIVE class
+        */
+
+        const liveClass =
+            classes.find(
+                item =>
+                    getStatus(item) === "live"
+            );
+
+
+        /*
+        Find next UPCOMING class
+        */
+
+        const upcomingClass =
+            classes.find(
+                item =>
+                    getStatus(item) === "upcoming"
+            );
+
+
+        const mainClass =
+            liveClass || upcomingClass;
+
+
+        liveSection.innerHTML = "";
+
+
+        if (mainClass) {
+
+            showMainClass(mainClass);
+
+        }
+
+
+        classList.innerHTML = "";
+
+
+        const otherClasses =
+            classes.filter(
+                item =>
+                    !mainClass ||
+                    item.id !== mainClass.id
+            );
+
+
+        if (otherClasses.length === 0) {
+
+            classList.innerHTML = `
+                <div class="empty">
+                    No other classes scheduled.
+                </div>
+            `;
+
+        } else {
+
+            otherClasses.forEach(item => {
+
+                showClassCard(item);
+
+            });
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        liveSection.innerHTML = "";
+
+
+        classList.innerHTML = `
+
+            <div class="empty">
+
+                ❌ Unable to load live classes.
+
+                <br><br>
+
+                ${escapeHtml(error.message)}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/*
+Status:
+Upcoming = before class
+Live = during first 60 minutes
+Ended = after 60 minutes
+*/
+
+function getStatus(item) {
+
+    if (!item.date || !item.time) {
+
+        return "upcoming";
+
+    }
+
+
+    const start =
+        new Date(
+            `${item.date}T${item.time}:00`
+        );
+
+
+    const end =
+        new Date(
+            start.getTime() +
+            60 * 60 * 1000
+        );
+
+
+    const now =
+        new Date();
+
+
+    if (now < start) {
+
+        return "upcoming";
+
+    }
+
+
+    if (now >= start && now < end) {
+
+        return "live";
+
+    }
+
+
+    return "ended";
+
+}
+
+
+/*
+Main class
+*/
+
+function showMainClass(item) {
+
+    const status =
+        getStatus(item);
+
+
+    let label = "● UPCOMING";
+
+
+    if (status === "live") {
+
+        label = "● LIVE NOW";
+
+    }
+
+
+    liveSection.innerHTML = `
+
+        <div class="live-box">
+
+            <span class="live-label">
+
+                ${label}
+
+            </span>
+
+
+            <h2>
+                ${escapeHtml(item.course || "Live Class")}
+            </h2>
+
+
+            <div class="info">
+
+                👨‍🏫 Teacher:
+                ${escapeHtml(item.teacher || "")}
+                <br>
+
+                📅 Date:
+                ${formatDate(item.date)}
+                <br>
+
+                🕐 Time:
+                ${escapeHtml(item.time || "")}
+                <br>
+
+                📚 Course:
+                ${escapeHtml(item.course || "")}
+                <br>
+
+                🌐 Platform:
+                ${escapeHtml(item.platform || "")}
+
+            </div>
+
+
+            <a
+                href="${escapeHtml(item.link || "#")}"
+                class="join-btn"
+                target="_blank"
+                rel="noopener"
+            >
+                Join Live Class
+            </a>
+
+        </div>
+
+    `;
+
+}
+
+
+/*
+Other classes
+*/
+
+function showClassCard(item) {
+
+    const status =
+        getStatus(item);
+
+
+    let statusText = "Upcoming";
+
+
+    if (status === "live") {
+
+        statusText = "🔴 LIVE NOW";
+
+    }
+
+
+    if (status === "ended") {
+
+        statusText = "Ended";
+
+    }
+
+
+    const card =
+        document.createElement("div");
+
+
+    card.className =
+        "class-card";
+
+
+    card.innerHTML = `
+
+        <h3>
+            📖 ${escapeHtml(item.course || "Live Class")}
+        </h3>
+
+
+        <div class="class-info">
+
+            👨‍🏫 Teacher:
+            ${escapeHtml(item.teacher || "")}
+            <br>
+
+            📅 Date:
+            ${formatDate(item.date)}
+            <br>
+
+            🕐 Time:
+            ${escapeHtml(item.time || "")}
+            <br>
+
+            🌐 Platform:
+            ${escapeHtml(item.platform || "")}
+
+        </div>
+
+
+        <span class="status">
+
+            ${statusText}
+
+        </span>
+
+    `;
+
+
+    classList.appendChild(card);
+
+}
+
+
+/*
+Date
+*/
+
+function formatDate(dateString) {
+
+    if (!dateString) {
+
+        return "Date not available";
+
+    }
+
+
+    const date =
+        new Date(
+            dateString + "T00:00:00"
+        );
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/*
+Security
+*/
+
+function escapeHtml(value) {
+
+    return String(value)
+
+        .replaceAll("&", "&amp;")
+
+        .replaceAll("<", "&lt;")
+
+        .replaceAll(">", "&gt;")
+
+        .replaceAll('"', "&quot;")
+
+        .replaceAll("'", "&#039;");
+
+}
+
+</scrip>
+
+
+
+</body>
+</html>

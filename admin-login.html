@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login</title>
+
+<style>
+body{
+    background:#071c16;
+    color:white;
+    font-family:Arial;
+    padding:30px 20px;
+}
+
+.box{
+    max-width:400px;
+    margin:60px auto;
+    background:#0b261e;
+    padding:25px;
+    border:1px solid #d4af37;
+    border-radius:15px;
+}
+
+h1{
+    text-align:center;
+    color:#d4af37;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    box-sizing:border-box;
+    background:#071c16;
+    color:white;
+    border:1px solid #31594d;
+    border-radius:8px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    background:#d4af37;
+    border:0;
+    border-radius:8px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>Admin Login</h1>
+
+<input
+type="email"
+id="email"
+placeholder="Admin Email"
+>
+
+<input
+type="password"
+id="password"
+placeholder="Password"
+>
+
+<button onclick="login()">
+Login
+</button>
+
+</div>
+
+<script>
+
+function login(){
+
+    let email = document.getElementById("email").value.trim();
+
+    let password = document.getElementById("password").value;
+
+    if(email === "admin@alnoor.com" && password === "123456"){
+
+        window.location.href = "admin.html";
+
+    }else{
+
+        alert("Wrong Email or Password");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

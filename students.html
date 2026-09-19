@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Students | Al Noor Islamic Academy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#071c16;
+    color:white;
+}
+
+/* Header */
+
+header{
+    background:#0b261e;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #d4af37;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.admin{
+    color:#d4af37;
+    font-size:14px;
+}
+
+/* Container */
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:30px 18px;
+}
+
+h1{
+    text-align:center;
+    color:#d4af37;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#9fb3ab;
+    margin-bottom:30px;
+}
+
+/* Search */
+
+.search{
+    width:100%;
+    padding:14px;
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:10px;
+    color:white;
+    outline:none;
+    margin-bottom:20px;
+}
+
+.search:focus{
+    border-color:#d4af37;
+}
+
+.search::placeholder{
+    color:#718b82;
+}
+
+/* Student Card */
+
+.student{
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:15px;
+}
+
+.student-top{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#d4af37;
+    color:#071c16;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.name{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.email{
+    color:#8fa69e;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.details{
+    margin-top:15px;
+    padding-top:15px;
+    border-top:1px solid #23463b;
+    line-height:1.8;
+    color:#b9c9c3;
+}
+
+.badge{
+    display:inline-block;
+    margin-top:10px;
+    padding:5px 10px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.premium{
+    background:#d4af37;
+    color:#071c16;
+}
+
+.basic{
+    background:#183d31;
+    color:#d4af37;
+}
+
+.active{
+    color:#6fd39b;
+}
+
+/* Back */
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:30px;
+    color:#d4af37;
+    text-decoration:none;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    color:#718b82;
+    padding:30px 10px;
+    margin-top:20px;
+    border-top:1px solid #193b31;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <div class="admin">
+        👑 Admin
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <h1>Students</h1>
+
+    <p class="subtitle">
+        Manage registered academy students
+    </p>
+
+
+    <input
+        type="text"
+        class="search"
+        placeholder="🔍 Search student..."
+    >
+
+
+    <!-- Student 1 -->
+
+    <div class="student">
+
+        <div class="student-top">
+
+            <div class="avatar">
+                SA
+            </div>
+
+            <div>
+                <div class="name">
+                    Student A
+                </div>
+
+                <div class="email">
+                    studenta@email.com
+                </div>
+            </div>
+
+        </div>
+
+        <div class="details">
+
+            📱 Mobile: +91 XXXXX XXXXX<br>
+
+            📅 Joined: January 2026<br>
+
+            💎 Membership:
+            <span class="badge premium">
+                PREMIUM
+            </span>
+            <br>
+
+            🟢 Status:
+            <span class="active">
+                Active
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Student 2 -->
+
+    <div class="student">
+
+        <div class="student-top">
+
+            <div class="avatar">
+                AR
+            </div>
+
+            <div>
+                <div class="name">
+                    Student B
+                </div>
+
+                <div class="email">
+                    studentb@email.com
+                </div>
+            </div>
+
+        </div>
+
+        <div class="details">
+
+            📱 Mobile: +91 XXXXX XXXXX<br>
+
+            📅 Joined: February 2026<br>
+
+            💎 Membership:
+            <span class="badge basic">
+                BASIC
+            </span>
+            <br>
+
+            🟢 Status:
+            <span class="active">
+                Active
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Student 3 -->
+
+    <div class="student">
+
+        <div class="student-top">
+
+            <div class="avatar">
+                MK
+            </div>
+
+            <div>
+                <div class="name">
+                    Student C
+                </div>
+
+                <div class="email">
+                    studentc@email.com
+                </div>
+            </div>
+
+        </div>
+
+        <div class="details">
+
+            📱 Mobile: +91 XXXXX XXXXX<br>
+
+            📅 Joined: March 2026<br>
+
+            💎 Membership:
+            <span class="badge premium">
+                PREMIUM
+            </span>
+            <br>
+
+            🟢 Status:
+            <span class="active">
+                Active
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <a href="admin.html" class="back">
+        ← Back to Admin Dashboard
+    </a>
+
+</div>
+
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
+
+</body>
+</html>

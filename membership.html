@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Membership - Al Noor Islamic Academy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#071a17;
+    color:white;
+    min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 20px;
+    background:#0b2520;
+    border-bottom:1px solid #d4af37;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.back{
+    color:#d4af37;
+    text-decoration:none;
+    font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:45px 20px 30px;
+}
+
+.hero h1{
+    color:#d4af37;
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#aaa;
+    line-height:1.6;
+}
+
+/* MEMBERSHIP */
+
+.membership-container{
+    max-width:1050px;
+    margin:auto;
+    padding:25px 20px 60px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:22px;
+}
+
+/* PLAN */
+
+.plan{
+    background:#0c2923;
+    border:1px solid #d4af37;
+    border-radius:18px;
+    padding:30px 25px;
+    text-align:center;
+    position:relative;
+    transition:0.3s;
+}
+
+.plan:hover{
+    transform:translateY(-5px);
+}
+
+.plan.premium{
+    border:2px solid #d4af37;
+    box-shadow:0 0 20px rgba(212,175,55,0.15);
+    transform:translateY(-8px);
+}
+
+.plan.premium:hover{
+    transform:translateY(-13px);
+}
+
+/* BADGE */
+
+.badge{
+    position:absolute;
+    top:-13px;
+    left:50%;
+    transform:translateX(-50%);
+
+    background:#d4af37;
+    color:#071a17;
+
+    padding:6px 15px;
+    border-radius:20px;
+
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* TITLE */
+
+.plan h2{
+    color:#d4af37;
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+/* PRICE */
+
+.price{
+    color:white;
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.price span{
+    font-size:13px;
+    color:#999;
+    font-weight:normal;
+}
+
+/* FEATURES */
+
+.features{
+    list-style:none;
+    text-align:left;
+    margin-bottom:25px;
+}
+
+.features li{
+    color:#ddd;
+    padding:9px 0;
+    border-bottom:1px solid #1d3b34;
+    font-size:14px;
+}
+
+/* BUTTON */
+
+.join-btn{
+    display:block;
+    width:100%;
+
+    padding:14px;
+
+    background:#d4af37;
+    color:#071a17;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+    text-align:center;
+
+    transition:0.2s;
+}
+
+.join-btn:visited{
+    color:#071a17;
+}
+
+.join-btn:hover{
+    background:#e5c04a;
+    color:#071a17;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:25px;
+    background:#051310;
+    color:#888;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .hero h1{
+        font-size:27px;
+    }
+
+    .membership-container{
+        padding:20px 15px 50px;
+    }
+
+    .plan.premium{
+        transform:none;
+    }
+
+    .plan.premium:hover{
+        transform:translateY(-5px);
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <a href="dashboard.html"
+       class="back">
+
+        ← Dashboard
+
+    </a>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>
+        Choose Your Membership
+    </h1>
+
+    <p>
+        Select a membership and start
+        your Islamic learning journey.
+    </p>
+
+</section>
+
+
+<!-- MEMBERSHIP PLANS -->
+
+<section class="membership-container">
+
+
+<!-- BASIC -->
+
+<div class="plan">
+
+    <h2>
+        Basic
+    </h2>
+
+    <div class="price">
+        ₹299
+        <span>/ month</span>
+    </div>
+
+    <ul class="features">
+
+        <li>✓ Quran Reading</li>
+
+        <li>✓ Basic Tajweed</li>
+
+        <li>✓ Recorded Lessons</li>
+
+        <li>✓ Learning Materials</li>
+
+    </ul>
+
+    <a href="payment.html?plan=basic"
+       class="join-btn">
+
+        Choose Basic
+
+    </a>
+
+</div>
+
+
+<!-- PREMIUM -->
+
+<div class="plan premium">
+
+    <div class="badge">
+        MOST FEATURES
+    </div>
+
+    <h2>
+        Premium
+    </h2>
+
+    <div class="price">
+        ₹599
+        <span>/ month</span>
+    </div>
+
+    <ul class="features">
+
+        <li>✓ All Basic Courses</li>
+
+        <li>✓ Arabic Language</li>
+
+        <li>✓ Hadith Studies</li>
+
+        <li>✓ Islamic Studies</li>
+
+        <li>✓ Live Classes</li>
+
+        <li>✓ Premium Materials</li>
+
+    </ul>
+
+    <a href="payment.html?plan=premium"
+       class="join-btn">
+
+        Choose Premium
+
+    </a>
+
+</div>
+
+
+<!-- HIFZ -->
+
+<div class="plan">
+
+    <h2>
+        Hifz Special
+    </h2>
+
+    <div class="price">
+        ₹999
+        <span>/ month</span>
+    </div>
+
+    <ul class="features">
+
+        <li>✓ Hifz-ul-Quran</li>
+
+        <li>✓ Daily Revision</li>
+
+        <li>✓ Teacher Guidance</li>
+
+        <li>✓ Live Hifz Classes</li>
+
+        <li>✓ Progress Tracking</li>
+
+    </ul>
+
+    <a href="payment.html?plan=hifz"
+       class="join-btn">
+
+        Choose Hifz
+
+    </a>
+
+</div>
+
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
+
+
+</body>
+
+</html>

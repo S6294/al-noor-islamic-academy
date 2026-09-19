@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sign Up - Al Noor Islamic Academy</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #071a17;
+            color: white;
+        }
+
+        .signup-box {
+            width: 100%;
+            max-width: 420px;
+            background: #0c2923;
+            padding: 35px 25px;
+            border-radius: 20px;
+            border: 1px solid #36554d;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .logo {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: #d4af37;
+            color: #071a17;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d4af37;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            color: #ddd;
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            background: #071a17;
+            color: white;
+            border: 1px solid #42635a;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #d4af37;
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 10px;
+            background: #d4af37;
+            color: #071a17;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .signup-button:disabled {
+            opacity: 0.6;
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 22px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .login-text a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="signup-box">
+
+
+        <div class="logo">
+            AN
+        </div>
+
+
+        <h1>
+            Create Account
+        </h1>
+
+
+        <p class="subtitle">
+            Join Al Noor Islamic Academy
+        </p>
+
+
+        <form id="signupForm">
+
+
+            <div class="input-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    id="name"
+                    type="text"
+                    placeholder="Enter your full name"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Mobile Number
+                </label>
+
+                <input
+                    id="mobile"
+                    type="tel"
+                    placeholder="Enter mobile number"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Create password"
+                    minlength="6"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Confirm Password
+                </label>
+
+                <input
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password"
+                    minlength="6"
+                    required>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="signup-button"
+                id="signupButton">
+
+                Create Account
+
+            </button>
+
+
+        </form>
+
+
+        <div class="login-text">
+
+            Already have an account?
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </div>
+
+
+        <a href="index.html" class="home">
+            ← Back to Home
+        </a>
+
+
+    </div>
+
+
+    <script type="module">
+
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            updateProfile
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+            authDomain: "al-noor-islamic-academy.firebaseapp.com",
+
+            projectId: "al-noor-islamic-academy",
+
+            storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+
+            messagingSenderId: "571799539455",
+
+            appId: "1:571799539455:web:d42728685908430296c6ca"
+
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+
+        const auth = getAuth(app);
+
+
+        const signupForm =
+            document.getElementById("signupForm");
+
+
+        const signupButton =
+            document.getElementById("signupButton");
+
+
+        signupForm.addEventListener("submit", async (e) => {
+
+            e.preventDefault();
+
+
+            const name =
+                document.getElementById("name").value.trim();
+
+
+            const email =
+                document.getElementById("email").value.trim();
+
+
+            const mobile =
+                document.getElementById("mobile").value.trim();
+
+
+            const password =
+                document.getElementById("password").value;
+
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            if (password !== confirmPassword) {
+
+                alert("Passwords do not match.");
+
+                return;
+
+            }
+
+
+            if (password.length < 6) {
+
+                alert("Password must be at least 6 characters.");
+
+                return;
+
+            }
+
+
+            if (mobile.length < 10) {
+
+                alert("Please enter a valid mobile number.");
+
+                return;
+
+            }
+
+
+            signupButton.disabled = true;
+
+            signupButton.textContent = "Creating Account...";
+
+
+            try {
+
+                const userCredential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user =
+                    userCredential.user;
+
+
+                await updateProfile(user, {
+
+                    displayName: name
+
+                });
+
+
+                alert(
+                    "Account created successfully! Welcome to Al Noor Islamic Academy."
+                );
+
+
+                window.location.href =
+                    "dashboard.html";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                if (error.code === "auth/email-already-in-use") {
+
+                    alert(
+                        "This email is already registered. Please login."
+                    );
+
+                }
+
+                else if (error.code === "auth/invalid-email") {
+
+                    alert(
+                        "Please enter a valid email address."
+                    );
+
+                }
+
+                else if (error.code === "auth/weak-password") {
+
+                    alert(
+                        "Password is too weak. Use at least 6 characters."
+                    );
+
+                }
+
+                else {
+
+                    alert(
+                        "Signup failed: " + error.message
+                    );
+
+                }
+
+
+                signupButton.disabled = false;
+
+                signupButton.textContent =
+                    "Create Account";
+
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel | Al Noor Islamic Academy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#071c16;
+    color:white;
+}
+
+/* Header */
+
+header{
+    background:#0b261e;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #d4af37;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.admin{
+    color:#d4af37;
+    font-size:14px;
+}
+
+/* Main */
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:30px 18px;
+}
+
+h1{
+    color:#d4af37;
+    text-align:center;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#9fb3ab;
+    margin-bottom:30px;
+}
+
+/* Stats */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.stat{
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+}
+
+.stat-icon{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.stat-number{
+    font-size:25px;
+    color:#d4af37;
+    font-weight:bold;
+}
+
+.stat-name{
+    color:#9fb3ab;
+    margin-top:5px;
+}
+
+/* Admin Menu */
+
+.section-title{
+    color:#d4af37;
+    margin-bottom:15px;
+}
+
+.menu{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.menu-card{
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:15px;
+    padding:22px;
+    text-decoration:none;
+    color:white;
+    transition:.2s;
+}
+
+.menu-card:hover{
+    border-color:#d4af37;
+    transform:translateY(-2px);
+}
+
+.menu-icon{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.menu-card h3{
+    margin-bottom:7px;
+}
+
+.menu-card p{
+    color:#9fb3ab;
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* Back */
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:30px;
+    color:#d4af37;
+    text-decoration:none;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    color:#718b82;
+    padding:30px 10px;
+    margin-top:20px;
+    border-top:1px solid #193b31;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    .stats,
+    .menu{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <div class="admin">
+        👑 Admin
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <h1>Admin Dashboard</h1>
+
+    <p class="subtitle">
+        Manage Al Noor Islamic Academy
+    </p>
+
+
+    <!-- Statistics -->
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-icon">👨‍🎓</div>
+
+            <div class="stat-number">
+                120
+            </div>
+
+            <div class="stat-name">
+                Students
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">📚</div>
+
+            <div class="stat-number">
+                6
+            </div>
+
+            <div class="stat-name">
+                Courses
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">🔴</div>
+
+            <div class="stat-number">
+                8
+            </div>
+
+            <div class="stat-name">
+                Live Classes
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">💎</div>
+
+            <div class="stat-number">
+                75
+            </div>
+
+            <div class="stat-name">
+                Premium Members
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Management -->
+
+    <h2 class="section-title">
+        Management
+    </h2>
+
+
+    <div class="menu">
+
+
+        <a href="students.html" class="menu-card">
+
+            <div class="menu-icon">
+                👨‍🎓
+            </div>
+
+            <h3>
+                Students
+            </h3>
+
+            <p>
+                View and manage registered students.
+            </p>
+
+        </>
+
+
+        <a href="admin-courses.html" class="menu-card">
+
+            <div class="menu-icon">
+                📚
+            </div>
+
+            <h3>
+                Courses
+            </h3>
+
+            <p>
+                Add and manage academy courses.
+            </p>
+
+        </>
+
+
+        <a href="admin-live-classes.html" class="menu-card">
+
+            <div class="menu-icon">
+                🔴
+            </div>
+
+            <h3>
+                Live Classes
+            </h3>
+
+            <p>
+                Create and manage live class schedules.
+            </p>
+
+        </>
+
+
+        <a href="#" class="menu-card">
+
+            <div class="menu-icon">
+                🔔
+            </div>
+
+            <h3>
+                Notifications
+            </h3>
+
+            <p>
+                Send announcements to students.
+            </p>
+
+        </a>
+
+
+        <a href="#" class="menu-card">
+
+            <div class="menu-icon">
+                💳
+            </div>
+
+            <h3>
+                Memberships
+            </h3>
+
+            <p>
+                Manage premium memberships.
+            </p>
+
+        </a>
+
+
+        <a href="students.html" class="menu-card">
+
+            <div class="menu-icon">
+                ⚙️
+            </div>
+
+            <h3>
+                Settings
+            </h3>
+
+            <p>
+                Manage academy settings.
+            </p>
+
+        </>
+
+    </div>
+
+
+    <a href="dashboard.html" class="back">
+        ← Student Dashboard
+    </a>
+
+</div>
+
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
+
+</body>
+</html>

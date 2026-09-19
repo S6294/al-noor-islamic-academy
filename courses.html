@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Courses - Al Noor Islamic Academy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#071a17;
+    color:#fff;
+    min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 20px;
+
+    background:#0b2520;
+
+    border-bottom:1px solid #d4af37;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.back{
+    color:#d4af37;
+    text-decoration:none;
+    font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:40px 20px 25px;
+}
+
+.hero h1{
+    color:#d4af37;
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#aaa;
+    line-height:1.6;
+    max-width:600px;
+    margin:auto;
+}
+
+/* COURSES */
+
+.courses{
+    max-width:1100px;
+    margin:auto;
+
+    padding:25px 20px 60px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:22px;
+}
+
+/* COURSE CARD */
+
+.course-card{
+    background:#0c2923;
+
+    border:1px solid #29453e;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    overflow:hidden;
+
+    transition:0.3s;
+}
+
+.course-card:hover{
+    transform:translateY(-5px);
+    border-color:#d4af37;
+}
+
+/* ICON */
+
+.course-icon{
+    width:70px;
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#071a17;
+
+    border:1px solid #d4af37;
+
+    border-radius:15px;
+
+    font-size:38px;
+
+    margin-bottom:18px;
+}
+
+/* TITLE */
+
+.course-card h2{
+    color:#d4af37;
+
+    font-size:21px;
+
+    margin-bottom:12px;
+}
+
+/* DESCRIPTION */
+
+.course-card p{
+    color:#bbb;
+
+    line-height:1.6;
+
+    font-size:14px;
+
+    margin-bottom:18px;
+}
+
+/* INFO */
+
+.course-info{
+    color:#ddd;
+
+    font-size:14px;
+
+    line-height:2;
+
+    margin-bottom:20px;
+}
+
+/* BUTTON */
+
+.course-btn{
+    display:block;
+
+    width:100%;
+
+    text-align:center;
+
+    background:#d4af37;
+
+    color:#071a17;
+
+    padding:13px;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.2s;
+}
+
+.course-btn:hover{
+    background:#e5c04a;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+
+    padding:25px;
+
+    background:#051310;
+
+    color:#888;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .hero{
+        padding-top:35px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+
+    .courses{
+        padding:20px 15px 50px;
+    }
+
+    .course-card{
+        padding:22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <a href="dashboard.html"
+       class="back">
+
+        ← Dashboard
+
+    </a>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>
+        Our Courses
+    </h1>
+
+    <p>
+        Learn Quran, Arabic and Islamic Studies
+        with our structured online courses.
+    </p>
+
+</section>
+
+
+<!-- COURSES -->
+
+<section class="courses">
+
+
+<!-- QURAN READING -->
+
+<div class="course-card">
+
+    <div class="course-icon">
+        📖
+    </div>
+
+    <h2>
+        Quran Reading
+    </h2>
+
+    <p>
+        Learn to read the Holy Quran
+        correctly with proper pronunciation.
+    </p>
+
+    <div class="course-info">
+
+        📚 Nazira Quran<br>
+
+        🎥 Video Lessons<br>
+
+        🕌 Tajweed Included
+
+    </div>
+
+    <a href="quran-course.html"
+       class="course-btn">
+
+        View Course
+
+    </a>
+
+</div>
+
+
+<!-- TAJWEED -->
+
+<div class="course-card">
+
+    <div class="course-icon">
+        🕌
+    </div>
+
+    <h2>
+        Tajweed
+    </h2>
+
+    <p>
+        Learn the rules of Quranic
+        recitation and pronunciation.
+    </p>
+
+    <div class="course-info">
+
+        📚 Tajweed Rules<br>
+
+        🎥 Recorded Lessons<br>
+
+        🔴 Live Practice
+
+    </div>
+
+    <a href="membership.html"
+       class="course-btn">
+
+        View Course
+
+    </a>
+
+</div>
+
+
+<!-- HIFZ -->
+
+<div class="course-card">
+
+    <div class="course-icon">
+        📕
+    </div>
+
+    <h2>
+        Hifz-ul-Quran
+    </h2>
+
+    <p>
+        A structured Quran memorization
+        program with regular revision.
+    </p>
+
+    <div class="course-info">
+
+        📖 Memorization<br>
+
+        🔄 Daily Revision<br>
+
+        👨‍🏫 Teacher Guidance
+
+    </div>
+
+    <a href="membership.html"
+       class="course-btn">
+
+        View Course
+
+    </a>
+
+</div>
+
+
+<!-- ARABIC -->
+
+<div class="course-card">
+
+    <div class="course-icon">
+        🌙
+    </div>
+
+    <h2>
+        Arabic Language
+    </h2>
+
+    <p>
+        Learn Arabic reading, grammar,
+        vocabulary and conversation.
+    </p>
+
+    <div class="course-info">
+
+        🔤 Grammar<br>
+
+        🗣️ Conversation<br>
+
+        📚 Vocabulary
+
+    </div>
+
+    <a href="membership.html"
+       class="course-btn">
+
+        View Course
+
+    </a>
+
+</div>
+
+
+<!-- HADITH -->
+
+<div class="course-card">
+
+    <div class="course-icon">
+        📜
+    </div>
+
+    <h2>
+        Hadith Studies
+    </h2>
+
+    <p>
+        Study selected Hadith with
+        explanation and lessons.
+    </p>
+
+    <div class="course-info">
+
+        📖 Selected Hadith<br>
+
+        📝 Explanation<br>
+
+        🎥 Recorded Lessons
+
+    </div>
+
+    <a href="membership.html"
+       class="course-btn">
+
+        View Course
+
+    </a>
+
+</div>
+
+
+<!-- ISLAMIC STUDIES -->
+
+<div class="course-card">
+
+    <div class="course-icon">
+        🕋
+    </div>
+
+    <h2>
+        Islamic Studies
+    </h2>
+
+    <p>
+        Learn Seerah, Aqeedah, Fiqh
+        and Islamic manners.
+    </p>
+
+    <div class="course-info">
+
+        🕌 Seerah<br>
+
+        📚 Aqeedah & Fiqh<br>
+
+        ❤️ Islamic Manners
+
+    </div>
+
+    <a href="membership.html"
+       class="course-btn">
+
+        View Course
+
+    </a>
+
+</div>
+
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
+
+
+</body>
+
+</html>

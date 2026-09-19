@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Profile | Al Noor Islamic Academy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#071c16;
+    color:white;
+}
+
+/* Header */
+
+header{
+    background:#0b261e;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #d4af37;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.profile-icon{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#d4af37;
+    color:#071c16;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
+
+/* Main */
+
+.container{
+    max-width:700px;
+    margin:auto;
+    padding:30px 18px;
+}
+
+.title{
+    text-align:center;
+    color:#d4af37;
+    margin-bottom:25px;
+}
+
+/* Profile */
+
+.profile-card{
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:20px;
+}
+
+.avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#d4af37;
+    color:#071c16;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:bold;
+    margin:0 auto 15px;
+}
+
+.student-name{
+    text-align:center;
+    font-size:22px;
+    margin-bottom:5px;
+}
+
+.student-role{
+    text-align:center;
+    color:#d4af37;
+    font-size:14px;
+}
+
+/* Details */
+
+.details{
+    margin-top:25px;
+}
+
+.detail{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:15px 0;
+    border-bottom:1px solid #23463b;
+}
+
+.detail:last-child{
+    border-bottom:none;
+}
+
+.label{
+    color:#8fa69e;
+}
+
+.value{
+    text-align:right;
+    color:#fff;
+}
+
+/* Membership */
+
+.membership{
+    background:#0d3025;
+    border:1px solid #d4af37;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.membership h2{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.membership p{
+    color:#b9c9c3;
+    line-height:1.7;
+}
+
+.badge{
+    display:inline-block;
+    margin-top:12px;
+    background:#d4af37;
+    color:#071c16;
+    padding:7px 12px;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:13px;
+}
+
+/* Courses */
+
+.courses{
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:15px;
+    padding:20px;
+}
+
+.courses h2{
+    color:#d4af37;
+    margin-bottom:15px;
+}
+
+.course{
+    padding:12px 0;
+    border-bottom:1px solid #23463b;
+    color:#c8d5d0;
+}
+
+.course:last-child{
+    border-bottom:none;
+}
+
+/* Buttons */
+
+.buttons{
+    margin-top:25px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    flex:1;
+    min-width:140px;
+    text-align:center;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.edit{
+    background:#d4af37;
+    color:#071c16;
+}
+
+.back{
+    border:1px solid #d4af37;
+    color:#d4af37;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    color:#718b82;
+    padding:30px 10px;
+    margin-top:20px;
+    border-top:1px solid #193b31;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <div class="profile-icon">
+        AN
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <h1 class="title">
+        My Profile
+    </h1>
+
+
+    <!-- Profile Card -->
+
+    <div class="profile-card">
+
+        <div class="avatar">
+            AN
+        </div>
+
+        <h2 class="student-name">
+            Student Name
+        </h2>
+
+        <p class="student-role">
+            Al Noor Student
+        </p>
+
+
+        <div class="details">
+
+            <div class="detail">
+                <span class="label">Full Name</span>
+                <span class="value">Student Name</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Email</span>
+                <span class="value">student@email.com</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Mobile</span>
+                <span class="value">+91 XXXXX XXXXX</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Student ID</span>
+                <span class="value">AN2026-001</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Membership -->
+
+    <div class="membership">
+
+        <h2>💎 Premium Membership</h2>
+
+        <p>
+            You have access to premium courses,
+            live classes and teacher guidance.
+        </p>
+
+        <span class="badge">
+            ACTIVE
+        </span>
+
+    </div>
+
+
+    <!-- Courses -->
+
+    <div class="courses">
+
+        <h2>📚 My Courses</h2>
+
+        <div class="course">
+            📖 Quran Reading
+        </div>
+
+        <div class="course">
+            🕌 Tajweed
+        </div>
+
+        <div class="course">
+            📗 Arabic Language
+        </div>
+
+        <div class="course">
+            📜 Hadith Studies
+        </div>
+
+    </div>
+
+
+    <!-- Buttons -->
+
+    <div class="buttons">
+
+        <a href="#" class="btn edit">
+            ✏️ Edit Profile
+        </a>
+
+        <a href="dashboard.html" class="btn back">
+            ← Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
+
+</body>
+</html>

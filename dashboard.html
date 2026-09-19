@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Al Noor Islamic Academy</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+
+            background: #071a17;
+
+            color: white;
+
+            min-height: 100vh;
+        }
+
+
+        /* HEADER */
+
+        header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px 20px;
+
+            background: #0b2520;
+
+            border-bottom: 1px solid #29453e;
+        }
+
+
+        .logo {
+            color: #d4af37;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+
+        .profile {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border-radius: 50%;
+
+            background: #d4af37;
+
+            color: #071a17;
+
+            font-weight: bold;
+        }
+
+
+        /* MAIN */
+
+        .container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 30px 20px;
+        }
+
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+
+        .welcome h1 {
+            font-size: 28px;
+
+            color: #d4af37;
+
+            margin-bottom: 8px;
+        }
+
+
+        .welcome p {
+            color: #aaa;
+        }
+
+
+        /* MEMBERSHIP */
+
+        .membership {
+            background: linear-gradient(
+                135deg,
+                #183f35,
+                #0c2923
+            );
+
+            border: 1px solid #4a665e;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .membership-title {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+
+        .membership h2 {
+            color: #d4af37;
+
+            font-size: 21px;
+        }
+
+
+        .premium {
+            background: #d4af37;
+
+            color: #071a17;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .membership p {
+            color: #ddd;
+
+            line-height: 1.6;
+        }
+
+
+        .membership-button {
+            display: inline-block;
+
+            margin-top: 18px;
+
+            background: #d4af37;
+
+            color: #071a17;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+
+        /* SECTION TITLE */
+
+        .section-title {
+            color: #d4af37;
+
+            font-size: 24px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* DASHBOARD CARDS */
+
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(210px, 1fr));
+
+            gap: 18px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .dashboard-card {
+            background: #0c2923;
+
+            border: 1px solid #29453e;
+
+            border-radius: 15px;
+
+            padding: 22px;
+        }
+
+
+        .icon {
+            font-size: 28px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .dashboard-card h3 {
+            color: #d4af37;
+
+            margin-bottom: 8px;
+        }
+
+
+        .dashboard-card p {
+            color: #aaa;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        /* LIVE CLASS */
+
+        .live-class {
+            background: #0c2923;
+
+            border: 1px solid #29453e;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .live-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+
+        .live-header h2 {
+            color: #d4af37;
+
+            font-size: 22px;
+        }
+
+
+        .live-badge {
+            background: #b91c1c;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .class-name {
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .class-info {
+            color: #aaa;
+
+            line-height: 1.7;
+
+            margin-bottom: 18px;
+        }
+
+
+        .join-button {
+            display: inline-block;
+
+            background: #d4af37;
+
+            color: #071a17;
+
+            padding: 12px 20px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        /* COURSES */
+
+        .courses {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 18px;
+        }
+
+
+        .course {
+            background: #0c2923;
+
+            border: 1px solid #29453e;
+
+            border-radius: 15px;
+
+            padding: 22px;
+        }
+
+
+        .course h3 {
+            color: #d4af37;
+
+            margin-bottom: 10px;
+        }
+
+
+        .course p {
+            color: #aaa;
+
+            font-size: 14px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .progress {
+            height: 7px;
+
+            background: #071a17;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            margin-bottom: 8px;
+        }
+
+
+        .progress-bar {
+            height: 100%;
+
+            width: 65%;
+
+            background: #d4af37;
+        }
+
+
+        .progress-text {
+            color: #999;
+
+            font-size: 12px;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 30px;
+
+            background: #051310;
+
+            color: #888;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .welcome h1 {
+                font-size: 24px;
+            }
+
+            .membership-title {
+                align-items: flex-start;
+
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            AL NOOR
+        </div>
+
+
+        <a href="profile.html" style="text-decoration:none;">
+    <div class="profile">AN</div>
+        </a>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+
+        <!-- WELCOME -->
+
+        <div class="welcome">
+
+            <h1>
+                Assalamu Alaikum 👋
+            </h1>
+
+            <p>
+                Welcome to your student dashboard.
+            </p>
+
+        </div>
+
+
+
+        <!-- MEMBERSHIP -->
+
+        <div class="membership">
+
+
+            <div class="membership-title">
+
+                <h2>
+                    Your Membership
+                </h2>
+
+                <span class="premium">
+                    PREMIUM
+                </span>
+
+            </div>
+
+
+            <p>
+                You have access to premium courses,
+                live classes and learning materials.
+            </p>
+
+
+        <a href="membership.html" class="membership-btn">
+    View Membership
+        </a>
+
+
+        </div>
+
+
+
+        <!-- DASHBOARD -->
+
+        <h2 class="section-title">
+            My Dashboard
+        </h2>
+
+
+        <div class="dashboard-grid">
+
+
+            <div class="dashboard-card">
+
+                <div class="icon">
+                    📚
+                </div>
+
+                <h3>
+                    My Courses
+                </h3>
+
+                <p>
+                    View and continue your enrolled courses.
+                </p>
+
+            </div>
+
+
+
+            <a href="live-classes.html" class="dashboard-card" style="text-decoration:none; color:inherit;">
+
+                <div class="icon">
+                    🔴
+                </div>
+
+                <h3>
+                    Live Classes
+                </h3>
+
+            
+
+
+
+            <a href="notifications.html" class="dashboard-card" style="text-decoration: none; color: inherit;">
+
+                <div class="icon">
+                    🔔
+                </div>
+
+                <h3>
+                    Notifications
+                </h3>
+
+                <>
+                    See important academy announcements.
+                </
+
+            </
+
+        </div>
+
+
+
+        <!-- LIVE CLASS -->
+
+        <div class="live-class">
+
+
+            <div class="live-header">
+
+                <h2>
+                    Live Class
+                </h2>
+
+                <span class="live-badge">
+                    LIVE
+                </span>
+
+            </div>
+
+
+            <div class="class-name">
+                Quran with Tajweed
+            </div>
+
+
+            <div class="class-info">
+
+                👨‍🏫 Teacher: Ustadh<br>
+
+                🕐 Today — 8:00 PM<br>
+
+                📖 Tajweed & Quran Recitation
+
+            </div>
+
+
+            <a href="#" class="join-button">
+                Join Live Class
+            </a>
+
+
+        </div>
+
+
+
+        <!-- MY COURSES -->
+
+        <h2 class="section-title">
+            My Courses
+        </h2>
+
+
+        <div class="courses">
+
+
+            <div class="course">
+
+                <h3>
+                    Quran Reading
+                </h3>
+
+                <p>
+                    Quran reading with Tajweed.
+                </p>
+
+
+                <div class="progress">
+
+                    <div class="progress-bar"
+                         style="width: 65%;">
+                    </div>
+
+                </div>
+
+
+                <div class="progress-text">
+                    65% Completed
+                </div>
+
+            </div>
+
+
+
+            <div class="course">
+
+                <h3>
+                    Arabic Language
+                </h3>
+
+                <p>
+                    Arabic grammar and conversation.
+                </p>
+
+
+                <div class="progress">
+
+                    <div class="progress-bar"
+                         style="width: 40%;">
+                    </div>
+
+                </div>
+
+
+                <div class="progress-text">
+                    40% Completed
+                </div>
+
+            </div>
+
+
+
+            <div class="course">
+
+                <h3>
+                    Islamic Studies
+                </h3>
+
+                <p>
+                    Seerah, Aqeedah and Fiqh.
+                </p>
+
+
+                <div class="progress">
+
+                    <div class="progress-bar"
+                         style="width: 25%;">
+                    </div>
+
+                </div>
+
+
+                <div class="progress-text">
+                    25% Completed
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026 Al Noor Islamic Academy
+
+    </footer>
+
+
+</body>
+
+</html>
