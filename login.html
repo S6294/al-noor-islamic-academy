@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-< lang="en">
+<html lang="en">
 
 <head>
 
@@ -20,105 +20,72 @@
 
         body {
             min-height: 100vh;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
             padding: 20px;
-
             font-family: Arial, sans-serif;
-
             background: #071a17;
-
             color: white;
         }
 
         .login-box {
             width: 100%;
             max-width: 400px;
-
             background: #0c2923;
-
             padding: 35px 25px;
-
             border-radius: 20px;
-
             border: 1px solid #36554d;
-
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-
             text-align: center;
         }
 
         .logo {
             width: 75px;
             height: 75px;
-
             margin: 0 auto 18px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             border-radius: 50%;
-
             background: #d4af37;
-
             color: #071a17;
-
             font-size: 24px;
-
             font-weight: bold;
         }
 
         h1 {
             color: #d4af37;
-
             font-size: 28px;
-
             margin-bottom: 8px;
         }
 
         .subtitle {
             color: #aaa;
-
             font-size: 14px;
-
             margin-bottom: 28px;
         }
 
         .input-group {
             text-align: left;
-
             margin-bottom: 18px;
         }
 
         label {
             display: block;
-
             margin-bottom: 7px;
-
             color: #ddd;
-
             font-size: 14px;
         }
 
         input {
             width: 100%;
-
             padding: 14px;
-
             border: 1px solid #42635a;
-
             border-radius: 10px;
-
             background: #071a17;
-
             color: white;
-
             font-size: 15px;
-
             outline: none;
         }
 
@@ -128,63 +95,46 @@
 
         .login-button {
             width: 100%;
-
             padding: 14px;
-
             margin-top: 5px;
-
             border: none;
-
             border-radius: 10px;
-
             background: #d4af37;
-
             color: #071a17;
-
             font-size: 16px;
-
             font-weight: bold;
-
             cursor: pointer;
+        }
+
+        .login-button:disabled {
+            opacity: 0.6;
         }
 
         .forgot {
             display: block;
-
             margin-top: 18px;
-
             color: #d4af37;
-
             text-decoration: none;
-
             font-size: 14px;
         }
 
         .signup {
             margin-top: 25px;
-
             color: #aaa;
-
             font-size: 14px;
         }
 
         .signup a {
             color: #d4af37;
-
             text-decoration: none;
-
             font-weight: bold;
         }
 
         .home {
             display: block;
-
             margin-top: 20px;
-
             color: #aaa;
-
             text-decoration: none;
-
             font-size: 13px;
         }
 
@@ -214,20 +164,20 @@
         </p>
 
 
-        <>
+        <form id="loginForm">
 
 
             <div class="input-group">
 
                 <label>
-                    Email or Mobile Number
+                    Email Address
                 </label>
 
                 <input
-                    type="text"
-                    placeholder="Enter email or mobile"
-                    required
-                >
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    required>
 
             </div>
 
@@ -239,48 +189,256 @@
                 </label>
 
                 <input
+                    id="password"
                     type="password"
                     placeholder="Enter password"
-                    required
-                >
+                    required>
 
             </div>
 
 
             <button
                 type="submit"
-                class="login-button">
+                class="login-button"
+                id="loginButton">
 
                 Login
 
             </button>
 
 
-      < action="dashboard.html" method="get">
-
-    <div class="input-group">
-
-        <label>
-            Email or Mobile Number
-        </label>
-
-        <input
-            type="text"
-            placeholder="Enter email or mobile"
-            required>
-
-    </div>
+        </form>
 
 
-    <div class="input-group">
+        <a href="#" class="forgot" id="forgotPassword">
+            Forgot Password?
+        </a>
 
-        <label>
-            Password
-        </label>
 
-        <input
-            type="password"
-            placeholder="Enter password"
-            required>
+        <div class="signup">
+
+            Don't have an account?
+
+            <a href="signup.html">
+                Create Account
+            </a>
+
+        </div>
+
+
+        <a href="index.html" class="home">
+            ← Back to Home
+        </a>
+
 
     </div>
+
+
+    <script type="module">
+
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            sendPasswordResetEmail
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+            authDomain: "al-noor-islamic-academy.firebaseapp.com",
+
+            projectId: "al-noor-islamic-academy",
+
+            storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+
+            messagingSenderId: "571799539455",
+
+            appId: "1:571799539455:web:d42728685908430296c6ca"
+
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+
+        const auth = getAuth(app);
+
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+
+        loginForm.addEventListener("submit", async (e) => {
+
+            e.preventDefault();
+
+
+            const email =
+                document.getElementById("email").value.trim();
+
+
+            const password =
+                document.getElementById("password").value;
+
+
+            loginButton.disabled = true;
+
+            loginButton.textContent = "Logging in...";
+
+
+            try {
+
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+                alert("Login successful!");
+
+
+                window.location.href =
+                    "dashboard.html";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                if (
+                    error.code ===
+                    "auth/invalid-credential"
+                ) {
+
+                    alert(
+                        "Incorrect email or password."
+                    );
+
+                }
+
+                else if (
+                    error.code ===
+                    "auth/user-not-found"
+                ) {
+
+                    alert(
+                        "No account found with this email."
+                    );
+
+                }
+
+                else if (
+                    error.code ===
+                    "auth/wrong-password"
+                ) {
+
+                    alert(
+                        "Incorrect password."
+                    );
+
+                }
+
+                else {
+
+                    alert(
+                        "Login failed: " +
+                        error.message
+                    );
+
+                }
+
+
+                loginButton.disabled = false;
+
+                loginButton.textContent = "Login";
+
+            }
+
+        });
+
+
+        document
+            .getElementById("forgotPassword")
+            .addEventListener("click", async (e) => {
+
+                e.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                if (!email) {
+
+                    alert(
+                        "Please enter your email address first."
+                    );
+
+                    return;
+
+                }
+
+
+                try {
+
+                    await sendPasswordResetEmail(
+                        auth,
+                        email
+                    );
+
+
+                    alert(
+                        "Password reset email sent. Please check your email."
+                    );
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+
+                    if (
+                        error.code ===
+                        "auth/user-not-found"
+                    ) {
+
+                        alert(
+                            "No account found with this email."
+                        );
+
+                    }
+
+                    else {
+
+                        alert(
+                            "Could not send reset email: " +
+                            error.message
+                        );
+
+                    }
+
+                }
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>
