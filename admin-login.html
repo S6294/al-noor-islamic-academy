@@ -1,99 +1,339 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Login</title>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login | Al Noor Islamic Academy</title>
+
 
 <style>
-body{
-    background:#071c16;
-    color:white;
-    font-family:Arial;
-    padding:30px 20px;
+
+*{
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
+
+body{
+
+    background:#071c16;
+
+    color:white;
+
+    padding:30px 20px;
+
+}
+
 
 .box{
+
     max-width:400px;
+
     margin:60px auto;
+
     background:#0b261e;
+
     padding:25px;
+
     border:1px solid #d4af37;
+
     border-radius:15px;
+
 }
+
 
 h1{
+
     text-align:center;
+
     color:#d4af37;
+
+    margin-bottom:25px;
+
 }
+
 
 input{
+
     width:100%;
+
     padding:14px;
+
     margin:10px 0;
-    box-sizing:border-box;
+
     background:#071c16;
+
     color:white;
+
     border:1px solid #31594d;
+
     border-radius:8px;
+
 }
 
+
 button{
+
     width:100%;
+
     padding:14px;
+
     margin-top:10px;
+
     background:#d4af37;
+
+    color:#071c16;
+
     border:0;
+
     border-radius:8px;
+
     font-weight:bold;
+
+    cursor:pointer;
+
 }
+
+
+button:disabled{
+
+    opacity:.6;
+
+}
+
+
+.message{
+
+    text-align:center;
+
+    margin-top:15px;
+
+    color:#f5c542;
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="box">
 
-<h1>Admin Login</h1>
+
+<h1>
+👑 Admin Login
+</h1>
+
 
 <input
 type="email"
 id="email"
 placeholder="Admin Email"
+autocomplete="email"
 >
+
 
 <input
 type="password"
 id="password"
 placeholder="Password"
+autocomplete="current-password"
 >
 
-<button onclick="login()">
+
+<button id="loginBtn">
 Login
 </button>
 
+
+<div
+class="message"
+id="message">
 </div>
 
-<script>
 
-function login(){
+</div>
 
-    let email = document.getElementById("email").value.trim();
 
-    let password = document.getElementById("password").value;
 
-    if(email === "admin@alnoor.com" && password === "123456"){
+<script type="module">
 
-        window.location.href = "admin.html";
 
-    }else{
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-        alert("Wrong Email or Password");
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+    authDomain:
+    "al-noor-islamic-academy.firebaseapp.com",
+
+    projectId:
+    "al-noor-islamic-academy",
+
+    storageBucket:
+    "al-noor-islamic-academy.firebasestorage.app",
+
+    messagingSenderId:
+    "571799539455",
+
+    appId:
+    "1:571799539455:web:d42728685908430296c6ca"
+
+};
+
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+
+const emailInput =
+document.getElementById(
+    "email"
+);
+
+
+const passwordInput =
+document.getElementById(
+    "password"
+);
+
+
+const loginBtn =
+document.getElementById(
+    "loginBtn"
+);
+
+
+const message =
+document.getElementById(
+    "message"
+);
+
+
+
+// Check existing login
+
+
+
+
+
+// Login
+
+loginBtn.addEventListener(
+    "click",
+    async () => {
+
+
+        const email =
+        emailInput.value.trim();
+
+
+        const password =
+        passwordInput.value;
+
+
+        if(
+            !email ||
+            !password
+        ){
+
+            message.textContent =
+            "Please enter email and password.";
+
+            return;
+
+        }
+
+
+        loginBtn.disabled =
+        true;
+
+
+        loginBtn.textContent =
+        "Logging in...";
+
+
+        message.textContent =
+        "";
+
+
+        try{
+
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+            message.textContent =
+            "Login successful...";
+
+
+            window.location.href =
+            "admin.html";
+
+
+        }
+
+
+        catch(error){
+
+
+            console.error(error);
+
+
+            message.textContent =
+            "Wrong email or password.";
+
+
+            loginBtn.disabled =
+            false;
+
+
+            loginBtn.textContent =
+            "Login";
+
+        }
 
     }
-
-}
+);
 
 </script>
 
+
 </body>
+
 </html>
