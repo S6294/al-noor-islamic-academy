@@ -1,393 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Admin Panel | Al Noor Islamic Academy</title>
+    <meta charset="UTF-8">
 
-<style>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+    <title>Login | Al Noor Islamic Academy</title>
 
-body{
-    background:#071c16;
-    color:white;
-}
+    <style>
 
-/* Header */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-header{
-    background:#0b261e;
-    padding:18px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #d4af37;
-}
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #071a17;
+            color: white;
+        }
 
-.logo{
-    color:#d4af37;
-    font-size:21px;
-    font-weight:bold;
-}
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            background: #0c2923;
+            padding: 35px 25px;
+            border-radius: 20px;
+            border: 1px solid #36554d;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            text-align: center;
+        }
 
-.admin{
-    color:#d4af37;
-    font-size:14px;
-}
+        .logo {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #d4af37;
+            color: #071a17;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-/* Main */
+        h1 {
+            color: #d4af37;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
 
-.container{
-    max-width:900px;
-    margin:auto;
-    padding:30px 18px;
-}
+        .subtitle {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
 
-h1{
-    color:#d4af37;
-    text-align:center;
-    margin-bottom:8px;
-}
+        .input-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
 
-.subtitle{
-    text-align:center;
-    color:#9fb3ab;
-    margin-bottom:30px;
-}
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #ddd;
+            font-size: 14px;
+        }
 
-/* Stats */
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #42635a;
+            border-radius: 10px;
+            background: #071a17;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-    margin-bottom:30px;
-}
+        input:focus {
+            border-color: #d4af37;
+        }
 
-.stat{
-    background:#0b261e;
-    border:1px solid #31594d;
-    border-radius:15px;
-    padding:20px;
-    text-align:center;
-}
+        .login-button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 10px;
+            background: #d4af37;
+            color: #071a17;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-.stat-icon{
-    font-size:28px;
-    margin-bottom:8px;
-}
+        .login-button:disabled {
+            opacity: 0.6;
+        }
 
-.stat-number{
-    font-size:25px;
-    color:#d4af37;
-    font-weight:bold;
-}
+        .forgot {
+            display: block;
+            margin-top: 18px;
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 14px;
+        }
 
-.stat-name{
-    color:#9fb3ab;
-    margin-top:5px;
-}
+        .signup {
+            margin-top: 25px;
+            color: #aaa;
+            font-size: 14px;
+        }
 
-/* Admin Menu */
+        .signup a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-.section-title{
-    color:#d4af37;
-    margin-bottom:15px;
-}
+        .home {
+            display: block;
+            margin-top: 20px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 13px;
+        }
 
-.menu{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
+    </style>
 
-.menu-card{
-    background:#0b261e;
-    border:1px solid #31594d;
-    border-radius:15px;
-    padding:22px;
-    text-decoration:none;
-    color:white;
-    transition:.2s;
-}
-
-.menu-card:hover{
-    border-color:#d4af37;
-    transform:translateY(-2px);
-}
-
-.menu-icon{
-    font-size:30px;
-    margin-bottom:10px;
-}
-
-.menu-card h3{
-    margin-bottom:7px;
-}
-
-.menu-card p{
-    color:#9fb3ab;
-    font-size:14px;
-    line-height:1.5;
-}
-
-/* Back */
-
-.back{
-    display:block;
-    text-align:center;
-    margin-top:30px;
-    color:#d4af37;
-    text-decoration:none;
-}
-
-/* Footer */
-
-footer{
-    text-align:center;
-    color:#718b82;
-    padding:30px 10px;
-    margin-top:20px;
-    border-top:1px solid #193b31;
-}
-
-/* Mobile */
-
-@media(max-width:600px){
-
-    .stats,
-    .menu{
-        grid-template-columns:1fr;
-    }
-
-}
-
-</style>
 </head>
+
 
 <body>
 
-<header>
 
-    <div class="logo">
-        AL NOOR
-    </div>
-
-    <div class="admin">
-        👑 Admin
-    </div>
-
-</header>
+    <div class="login-box">
 
 
-<div class="container">
-
-    <h1>Admin Dashboard</h1>
-
-    <p class="subtitle">
-        Manage Al Noor Islamic Academy
-    </p>
-
-
-    <!-- Statistics -->
-
-    <div class="stats">
-
-        <div class="stat">
-
-            <div class="stat-icon">👨‍🎓</div>
-
-            <div class="stat-number">
-                120
-            </div>
-
-            <div class="stat-name">
-                Students
-            </div>
-
+        <div class="logo">
+            AN
         </div>
 
 
-        <div class="stat">
+        <h1>
+            Welcome Back
+        </h1>
 
-            <div class="stat-icon">📚</div>
 
-            <div class="stat-number">
-                6
+        <p class="subtitle">
+            Login to Al Noor Islamic Academy
+        </p>
+
+
+        <form id="loginForm">
+
+
+            <div class="input-group">
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    required>
+
             </div>
 
-            <div class="stat-name">
-                Courses
+
+            <div class="input-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Enter password"
+                    required>
+
             </div>
 
-        </div>
+
+            <button
+                type="submit"
+                class="login-button"
+                id="loginButton">
+
+                Login
+
+            </button>
 
 
-        <div class="stat">
-
-            <div class="stat-icon">🔴</div>
-
-            <div class="stat-number">
-                8
-            </div>
-
-            <div class="stat-name">
-                Live Classes
-            </div>
-
-        </div>
+        </form>
 
 
-        <div class="stat">
-
-            <div class="stat-icon">💎</div>
-
-            <div class="stat-number">
-                75
-            </div>
-
-            <div class="stat-name">
-                Premium Members
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- Management -->
-
-    <h2 class="section-title">
-        Management
-    </h2>
-
-
-    <div class="menu">
-
-
-        <a href="students.html" class="menu-card">
-
-            <div class="menu-icon">
-                👨‍🎓
-            </div>
-
-            <h3>
-                Students
-            </h3>
-
-            <p>
-                View and manage registered students.
-            </p>
-
-        </>
-
-
-        <a href="admin-courses.html" class="menu-card">
-
-            <div class="menu-icon">
-                📚
-            </div>
-
-            <h3>
-                Courses
-            </h3>
-
-            <p>
-                Add and manage academy courses.
-            </p>
-
-        </>
-
-
-        <a href="admin-live-classes.html" class="menu-card">
-
-            <div class="menu-icon">
-                🔴
-            </div>
-
-            <h3>
-                Live Classes
-            </h3>
-
-            <p>
-                Create and manage live class schedules.
-            </p>
-
-        </>
-
-
-        <a href="#" class="menu-card">
-
-            <div class="menu-icon">
-                🔔
-            </div>
-
-            <h3>
-                Notifications
-            </h3>
-
-            <p>
-                Send announcements to students.
-            </p>
-
+        <a href="#" class="forgot" id="forgotPassword">
+            Forgot Password?
         </a>
 
 
-        <a href="#" class="menu-card">
+        <div class="signup">
 
-            <div class="menu-icon">
-                💳
-            </div>
+            Don't have an account?
 
-            <h3>
-                Memberships
-            </h3>
+            <a href="signup.html">
+                Create Account
+            </a>
 
-            <p>
-                Manage premium memberships.
-            </p>
+        </div>
 
+
+        <a href="index.html" class="home">
+            ← Back to Home
         </a>
 
-
-        <a href="students.html" class="menu-card">
-
-            <div class="menu-icon">
-                ⚙️
-            </div>
-
-            <h3>
-                Settings
-            </h3>
-
-            <p>
-                Manage academy settings.
-            </p>
-
-        </>
 
     </div>
 
 
-    <a href="dashboard.html" class="back">
-        ← Student Dashboard
-    </a>
+    <script type="module">
 
-</div>
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 
-<footer>
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            sendPasswordResetEmail
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-    © 2026 Al Noor Islamic Academy
 
-</footer>
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+            authDomain: "al-noor-islamic-academy.firebaseapp.com",
+
+            projectId: "al-noor-islamic-academy",
+
+            storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+
+            messagingSenderId: "571799539455",
+
+            appId: "1:571799539455:web:d42728685908430296c6ca"
+
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+
+        const auth = getAuth(app);
+
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+
+        loginForm.addEventListener("submit", async (e) => {
+
+            e.preventDefault();
+
+
+            const email =
+                document.getElementById("email").value.trim();
+
+
+            const password =
+                document.getElementById("password").value;
+
+
+            loginButton.disabled = true;
+
+            loginButton.textContent = "Logging in...";
+
+
+            try {
+
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+                alert("Login successful!");
+
+
+                window.location.href =
+                    "dashboard.html";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                if (
+                    error.code ===
+                    "auth/invalid-credential"
+                ) {
+
+                    alert(
+                        "Incorrect email or password."
+                    );
+
+                }
+
+                else if (
+                    error.code ===
+                    "auth/user-not-found"
+                ) {
+
+                    alert(
+                        "No account found with this email."
+                    );
+
+                }
+
+                else if (
+                    error.code ===
+                    "auth/wrong-password"
+                ) {
+
+                    alert(
+                        "Incorrect password."
+                    );
+
+                }
+
+                else {
+
+                    alert(
+                        "Login failed: " +
+                        error.message
+                    );
+
+                }
+
+
+                loginButton.disabled = false;
+
+                loginButton.textContent = "Login";
+
+            }
+
+        });
+
+
+        document
+            .getElementById("forgotPassword")
+            .addEventListener("click", async (e) => {
+
+                e.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                if (!email) {
+
+                    alert(
+                        "Please enter your email address first."
+                    );
+
+                    return;
+
+                }
+
+
+                try {
+
+                    await sendPasswordResetEmail(
+                        auth,
+                        email
+                    );
+
+
+                    alert(
+                        "Password reset email sent. Please check your email."
+                    );
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+
+                    if (
+                        error.code ===
+                        "auth/user-not-found"
+                    ) {
+
+                        alert(
+                            "No account found with this email."
+                        );
+
+                    }
+
+                    else {
+
+                        alert(
+                            "Could not send reset email: " +
+                            error.message
+                        );
+
+                    }
+
+                }
+
+            });
+
+    </script>
+
 
 </body>
+
 </html>
