@@ -1,234 +1,628 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Membership - Al Noor Islamic Academy</title>
+<meta charset="UTF-8">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    body {
-      background: #071c16;
-      color: white;
-      min-height: 100vh;
-    }
+<title>Membership - Al Noor Islamic Academy</title>
 
-    .header {
-      background: #0b2a21;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #c9a227;
-    }
+<style>
 
-    .logo {
-      color: #d4af37;
-      font-size: 21px;
-      font-weight: bold;
-    }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
 
-    .back {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
+body{
+    background:#071c16;
+    color:white;
+    min-height:100vh;
+}
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 35px 20px;
-    }
+.header{
+    background:#0b2a21;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #c9a227;
+}
 
-    h1 {
-      text-align: center;
-      color: #d4af37;
-      margin-bottom: 10px;
-    }
+.logo{
+    color:#d4af37;
+    font-size:21px;
+    font-weight:bold;
+}
 
-    .subtitle {
-      text-align: center;
-      color: #b8c9c3;
-      margin-bottom: 30px;
-    }
+.back{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
 
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:35px 20px;
+}
 
-    .plan {
-      background: #0d2d24;
-      border: 1px solid #c9a227;
-      border-radius: 18px;
-      padding: 25px;
-      text-align: center;
-    }
+h1{
+    text-align:center;
+    color:#d4af37;
+    margin-bottom:10px;
+}
 
-    .plan h2 {
-      color: #d4af37;
-      margin-bottom: 15px;
-    }
+.subtitle{
+    text-align:center;
+    color:#b8c9c3;
+    margin-bottom:30px;
+}
 
-    .price {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+.plans{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
 
-    .price span {
-      font-size: 14px;
-      color: #b8c9c3;
-    }
+    gap:20px;
+}
 
-    .features {
-      text-align: left;
-      line-height: 2;
-      color: #d8e5e0;
-      margin-bottom: 20px;
-    }
+.plan{
+    background:#0d2d24;
+    border:1px solid #c9a227;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.20);
+}
 
-    .choose {
-      width: 100%;
-      padding: 13px;
-      border: none;
-      border-radius: 10px;
-      background: #c9a227;
-      color: #071c16;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.plan h2{
+    color:#d4af37;
+    margin-bottom:15px;
+}
 
-    .choose:active {
-      transform: scale(0.98);
-    }
-  </style>
+.price{
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.price span{
+    font-size:14px;
+    color:#b8c9c3;
+}
+
+.description{
+    color:#b8c9c3;
+    line-height:1.6;
+    min-height:50px;
+    margin-bottom:15px;
+}
+
+.features{
+    text-align:left;
+    line-height:2;
+    color:#d8e5e0;
+    margin-bottom:20px;
+}
+
+.choose{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:#c9a227;
+    color:#071c16;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.choose:active{
+    transform:scale(.98);
+}
+
+.loading{
+    text-align:center;
+    color:#b8c9c3;
+    padding:50px 20px;
+}
+
+.empty{
+    text-align:center;
+    color:#b8c9c3;
+    padding:50px 20px;
+    border:1px dashed #56756b;
+    border-radius:15px;
+}
+
+.error{
+    text-align:center;
+    color:#ff9999;
+    padding:30px 20px;
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-  <header class="header">
-    <div class="logo">AL NOOR</div>
-    <a href="dashboard.html" class="back">← Dashboard</a>
-  </header>
+
+<header class="header">
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <a
+    href="dashboard.html"
+    class="back">
+
+        ← Dashboard
+
+    </a>
+
+</header>
 
 
-  <div class="container">
 
-    <h1>Membership Plans</h1>
+<div class="container">
+
+
+    <h1>
+        Membership Plans
+    </h1>
+
 
     <p class="subtitle">
-      Choose a plan that suits your learning journey.
+
+        Choose a plan that suits your learning journey.
+
     </p>
 
 
-    <div class="plans">
 
-      <!-- Basic -->
-      <div class="plan">
+    <div
+    id="plansContainer"
+    class="plans">
 
-        <h2>Basic</h2>
 
-        <div class="price">
-          ₹299 <span>/ month</span>
+        <div class="loading">
+
+            Loading membership plans...
+
         </div>
 
-        <div class="features">
-          ✓ Quran Reading<br>
-          ✓ Tajweed Basics<br>
-          ✓ Islamic Studies<br>
-          ✓ Student Support
-        </div>
-
-        <button
-          class="choose"
-          onclick="selectPlan('basic', 'Basic Membership', 299)">
-          Choose Basic
-        </button>
-
-      </div>
-
-
-      <!-- Premium -->
-      <div class="plan">
-
-        <h2>Premium</h2>
-
-        <div class="price">
-          ₹599 <span>/ month</span>
-        </div>
-
-        <div class="features">
-          ✓ All Basic Features<br>
-          ✓ Arabic Language<br>
-          ✓ Hadith Studies<br>
-          ✓ Live Classes
-        </div>
-
-        <button
-          class="choose"
-          onclick="selectPlan('premium', 'Premium Membership', 599)">
-          Choose Premium
-        </button>
-
-      </div>
-
-
-      <!-- Hifz -->
-      <div class="plan">
-
-        <h2>Hifz Special</h2>
-
-        <div class="price">
-          ₹999 <span>/ month</span>
-        </div>
-
-        <div class="features">
-          ✓ Hifz-ul-Quran<br>
-          ✓ Daily Revision<br>
-          ✓ Tajweed<br>
-          ✓ Live Teacher Support
-        </div>
-
-        <button
-          class="choose"
-          onclick="selectPlan('hifz', 'Hifz Special Membership', 999)">
-          Choose Hifz
-        </button>
-
-      </div>
 
     </div>
 
-  </div>
+
+</div>
 
 
-  <script>
 
-    function selectPlan(plan, name, price) {
+<script type="module">
 
-      const url =
-        "payment.html?plan=" +
-        encodeURIComponent(plan) +
-        "&name=" +
-        encodeURIComponent(name) +
-        "&price=" +
-        encodeURIComponent(price);
 
-      window.location.href = url;
+/* =========================
+   FIREBASE
+========================= */
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    where
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+    authDomain:
+    "al-noor-islamic-academy.firebaseapp.com",
+
+    projectId:
+    "al-noor-islamic-academy",
+
+    storageBucket:
+    "al-noor-islamic-academy.firebasestorage.app",
+
+    messagingSenderId:
+    "571799539455",
+
+    appId:
+    "1:571799539455:web:d42728685908430296c6ca"
+
+};
+
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+
+const plansContainer =
+document.getElementById(
+    "plansContainer"
+);
+
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "";
 
     }
 
-  </script>
+
+    return String(value)
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* =========================
+   LOAD MEMBERSHIP PLANS
+========================= */
+
+async function loadPlans(){
+
+    plansContainer.innerHTML = `
+
+        <div class="loading">
+
+            Loading membership plans...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "membershipPlans"
+            )
+        );
+
+
+        const plans = [];
+
+
+        snapshot.forEach(item => {
+
+            const data =
+            item.data();
+
+
+            // Only active plans
+            if(data.active !== false){
+
+                plans.push({
+
+                    id:item.id,
+
+                    ...data
+
+                });
+
+            }
+
+        });
+
+
+
+        /* =========================
+           NO PLANS
+        ========================= */
+
+        if(plans.length === 0){
+
+            plansContainer.innerHTML = `
+
+                <div class="empty">
+
+                    <h3>
+                        No Membership Plans Available
+                    </h3>
+
+                    <br>
+
+                    <p>
+                        Please check again later.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+
+        /* =========================
+           SHOW PLANS
+        ========================= */
+
+        plansContainer.innerHTML = "";
+
+
+        plans.forEach(plan => {
+
+
+            const features =
+            Array.isArray(plan.features)
+            ? plan.features
+            : [];
+
+
+            let featuresHtml = "";
+
+
+            if(features.length){
+
+                featuresHtml =
+                features.map(feature => {
+
+                    return `
+                        ✓ ${escapeHtml(feature)}
+                        <br>
+                    `;
+
+                }).join("");
+
+            }
+
+            else{
+
+                featuresHtml =
+                "✓ Membership Access";
+
+            }
+
+
+
+            const card =
+            document.createElement("div");
+
+
+            card.className = "plan";
+
+
+            card.innerHTML = `
+
+                <h2>
+
+                    ${escapeHtml(
+                        plan.name ||
+                        "Membership"
+                    )}
+
+                </h2>
+
+
+                <div class="price">
+
+                    ₹${Number(
+                        plan.price || 0
+                    )}
+
+                    <span>
+                        / month
+                    </span>
+
+                </div>
+
+
+                <div class="description">
+
+                    ${escapeHtml(
+                        plan.description ||
+                        "Choose this membership plan."
+                    )}
+
+                </div>
+
+
+                <div class="features">
+
+                    ${featuresHtml}
+
+                </div>
+
+
+                <button
+                class="choose">
+
+                    Choose Plan
+
+                </button>
+
+            `;
+
+
+
+            const button =
+            card.querySelector(
+                ".choose"
+            );
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    selectPlan(
+
+                        plan.id,
+
+                        plan.name ||
+                        "Membership",
+
+                        Number(
+                            plan.price || 0
+                        )
+
+                    );
+
+                }
+            );
+
+
+            plansContainer.appendChild(
+                card
+            );
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+
+        plansContainer.innerHTML = `
+
+            <div class="error">
+
+                Unable to load membership plans.
+
+                <br><br>
+
+                ${escapeHtml(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =========================
+   SELECT PLAN
+========================= */
+
+function selectPlan(
+    plan,
+    name,
+    price
+){
+
+    const url =
+
+        "payment.html?plan=" +
+
+        encodeURIComponent(plan) +
+
+        "&name=" +
+
+        encodeURIComponent(name) +
+
+        "&price=" +
+
+        encodeURIComponent(price);
+
+
+    window.location.href = url;
+
+}
+
+
+
+/* =========================
+   AUTH CHECK
+========================= */
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        if(!user){
+
+            window.location.replace(
+                "login.html"
+            );
+
+            return;
+
+        }
+
+
+        loadPlans();
+
+    }
+);
+
+
+</script>
+
 
 </body>
+
 </html>
