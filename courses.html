@@ -225,25 +225,6 @@ footer{
 
 }
 
-
-.course-status{
-    display:inline-block;
-    margin-bottom:14px;
-    padding:6px 10px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
-    background:#174f3d;
-    color:#9ff0c9;
-}
-.course-status.membership-required{
-    background:#3d3517;
-    color:#f1d875;
-}
-.course-btn.disabled-look{
-    opacity:.9;
-}
-
 </style>
 
 </head>
@@ -290,54 +271,12 @@ footer{
 
 <section class="courses">
 
-
-<!-- QURAN READING -->
-
-<div class="course-card">
-
-    <div class="course-icon">
-        📖
-    </div>
-
-    <h2>
-        Quran Reading
-    </h2>
-
-    <p>
-        Learn to read the Holy Quran
-        correctly with proper pronunciation.
-    </p>
-
-    <div class="course-info">
-
-        📚 Nazira Quran<br>
-
-        🎥 Video Lessons<br>
-
-        🕌 Tajweed Included
-
-    </div>
-
-    <div class="course-status" id="status-quran">Checking access...</div>
-    <a href="quran-course.html" class="course-btn course-access"
-       data-course="quran" data-default-href="quran-course.html">
-        View Course
-    </a>
-
-</div>
-
-
 <!-- TAJWEED -->
-
 <div class="course-card">
 
-    <div class="course-icon">
-        🕌
-    </div>
+    <div class="course-icon">🕌</div>
 
-    <h2>
-        Tajweed
-    </h2>
+    <h2>Tajweed</h2>
 
     <p>
         Learn the rules of Quranic
@@ -345,71 +284,26 @@ footer{
     </p>
 
     <div class="course-info">
-
         📚 Tajweed Rules<br>
-
         🎥 Recorded Lessons<br>
-
-        🔴 Live Practice
-
+        🔴 Live Practice<br>
+        💰 Course Fee: ₹299
     </div>
 
-    <div class="course-status membership-required" id="status-tajweed">Membership required</div>
-    <a href="membership.html" class="course-btn course-access"
-       data-course="tajweed" data-default-href="membership.html">
-        View Course
+    <a href="payment.html?course=tajweed&price=299"
+       class="course-btn">
+        Join Course — ₹299
     </a>
 
 </div>
 
 
-<!-- HIFZ -->
-
+<!-- ARABIC LANGUAGE -->
 <div class="course-card">
 
-    <div class="course-icon">
-        📕
-    </div>
+    <div class="course-icon">🌙</div>
 
-    <h2>
-        Hifz-ul-Quran
-    </h2>
-
-    <p>
-        A structured Quran memorization
-        program with regular revision.
-    </p>
-
-    <div class="course-info">
-
-        📖 Memorization<br>
-
-        🔄 Daily Revision<br>
-
-        👨‍🏫 Teacher Guidance
-
-    </div>
-
-    <div class="course-status membership-required" id="status-hifz">Membership required</div>
-    <a href="membership.html" class="course-btn course-access"
-       data-course="hifz" data-default-href="membership.html">
-        View Course
-    </a>
-
-</div>
-
-
-<!-- ARABIC -->
-
-<div class="course-card">
-
-    <div class="course-icon">
-        🌙
-    </div>
-
-    <h2>
-        Arabic Language
-    </h2>
+    <h2>Arabic Language</h2>
 
     <p>
         Learn Arabic reading, grammar,
@@ -417,35 +311,78 @@ footer{
     </p>
 
     <div class="course-info">
-
         🔤 Grammar<br>
-
         🗣️ Conversation<br>
-
-        📚 Vocabulary
-
+        📚 Vocabulary<br>
+        💰 Course Fee: ₹299
     </div>
 
-    <div class="course-status membership-required" id="status-arabic">Membership required</div>
-    <a href="membership.html" class="course-btn course-access"
-       data-course="arabic" data-default-href="membership.html">
-        View Course
+    <a href="payment.html?course=arabic-language&price=299"
+       class="course-btn">
+        Join Course — ₹299
     </a>
 
 </div>
 
 
-<!-- HADITH -->
-
+<!-- HIFZ -->
 <div class="course-card">
 
-    <div class="course-icon">
-        📜
+    <div class="course-icon">📕</div>
+
+    <h2>Hifz-ul-Quran</h2>
+
+    <p>
+        A structured Quran memorization
+        program with regular revision.
+    </p>
+
+    <div class="course-info">
+        📖 Memorization<br>
+        🔄 Daily Revision<br>
+        👨‍🏫 Teacher Guidance
     </div>
 
-    <h2>
-        Hadith Studies
-    </h2>
+    <div class="course-btn"
+         style="background:#29453e;color:#d4af37;cursor:default;">
+        Coming Soon
+    </div>
+
+</div>
+
+
+<!-- QURAN READING -->
+<div class="course-card">
+
+    <div class="course-icon">📖</div>
+
+    <h2>Quran Reading</h2>
+
+    <p>
+        Learn to read the Holy Quran
+        correctly with proper pronunciation.
+    </p>
+
+    <div class="course-info">
+        📚 Nazira Quran<br>
+        🎥 Video Lessons<br>
+        🕌 Tajweed Included
+    </div>
+
+    <div class="course-btn"
+         style="background:#29453e;color:#d4af37;cursor:default;">
+        Coming Soon
+    </div>
+
+</div>
+
+
+<!-- HADITH -->
+<div class="course-card">
+
+    <div class="course-icon">📜</div>
+
+    <h2>Hadith Studies</h2>
 
     <p>
         Study selected Hadith with
@@ -453,35 +390,25 @@ footer{
     </p>
 
     <div class="course-info">
-
         📖 Selected Hadith<br>
-
         📝 Explanation<br>
-
         🎥 Recorded Lessons
-
     </div>
 
-    <div class="course-status membership-required" id="status-hadith">Membership required</div>
-    <a href="membership.html" class="course-btn course-access"
-       data-course="hadith" data-default-href="membership.html">
-        View Course
-    </a>
+    <div class="course-btn"
+         style="background:#29453e;color:#d4af37;cursor:default;">
+        Coming Soon
+    </div>
 
 </div>
 
 
 <!-- ISLAMIC STUDIES -->
-
 <div class="course-card">
 
-    <div class="course-icon">
-        🕋
-    </div>
+    <div class="course-icon">🕋</div>
 
-    <h2>
-        Islamic Studies
-    </h2>
+    <h2>Islamic Studies</h2>
 
     <p>
         Learn Seerah, Aqeedah, Fiqh
@@ -489,23 +416,17 @@ footer{
     </p>
 
     <div class="course-info">
-
         🕌 Seerah<br>
-
         📚 Aqeedah & Fiqh<br>
-
         ❤️ Islamic Manners
-
     </div>
 
-    <div class="course-status membership-required" id="status-islamic">Membership required</div>
-    <a href="membership.html" class="course-btn course-access"
-       data-course="islamic" data-default-href="membership.html">
-        View Course
-    </a>
+    <div class="course-btn"
+         style="background:#29453e;color:#d4af37;cursor:default;">
+        Coming Soon
+    </div>
 
 </div>
-
 
 </section>
 
@@ -518,143 +439,6 @@ footer{
 
 </footer>
 
-
-
-<script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
-import {
-    getAuth,
-    onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-import {
-    getFirestore,
-    doc,
-    getDoc
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-
-const firebaseConfig = {
-    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
-    authDomain: "al-noor-islamic-academy.firebaseapp.com",
-    projectId: "al-noor-islamic-academy",
-    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
-    messagingSenderId: "571799539455",
-    appId: "1:571799539455:web:d42728685908430296c6ca"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-const courseButtons = document.querySelectorAll(".course-access");
-
-function setCourseAccess(isMember){
-
-    courseButtons.forEach((button) => {
-
-        const course = button.dataset.course;
-        const defaultHref = button.dataset.defaultHref;
-
-        const status = document.getElementById("status-" + course);
-
-        if(isMember){
-
-            /*
-             * Membership already paid.
-             * Do NOT send the student to membership/payment again.
-             */
-            status.textContent = "✓ Included with your membership";
-            status.classList.remove("membership-required");
-
-            button.textContent =
-                course === "quran"
-                    ? "Start Course"
-                    : "Open Course";
-
-            /*
-             * Existing course page:
-             * Quran Reading -> quran-course.html
-             *
-             * For the other courses, no separate course-content
-             * HTML files exist in the uploaded courses.html project.
-             * So they stay on this page instead of opening payment.
-             */
-            if(course !== "quran"){
-                button.href = "#";
-                button.addEventListener("click", (event) => {
-                    event.preventDefault();
-                    alert(
-                        "This course is included in your active membership. " +
-                        "The course content page will be available here."
-                    );
-                });
-            } else {
-                button.href = "quran-course.html";
-            }
-
-            button.classList.add("disabled-look");
-
-        }else{
-
-            status.textContent = "Membership required";
-            status.classList.add("membership-required");
-
-            button.textContent = "Get Membership";
-            button.href = "membership.html";
-            button.classList.remove("disabled-look");
-        }
-    });
-}
-
-
-onAuthStateChanged(auth, async (user) => {
-
-    if(!user){
-        window.location.href = "login.html";
-        return;
-    }
-
-    try{
-
-        const studentRef = doc(db, "students", user.uid);
-        const studentSnap = await getDoc(studentRef);
-
-        if(!studentSnap.exists()){
-            setCourseAccess(false);
-            return;
-        }
-
-        const studentData = studentSnap.data();
-
-        /*
-         * This is the same field written by payment.html:
-         * membershipActive: true
-         */
-        const isMember =
-            studentData.membershipActive === true;
-
-        setCourseAccess(isMember);
-
-    }catch(error){
-
-        console.error("Membership check error:", error);
-
-        /*
-         * If Firebase cannot be checked, don't accidentally
-         * give paid access.
-         */
-        setCourseAccess(false);
-    }
-
-});
-
-</script>
 
 </body>
 
