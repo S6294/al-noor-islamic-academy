@@ -3,904 +3,1030 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-          content="Al Noor Islamic Academy - Learn Quran, Arabic, Hadith and Islamic Studies online.">
+<meta name="description"
+content="Al Noor Islamic Academy - Learn Quran, Arabic, Hadith and Islamic Studies online.">
 
-    <title>Al Noor Islamic Academy</title>
+<title>Al Noor Islamic Academy</title>
 
 
-    <!-- PREMIUM FONTS -->
+<!-- PREMIUM FONTS -->
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+rel="stylesheet">
 
 
-    <style>
+<style>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 
-        html {
-            scroll-behavior: smooth;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
 
-        body {
-            font-family: 'Inter', Arial, sans-serif;
-            background: #061713;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #061713;
+    color: #ffffff;
+    overflow-x: hidden;
+}
 
 
-        /* =========================
-           GLOBAL
-        ========================= */
+:root {
+    --green: #061713;
+    --green2: #0a211c;
+    --green3: #0d2d25;
+    --gold: #d4af37;
+    --gold-light: #f0d477;
+    --text: #ffffff;
+    --muted: #aebbb7;
+    --border: rgba(212,175,55,0.25);
+}
 
-        :root {
-            --green: #061713;
-            --green2: #0a211c;
-            --green3: #0d2d25;
-            --gold: #d4af37;
-            --gold-light: #f0d477;
-            --text: #ffffff;
-            --muted: #aebbb7;
-            --border: rgba(212, 175, 55, 0.25);
-        }
 
+a {
+    text-decoration: none;
+}
 
-        a {
-            text-decoration: none;
-        }
 
+.container {
+    width: min(1120px, 92%);
+    margin: auto;
+}
 
-        .container {
-            width: min(1120px, 92%);
-            margin: auto;
-        }
 
+/* =========================
+   HEADER
+========================= */
 
-        .gold {
-            color: var(--gold);
-        }
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
+    height: 76px;
 
-        /* =========================
-           HEADER
-        ========================= */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+    padding: 0 5%;
 
-            height: 76px;
+    background: rgba(6,23,19,0.92);
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+    backdrop-filter: blur(14px);
 
-            padding: 0 5%;
+    border-bottom: 1px solid rgba(212,175,55,0.15);
+}
 
-            background: rgba(6, 23, 19, 0.92);
 
-            backdrop-filter: blur(14px);
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
 
-            border-bottom: 1px solid rgba(212,175,55,0.15);
-        }
 
+.brand img {
+    width: 48px;
+    height: 48px;
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-        }
+    object-fit: cover;
 
+    border-radius: 50%;
 
-        .brand img {
-            width: 48px;
-            height: 48px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            background: #ffffff;
-        }
+    border: 2px solid var(--gold);
 
+    background: #ffffff;
+}
 
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-        }
 
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
 
-        .brand-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 25px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--gold);
-        }
 
+.brand-name {
+    font-family: 'Cormorant Garamond', serif;
 
-        .brand-sub {
-            font-size: 8px;
-            letter-spacing: 2px;
-            color: #b7c2be;
-            margin-top: 5px;
-        }
+    font-size: 25px;
 
+    font-weight: 700;
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+    letter-spacing: 2px;
 
+    color: var(--gold);
+}
 
-        .admin-link {
-            color: var(--gold-light);
-            font-size: 13px;
-            font-weight: 600;
-            padding: 9px 10px;
-        }
 
+.brand-sub {
+    font-size: 8px;
 
-        .login-btn {
-            background: linear-gradient(
-                135deg,
-                #e4c24c,
-                #c99f25
-            );
+    letter-spacing: 2px;
 
-            color: #071a17;
+    color: #b7c2be;
 
-            padding: 11px 20px;
+    margin-top: 5px;
+}
 
-            border-radius: 10px;
 
-            font-weight: 700;
+.header-actions {
+    display: flex;
 
-            box-shadow:
-                0 8px 25px rgba(212,175,55,0.18);
-        }
+    align-items: center;
 
+    gap: 12px;
+}
 
-        /* =========================
-           HERO
-        ========================= */
 
-        .hero {
-            position: relative;
+.admin-link {
+    color: var(--gold-light);
 
-            min-height: 720px;
+    font-size: 13px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    font-weight: 600;
 
-            text-align: center;
+    padding: 9px 10px;
+}
 
-            padding: 70px 20px 90px;
 
-            overflow: hidden;
-        }
+.login-btn {
+    background: linear-gradient(
+        135deg,
+        #e4c24c,
+        #c99f25
+    );
 
+    color: #071a17;
 
-        .hero::before {
-            content: "";
+    padding: 11px 20px;
 
-            position: absolute;
+    border-radius: 10px;
 
-            width: 500px;
-            height: 500px;
+    font-weight: 700;
 
-            border-radius: 50%;
+    box-shadow:
+        0 8px 25px rgba(212,175,55,0.18);
+}
 
-            background: rgba(212,175,55,0.07);
 
-            filter: blur(50px);
+/* =========================
+   HERO
+========================= */
 
-            top: -180px;
-            left: 50%;
+.hero {
+    position: relative;
 
-            transform: translateX(-50%);
-        }
+    min-height: 720px;
 
+    display: flex;
 
-        .hero::after {
-            content: "";
+    align-items: center;
 
-            position: absolute;
+    justify-content: center;
 
-            width: 320px;
-            height: 320px;
+    text-align: center;
 
-            border-radius: 50%;
+    padding: 70px 20px 90px;
 
-            border: 1px solid rgba(212,175,55,0.12);
+    overflow: hidden;
+}
 
-            top: 110px;
-            left: 50%;
 
-            transform: translateX(-50%);
-        }
+.hero::before {
+    content: "";
 
+    position: absolute;
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
+    width: 500px;
+    height: 500px;
 
-            max-width: 850px;
-        }
+    border-radius: 50%;
 
+    background: rgba(212,175,55,0.07);
 
-        .hero-logo {
-            width: 150px;
-            height: 150px;
+    filter: blur(50px);
 
-            object-fit: cover;
+    top: -180px;
+    left: 50%;
 
-            border-radius: 50%;
+    transform: translateX(-50%);
+}
 
-            background: white;
 
-            border: 3px solid var(--gold);
+.hero::after {
+    content: "";
 
-            box-shadow:
-                0 0 0 8px rgba(212,175,55,0.06),
-                0 20px 60px rgba(0,0,0,0.45);
+    position: absolute;
 
-            margin-bottom: 28px;
-        }
+    width: 320px;
+    height: 320px;
 
+    border-radius: 50%;
 
-        .arabic {
-            font-family: 'Amiri', serif;
+    border: 1px solid rgba(212,175,55,0.12);
 
-            font-size: 34px;
+    top: 110px;
+    left: 50%;
 
-            color: var(--gold-light);
+    transform: translateX(-50%);
+}
 
-            direction: rtl;
 
-            margin-bottom: 10px;
-        }
+.hero-content {
+    position: relative;
 
+    z-index: 2;
 
-        .welcome {
-            color: #8fa39d;
+    max-width: 850px;
+}
 
-            font-size: 12px;
 
-            letter-spacing: 4px;
+.hero-logo {
+    width: 150px;
+    height: 150px;
 
-            text-transform: uppercase;
+    object-fit: cover;
 
-            margin-bottom: 13px;
-        }
+    border-radius: 50%;
 
+    background: white;
 
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
+    border: 3px solid var(--gold);
 
-            font-size: clamp(46px, 8vw, 76px);
+    box-shadow:
+        0 0 0 8px rgba(212,175,55,0.06),
+        0 20px 60px rgba(0,0,0,0.45);
 
-            line-height: 0.95;
+    margin-bottom: 28px;
+}
 
-            font-weight: 700;
 
-            letter-spacing: 1px;
+.arabic {
+    font-family: 'Amiri', serif;
 
-            margin-bottom: 22px;
+    font-size: 34px;
 
-            background: linear-gradient(
-                135deg,
-                #ffffff 30%,
-                #d4af37 90%
-            );
+    color: var(--gold-light);
 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    direction: rtl;
 
+    margin-bottom: 10px;
+}
 
-        .hero p {
-            max-width: 650px;
 
-            margin: auto;
+.welcome {
+    color: #8fa39d;
 
-            color: #b8c3bf;
+    font-size: 12px;
 
-            font-size: 16px;
+    letter-spacing: 4px;
 
-            line-height: 1.8;
+    text-transform: uppercase;
 
-            margin-bottom: 32px;
-        }
+    margin-bottom: 13px;
+}
 
 
-        .hero-buttons {
-            display: flex;
+.hero h1 {
+    font-family: 'Cormorant Garamond', serif;
 
-            justify-content: center;
+    font-size: clamp(46px,8vw,76px);
 
-            gap: 13px;
+    line-height: 0.95;
 
-            flex-wrap: wrap;
-        }
+    font-weight: 700;
 
+    letter-spacing: 1px;
 
-        .primary-btn {
-            display: inline-block;
+    margin-bottom: 22px;
 
-            padding: 15px 27px;
+    background: linear-gradient(
+        135deg,
+        #ffffff 30%,
+        #d4af37 90%
+    );
 
-            border-radius: 11px;
+    -webkit-background-clip: text;
 
-            background: linear-gradient(
-                135deg,
-                #e4c24c,
-                #c79c20
-            );
+    -webkit-text-fill-color: transparent;
+}
 
-            color: #071a17;
 
-            font-weight: 700;
+.hero p {
+    max-width: 650px;
 
-            box-shadow:
-                0 12px 30px rgba(212,175,55,0.18);
-        }
+    margin: auto;
 
+    color: #b8c3bf;
 
-        .secondary-btn {
-            display: inline-block;
+    font-size: 16px;
 
-            padding: 14px 27px;
+    line-height: 1.8;
 
-            border-radius: 11px;
+    margin-bottom: 32px;
+}
 
-            border: 1px solid rgba(212,175,55,0.5);
 
-            color: var(--gold-light);
+.hero-buttons {
+    display: flex;
 
-            font-weight: 600;
+    justify-content: center;
 
-            background: rgba(255,255,255,0.02);
-        }
+    gap: 13px;
 
+    flex-wrap: wrap;
+}
 
-        /* =========================
-           STATS
-        ========================= */
 
-        .stats {
-            padding: 0 20px 80px;
-        }
+.primary-btn {
+    display: inline-block;
 
+    padding: 15px 27px;
 
-        .stats-box {
-            max-width: 900px;
+    border-radius: 11px;
 
-            margin: auto;
+    background: linear-gradient(
+        135deg,
+        #e4c24c,
+        #c79c20
+    );
 
-            display: grid;
+    color: #071a17;
 
-            grid-template-columns:
-                repeat(3, 1fr);
+    font-weight: 700;
 
-            background: linear-gradient(
-                145deg,
-                #0b2922,
-                #081d18
-            );
+    box-shadow:
+        0 12px 30px rgba(212,175,55,0.18);
+}
 
-            border: 1px solid var(--border);
 
-            border-radius: 20px;
+.secondary-btn {
+    display: inline-block;
 
-            overflow: hidden;
-        }
+    padding: 14px 27px;
 
+    border-radius: 11px;
 
-        .stat {
-            text-align: center;
+    border: 1px solid rgba(212,175,55,0.5);
 
-            padding: 25px 12px;
+    color: var(--gold-light);
 
-            border-right: 1px solid var(--border);
-        }
+    font-weight: 600;
 
+    background: rgba(255,255,255,0.02);
+}
 
-        .stat:last-child {
-            border-right: none;
-        }
 
+/* =========================
+   STATS
+========================= */
 
-        .stat strong {
-            display: block;
+.stats {
+    padding: 0 20px 80px;
+}
 
-            font-family: 'Cormorant Garamond', serif;
 
-            color: var(--gold);
+.stats-box {
+    max-width: 900px;
 
-            font-size: 30px;
+    margin: auto;
 
-            margin-bottom: 4px;
-        }
+    display: grid;
 
+    grid-template-columns:
+        repeat(3,1fr);
 
-        .stat span {
-            color: #9caeaa;
+    background: linear-gradient(
+        145deg,
+        #0b2922,
+        #081d18
+    );
 
-            font-size: 12px;
+    border: 1px solid var(--border);
 
-            letter-spacing: 1px;
-        }
+    border-radius: 20px;
 
+    overflow: hidden;
+}
 
-        /* =========================
-           SECTION TITLE
-        ========================= */
 
-        .section-title {
-            text-align: center;
+.stat {
+    text-align: center;
 
-            margin-bottom: 42px;
-        }
+    padding: 25px 12px;
 
+    border-right: 1px solid var(--border);
+}
 
-        .section-title small {
-            color: var(--gold);
 
-            text-transform: uppercase;
+.stat:last-child {
+    border-right: none;
+}
 
-            letter-spacing: 3px;
 
-            font-size: 11px;
-        }
+.stat strong {
+    display: block;
 
+    font-family: 'Cormorant Garamond', serif;
 
-        .section-title h2 {
-            font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
 
-            font-size: 43px;
+    font-size: 30px;
 
-            margin-top: 8px;
+    margin-bottom: 4px;
+}
 
-            color: white;
-        }
 
+.stat span {
+    color: #9caeaa;
 
-        .section-title p {
-            color: #899b96;
+    font-size: 12px;
 
-            margin-top: 10px;
+    letter-spacing: 1px;
+}
 
-            font-size: 14px;
-        }
 
+/* =========================
+   SECTION TITLE
+========================= */
 
-        /* =========================
-           COURSES
-        ========================= */
+.section-title {
+    text-align: center;
 
-        .courses {
-            padding: 80px 20px;
-        }
+    margin-bottom: 42px;
+}
 
 
-        .course-container {
+.section-title small {
+    color: var(--gold);
 
-            width: min(1100px, 92%);
+    text-transform: uppercase;
 
-            margin: auto;
+    letter-spacing: 3px;
 
-            display: grid;
+    font-size: 11px;
+}
 
-            grid-template-columns:
-                repeat(auto-fit, minmax(250px, 1fr));
 
-            gap: 18px;
-        }
+.section-title h2 {
+    font-family: 'Cormorant Garamond', serif;
 
+    font-size: 43px;
 
-        .course-card {
+    margin-top: 8px;
 
-            position: relative;
+    color: white;
+}
 
-            background: linear-gradient(
-                145deg,
-                #0d3028,
-                #09221d
-            );
 
-            padding: 28px;
+.section-title p {
+    color: #899b96;
 
-            min-height: 210px;
+    margin-top: 10px;
 
-            border-radius: 18px;
+    font-size: 14px;
+}
 
-            border: 1px solid rgba(212,175,55,0.16);
 
-            transition: 0.3s;
+/* =========================
+   COURSES
+========================= */
 
-            overflow: hidden;
-        }
+.courses {
+    padding: 80px 20px;
+}
 
 
-        .course-card::before {
-            content: "";
+.course-container {
+    width: min(1100px,92%);
 
-            position: absolute;
+    margin: auto;
 
-            width: 100px;
-            height: 100px;
+    display: grid;
 
-            border-radius: 50%;
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
 
-            background: rgba(212,175,55,0.05);
+    gap: 18px;
+}
 
-            top: -40px;
-            right: -40px;
-        }
 
+.course-card {
+    position: relative;
 
-        .course-card:hover {
-            transform: translateY(-6px);
+    background: linear-gradient(
+        145deg,
+        #0d3028,
+        #09221d
+    );
 
-            border-color:
-                rgba(212,175,55,0.45);
+    padding: 28px;
 
-            box-shadow:
-                0 15px 40px rgba(0,0,0,0.25);
-        }
+    min-height: 210px;
 
+    border-radius: 18px;
 
-        .course-icon {
-            font-size: 30px;
+    border: 1px solid rgba(212,175,55,0.16);
 
-            margin-bottom: 18px;
-        }
+    transition: 0.3s;
 
+    overflow: hidden;
+}
 
-        .course-card h3 {
-            font-family: 'Cormorant Garamond', serif;
 
-            color: var(--gold);
+.course-card::before {
+    content: "";
 
-            font-size: 25px;
+    position: absolute;
 
-            margin-bottom: 9px;
-        }
+    width: 100px;
+    height: 100px;
 
+    border-radius: 50%;
 
-        .course-card p {
-            color: #aebbb7;
+    background: rgba(212,175,55,0.05);
 
-            font-size: 13px;
+    top: -40px;
+    right: -40px;
+}
 
-            line-height: 1.7;
-        }
 
+.course-card:hover {
+    transform: translateY(-6px);
 
-        /* =========================
-           WHY AL NOOR
-        ========================= */
+    border-color:
+        rgba(212,175,55,0.45);
 
-        .why {
-            padding: 80px 20px;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.25);
+}
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #061713,
-                    #0a211c,
-                    #061713
-                );
-        }
 
+.course-icon {
+    font-size: 30px;
 
-        .why-grid {
-            width: min(1000px, 92%);
+    margin-bottom: 18px;
+}
 
-            margin: auto;
 
-            display: grid;
+.course-card h3 {
+    font-family: 'Cormorant Garamond', serif;
 
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
+    color: var(--gold);
 
-            gap: 18px;
-        }
+    font-size: 25px;
 
+    margin-bottom: 9px;
+}
 
-        .why-card {
-            padding: 28px;
 
-            text-align: center;
+.course-card p {
+    color: #aebbb7;
 
-            border: 1px solid rgba(212,175,55,0.14);
+    font-size: 13px;
 
-            border-radius: 18px;
+    line-height: 1.7;
+}
 
-            background: rgba(255,255,255,0.025);
-        }
 
+/* =========================
+   WHY AL NOOR
+========================= */
 
-        .why-icon {
-            font-size: 30px;
+.why {
+    padding: 80px 20px;
 
-            margin-bottom: 15px;
-        }
+    background:
+        linear-gradient(
+            180deg,
+            #061713,
+            #0a211c,
+            #061713
+        );
+}
 
 
-        .why-card h3 {
-            color: white;
+.why-grid {
+    width: min(1000px,92%);
 
-            font-size: 17px;
+    margin: auto;
 
-            margin-bottom: 8px;
-        }
+    display: grid;
 
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
 
-        .why-card p {
-            color: #91a39e;
+    gap: 18px;
+}
 
-            font-size: 13px;
 
-            line-height: 1.6;
-        }
+.why-card {
+    padding: 28px;
 
+    text-align: center;
 
-        /* =========================
-           CTA
-        ========================= */
+    border: 1px solid rgba(212,175,55,0.14);
 
-        .cta {
-            padding: 90px 20px;
+    border-radius: 18px;
 
-            text-align: center;
-        }
+    background: rgba(255,255,255,0.025);
+}
 
 
-        .cta-box {
-            width: min(900px, 92%);
+.why-icon {
+    font-size: 30px;
 
-            margin: auto;
+    margin-bottom: 15px;
+}
 
-            padding: 60px 25px;
 
-            border-radius: 25px;
+.why-card h3 {
+    color: white;
 
-            background:
-                radial-gradient(
-                    circle at top,
-                    rgba(212,175,55,0.12),
-                    transparent 55%
-                ),
-                #0b2922;
+    font-size: 17px;
 
-            border: 1px solid rgba(212,175,55,0.25);
-        }
+    margin-bottom: 8px;
+}
 
 
-        .cta-arabic {
-            font-family: 'Amiri', serif;
+.why-card p {
+    color: #91a39e;
 
-            color: var(--gold);
+    font-size: 13px;
 
-            font-size: 28px;
+    line-height: 1.6;
+}
 
-            direction: rtl;
 
-            margin-bottom: 10px;
-        }
+/* =========================
+   FOUNDER
+========================= */
 
+.founder {
+    padding: 80px 20px;
 
-        .cta h2 {
-            font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+}
 
-            font-size: 40px;
 
-            margin-bottom: 12px;
-        }
+.founder-card {
+    width: min(700px,92%);
 
+    margin: auto;
 
-        .cta p {
-            color: #9eafaa;
+    padding: 45px 25px;
 
-            max-width: 600px;
+    border-radius: 24px;
 
-            margin: 0 auto 25px;
+    background:
+        linear-gradient(
+            145deg,
+            #0d3028,
+            #081f19
+        );
 
-            line-height: 1.7;
-        }
+    border: 1px solid
+        rgba(212,175,55,0.25);
 
+    box-shadow:
+        0 18px 50px rgba(0,0,0,0.25);
+}
 
-        /* =========================
-           FOOTER
-        ========================= */
 
-        footer {
-            padding: 45px 20px 25px;
+.founder-label {
+    color: #aebbb7;
 
-            background: #04100d;
+    font-size: 12px;
 
-            border-top: 1px solid rgba(212,175,55,0.12);
+    letter-spacing: 3px;
 
-            text-align: center;
-        }
+    text-transform: uppercase;
 
+    margin-bottom: 12px;
+}
 
-        .footer-logo {
-            color: var(--gold);
 
-            font-family: 'Cormorant Garamond', serif;
+.founder-name {
+    font-family: 'Cormorant Garamond', serif;
 
-            font-size: 29px;
+    color: var(--gold-light);
 
-            font-weight: 700;
+    font-size: 42px;
 
-            letter-spacing: 2px;
-        }
+    font-weight: 700;
 
+    margin-bottom: 6px;
+}
 
-        .footer-arabic {
-            font-family: 'Amiri', serif;
 
-            direction: rtl;
+.founder-line {
+    width: 70px;
 
-            color: #8f9d99;
+    height: 1px;
 
-            font-size: 20px;
+    background: var(--gold);
 
-            margin: 5px 0 15px;
-        }
+    margin: 20px auto;
+}
 
 
-        footer p {
-            color: #687772;
+.founder-role {
+    color: #c4cfcb;
 
-            font-size: 12px;
+    font-size: 14px;
 
-            line-height: 1.7;
-        }
+    letter-spacing: 1px;
+}
 
 
-        .footer-line {
-            width: 80px;
+.founder-arabic {
+    font-family: 'Amiri', serif;
 
-            height: 1px;
+    color: var(--gold);
 
-            background: var(--gold);
+    font-size: 24px;
 
-            margin: 20px auto;
-        }
+    direction: rtl;
 
+    margin-top: 12px;
+}
 
-        /* =========================
-           MOBILE
-        ========================= */
 
-        @media (max-width: 600px) {
+/* =========================
+   CTA
+========================= */
 
-            header {
-                height: 70px;
-                padding: 0 14px;
-            }
+.cta {
+    padding: 90px 20px;
 
+    text-align: center;
+}
 
-            .brand img {
-                width: 40px;
-                height: 40px;
-            }
 
+.cta-box {
+    width: min(900px,92%);
 
-            .brand-name {
-                font-size: 21px;
-            }
+    margin: auto;
 
+    padding: 60px 25px;
 
-            .brand-sub {
-                font-size: 7px;
-            }
+    border-radius: 25px;
 
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(212,175,55,0.12),
+            transparent 55%
+        ),
+        #0b2922;
 
-            .admin-link {
-                font-size: 12px;
-            }
+    border: 1px solid
+        rgba(212,175,55,0.25);
+}
 
 
-            .login-btn {
-                padding: 9px 14px;
-                font-size: 13px;
-            }
+.cta-arabic {
+    font-family: 'Amiri', serif;
 
+    color: var(--gold);
 
-            .hero {
-                min-height: 650px;
-                padding-top: 45px;
-            }
+    font-size: 28px;
 
+    direction: rtl;
 
-            .hero-logo {
-                width: 125px;
-                height: 125px;
-            }
+    margin-bottom: 10px;
+}
 
 
-            .arabic {
-                font-size: 27px;
-            }
+.cta h2 {
+    font-family: 'Cormorant Garamond', serif;
 
+    font-size: 40px;
 
-            .welcome {
-                font-size: 9px;
-                letter-spacing: 3px;
-            }
+    margin-bottom: 12px;
+}
 
 
-            .hero h1 {
-                font-size: 48px;
-            }
+.cta p {
+    color: #9eafaa;
 
+    max-width: 600px;
 
-            .hero p {
-                font-size: 14px;
-            }
+    margin: 0 auto 25px;
 
+    line-height: 1.7;
+}
 
-            .stats-box {
-                grid-template-columns: 1fr;
-            }
 
+/* =========================
+   FOOTER
+========================= */
 
-            .stat {
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
+footer {
+    padding: 45px 20px 25px;
 
+    background: #04100d;
 
-            .stat:last-child {
-                border-bottom: none;
-            }
+    border-top:
+        1px solid rgba(212,175,55,0.12);
 
+    text-align: center;
+}
 
-            .section-title h2 {
-                font-size: 36px;
-            }
 
+.footer-logo {
+    color: var(--gold);
 
-            .course-container,
-            .why-grid {
-                grid-template-columns: 1fr;
-            }
+    font-family: 'Cormorant Garamond', serif;
 
+    font-size: 29px;
 
-            .cta h2 {
-                font-size: 34px;
-            }
+    font-weight: 700;
 
-        }
+    letter-spacing: 2px;
+}
 
-    </style>
+
+.footer-arabic {
+    font-family: 'Amiri', serif;
+
+    direction: rtl;
+
+    color: #8f9d99;
+
+    font-size: 20px;
+
+    margin: 5px 0 15px;
+}
+
+
+footer p {
+    color: #687772;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+.footer-line {
+    width: 80px;
+
+    height: 1px;
+
+    background: var(--gold);
+
+    margin: 20px auto;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:600px) {
+
+    header {
+        height: 70px;
+
+        padding: 0 14px;
+    }
+
+
+    .brand img {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .brand-name {
+        font-size: 21px;
+    }
+
+
+    .brand-sub {
+        font-size: 7px;
+    }
+
+
+    .admin-link {
+        font-size: 12px;
+    }
+
+
+    .login-btn {
+        padding: 9px 14px;
+
+        font-size: 13px;
+    }
+
+
+    .hero {
+        min-height: 650px;
+
+        padding-top: 45px;
+    }
+
+
+    .hero-logo {
+        width: 125px;
+        height: 125px;
+    }
+
+
+    .arabic {
+        font-size: 27px;
+    }
+
+
+    .welcome {
+        font-size: 9px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+
+    .hero p {
+        font-size: 14px;
+    }
+
+
+    .stats-box {
+        grid-template-columns: 1fr;
+    }
+
+
+    .stat {
+        border-right: none;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    .stat:last-child {
+        border-bottom: none;
+    }
+
+
+    .section-title h2 {
+        font-size: 36px;
+    }
+
+
+    .course-container,
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .founder {
+        padding: 65px 15px;
+    }
+
+
+    .founder-name {
+        font-size: 34px;
+    }
+
+
+    .founder-role {
+        font-size: 13px;
+    }
+
+
+    .cta h2 {
+        font-size: 34px;
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -908,230 +1034,2065 @@
 <body>
 
 
-    <!-- =========================
-         HEADER
-    ========================== -->
+<!-- =========================
+     HEADER
+========================= -->
 
-    <header>
+<header>
 
-        <a href="index.html" class="brand">
+<a href="index.html" class="brand">
 
-            <img src="images/logo.png"
-                 alt="Al Noor Islamic Academy Logo">
+<img src="images/logo.png"
+alt="Al Noor Islamic Academy Logo">
 
-            <div class="brand-text">
 
-                <span class="brand-name">
-                    AL NOOR
-                </span>
+<div class="brand-text">
 
-                <span class="brand-sub">
-                    ISLAMIC ACADEMY
-                </span>
+<span class="brand-name">
+AL NOOR
+</span>
 
-            </div>
+<span class="brand-sub">
+ISLAMIC ACADEMY
+</span>
 
-        </a>
+</div>
 
+</a>
 
-        <div class="header-actions">
 
-            <a href="admin-login.html"
-               class="admin-link">
-                Admin
-            </a>
+<div class="header-actions">
 
+<a href="admin-login.html"
+class="admin-link">
+Admin
+</a>
 
-            <a href="login.html"
-               class="login-btn">
-                Login
-            </a>
 
-        </div>
+<a href="login.html"
+class="login-btn">
+Login
+</a>
 
-    </header>
+</div>
 
+</header>
 
 
-    <!-- =========================
-         HERO
-    ========================== -->
+<!-- =========================
+     HERO
+========================= -->
 
-    <section class="hero">
+<section class="hero">
 
-        <div class="hero-content">
+<div class="hero-content">
 
 
-            <img src="images/logo.png"
-                 alt="Al Noor Islamic Academy"
-                 class="hero-logo">
+<img src="images/logo.png"
+alt="Al Noor Islamic Academy"
+class="hero-logo">
 
 
-            <div class="welcome">
-                WELCOME TO
-            </div>
+<div class="welcome">
+WELCOME TO
+</div>
 
 
-            <div class="arabic">
-                أكاديمية النور الإسلامية
-            </div>
+<div class="arabic">
+أكاديمية النور الإسلامية
+</div>
 
 
-            <h1>
-                Al Noor Islamic Academy
-            </h1>
+<h1>
+Al Noor Islamic Academy
+</h1>
 
 
-            <p>
-                Learn the Quran, Arabic, Hadith and
-                Islamic Studies through structured
-                online education from the comfort
-                of your home.
-            </p>
+<p>
+Learn the Quran, Arabic, Hadith and
+Islamic Studies through structured
+online education from the comfort
+of your home.
+</p>
 
 
-            <div class="hero-buttons">
+<div class="hero-buttons">
 
-                <a href="#courses"
-                   class="primary-btn">
-                    Explore Courses
-                </a>
+<a href="#courses"
+class="primary-btn">
+Explore Courses
+</a>
 
 
-                <a href="signup.html"
-                   class="secondary-btn">
-                    Join Academy
-                </a>
+<a href="signup.html"
+class="secondary-btn">
+Join Academy
+</a>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-    </section>
+</section>
 
 
+<!-- =========================
+     STATS
+========================= -->
 
-    <!-- =========================
-         STATS
-    ========================== -->
+<section class="stats">
 
-    <section class="stats">
+<div class="stats-box">
 
-        <div class="stats-box">
 
-            <div class="stat">
+<div class="stat">
 
-                <strong>6+</strong>
+<strong>6+</strong>
 
-                <span>
-                    Islamic Courses
-                </span>
+<span>
+Islamic Courses
+</span>
 
-            </div>
+</div>
 
 
-            <div class="stat">
+<div class="stat">
 
-                <strong>100%</strong>
+<strong>100%</strong>
 
-                <span>
-                    Online Learning
-                </span>
+<span>
+Online Learning
+</span>
 
-            </div>
+</div>
 
 
-            <div class="stat">
+<div class="stat">
 
-                <strong>24/7</strong>
+<strong>24/7</strong>
 
-                <span>
-                    Learning Access
-                </span>
+<span>
+Learning Access
+</span>
 
-            </div>
+</div>
 
-        </div>
 
-    </section>
+</div>
 
+</section>
 
 
-    <!-- =========================
-         COURSES
-    ========================== -->
+<!-- =========================
+     COURSES
+========================= -->
 
-    <section class="courses"
-             id="courses">
+<section class="courses"
+id="courses">
 
 
-        <div class="section-title">
+<div class="section-title">
 
-            <small>
-                OUR PROGRAMS
-            </small>
+<small>
+OUR PROGRAMS
+</small>
 
-            <h2>
-                Learn. Grow. Practice.
-            </h2>
 
-            <p>
-                Build your Islamic knowledge with
-                structured online courses.
-            </p>
+<h2>
+Learn. Grow. Practice.
+</h2>
 
-        </div>
 
+<p>
+Build your Islamic knowledge with
+structured online courses.
+</p>
 
-        <div class="course-container">
+</div>
 
 
-            <div class="course-card">
+<div class="course-container">
 
-                <div class="course-icon">
-                    📖
-                </div>
 
-                <h3>
-                    Quran Reading
-                </h3>
+<div class="course-card">
 
-                <p>
-                    Learn Quran reading with proper
-                    pronunciation and Tajweed.
-                </p>
+<div class="course-icon">
+📖
+</div>
 
-            </div>
+<h3>
+Quran Reading
+</h3>
 
+<p>
+Learn Quran reading with proper
+pronunciation and Tajweed.
+</p>
 
-            <div class="course-card">
+</div>
 
-                <div class="course-icon">
-                    🕌
-                </div>
 
-                <h3>
-                    Tajweed
-                </h3>
+<div class="course-card">
 
-                <p>
-                    Understand the rules of Quranic
-                    recitation and improve your reading.
-                </p>
+<div class="course-icon">
+🕌
+</div>
 
-            </div>
+<h3>
+Tajweed
+</h3>
 
+<p>
+Understand the rules of Quranic
+recitation and improve your reading.
+</p>
 
-            <div class="course-card">
+</div>
 
-                <div class="course-icon">
-                    📚
-                </div>
 
-                <h3>
-                    Hifz-ul-Quran
-                </h3>
+<div class="course-card">
 
-                <p>
-                    Follow a structured approach to
-                    Quran memorization a
+<div class="course-icon">
+📚
+</div>
+
+<h3>
+Hifz-ul-Quran
+</h3>
+
+<p>
+Follow a structured approach to
+Quran memorization with regular
+learning and revision.
+</p>
+
+</div>
+
+
+<div class="course-card">
+
+<div class="course-icon">
+🌙
+</div>
+
+<h3>
+Arabic Language
+</h3>
+
+<p>
+Develop your Arabic language skills
+and understand Islamic texts more
+effectively.
+</p>
+
+</div>
+
+
+<div class="course-card">
+
+<div class="course-icon">
+📜
+</div>
+
+<h3>
+Hadith Studies
+</h3>
+
+<p>
+Study selected Hadith and learn
+their meanings, lessons and
+practical guidance.
+</p>
+
+</div>
+
+
+<div class="course-card">
+
+<div class="course-icon">
+☪️
+</div>
+
+<h3>
+Islamic Studies
+</h3>
+
+<p>
+Learn essential topics including
+Seerah, Aqeedah, Fiqh, manners
+and Islamic knowledge.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     WHY AL NOOR
+========================= -->
+
+<section class="why">
+
+
+<div class="section-title">
+
+<small>
+WHY AL NOOR
+</small>
+
+
+<h2>
+A Place to Learn Islam
+</h2>
+
+
+<p>
+Structured learning designed for
+students seeking authentic Islamic knowledge.
+</p>
+
+</div>
+
+
+<div class="why-grid">
+
+
+<div class="why-card">
+
+<div class="why-icon">
+🎓
+</div>
+
+<h3>
+Structured Learning
+</h3>
+
+<p>
+Organized courses and lessons help
+students progress step by step.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<div class="why-icon">
+💻
+</div>
+
+<h3>
+Online Education
+</h3>
+
+<p>
+Access your learning from home
+through a convenient online platform.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<div class="why-icon">
+📖
+</div>
+
+<h3>
+Islamic Knowledge
+</h3>
+
+<p>
+Study Quran, Tajweed, Arabic,
+Hadith and other essential Islamic subjects.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<div class="why-icon">
+🕊️
+</div>
+
+<h3>
+Learn &amp; Practice
+</h3>
+
+<p>
+Focus on understanding knowledge
+and applying beneficial lessons in daily life.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FOUNDER
+========================= -->
+
+<section class="founder">
+
+<div class="founder-card">
+
+
+
+
+<div class="founder-name">
+Hafiz Hasan Ali
+</div>
+
+
+<div class="founder-line">
+</div>
+
+
+<div class="founder-role">
+Head &amp; Founder, Al Noor Islamic Academy
+</div>
+
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+<div class="cta-box">
+
+
+<div class="cta-arabic">
+رَبِّ زِدْنِي عِلْمًا
+</div>
+
+
+<h2>
+Begin Your Journey of Knowledge
+</h2>
+
+
+<p>
+Join Al Noor Islamic Academy and
+take the next step in your Quranic
+and Islamic learning journey.
+</p>
+
+
+<a href="signup.html"
+class="primary-btn">
+Join Academy
+</a>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+
+<div class="footer-logo">
+AL NOOR ISLAMIC ACADEMY
+</div>
+
+
+<div class="footer-arabic">
+أكاديمية النور الإسلامية
+</div>
+
+
+<div class="footer-line">
+</div>
+
+
+<p>
+© 2026 Al Noor Islamic Academy.
+All Rights Reserved.
+</p>
+
+
+<p>
+Quran • Arabic • Hadith • Islamic Studies
+</p>
+
+
+</footer>
+
+
+</<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="Al Noor Islamic Academy - Learn Quran, Arabic, Hadith and Islamic Studies online.">
+
+<title>Al Noor Islamic Academy</title>
+
+
+<!-- PREMIUM FONTS -->
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #061713;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+
+:root {
+    --green: #061713;
+    --green2: #0a211c;
+    --green3: #0d2d25;
+    --gold: #d4af37;
+    --gold-light: #f0d477;
+    --text: #ffffff;
+    --muted: #aebbb7;
+    --border: rgba(212,175,55,0.25);
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+.container {
+    width: min(1120px, 92%);
+    margin: auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    background: rgba(6,23,19,0.92);
+
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid rgba(212,175,55,0.15);
+}
+
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+
+.brand img {
+    width: 48px;
+    height: 48px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 2px solid var(--gold);
+
+    background: #ffffff;
+}
+
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+
+.brand-name {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: var(--gold);
+}
+
+
+.brand-sub {
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #b7c2be;
+
+    margin-top: 5px;
+}
+
+
+.header-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.admin-link {
+    color: var(--gold-light);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    padding: 9px 10px;
+}
+
+
+.login-btn {
+    background: linear-gradient(
+        135deg,
+        #e4c24c,
+        #c99f25
+    );
+
+    color: #071a17;
+
+    padding: 11px 20px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 25px rgba(212,175,55,0.18);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+
+    min-height: 720px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 70px 20px 90px;
+
+    overflow: hidden;
+}
+
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background: rgba(212,175,55,0.07);
+
+    filter: blur(50px);
+
+    top: -180px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(212,175,55,0.12);
+
+    top: 110px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+}
+
+
+.hero-logo {
+    width: 150px;
+    height: 150px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    background: white;
+
+    border: 3px solid var(--gold);
+
+    box-shadow:
+        0 0 0 8px rgba(212,175,55,0.06),
+        0 20px 60px rgba(0,0,0,0.45);
+
+    margin-bottom: 28px;
+}
+
+
+.arabic {
+    font-family: 'Amiri', serif;
+
+    font-size: 34px;
+
+    color: var(--gold-light);
+
+    direction: rtl;
+
+    margin-bottom: 10px;
+}
+
+
+.welcome {
+    color: #8fa39d;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 13px;
+}
+
+
+.hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(46px,8vw,76px);
+
+    line-height: 0.95;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 22px;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff 30%,
+        #d4af37 90%
+    );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.hero p {
+    max-width: 650px;
+
+    margin: auto;
+
+    color: #b8c3bf;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    margin-bottom: 32px;
+}
+
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 13px;
+
+    flex-wrap: wrap;
+}
+
+
+.primary-btn {
+    display: inline-block;
+
+    padding: 15px 27px;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #e4c24c,
+        #c79c20
+    );
+
+    color: #071a17;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 12px 30px rgba(212,175,55,0.18);
+}
+
+
+.secondary-btn {
+    display: inline-block;
+
+    padding: 14px 27px;
+
+    border-radius: 11px;
+
+    border: 1px solid rgba(212,175,55,0.5);
+
+    color: var(--gold-light);
+
+    font-weight: 600;
+
+    background: rgba(255,255,255,0.02);
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+    padding: 0 20px 80px;
+}
+
+
+.stats-box {
+    max-width: 900px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    background: linear-gradient(
+        145deg,
+        #0b2922,
+        #081d18
+    );
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.stat {
+    text-align: center;
+
+    padding: 25px 12px;
+
+    border-right: 1px solid var(--border);
+}
+
+
+.stat:last-child {
+    border-right: none;
+}
+
+
+.stat strong {
+    display: block;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    color: var(--gold);
+
+    font-size: 30px;
+
+    margin-bottom: 4px;
+}
+
+
+.stat span {
+    color: #9caeaa;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title {
+    text-align: center;
+
+    margin-bottom: 42px;
+}
+
+
+.section-title small {
+    color: var(--gold);
+
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
+
+    font-size: 11px;
+}
+
+
+.section-title h2 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 43px;
+
+    margin-top: 8px;
+
+    color: white;
+}
+
+
+.section-title p {
+    color: #899b96;
+
+    margin-top: 10px;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   COURSES
+========================= */
+
+.courses {
+    padding: 80px 20px;
+}
+
+
+.course-container {
+    width: min(1100px,92%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+
+    gap: 18px;
+}
+
+
+.course-card {
+    position: relative;
+
+    background: linear-gradient(
+        145deg,
+        #0d3028,
+        #09221d
+    );
+
+    padding: 28px;
+
+    min-height: 210px;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(212,175,55,0.16);
+
+    transition: 0.3s;
+
+    overflow: hidden;
+}
+
+
+.course-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    background: rgba(212,175,55,0.05);
+
+    top: -40px;
+    right: -40px;
+}
+
+
+.course-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(212,175,55,0.45);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.25);
+}
+
+
+.course-icon {
+    font-size: 30px;
+
+    margin-bottom: 18px;
+}
+
+
+.course-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+
+    color: var(--gold);
+
+    font-size: 25px;
+
+    margin-bottom: 9px;
+}
+
+
+.course-card p {
+    color: #aebbb7;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   WHY AL NOOR
+========================= */
+
+.why {
+    padding: 80px 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #061713,
+            #0a211c,
+            #061713
+        );
+}
+
+
+.why-grid {
+    width: min(1000px,92%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap: 18px;
+}
+
+
+.why-card {
+    padding: 28px;
+
+    text-align: center;
+
+    border: 1px solid rgba(212,175,55,0.14);
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.025);
+}
+
+
+.why-icon {
+    font-size: 30px;
+
+    margin-bottom: 15px;
+}
+
+
+.why-card h3 {
+    color: white;
+
+    font-size: 17px;
+
+    margin-bottom: 8px;
+}
+
+
+.why-card p {
+    color: #91a39e;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   FOUNDER
+========================= */
+
+.founder {
+    padding: 80px 20px;
+
+    text-align: center;
+}
+
+
+.founder-card {
+    width: min(700px,92%);
+
+    margin: auto;
+
+    padding: 45px 25px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d3028,
+            #081f19
+        );
+
+    border: 1px solid
+        rgba(212,175,55,0.25);
+
+    box-shadow:
+        0 18px 50px rgba(0,0,0,0.25);
+}
+
+
+.founder-label {
+    color: #aebbb7;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+}
+
+
+.founder-name {
+    font-family: 'Cormorant Garamond', serif;
+
+    color: var(--gold-light);
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+
+.founder-line {
+    width: 70px;
+
+    height: 1px;
+
+    background: var(--gold);
+
+    margin: 20px auto;
+}
+
+
+.founder-role {
+    color: #c4cfcb;
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+}
+
+
+.founder-arabic {
+    font-family: 'Amiri', serif;
+
+    color: var(--gold);
+
+    font-size: 24px;
+
+    direction: rtl;
+
+    margin-top: 12px;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta {
+    padding: 90px 20px;
+
+    text-align: center;
+}
+
+
+.cta-box {
+    width: min(900px,92%);
+
+    margin: auto;
+
+    padding: 60px 25px;
+
+    border-radius: 25px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(212,175,55,0.12),
+            transparent 55%
+        ),
+        #0b2922;
+
+    border: 1px solid
+        rgba(212,175,55,0.25);
+}
+
+
+.cta-arabic {
+    font-family: 'Amiri', serif;
+
+    color: var(--gold);
+
+    font-size: 28px;
+
+    direction: rtl;
+
+    margin-bottom: 10px;
+}
+
+
+.cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 40px;
+
+    margin-bottom: 12px;
+}
+
+
+.cta p {
+    color: #9eafaa;
+
+    max-width: 600px;
+
+    margin: 0 auto 25px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 45px 20px 25px;
+
+    background: #04100d;
+
+    border-top:
+        1px solid rgba(212,175,55,0.12);
+
+    text-align: center;
+}
+
+
+.footer-logo {
+    color: var(--gold);
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 29px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.footer-arabic {
+    font-family: 'Amiri', serif;
+
+    direction: rtl;
+
+    color: #8f9d99;
+
+    font-size: 20px;
+
+    margin: 5px 0 15px;
+}
+
+
+footer p {
+    color: #687772;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+.footer-line {
+    width: 80px;
+
+    height: 1px;
+
+    background: var(--gold);
+
+    margin: 20px auto;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:600px) {
+
+    header {
+        height: 70px;
+
+        padding: 0 14px;
+    }
+
+
+    .brand img {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .brand-name {
+        font-size: 21px;
+    }
+
+
+    .brand-sub {
+        font-size: 7px;
+    }
+
+
+    .admin-link {
+        font-size: 12px;
+    }
+
+
+    .login-btn {
+        padding: 9px 14px;
+
+        font-size: 13px;
+    }
+
+
+    .hero {
+        min-height: 650px;
+
+        padding-top: 45px;
+    }
+
+
+    .hero-logo {
+        width: 125px;
+        height: 125px;
+    }
+
+
+    .arabic {
+        font-size: 27px;
+    }
+
+
+    .welcome {
+        font-size: 9px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+
+    .hero p {
+        font-size: 14px;
+    }
+
+
+    .stats-box {
+        grid-template-columns: 1fr;
+    }
+
+
+    .stat {
+        border-right: none;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    .stat:last-child {
+        border-bottom: none;
+    }
+
+
+    .section-title h2 {
+        font-size: 36px;
+    }
+
+
+    .course-container,
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .founder {
+        padding: 65px 15px;
+    }
+
+
+    .founder-name {
+        font-size: 34px;
+    }
+
+
+    .founder-role {
+        font-size: 13px;
+    }
+
+
+    .cta h2 {
+        font-size: 34px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<a href="index.html" class="brand">
+
+<img src="images/logo.png"
+alt="Al Noor Islamic Academy Logo">
+
+
+<div class="brand-text">
+
+<span class="brand-name">
+AL NOOR
+</span>
+
+<span class="brand-sub">
+ISLAMIC ACADEMY
+</span>
+
+</div>
+
+</a>
+
+
+<div class="header-actions">
+
+<a href="admin-login.html"
+class="admin-link">
+Admin
+</a>
+
+
+<a href="login.html"
+class="login-btn">
+Login
+</a>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+
+<img src="images/logo.png"
+alt="Al Noor Islamic Academy"
+class="hero-logo">
+
+
+<div class="welcome">
+WELCOME TO
+</div>
+
+
+<div class="arabic">
+أكاديمية النور الإسلامية
+</div>
+
+
+<h1>
+Al Noor Islamic Academy
+</h1>
+
+
+<p>
+Learn the Quran, Arabic, Hadith and
+Islamic Studies through structured
+online education from the comfort
+of your home.
+</p>
+
+
+<div class="hero-buttons">
+
+<a href="#courses"
+class="primary-btn">
+Explore Courses
+</a>
+
+
+<a href="signup.html"
+class="secondary-btn">
+Join Academy
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<section class="stats">
+
+<div class="stats-box">
+
+
+<div class="stat">
+
+<strong>6+</strong>
+
+<span>
+Islamic Courses
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong>100%</strong>
+
+<span>
+Online Learning
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong>24/7</strong>
+
+<span>
+Learning Access
+</span>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     COURSES
+========================= -->
+
+<section class="courses"
+id="courses">
+
+
+<div class="section-title">
+
+<small>
+OUR PROGRAMS
+</small>
+
+
+<h2>
+Learn. Grow. Practice.
+</h2>
+
+
+<p>
+Build your Islamic knowledge with
+structured online courses.
+</p>
+
+</div>
+
+
+<div class="course-container">
+
+
+<div class="course-card">
+
+<div class="course-icon">
+📖
+</div>
+
+<h3>
+Quran Reading
+</h3>
+
+<p>
+Learn Quran reading with proper
+pronunciation and Tajweed.
+</p>
+
+</div>
+
+
+<div class="course-card">
+
+<div class="course-icon">
+🕌
+</div>
+
+<h3>
+Tajweed
+</h3>
+
+<p>
+Understand the rules of Quranic
+recitation and improve your reading.
+</p>
+
+</div>
+
+
+<div class="course-card">
+
+<div class="course-icon">
+📚
+</div>
+
+<h3>
+Hifz-ul-Quran
+</h3>
+
+<p>
+Follow a structured approach to
+Quran memorization with regular
+learning and revision.
+</p>
+
+</div>
+
+
+<div class="course-card">
+
+<div class="course-icon">
+🌙
+</div>
+
+<h3>
+Arabic Language
+</h3>
+
+<p>
+Develop your Arabic language skills
+and understand Islamic texts more
+effectively.
+</p>
+
+</div>
+
+
+<div class="course-card">
+
+<div class="course-icon">
+📜
+</div>
+
+<h3>
+Hadith Studies
+</h3>
+
+<p>
+Study selected Hadith and learn
+their meanings, lessons and
+practical guidance.
+</p>
+
+</div>
+
+
+<div class="course-card">
+
+<div class="course-icon">
+☪️
+</div>
+
+<h3>
+Islamic Studies
+</h3>
+
+<p>
+Learn essential topics including
+Seerah, Aqeedah, Fiqh, manners
+and Islamic knowledge.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     WHY AL NOOR
+========================= -->
+
+<section class="why">
+
+
+<div class="section-title">
+
+<small>
+WHY AL NOOR
+</small>
+
+
+<h2>
+A Place to Learn Islam
+</h2>
+
+
+<p>
+Structured learning designed for
+students seeking authentic Islamic knowledge.
+</p>
+
+</div>
+
+
+<div class="why-grid">
+
+
+<div class="why-card">
+
+<div class="why-icon">
+🎓
+</div>
+
+<h3>
+Structured Learning
+</h3>
+
+<p>
+Organized courses and lessons help
+students progress step by step.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<div class="why-icon">
+💻
+</div>
+
+<h3>
+Online Education
+</h3>
+
+<p>
+Access your learning from home
+through a convenient online platform.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<div class="why-icon">
+📖
+</div>
+
+<h3>
+Islamic Knowledge
+</h3>
+
+<p>
+Study Quran, Tajweed, Arabic,
+Hadith and other essential Islamic subjects.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<div class="why-icon">
+🕊️
+</div>
+
+<h3>
+Learn &amp; Practice
+</h3>
+
+<p>
+Focus on understanding knowledge
+and applying beneficial lessons in daily life.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FOUNDER
+========================= -->
+
+<section class="founder">
+
+<div class="founder-card">
+
+
+<div class="founder-label">
+Under the Guidance of
+</div>
+
+
+<div class="founder-name">
+Hafiz Hasan Ali
+</div>
+
+
+<div class="founder-line">
+</div>
+
+
+<div class="founder-role">
+Head &amp; Founder, Al Noor Islamic Academy
+</div>
+
+
+<div class="founder-arabic">
+حفظه الله
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+<div class="cta-box">
+
+
+<div class="cta-arabic">
+رَبِّ زِدْنِي عِلْمًا
+</div>
+
+
+<h2>
+Begin Your Journey of Knowledge
+</h2>
+
+
+<p>
+Join Al Noor Islamic Academy and
+take the next step in your Quranic
+and Islamic learning journey.
+</p>
+
+
+<a href="signup.html"
+class="primary-btn">
+Join Academy
+</a>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+
+<div class="footer-logo">
+AL NOOR ISLAMIC ACADEMY
+</div>
+
+
+<div class="footer-arabic">
+أكاديمية النور الإسلامية
+</div>
+
+
+<div class="footer-line">
+</div>
+
+
+<p>
+© 2026 Al Noor Islamic Academy.
+All Rights Reserved.
+</p>
+
+
+<p>
+Quran • Arabic • Hadith • Islamic Studies
+</p>
+
+
+</footer>
+
+
+</body>
+
+</html>>
+
+</html>
