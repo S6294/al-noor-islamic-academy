@@ -2,13 +2,12 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Login | Al Noor Islamic Academy</title>
+    <title>Admin Panel | Al Noor Islamic Academy</title>
 
     <style>
 
@@ -20,216 +19,191 @@
 
         body {
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
             font-family: Arial, sans-serif;
             background: #071a17;
             color: white;
+            padding: 20px;
         }
 
-        .login-box {
-            width: 100%;
-            max-width: 400px;
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        header {
             background: #0c2923;
-            padding: 35px 25px;
-            border-radius: 20px;
             border: 1px solid #36554d;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            border-radius: 18px;
+            padding: 25px;
             text-align: center;
-        }
-
-        .logo {
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: #d4af37;
-            color: #071a17;
-            font-size: 24px;
-            font-weight: bold;
+            margin-bottom: 25px;
         }
 
         h1 {
             color: #d4af37;
-            font-size: 28px;
             margin-bottom: 8px;
         }
 
         .subtitle {
             color: #aaa;
-            font-size: 14px;
-            margin-bottom: 28px;
         }
 
-        .input-group {
-            text-align: left;
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .admin-card {
+            background: #0c2923;
+            border: 1px solid #36554d;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .admin-card h2 {
+            color: #d4af37;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .admin-card p {
+            color: #aaa;
+            font-size: 14px;
             margin-bottom: 18px;
         }
 
-        label {
+        .admin-card a {
             display: block;
-            margin-bottom: 7px;
-            color: #ddd;
-            font-size: 14px;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #42635a;
-            border-radius: 10px;
-            background: #071a17;
-            color: white;
-            font-size: 15px;
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #d4af37;
-        }
-
-        .login-button {
-            width: 100%;
-            padding: 14px;
-            margin-top: 5px;
-            border: none;
-            border-radius: 10px;
+            padding: 12px;
             background: #d4af37;
             color: #071a17;
-            font-size: 16px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .logout {
+            display: block;
+            width: 100%;
+            max-width: 250px;
+            margin: 30px auto 0;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: #9b2c2c;
+            color: white;
             font-weight: bold;
             cursor: pointer;
+            font-size: 15px;
         }
 
-        .login-button:disabled {
-            opacity: 0.6;
-        }
-
-        .forgot {
-            display: block;
-            margin-top: 18px;
+        #loading {
+            text-align: center;
             color: #d4af37;
-            text-decoration: none;
-            font-size: 14px;
+            margin-top: 50px;
         }
 
-        .signup {
-            margin-top: 25px;
-            color: #aaa;
-            font-size: 14px;
-        }
-
-        .signup a {
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .home {
-            display: block;
-            margin-top: 20px;
-            color: #aaa;
-            text-decoration: none;
-            font-size: 13px;
+        #adminPanel {
+            display: none;
         }
 
     </style>
 
 </head>
 
-
 <body>
 
-
-    <div class="login-box">
-
-
-        <div class="logo">
-            AN
-        </div>
+    <div id="loading">
+        Checking admin access...
+    </div>
 
 
-        <h1>
-            Welcome Back
-        </h1>
+    <div class="container" id="adminPanel">
+
+        <header>
+
+            <h1>
+                Al Noor Islamic Academy
+            </h1>
+
+            <p class="subtitle">
+                Admin Panel
+            </p>
+
+        </header>
 
 
-        <p class="subtitle">
-            Login to Al Noor Islamic Academy
-        </p>
+        <div class="admin-grid">
 
 
-        <form id="loginForm">
+            <div class="admin-card">
 
+                <h2>Students</h2>
 
-            <div class="input-group">
+                <p>
+                    Manage registered students and membership information.
+                </p>
 
-                <label>
-                    Email Address
-                </label>
-
-                <input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    required>
-
-            </div>
-
-
-            <div class="input-group">
-
-                <label>
-                    Password
-                </label>
-
-                <input
-                    id="password"
-                    type="password"
-                    placeholder="Enter password"
-                    required>
+                <a href="students.html">
+                    Manage Students
+                </a>
 
             </div>
 
 
-            <button
-                type="submit"
-                class="login-button"
-                id="loginButton">
+            <div class="admin-card">
 
-                Login
+                <h2>Courses</h2>
 
-            </button>
+                <p>
+                    Add, edit and delete academy courses.
+                </p>
 
+                <a href="admin-courses.html">
+                    Manage Courses
+                </a>
 
-        </form>
-
-
-        <a href="#" class="forgot" id="forgotPassword">
-            Forgot Password?
-        </a>
+            </div>
 
 
-        <div class="signup">
+            <div class="admin-card">
 
-            Don't have an account?
+                <h2>Live Classes</h2>
 
-            <a href="signup.html">
-                Create Account
-            </a>
+                <p>
+                    Manage live classes, teachers and schedules.
+                </p>
+
+                <a href="admin-live-classes.html">
+                    Manage Live Classes
+                </a>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <h2>Notifications</h2>
+
+                <p>
+                    Create and manage student notifications.
+                </p>
+
+                <a href="admin-notifications.html">
+                    Manage Notifications
+                </a>
+
+            </div>
+
 
         </div>
 
 
-        <a href="index.html" class="home">
-            ← Back to Home
-        </a>
-
+        <button class="logout" id="logoutBtn">
+            Logout
+        </button>
 
     </div>
 
@@ -243,9 +217,16 @@
 
         import {
             getAuth,
-            signInWithEmailAndPassword,
-            sendPasswordResetEmail
+            onAuthStateChanged,
+            signOut
         } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+        import {
+            getFirestore,
+            doc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
         const firebaseConfig = {
@@ -269,124 +250,48 @@
 
         const auth = getAuth(app);
 
-
-        const loginForm =
-            document.getElementById("loginForm");
+        const db = getFirestore(app);
 
 
-        const loginButton =
-            document.getElementById("loginButton");
+        const loading =
+            document.getElementById("loading");
+
+        const adminPanel =
+            document.getElementById("adminPanel");
 
 
-        loginForm.addEventListener("submit", async (e) => {
+        onAuthStateChanged(auth, async (user) => {
 
-            e.preventDefault();
+            if (!user) {
 
+                window.location.replace(
+                    "admin-login.html"
+                );
 
-            const email =
-                document.getElementById("email").value.trim();
+                return;
 
-
-            const password =
-                document.getElementById("password").value;
-
-
-            loginButton.disabled = true;
-
-            loginButton.textContent = "Logging in...";
+            }
 
 
             try {
 
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
+                const adminRef =
+                    doc(db, "admins", user.uid);
+
+                const adminSnap =
+                    await getDoc(adminRef);
 
 
-                alert("Login successful!");
-
-
-                window.location.href =
-                    "dashboard.html";
-
-
-            } catch (error) {
-
-                console.error(error);
-
-
-                if (
-                    error.code ===
-                    "auth/invalid-credential"
-                ) {
+                if (!adminSnap.exists()) {
 
                     alert(
-                        "Incorrect email or password."
+                        "Access denied. Admin account required."
                     );
 
-                }
+                    await signOut(auth);
 
-                else if (
-                    error.code ===
-                    "auth/user-not-found"
-                ) {
-
-                    alert(
-                        "No account found with this email."
-                    );
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/wrong-password"
-                ) {
-
-                    alert(
-                        "Incorrect password."
-                    );
-
-                }
-
-                else {
-
-                    alert(
-                        "Login failed: " +
-                        error.message
-                    );
-
-                }
-
-
-                loginButton.disabled = false;
-
-                loginButton.textContent = "Login";
-
-            }
-
-        });
-
-
-        document
-            .getElementById("forgotPassword")
-            .addEventListener("click", async (e) => {
-
-                e.preventDefault();
-
-
-                const email =
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim();
-
-
-                if (!email) {
-
-                    alert(
-                        "Please enter your email address first."
+                    window.location.replace(
+                        "admin-login.html"
                     );
 
                     return;
@@ -394,50 +299,43 @@
                 }
 
 
-                try {
+                loading.style.display = "none";
 
-                    await sendPasswordResetEmail(
-                        auth,
-                        email
-                    );
+                adminPanel.style.display = "block";
 
 
-                    alert(
-                        "Password reset email sent. Please check your email."
-                    );
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to verify admin access."
+                );
+
+                await signOut(auth);
+
+                window.location.replace(
+                    "admin-login.html"
+                );
+
+            }
+
+        });
 
 
-                } catch (error) {
+        document
+            .getElementById("logoutBtn")
+            .addEventListener("click", async () => {
 
-                    console.error(error);
+                await signOut(auth);
 
-
-                    if (
-                        error.code ===
-                        "auth/user-not-found"
-                    ) {
-
-                        alert(
-                            "No account found with this email."
-                        );
-
-                    }
-
-                    else {
-
-                        alert(
-                            "Could not send reset email: " +
-                            error.message
-                        );
-
-                    }
-
-                }
+                window.location.replace(
+                    "admin-login.html"
+                );
 
             });
 
     </script>
-
 
 </body>
 
