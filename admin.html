@@ -2,341 +2,1098 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Admin Panel | Al Noor Islamic Academy</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>Admin Panel | Al Noor Islamic Academy</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-        body {
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: #071a17;
-            color: white;
-            padding: 20px;
-        }
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
 
-        header {
-            background: #0c2923;
-            border: 1px solid #36554d;
-            border-radius: 18px;
-            padding: 25px;
-            text-align: center;
-            margin-bottom: 25px;
-        }
 
-        h1 {
-            color: #d4af37;
-            margin-bottom: 8px;
-        }
+<style>
 
-        .subtitle {
-            color: #aaa;
-        }
+/* =========================
+   ROOT
+========================= */
 
-        .admin-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px;
-        }
+:root{
 
-        .admin-card {
-            background: #0c2923;
-            border: 1px solid #36554d;
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-        }
+    --bg:#031713;
+    --card:#092b22;
+    --card2:#0d362b;
 
-        .admin-card h2 {
-            color: #d4af37;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
+    --gold:#d4af37;
+    --gold-light:#f1d66b;
 
-        .admin-card p {
-            color: #aaa;
-            font-size: 14px;
-            margin-bottom: 18px;
-        }
+    --white:#f7f6ee;
+    --muted:#aabbb5;
 
-        .admin-card a {
-            display: block;
-            padding: 12px;
-            background: #d4af37;
-            color: #071a17;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-        }
+    --border:rgba(212,175,55,.20);
 
-        .logout {
-            display: block;
-            width: 100%;
-            max-width: 250px;
-            margin: 30px auto 0;
-            padding: 13px;
-            border: none;
-            border-radius: 10px;
-            background: #9b2c2c;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 15px;
-        }
+}
 
-        #loading {
-            text-align: center;
-            color: #d4af37;
-            margin-top: 50px;
-        }
 
-        #adminPanel {
-            display: none;
-        }
+/* =========================
+   RESET
+========================= */
 
-    </style>
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+
+body{
+
+    min-height:100vh;
+
+    font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+    color:var(--white);
+
+    padding:20px;
+
+    background:
+
+    radial-gradient(
+        circle at 10% 0%,
+        rgba(212,175,55,.09),
+        transparent 28%
+    ),
+
+    radial-gradient(
+        circle at 100% 20%,
+        rgba(24,96,76,.15),
+        transparent 30%
+    ),
+
+    linear-gradient(
+        145deg,
+        #021410,
+        #06241d,
+        #031713
+    );
+
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+    width:min(1000px,94%);
+
+    margin:auto;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        135deg,
+        #123d31,
+        #06271f
+    );
+
+    border:
+    1px solid var(--border);
+
+    border-radius:25px;
+
+    padding:30px 25px;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 18px 50px
+    rgba(0,0,0,.25);
+
+}
+
+
+header::after{
+
+    content:"✦";
+
+    position:absolute;
+
+    right:25px;
+    top:-20px;
+
+    font-size:100px;
+
+    color:
+    rgba(212,175,55,.06);
+
+}
+
+
+.header-logo{
+
+    width:70px;
+    height:70px;
+
+    object-fit:contain;
+
+    border-radius:50%;
+
+    margin-bottom:12px;
+
+}
+
+
+h1{
+
+    position:relative;
+    z-index:2;
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    color:var(--gold-light);
+
+    font-size:38px;
+
+    letter-spacing:.5px;
+
+    margin-bottom:5px;
+
+}
+
+
+.subtitle{
+
+    position:relative;
+    z-index:2;
+
+    color:#aebfb9;
+
+    font-size:13px;
+
+}
+
+
+.arabic{
+
+    position:relative;
+    z-index:2;
+
+    font-family:Amiri,serif;
+
+    color:#d8bd52;
+
+    font-size:22px;
+
+    margin-top:7px;
+
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.admin-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:18px;
+
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.admin-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        145deg,
+        #0a3026,
+        #06241d
+    );
+
+    border:
+    1px solid
+    rgba(174,204,195,.14);
+
+    border-radius:21px;
+
+    padding:25px;
+
+    box-shadow:
+    0 12px 30px
+    rgba(0,0,0,.20);
+
+    transition:.25s;
+
+}
+
+
+.admin-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:
+    rgba(212,175,55,.40);
+
+}
+
+
+.card-icon{
+
+    width:50px;
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:
+    rgba(212,175,55,.09);
+
+    border:
+    1px solid
+    rgba(212,175,55,.14);
+
+    font-size:26px;
+
+    margin-bottom:17px;
+
+}
+
+
+.admin-card h2{
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    color:var(--gold-light);
+
+    font-size:27px;
+
+    margin-bottom:8px;
+
+}
+
+
+.admin-card p{
+
+    color:#9fb1ab;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    min-height:42px;
+
+    margin-bottom:18px;
+
+}
+
+
+.admin-card a{
+
+    display:block;
+
+    padding:12px;
+
+    text-align:center;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #f0d15d,
+        #c59d28
+    );
+
+    color:#10170e;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:800;
+
+    font-size:13px;
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout{
+
+    display:block;
+
+    width:100%;
+
+    max-width:250px;
+
+    margin:30px auto 5px;
+
+    padding:13px;
+
+    border:
+    1px solid
+    #754848;
+
+    border-radius:11px;
+
+    background:#351f1f;
+
+    color:#ff9b9b;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    transition:.25s;
+
+}
+
+
+.logout:hover{
+
+    background:#4b2424;
+
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+#loading{
+
+    text-align:center;
+
+    color:var(--gold-light);
+
+    margin-top:45vh;
+
+    transform:translateY(-50%);
+
+    font-size:14px;
+
+}
+
+
+/* =========================
+   HIDDEN
+========================= */
+
+#adminPanel{
+
+    display:none;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    text-align:center;
+
+    margin-top:35px;
+
+    padding:20px;
+
+    color:#687c75;
+
+    font-size:11px;
+
+}
+
+
+.footer-name{
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    color:#bca64e;
+
+    font-size:20px;
+
+    margin-bottom:4px;
+
+}
+
+
+.footer-arabic{
+
+    font-family:Amiri,serif;
+
+    color:#8e7c39;
+
+    font-size:18px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+    body{
+
+        padding:14px;
+
+    }
+
+
+    .container{
+
+        width:94%;
+
+    }
+
+
+    header{
+
+        padding:25px 18px;
+
+        border-radius:21px;
+
+    }
+
+
+    .header-logo{
+
+        width:60px;
+        height:60px;
+
+    }
+
+
+    h1{
+
+        font-size:31px;
+
+    }
+
+
+    .admin-grid{
+
+        grid-template-columns:1fr;
+
+        gap:13px;
+
+    }
+
+
+    .admin-card{
+
+        padding:22px;
+
+    }
+
+
+    .admin-card h2{
+
+        font-size:25px;
+
+    }
+
+}
+
+</style>
 
 </head>
 
+
 <body>
 
-    <div id="loading">
-        Checking admin access...
-    </div>
+
+<div id="loading">
+
+    Checking admin access...
+
+</div>
 
 
-    <div class="container" id="adminPanel">
 
-        <header>
-
-            <h1>
-                Al Noor Islamic Academy
-            </h1>
-
-            <p class="subtitle">
-                Admin Panel
-            </p>
-
-        </header>
+<div
+class="container"
+id="adminPanel">
 
 
-        <div class="admin-grid">
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
 
 
-            <div class="admin-card">
-
-                <h2>Students</h2>
-
-                <p>
-                    Manage registered students and membership information.
-                </p>
-
-                <a href="students.html">
-                    Manage Students
-                </a>
-
-            </div>
+<img
+src="images/logo.png"
+alt="Al Noor Islamic Academy"
+class="header-logo">
 
 
-            <div class="admin-card">
+<h1>
 
-                <h2>Courses</h2>
+Al Noor Islamic Academy
 
-                <p>
-                    Add, edit and delete academy courses.
-                </p>
-
-                <a href="admin-courses.html">
-                    Manage Courses
-                </a>
-
-            </div>
+</h1>
 
 
-            <div class="admin-card">
+<p class="subtitle">
 
-                <h2>Live Classes</h2>
+Administration Panel
 
-                <p>
-                    Manage live classes, teachers and schedules.
-                </p>
-
-                <a href="admin-live-classes.html">
-                    Manage Live Classes
-                </a>
-
-            </div>
+</p>
 
 
-            <div class="admin-card">
+<div class="arabic">
 
-                <h2>Notifications</h2>
+أكاديمية النور الإسلامية
 
-                <p>
-                    Create and manage student notifications.
-                </p>
-
-                <a href="admin-notifications.html">
-                    Manage Notifications
-                </a>
-
-            </div>
+</div>
 
 
-        </div>
+</header>
 
 
-        <button class="logout" id="logoutBtn">
-            Logout
-        </button>
 
-    </div>
+<!-- =========================
+     ADMIN CARDS
+========================= -->
 
-
-    <script type="module">
-
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+<div class="admin-grid">
 
 
-        import {
-            getAuth,
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+<!-- STUDENTS -->
+
+<div class="admin-card">
 
 
-        import {
-            getFirestore,
-            doc,
-            getDoc
-        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+<div class="card-icon">
+
+👨‍🎓
+
+</div>
 
 
-        const firebaseConfig = {
+<h2>
 
-            apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+Students
 
-            authDomain: "al-noor-islamic-academy.firebaseapp.com",
-
-            projectId: "al-noor-islamic-academy",
-
-            storageBucket: "al-noor-islamic-academy.firebasestorage.app",
-
-            messagingSenderId: "571799539455",
-
-            appId: "1:571799539455:web:d42728685908430296c6ca"
-
-        };
+</h2>
 
 
-        const app = initializeApp(firebaseConfig);
+<p>
 
-        const auth = getAuth(app);
+Manage registered students and membership information.
 
-        const db = getFirestore(app);
-
-
-        const loading =
-            document.getElementById("loading");
-
-        const adminPanel =
-            document.getElementById("adminPanel");
+</p>
 
 
-        onAuthStateChanged(auth, async (user) => {
+<a href="students.html">
 
-            if (!user) {
+Manage Students
+
+</a>
+
+
+</div>
+
+
+
+<!-- COURSES -->
+
+<div class="admin-card">
+
+
+<div class="card-icon">
+
+📚
+
+</div>
+
+
+<h2>
+
+Courses
+
+</h2>
+
+
+<p>
+
+Add, edit and delete academy courses.
+
+</p>
+
+
+<a href="admin-courses.html">
+
+Manage Courses
+
+</a>
+
+
+</div>
+
+
+
+<!-- LIVE CLASSES -->
+
+<div class="admin-card">
+
+
+<div class="card-icon">
+
+🎥
+
+</div>
+
+
+<h2>
+
+Live Classes
+
+</h2>
+
+
+<p>
+
+Manage live classes, teachers and schedules.
+
+</p>
+
+
+<a href="admin-live-classes.html">
+
+Manage Live Classes
+
+</a>
+
+
+</div>
+
+
+
+<!-- NOTIFICATIONS -->
+
+<div class="admin-card">
+
+
+<div class="card-icon">
+
+🔔
+
+</div>
+
+
+<h2>
+
+Notifications
+
+</h2>
+
+
+<p>
+
+Create and manage student notifications.
+
+</p>
+
+
+<a href="admin-notifications.html">
+
+Manage Notifications
+
+</a>
+
+
+</div>
+
+
+
+<!-- MEMBERSHIP -->
+
+<div class="admin-card">
+
+
+<div class="card-icon">
+
+💳
+
+</div>
+
+
+<h2>
+
+Membership
+
+</h2>
+
+
+<p>
+
+Manage membership plans, prices, features and active status.
+
+</p>
+
+
+<a href="admin-membership.html">
+
+Manage Membership
+
+</a>
+
+
+</div>
+
+
+
+</div>
+
+
+
+<!-- LOGOUT -->
+
+<button
+class="logout"
+id="logoutBtn">
+
+Logout
+
+</button>
+
+
+
+<footer>
+
+<div class="footer-name">
+
+Al Noor Islamic Academy
+
+</div>
+
+
+<div class="footer-arabic">
+
+أكاديمية النور الإسلامية
+
+</div>
+
+
+</footer>
+
+
+</div>
+
+
+
+<script type="module">
+
+
+/* =========================
+   FIREBASE IMPORT
+========================= */
+
+import {
+
+    initializeApp
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+
+import {
+
+    getAuth,
+
+    onAuthStateChanged,
+
+    signOut
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+
+import {
+
+    getFirestore,
+
+    doc,
+
+    getDoc
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+    authDomain:
+    "al-noor-islamic-academy.firebaseapp.com",
+
+    projectId:
+    "al-noor-islamic-academy",
+
+    storageBucket:
+    "al-noor-islamic-academy.firebasestorage.app",
+
+    messagingSenderId:
+    "571799539455",
+
+    appId:
+    "1:571799539455:web:d42728685908430296c6ca"
+
+};
+
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const loading =
+document.getElementById(
+    "loading"
+);
+
+
+const adminPanel =
+document.getElementById(
+    "adminPanel"
+);
+
+
+
+/* =========================
+   ADMIN CHECK
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+
+        /* NO USER */
+
+        if(!user){
+
+            window.location.replace(
+                "admin-login.html"
+            );
+
+            return;
+
+        }
+
+
+
+        try{
+
+
+            /* CHECK ADMIN DOCUMENT */
+
+            const adminRef =
+            doc(
+                db,
+                "admins",
+                user.uid
+            );
+
+
+            const adminSnap =
+            await getDoc(
+                adminRef
+            );
+
+
+
+            /* NOT ADMIN */
+
+            if(
+                !adminSnap.exists()
+            ){
+
+                alert(
+                    "Access denied. Admin account required."
+                );
+
+
+                await signOut(
+                    auth
+                );
+
 
                 window.location.replace(
                     "admin-login.html"
                 );
+
 
                 return;
 
             }
 
 
-            try {
 
-                const adminRef =
-                    doc(db, "admins", user.uid);
+            /* ADMIN VERIFIED */
 
-                const adminSnap =
-                    await getDoc(adminRef);
+            loading.style.display =
+            "none";
 
 
-                if (!adminSnap.exists()) {
-
-                    alert(
-                        "Access denied. Admin account required."
-                    );
-
-                    await signOut(auth);
-
-                    window.location.replace(
-                        "admin-login.html"
-                    );
-
-                    return;
-
-                }
+            adminPanel.style.display =
+            "block";
 
 
-                loading.style.display = "none";
+        }
 
-                adminPanel.style.display = "block";
+        catch(error){
 
-
-            } catch (error) {
-
-                console.error(error);
-
-                alert(
-                    "Unable to verify admin access."
-                );
-
-                await signOut(auth);
-
-                window.location.replace(
-                    "admin-login.html"
-                );
-
-            }
-
-        });
+            console.error(error);
 
 
-        document
-            .getElementById("logoutBtn")
-            .addEventListener("click", async () => {
+            alert(
+                "Unable to verify admin access."
+            );
 
-                await signOut(auth);
 
-                window.location.replace(
-                    "admin-login.html"
-                );
+            await signOut(
+                auth
+            );
 
-            });
 
-    </script>
+            window.location.replace(
+                "admin-login.html"
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+document
+.getElementById("logoutBtn")
+.addEventListener(
+    "click",
+    async () => {
+
+
+        try{
+
+            await signOut(
+                auth
+            );
+
+
+            window.location.replace(
+                "admin-login.html"
+            );
+
+        }
+
+        catch(error){
+
+            alert(
+                "Logout failed: " +
+                error.message
+            );
+
+        }
+
+    }
+);
+
+</script>
+
 
 </body>
 
-</html>
+    </html>
