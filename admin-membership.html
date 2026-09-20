@@ -1783,7 +1783,505 @@ addPlanButton.addEventListener(
 );
 
 
-
 /* =========================
    CANCEL
-=================
+========================= */
+
+cancelButton.addEventListener(
+    "click",
+    () => {
+
+        planModal.classList.remove("show");
+
+        planForm.reset();
+
+        editingId = null;
+
+        planId.disabled = false;
+
+    }
+);
+
+
+/* =========================
+   OPEN EDIT
+========================= */
+
+async function openEdit(id){
+
+    try{
+
+        const planRef =
+        doc(
+            db,
+            "membershipPlans",
+            id
+        );
+
+        const planSnap =
+        await getDoc(planRef);
+
+
+        if(!planSnap.exists()){
+
+            alert("Membership plan not found.");
+
+            return;
+
+        }
+
+
+        const data =
+        planSnap.data();
+
+
+        editingId = id;
+
+
+        modalTitle.textContent =
+        "Edit Membership";
+
+
+        planId.value = id;
+
+        planName.value =
+        data.name || "";
+
+        planPrice.value =
+        data.price || "";
+
+        planDescription.value =
+        data.description || "";
+
+
+        planFeatures.value =
+        Array.isArray(data.features)
+        ? data.features.join("\n")
+        : "";
+
+
+        // Plan ID cannot be changed while editing
+        planId.disabled = true;
+
+
+        planModal.classList.add("show");
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to open membership plan.\n\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   SAVE MEMBERSHIP
+========================= */
+
+planForm.addEventListener(
+    "submit",
+    async (event) => {
+
+        event.preventDefault();
+
+
+        const id =
+        planId.value
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-");
+
+
+        const name =
+        planName.value.trim();
+
+
+        const price =
+        Number(planPrice.value);
+
+
+        const description =
+        planDescription.value.trim();
+
+
+        const features =
+        planFeatures.value
+        .split("\n")
+        .map(item => item.trim())
+        .filter(item => item !== "");
+
+
+        if(!id){
+
+            alert("Please enter Plan ID.");
+
+            return;
+
+        }
+
+
+        if(!name){
+
+            alert("Please enter Membership Name.");
+
+            return;
+
+        }
+
+
+        if(!price || price <= 0){
+
+            alert("Please enter a valid price.");
+
+            return;
+
+        }
+
+
+        try{
+
+            const planRef =
+            doc(
+                db,
+                "membershipPlans",
+                id
+            );
+
+
+            // ADD
+            if(!editingId){
+
+                const existing =
+                await getDoc(planRef);
+
+
+                if(existing.exists()){
+
+                    alert(
+                        "This Plan ID already exists."
+                    );
+
+                    return;
+
+                }
+
+
+                await setDoc(
+                    planRef,
+                    {
+
+                        name: name,
+
+                        price: price,
+
+                        description: description,
+
+                        features: features,
+
+                        active: true,
+
+                        createdAt: new Date()
+
+                    }
+                );
+
+
+                alert(
+                    "Membership added successfully."
+                );
+
+            }
+
+
+            // EDIT
+            else{
+
+                const oldRef =
+                doc(
+                    db,
+                    "membershipPlans",
+                    editingId
+                );
+
+
+                const oldSnap =
+                await getDoc(oldRef);
+
+
+                const oldData =
+                oldSnap.exists()
+                ? oldSnap.data()
+                : {};
+
+
+                await updateDoc(
+                    oldRef,
+                    {
+
+                        name: name,
+
+                        price: price,
+
+                        description: description,
+
+                        features: features,
+
+                        active:
+                        oldData.active !== false
+
+                    }
+                );
+
+
+                alert(
+                    "Membership updated successfully."
+                );
+
+            }
+
+
+            planModal.classList.remove(
+                "show"
+            );
+
+
+            planForm.reset();
+
+            editingId = null;
+
+            planId.disabled = false;
+
+
+            await loadPlans();
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            alert(
+                "Unable to save membership.\n\n" +
+                error.message
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =========================
+   TOGGLE PLAN
+========================= */
+
+async function togglePlan(id){
+
+    try{
+
+        const planRef =
+        doc(
+            db,
+            "membershipPlans",
+            id
+        );
+
+
+        const planSnap =
+        await getDoc(planRef);
+
+
+        if(!planSnap.exists()){
+
+            alert("Membership plan not found.");
+
+            return;
+
+        }
+
+
+        const data =
+        planSnap.data();
+
+
+        const currentActive =
+        data.active !== false;
+
+
+        await updateDoc(
+            planRef,
+            {
+
+                active: !currentActive
+
+            }
+        );
+
+
+        await loadPlans();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to change membership status.\n\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   DELETE PLAN
+========================= */
+
+async function deletePlan(id){
+
+    const confirmDelete =
+    confirm(
+        "Are you sure you want to delete this membership plan?"
+    );
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "membershipPlans",
+                id
+            )
+        );
+
+
+        alert(
+            "Membership deleted successfully."
+        );
+
+
+        await loadPlans();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to delete membership.\n\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   AUTH + ADMIN CHECK
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        try{
+
+            const isAdmin =
+            await checkAdmin(user);
+
+
+            if(!isAdmin){
+
+                return;
+
+            }
+
+
+            await loadPlans();
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+
+            plansContainer.innerHTML = `
+
+                <div class="empty">
+
+                    <h3>
+                        Access Error
+                    </h3>
+
+                    <p>
+                        ${escapeHtml(
+                            error.message
+                        )}
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CLOSE MODAL ON BACKDROP
+========================= */
+
+planModal.addEventListener(
+    "click",
+    (event) => {
+
+        if(event.target === planModal){
+
+            planModal.classList.remove(
+                "show"
+            );
+
+            planForm.reset();
+
+            editingId = null;
+
+            planId.disabled = false;
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
