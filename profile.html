@@ -1,537 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>My Profile - Al Noor Islamic Academy</title>
+<title>My Profile | Al Noor Islamic Academy</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
 
-    body {
-      background: #071c16;
-      color: white;
-      min-height: 100vh;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-    .header {
-      background: #0b2a21;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #c9a227;
-    }
+body{
+    background:#071c16;
+    color:white;
+}
 
-    .logo {
-      color: #d4af37;
-      font-size: 21px;
-      font-weight: bold;
-    }
+/* Header */
 
-    .back {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
+header{
+    background:#0b261e;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #d4af37;
+}
 
-    .container {
-      max-width: 500px;
-      margin: 30px auto;
-      padding: 20px;
-    }
+.logo{
+    color:#d4af37;
+    font-size:22px;
+    font-weight:bold;
+}
 
-    .profile-card {
-      background: #0d2d24;
-      border: 1px solid #c9a227;
-      border-radius: 18px;
-      padding: 28px 20px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
+.profile-icon{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#d4af37;
+    color:#071c16;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
 
-    .avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: #c9a227;
-      color: #071c16;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 38px;
-      font-weight: bold;
-      margin: 0 auto 15px;
-    }
+/* Main */
 
-    h2 {
-      margin-bottom: 25px;
-      color: #d4af37;
-    }
+.container{
+    max-width:700px;
+    margin:auto;
+    padding:30px 18px;
+}
 
-    .info {
-      text-align: left;
-    }
+.title{
+    text-align:center;
+    color:#d4af37;
+    margin-bottom:25px;
+}
 
-    .row {
-      background: #12382e;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 12px;
-    }
+/* Profile */
 
-    .label {
-      color: #b8c9c3;
-      font-size: 13px;
-      margin-bottom: 5px;
-    }
+.profile-card{
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:20px;
+}
 
-    .value {
-      color: white;
-      font-size: 16px;
-      word-break: break-word;
-    }
+.avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#d4af37;
+    color:#071c16;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:bold;
+    margin:0 auto 15px;
+}
 
-    .status {
-      color: #6ee7a8;
-      font-weight: bold;
-    }
+.student-name{
+    text-align:center;
+    font-size:22px;
+    margin-bottom:5px;
+}
 
-    .membership {
-      color: #d4af37;
-      font-weight: bold;
-    }
+.student-role{
+    text-align:center;
+    color:#d4af37;
+    font-size:14px;
+}
 
-    .payment-box {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(212,175,55,0.4);
-      text-align: left;
-    }
+/* Details */
 
-    .payment-title {
-      color: #d4af37;
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
+.details{
+    margin-top:25px;
+}
 
-    .not-paid {
-      color: #fbbf24;
-      font-weight: bold;
-    }
+.detail{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:15px 0;
+    border-bottom:1px solid #23463b;
+}
 
-    .paid {
-      color: #6ee7a8;
-      font-weight: bold;
-    }
+.detail:last-child{
+    border-bottom:none;
+}
 
-    .logout {
-      width: 100%;
-      margin-top: 25px;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: #b3261e;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.label{
+    color:#8fa69e;
+}
 
-    .loading {
-      color: #d4af37;
-      margin: 20px 0;
-    }
-  </style>
+.value{
+    text-align:right;
+    color:#fff;
+}
+
+/* Membership */
+
+.membership{
+    background:#0d3025;
+    border:1px solid #d4af37;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.membership h2{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.membership p{
+    color:#b9c9c3;
+    line-height:1.7;
+}
+
+.badge{
+    display:inline-block;
+    margin-top:12px;
+    background:#d4af37;
+    color:#071c16;
+    padding:7px 12px;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:13px;
+}
+
+/* Courses */
+
+.courses{
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:15px;
+    padding:20px;
+}
+
+.courses h2{
+    color:#d4af37;
+    margin-bottom:15px;
+}
+
+.course{
+    padding:12px 0;
+    border-bottom:1px solid #23463b;
+    color:#c8d5d0;
+}
+
+.course:last-child{
+    border-bottom:none;
+}
+
+/* Buttons */
+
+.buttons{
+    margin-top:25px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    flex:1;
+    min-width:140px;
+    text-align:center;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.edit{
+    background:#d4af37;
+    color:#071c16;
+}
+
+.back{
+    border:1px solid #d4af37;
+    color:#d4af37;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    color:#718b82;
+    padding:30px 10px;
+    margin-top:20px;
+    border-top:1px solid #193b31;
+}
+
+
+.course-status{
+    margin-top:15px;
+}
+
+.status-row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid #23463b;
+    color:#c8d5d0;
+}
+
+.status-row:last-child{
+    border-bottom:none;
+}
+
+.status-row strong{
+    color:#8fa69e;
+    text-align:right;
+}
+
+.status-row strong.active{
+    color:#6ee7b7;
+}
+
+.status-row strong.soon{
+    color:#d4af37;
+}
+
+.course{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.course strong{
+    color:#8fa69e;
+    text-align:right;
+    word-break:break-word;
+}
+
+</style>
 </head>
 
 <body>
 
-  <header class="header">
-    <div class="logo">AL NOOR</div>
-    <a href="dashboard.html" class="back">← Dashboard</a>
-  </header>
+<header>
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <div class="profile-icon">
+        AN
+    </div>
+
+</header>
 
 
-  <div class="container">
+<div class="container">
+
+    <h1 class="title">
+        My Profile
+    </h1>
+
+
+    <!-- Profile Card -->
 
     <div class="profile-card">
 
-      <div class="avatar" id="avatar">?</div>
-
-      <h2>My Profile</h2>
-
-      <div class="loading" id="loading">
-        Loading profile...
-      </div>
-
-
-      <div class="info" id="profileInfo" style="display:none;">
-
-        <!-- BASIC INFORMATION -->
-
-        <div class="row">
-          <div class="label">Name</div>
-          <div class="value" id="name">-</div>
+        <div class="avatar" id="avatar">
+            AN
         </div>
 
-        <div class="row">
-          <div class="label">Email</div>
-          <div class="value" id="email">-</div>
-        </div>
+        <h2 class="student-name" id="studentName">Loading...</h2>
 
-        <div class="row">
-          <div class="label">Mobile</div>
-          <div class="value" id="mobile">-</div>
-        </div>
+        <p class="student-role">
+            Al Noor Student
+        </p>
 
 
-        <!-- MEMBERSHIP -->
+        <div class="details">
 
-        <div class="row">
-          <div class="label">Membership</div>
-          <div class="value membership" id="membership">
-            None
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="label">Membership Status</div>
-          <div class="value status" id="membershipStatus">
-            Not Active
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="label">Account Status</div>
-          <div class="value status" id="status">
-            -
-          </div>
-        </div>
-
-
-        <!-- PAYMENT INFORMATION -->
-
-        <div class="payment-box">
-
-          <div class="payment-title">
-            Payment Information
-          </div>
-
-          <div class="row">
-            <div class="label">Amount</div>
-            <div class="value" id="amount">
-              Not Paid Yet
+            <div class="detail">
+                <span class="label">Full Name</span>
+                <span class="value" id="fullName">Loading...</span>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="label">Payment ID</div>
-            <div class="value" id="paymentId">
-              Not Paid Yet
+            <div class="detail">
+                <span class="label">Email</span>
+                <span class="value" id="email">Loading...</span>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="label">Order ID</div>
-            <div class="value" id="orderId">
-              Not Paid Yet
+            <div class="detail">
+                <span class="label">Mobile</span>
+                <span class="value" id="mobile">Not added</span>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="label">Payment Date</div>
-            <div class="value" id="paidAt">
-              Not Paid Yet
+            <div class="detail">
+                <span class="label">Student ID</span>
+                <span class="value" id="studentId">Loading...</span>
             </div>
-          </div>
 
         </div>
-
-
-        <!-- USER ID -->
-
-        <div class="row">
-          <div class="label">User ID</div>
-          <div class="value" id="uid">
-            -
-          </div>
-        </div>
-
-      </div>
-
-
-      <button class="logout" id="logoutBtn">
-        Logout
-      </button>
 
     </div>
 
-  </div>
+
+    <!-- Course Access -->
+    <div class="membership">
+        <h2>🎓 My Course Access</h2>
+        <p>Course access is shown separately after each successful purchase.</p>
+
+        <div class="course-status">
+            <div class="status-row">
+                <span>📖 Tajweed</span>
+                <strong id="tajweedStatus">Checking...</strong>
+            </div>
+
+            <div class="status-row">
+                <span>📗 Arabic Language</span>
+                <strong id="arabicStatus">Checking...</strong>
+            </div>
+
+            <div class="status-row">
+                <span>📘 Quran Reading</span>
+                <strong>Coming Soon</strong>
+            </div>
+
+            <div class="status-row">
+                <span>📜 Hadith Studies</span>
+                <strong>Coming Soon</strong>
+            </div>
+
+            <div class="status-row">
+                <span>🕌 Islamic Studies</span>
+                <strong>Coming Soon</strong>
+            </div>
+        </div>
+    </div>
 
 
-  <script type="module">
+    <!-- Payment Information -->
+    <div class="courses">
+        <h2>💳 Payment Information</h2>
 
-    import { initializeApp } from
-      "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+        <div class="course">
+            <span>Paid Courses</span>
+            <strong id="paidCourses">None</strong>
+        </div>
 
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signOut
-    } from
-      "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+        <div class="course">
+            <span>Last Payment ID</span>
+            <strong id="lastPaymentId">Not Paid Yet</strong>
+        </div>
 
-    import {
-      getFirestore,
-      doc,
-      getDoc
-    } from
-      "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+        <div class="course">
+            <span>Last Order ID</span>
+            <strong id="lastOrderId">Not Available</strong>
+        </div>
+    </div>
 
+    <!-- Buttons -->
 
-    const firebaseConfig = {
+    <div class="buttons">
 
-      apiKey:
-        "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+        <a href="#" class="btn edit">
+            ✏️ Edit Profile
+        </a>
 
-      authDomain:
-        "al-noor-islamic-academy.firebaseapp.com",
+        <a href="dashboard.html" class="btn back">
+            ← Dashboard
+        </a>
 
-      projectId:
-        "al-noor-islamic-academy",
+    </div>
 
-      storageBucket:
-        "al-noor-islamic-academy.firebasestorage.app",
-
-      messagingSenderId:
-        "571799539455",
-
-      appId:
-        "1:571799539455:web:d42728685908430296c6ca"
-    };
+</div>
 
 
-    const app =
-      initializeApp(firebaseConfig);
+<footer>
 
-    const auth =
-      getAuth(app);
+    © 2026 Al Noor Islamic Academy
 
-    const db =
-      getFirestore(app);
+</footer>
 
 
-    onAuthStateChanged(auth, async (user) => {
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+    getFirestore,
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-      if (!user) {
+const firebaseConfig = {
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+    authDomain: "al-noor-islamic-academy.firebaseapp.com",
+    projectId: "al-noor-islamic-academy",
+    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+    messagingSenderId: "571799539455",
+    appId: "1:571799539455:web:d42728685908430296c6ca"
+};
 
-        window.location.href =
-          "login.html";
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
+const $ = (id) => document.getElementById(id);
+
+function setStatus(id, active, activeText, inactiveText) {
+    const el = $(id);
+    el.textContent = active ? "✓ " + activeText : inactiveText;
+    el.classList.toggle("active", active);
+    el.classList.toggle("soon", !active);
+}
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+        window.location.href = "login.html";
         return;
-      }
+    }
 
+    $("email").textContent = user.email || "Not added";
+    $("studentId").textContent = user.uid.slice(0, 10).toUpperCase();
 
-      try {
+    try {
+        const studentRef = doc(db, "students", user.uid);
+        const snap = await getDoc(studentRef);
+        const data = snap.exists() ? snap.data() : {};
 
-        const studentRef =
-          doc(
-            db,
-            "students",
-            user.uid
-          );
+        const name = data.fullName || data.name || user.displayName || "Student";
+        const mobile = data.mobile || data.phone || "Not added";
 
+        $("studentName").textContent = name;
+        $("fullName").textContent = name;
+        $("mobile").textContent = mobile;
 
-        const studentSnap =
-          await getDoc(studentRef);
+        const initials = name
+            .trim()
+            .split(/\s+/)
+            .map(word => word[0])
+            .join("")
+            .slice(0, 2)
+            .toUpperCase();
 
+        $("avatar").textContent = initials || "AN";
 
-        if (studentSnap.exists()) {
+        const tajweedActive = data.tajweedActive === true;
+        const arabicActive = data.arabicLanguageActive === true;
 
-          const data =
-            studentSnap.data();
+        setStatus("tajweedStatus", tajweedActive, "Active", "Not Purchased");
+        setStatus("arabicStatus", arabicActive, "Active", "Not Purchased");
 
+        const paid = [];
+        if (tajweedActive) paid.push("Tajweed — ₹299");
+        if (arabicActive) paid.push("Arabic Language — ₹299");
 
-          // BASIC INFORMATION
+        $("paidCourses").textContent = paid.length ? paid.join(" • ") : "None";
 
-          document.getElementById("name")
-            .textContent =
-              data.name ||
-              user.displayName ||
-              "-";
+        let lastPaymentId = "Not Paid Yet";
+        let lastOrderId = "Not Available";
 
-
-          document.getElementById("email")
-            .textContent =
-              data.email ||
-              user.email ||
-              "-";
-
-
-          document.getElementById("mobile")
-            .textContent =
-              data.mobile ||
-              "Not added";
-
-
-          // MEMBERSHIP
-
-          document.getElementById("membership")
-            .textContent =
-              data.membership ||
-              "None";
-
-
-          document.getElementById("membershipStatus")
-            .textContent =
-              data.membershipStatus ||
-              "Not Active";
-
-
-          document.getElementById("status")
-            .textContent =
-              data.status ||
-              "Active";
-
-
-          // PAYMENT AMOUNT
-
-          if (data.membershipAmount) {
-
-            document.getElementById("amount")
-              .textContent =
-                "₹" +
-                data.membershipAmount;
-
-          } else {
-
-            document.getElementById("amount")
-              .textContent =
-                "Not Paid Yet";
-
-          }
-
-
-          // PAYMENT ID
-
-          document.getElementById("paymentId")
-            .textContent =
-              data.paymentId ||
-              "Not Paid Yet";
-
-
-          // ORDER ID
-
-          document.getElementById("orderId")
-            .textContent =
-              data.orderId ||
-              "Not Paid Yet";
-
-
-          // PAYMENT DATE
-
-          if (
-            data.paidAt &&
-            data.paidAt.toDate
-          ) {
-
-            const date =
-              data.paidAt.toDate();
-
-            document.getElementById("paidAt")
-              .textContent =
-                date.toLocaleString();
-
-          } else {
-
-            document.getElementById("paidAt")
-              .textContent =
-                "Not Paid Yet";
-
-          }
-
-
-          // USER ID
-
-          document.getElementById("uid")
-            .textContent =
-              data.uid ||
-              user.uid;
-
-
-          // AVATAR
-
-          const name =
-            data.name ||
-            user.displayName ||
-            user.email ||
-            "?";
-
-
-          document.getElementById("avatar")
-            .textContent =
-              name
-                .charAt(0)
-                .toUpperCase();
-
-
-          // SHOW PROFILE
-
-          document.getElementById("loading")
-            .style.display =
-              "none";
-
-          document.getElementById("profileInfo")
-            .style.display =
-              "block";
-
-
-        } else {
-
-          document.getElementById("loading")
-            .textContent =
-              "Profile data not found.";
-
+        if (arabicActive && data.arabicLanguagePurchasedAt) {
+            lastPaymentId = data.arabicLanguagePaymentId || lastPaymentId;
+            lastOrderId = data.arabicLanguageOrderId || lastOrderId;
         }
 
+        if (tajweedActive && data.tajweedPurchasedAt) {
+            lastPaymentId = data.tajweedPaymentId || lastPaymentId;
+            lastOrderId = data.tajweedOrderId || lastOrderId;
+        }
 
-      } catch (error) {
+        $("lastPaymentId").textContent = lastPaymentId;
+        $("lastOrderId").textContent = lastOrderId;
 
+    } catch (error) {
         console.error(error);
+        $("studentName").textContent = user.displayName || "Student";
+        $("fullName").textContent = user.displayName || "Student";
+        $("email").textContent = user.email || "Not added";
+        $("mobile").textContent = "Not added";
+        $("studentId").textContent = user.uid.slice(0, 10).toUpperCase();
 
-        document.getElementById("loading")
-          .textContent =
-          "Unable to load profile.";
-
-      }
-
-    });
-
-
-    // LOGOUT
-
-    document.getElementById("logoutBtn")
-      .addEventListener(
-        "click",
-        async () => {
-
-          await signOut(auth);
-
-          window.location.href =
-            "login.html";
-
-        }
-      );
-
-  </script>
+        $("tajweedStatus").textContent = "Unable to load";
+        $("arabicStatus").textContent = "Unable to load";
+        $("paidCourses").textContent = "Unable to load";
+    }
+});
+</script>
 
 </body>
-                </html>
+</html>
