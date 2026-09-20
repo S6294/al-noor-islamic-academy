@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Quran Reading | Al Noor Islamic Academy</title>
+    <title>Tajweed Course | Al Noor Islamic Academy</title>
 
 
     <style>
@@ -386,8 +386,7 @@
 
 
         <p>
-            Learn to read the Holy Quran correctly
-            with proper pronunciation and Tajweed.
+            Learn the rules of Quranic recitation and pronunciation with proper Tajweed.
         </p>
 
     </section>
@@ -575,12 +574,12 @@
         <div class="enroll">
 
             <div id="accessStatus" class="access-status access-required">
-                Checking membership...
+                Checking course access...
             </div>
 
-            <a id="enrollButton" href="membership.html"
+            <a id="enrollButton" href="payment.html?course=tajweed&name=Tajweed&price=299"
                class="enroll-button">
-                Enroll Now
+                Join Tajweed — ₹299
             </a>
 
             <p id="accessText">
@@ -650,12 +649,12 @@ function setMemberAccess(active){
             "access-status access-active";
 
         accessStatus.textContent =
-            "✓ Membership Active";
+            "✓ Tajweed Access Active";
 
         enrollButton.style.display = "none";
 
         accessText.textContent =
-            "You have full access to this course.";
+            "You have full access to the Tajweed course.";
 
         statuses.forEach((status) => {
             status.textContent = "▶ Available";
@@ -671,14 +670,14 @@ function setMemberAccess(active){
             "access-status access-required";
 
         accessStatus.textContent =
-            "Membership Required";
+            "Tajweed Purchase Required";
 
         enrollButton.style.display = "inline-block";
         enrollButton.href = "membership.html";
-        enrollButton.textContent = "Enroll Now";
+        enrollButton.textContent = "Join Tajweed — ₹299";
 
         accessText.textContent =
-            "Membership is required to access the complete course.";
+            "Purchase the Tajweed course for ₹299 to access all lessons.";
 
         statuses.forEach((status) => {
             status.textContent = "🔒 Premium";
@@ -707,20 +706,18 @@ onAuthStateChanged(auth, async (user) => {
 
         const studentData = studentSnap.data();
 
-        /*
-         * Payment page stores:
-         * membershipActive: true
-         */
-        const isMember =
-            studentData.membershipActive === true;
+        // Tajweed is a separate ₹299 course.
+        // Payment page stores tajweedActive: true after successful payment.
+        const hasTajweedAccess =
+            studentData.tajweedActive === true;
 
-        setMemberAccess(isMember);
+        setMemberAccess(hasTajweedAccess);
 
     }catch(error){
 
-        console.error("Membership check error:", error);
+        console.error("Tajweed access check error:", error);
 
-        // Do not grant paid access if Firebase check fails.
+        // Do not grant paid access if the Firebase course check fails.
         setMemberAccess(false);
     }
 
