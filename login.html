@@ -1,444 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Al Noor Islamic Academy</title>
 
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Login | Al Noor Islamic Academy</title>
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background: #071a17;
-            color: white;
-        }
-
-        .login-box {
-            width: 100%;
-            max-width: 400px;
-            background: #0c2923;
-            padding: 35px 25px;
-            border-radius: 20px;
-            border: 1px solid #36554d;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            text-align: center;
-        }
-
-        .logo {
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: #d4af37;
-            color: #071a17;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        h1 {
-            color: #d4af37;
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: #aaa;
-            font-size: 14px;
-            margin-bottom: 28px;
-        }
-
-        .input-group {
-            text-align: left;
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 7px;
-            color: #ddd;
-            font-size: 14px;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #42635a;
-            border-radius: 10px;
-            background: #071a17;
-            color: white;
-            font-size: 15px;
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #d4af37;
-        }
-
-        .login-button {
-            width: 100%;
-            padding: 14px;
-            margin-top: 5px;
-            border: none;
-            border-radius: 10px;
-            background: #d4af37;
-            color: #071a17;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .login-button:disabled {
-            opacity: 0.6;
-        }
-
-        .forgot {
-            display: block;
-            margin-top: 18px;
-            color: #d4af37;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .signup {
-            margin-top: 25px;
-            color: #aaa;
-            font-size: 14px;
-        }
-
-        .signup a {
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .home {
-            display: block;
-            margin-top: 20px;
-            color: #aaa;
-            text-decoration: none;
-            font-size: 13px;
-        }
-
-    </style>
-
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    min-height:100vh;display:flex;justify-content:center;align-items:center;
+    padding:20px;font-family:Arial,sans-serif;background:#071a17;color:white;
+}
+.login-box{
+    width:100%;max-width:400px;background:#0c2923;padding:35px 25px;
+    border-radius:20px;border:1px solid #36554d;
+    box-shadow:0 15px 40px rgba(0,0,0,.4);text-align:center;
+}
+.logo{
+    width:75px;height:75px;margin:0 auto 18px;display:flex;
+    align-items:center;justify-content:center;border-radius:50%;
+    background:#d4af37;color:#071a17;font-size:24px;font-weight:bold;
+}
+h1{color:#d4af37;font-size:28px;margin-bottom:8px}
+.subtitle{color:#aaa;font-size:14px;margin-bottom:28px}
+.input-group{text-align:left;margin-bottom:18px}
+label{display:block;margin-bottom:7px;color:#ddd;font-size:14px}
+input{
+    width:100%;padding:14px;border:1px solid #42635a;border-radius:10px;
+    background:#071a17;color:white;font-size:15px;outline:none;
+}
+input:focus{border-color:#d4af37}
+.login-button{
+    width:100%;padding:14px;margin-top:5px;border:none;border-radius:10px;
+    background:#d4af37;color:#071a17;font-size:16px;font-weight:bold;cursor:pointer;
+}
+.login-button:disabled{opacity:.6}
+.message{
+    display:none;margin-top:16px;padding:12px;border-radius:9px;
+    background:#183d31;color:#ddd;font-size:13px;line-height:1.5;
+}
+.forgot{display:block;margin-top:18px;color:#d4af37;text-decoration:none;font-size:14px}
+.signup{margin-top:25px;color:#aaa;font-size:14px}
+.signup a{color:#d4af37;text-decoration:none;font-weight:bold}
+.home{display:block;margin-top:20px;color:#aaa;text-decoration:none;font-size:13px}
+</style>
 </head>
-
 
 <body>
 
+<div class="login-box">
 
-    <div class="login-box">
+    <div class="logo">AN</div>
 
+    <h1>Welcome Back</h1>
 
-        <div class="logo">
-            AN
+    <p class="subtitle">
+        Login to Al Noor Islamic Academy
+    </p>
+
+    <form id="loginForm">
+
+        <div class="input-group">
+            <label>Email Address</label>
+            <input
+                id="email"
+                type="email"
+                placeholder="Enter your registered email"
+                autocomplete="email"
+                required>
         </div>
 
-
-        <h1>
-            Welcome Back
-        </h1>
-
-
-        <p class="subtitle">
-            Login to Al Noor Islamic Academy
-        </p>
-
-
-        <form id="loginForm">
-
-
-            <div class="input-group">
-
-                <label>
-                    Email Address
-                </label>
-
-                <input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    required>
-
-            </div>
-
-
-            <div class="input-group">
-
-                <label>
-                    Password
-                </label>
-
-                <input
-                    id="password"
-                    type="password"
-                    placeholder="Enter password"
-                    required>
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="login-button"
-                id="loginButton">
-
-                Login
-
-            </button>
-
-
-        </form>
-
-
-        <a href="#" class="forgot" id="forgotPassword">
-            Forgot Password?
-        </a>
-
-
-        <div class="signup">
-
-            Don't have an account?
-
-            <a href="signup.html">
-                Create Account
-            </a>
-
+        <div class="input-group">
+            <label>Password</label>
+            <input
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required>
         </div>
 
+        <button
+            type="submit"
+            class="login-button"
+            id="loginButton">
+            Login
+        </button>
 
-        <a href="index.html" class="home">
-            ← Back to Home
-        </a>
+    </form>
 
+    <div id="message" class="message"></div>
 
+    <a href="#" id="resendVerification" class="forgot" style="display:none;">
+        Resend verification email
+    </a>
+
+    <div class="signup">
+        Don't have an account?
+        <a href="signup.html">Create Account</a>
     </div>
 
+    <a href="index.html" class="home">
+        ← Back to Home
+    </a>
 
-    <script type="module">
+</div>
 
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+<script type="module">
 
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-        import {
-            getAuth,
-            signInWithEmailAndPassword,
-            sendPasswordResetEmail
-        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    sendEmailVerification,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
-        const firebaseConfig = {
+const firebaseConfig = {
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+    authDomain: "al-noor-islamic-academy.firebaseapp.com",
+    projectId: "al-noor-islamic-academy",
+    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+    messagingSenderId: "571799539455",
+    appId: "1:571799539455:web:d42728685908430296c6ca"
+};
 
-            apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-            authDomain: "al-noor-islamic-academy.firebaseapp.com",
+const loginForm = document.getElementById("loginForm");
+const loginButton = document.getElementById("loginButton");
+const message = document.getElementById("message");
+const resendVerification = document.getElementById("resendVerification");
 
-            projectId: "al-noor-islamic-academy",
+let unverifiedUser = null;
 
-            storageBucket: "al-noor-islamic-academy.firebasestorage.app",
 
-            messagingSenderId: "571799539455",
+function showMessage(text) {
+    message.style.display = "block";
+    message.textContent = text;
+}
 
-            appId: "1:571799539455:web:d42728685908430296c6ca"
 
-        };
+loginForm.addEventListener("submit", async (e) => {
 
+    e.preventDefault();
 
-        const app = initializeApp(firebaseConfig);
+    const email =
+        document.getElementById("email").value.trim();
 
-        const auth = getAuth(app);
+    const password =
+        document.getElementById("password").value;
 
+    resendVerification.style.display = "none";
+    message.style.display = "none";
 
-        const loginForm =
-            document.getElementById("loginForm");
+    loginButton.disabled = true;
+    loginButton.textContent = "Logging in...";
 
+    try {
 
-        const loginButton =
-            document.getElementById("loginButton");
+        const credential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
+        const user = credential.user;
 
-        loginForm.addEventListener("submit", async (e) => {
+        /*
+         * IMPORTANT:
+         * The account must have a verified email address.
+         */
+        if (!user.emailVerified) {
 
-            e.preventDefault();
+            unverifiedUser = user;
 
+            showMessage(
+                "Your email is not verified yet. " +
+                "Please open the verification email and verify your address before logging in."
+            );
 
-            const email =
-                document.getElementById("email").value.trim();
+            resendVerification.style.display = "block";
 
+            await signOut(auth);
 
-            const password =
-                document.getElementById("password").value;
+            loginButton.disabled = false;
+            loginButton.textContent = "Login";
 
+            return;
+        }
 
-            loginButton.disabled = true;
+        window.location.href = "dashboard.html";
 
-            loginButton.textContent = "Logging in...";
+    } catch (error) {
 
+        console.error(error);
 
-            try {
+        if (error.code === "auth/invalid-credential" ||
+            error.code === "auth/wrong-password" ||
+            error.code === "auth/user-not-found") {
 
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
+            showMessage(
+                "Incorrect email or password. Please check your registered email and password."
+            );
 
+        } else if (error.code === "auth/invalid-email") {
 
-                alert("Login successful!");
+            showMessage(
+                "Please enter a valid email address."
+            );
 
+        } else if (error.code === "auth/too-many-requests") {
 
-                window.location.href =
-                    "dashboard.html";
+            showMessage(
+                "Too many login attempts. Please wait a while and try again."
+            );
 
+        } else {
 
-            } catch (error) {
+            showMessage(
+                "Login failed. Please try again."
+            );
+        }
 
-                console.error(error);
+        loginButton.disabled = false;
+        loginButton.textContent = "Login";
+    }
+});
 
 
-                if (
-                    error.code ===
-                    "auth/invalid-credential"
-                ) {
+resendVerification.addEventListener("click", async (e) => {
 
-                    alert(
-                        "Incorrect email or password."
-                    );
+    e.preventDefault();
 
-                }
+    if (!unverifiedUser) {
+        showMessage(
+            "Please login with your registered email and password first."
+        );
+        return;
+    }
 
-                else if (
-                    error.code ===
-                    "auth/user-not-found"
-                ) {
+    try {
 
-                    alert(
-                        "No account found with this email."
-                    );
+        await sendEmailVerification(unverifiedUser);
 
-                }
+        showMessage(
+            "A new verification email has been sent to " +
+            unverifiedUser.email + "."
+        );
 
-                else if (
-                    error.code ===
-                    "auth/wrong-password"
-                ) {
+    } catch (error) {
 
-                    alert(
-                        "Incorrect password."
-                    );
+        console.error(error);
 
-                }
+        showMessage(
+            "Unable to send the verification email right now. Please try again later."
+        );
+    }
+});
 
-                else {
-
-                    alert(
-                        "Login failed: " +
-                        error.message
-                    );
-
-                }
-
-
-                loginButton.disabled = false;
-
-                loginButton.textContent = "Login";
-
-            }
-
-        });
-
-
-        document
-            .getElementById("forgotPassword")
-            .addEventListener("click", async (e) => {
-
-                e.preventDefault();
-
-
-                const email =
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim();
-
-
-                if (!email) {
-
-                    alert(
-                        "Please enter your email address first."
-                    );
-
-                    return;
-
-                }
-
-
-                try {
-
-                    await sendPasswordResetEmail(
-                        auth,
-                        email
-                    );
-
-
-                    alert(
-                        "Password reset email sent. Please check your email."
-                    );
-
-
-                } catch (error) {
-
-                    console.error(error);
-
-
-                    if (
-                        error.code ===
-                        "auth/user-not-found"
-                    ) {
-
-                        alert(
-                            "No account found with this email."
-                        );
-
-                    }
-
-                    else {
-
-                        alert(
-                            "Could not send reset email: " +
-                            error.message
-                        );
-
-                    }
-
-                }
-
-            });
-
-    </script>
-
+</script>
 
 </body>
-
 </html>
