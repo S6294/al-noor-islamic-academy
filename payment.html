@@ -1,397 +1,731 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Payment | Al Noor Islamic Academy</title>
+<meta charset="UTF-8">
 
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<title>Payment | Al Noor Islamic Academy</title>
 
-    body {
-      background: #071c16;
-      color: white;
-      min-height: 100vh;
-      padding: 25px;
-    }
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-    .container {
-      max-width: 500px;
-      margin: 40px auto;
-      background: #0d2a22;
-      padding: 30px;
-      border-radius: 18px;
-      border: 1px solid #d4af37;
-    }
+<style>
 
-    h1 {
-      text-align: center;
-      color: #d4af37;
-      margin-bottom: 25px;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-    .plan {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+body{
 
-    .plan-name {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+  background:#071c16;
 
-    .price {
-      font-size: 32px;
-      color: #d4af37;
-      font-weight: bold;
-    }
+  color:white;
 
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 6px;
-    }
+  min-height:100vh;
 
-    input {
-      width: 100%;
-      padding: 13px;
-      border-radius: 8px;
-      border: 1px solid #555;
-      background: #071c16;
-      color: white;
-    }
+  padding:25px;
 
-    button {
-      width: 100%;
-      margin-top: 25px;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      background: #d4af37;
-      color: #071c16;
-      font-size: 17px;
-      font-weight: bold;
-    }
+}
 
-    button:disabled {
-      opacity: 0.6;
-    }
+.container{
 
-    #message {
-      text-align: center;
-      margin-top: 18px;
-      color: #d4af37;
-    }
-  </style>
+  max-width:500px;
+
+  margin:40px auto;
+
+  background:#0d2a22;
+
+  padding:30px;
+
+  border-radius:18px;
+
+  border:1px solid #d4af37;
+
+}
+
+h1{
+
+  text-align:center;
+
+  color:#d4af37;
+
+  margin-bottom:25px;
+
+}
+
+.plan{
+
+  text-align:center;
+
+  margin-bottom:25px;
+
+}
+
+.plan-name{
+
+  font-size:24px;
+
+  font-weight:bold;
+
+  margin-bottom:10px;
+
+}
+
+.price{
+
+  font-size:32px;
+
+  color:#d4af37;
+
+  font-weight:bold;
+
+}
+
+label{
+
+  display:block;
+
+  margin-top:15px;
+
+  margin-bottom:6px;
+
+}
+
+input{
+
+  width:100%;
+
+  padding:13px;
+
+  border-radius:8px;
+
+  border:1px solid #555;
+
+  background:#071c16;
+
+  color:white;
+
+}
+
+button{
+
+  width:100%;
+
+  margin-top:25px;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:8px;
+
+  background:#d4af37;
+
+  color:#071c16;
+
+  font-size:17px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+}
+
+button:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+}
+
+#message{
+
+  text-align:center;
+
+  margin-top:18px;
+
+  color:#d4af37;
+
+  line-height:1.6;
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
-  <h1>Al Noor Islamic Academy</h1>
 
-  <div class="plan">
-    <div class="plan-name" id="planName">Membership</div>
+<h1>
 
-    <div class="price">
-      ₹<span id="planPrice">0</span>
-    </div>
-  </div>
+Al Noor Islamic Academy
 
-  <label>Full Name</label>
-  <input type="text" id="name" readonly>
+</h1>
 
-  <label>Email</label>
-  <input type="email" id="email" readonly>
 
-  <label>Mobile</label>
-  <input type="text" id="mobile" readonly>
+<div class="plan">
 
-  <button id="payBtn">Pay Now</button>
 
-  <div id="message"></div>
+<div
+class="plan-name"
+id="planName">
+
+Membership
 
 </div>
 
 
+<div class="price">
+
+₹<span id="planPrice">0</span>
+
+</div>
+
+
+</div>
+
+
+
+<label>
+
+Full Name
+
+</label>
+
+
+<input
+type="text"
+id="name"
+readonly>
+
+
+
+<label>
+
+Email
+
+</label>
+
+
+<input
+type="email"
+id="email"
+readonly>
+
+
+
+<label>
+
+Mobile
+
+</label>
+
+
+<input
+type="text"
+id="mobile"
+readonly>
+
+
+
+<button
+id="payBtn">
+
+Pay Now
+
+</button>
+
+
+<div
+id="message">
+
+</div>
+
+
+</div>
+
+
+
 <script type="module">
 
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+/* =========================
+   FIREBASE
+========================= */
 
 import {
+
+  initializeApp
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+
   getAuth,
   onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 import {
   getFirestore,
   doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  getDoc,
+  updateDoc,
+  serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-// =========================
-// FIREBASE
-// =========================
 
 const firebaseConfig = {
 
   apiKey:
-    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+  "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
 
   authDomain:
-    "al-noor-islamic-academy.firebaseapp.com",
+  "al-noor-islamic-academy.firebaseapp.com",
 
   projectId:
-    "al-noor-islamic-academy",
+  "al-noor-islamic-academy",
 
   storageBucket:
-    "al-noor-islamic-academy.firebasestorage.app",
+  "al-noor-islamic-academy.firebasestorage.app",
 
   messagingSenderId:
-    "571799539455",
+  "571799539455",
 
   appId:
-    "1:571799539455:web:d42728685908430296c6ca"
+  "1:571799539455:web:d42728685908430296c6ca"
 
 };
 
 
-const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
-
-const db = getFirestore(app);
+const app =
+initializeApp(firebaseConfig);
 
 
-// =========================
-// BACKEND
-// =========================
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+
+/* =========================
+   BACKEND
+========================= */
 
 const BACKEND_URL =
 "https://script.google.com/macros/s/AKfycbyCH2v1uORdSwK42KMe89uvawYaeX-QCynsvTuv2Auorcl31e9CG5SVXj9hYHnJduX6Nw/exec";
 
 
-// =========================
-// RAZORPAY TEST KEY
-// =========================
 
-// এখানে তোমার সম্পূর্ণ Test Key ID বসাও
+/* =========================
+   RAZORPAY TEST KEY
+========================= */
 
 const RAZORPAY_KEY_ID =
 "rzp_test_TdwKPsC4k8qiM5";
 
 
-// =========================
-// PLAN
-// =========================
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const payBtn =
+document.getElementById("payBtn");
+
+const message =
+document.getElementById("message");
+
+const nameInput =
+document.getElementById("name");
+
+const emailInput =
+document.getElementById("email");
+
+const mobileInput =
+document.getElementById("mobile");
+
+const planNameElement =
+document.getElementById("planName");
+
+const planPriceElement =
+document.getElementById("planPrice");
+
+
+
+/* =========================
+   PLAN FROM URL
+========================= */
 
 const params =
-new URLSearchParams(window.location.search);
+new URLSearchParams(
+window.location.search
+);
+
 
 const plan =
 params.get("plan");
 
-const planName =
+
+const urlPlanName =
 params.get("name");
 
-const planPrice =
+
+const urlPlanPrice =
 params.get("price");
 
 
-document.getElementById("planName").textContent =
-planName || "Membership";
 
-document.getElementById("planPrice").textContent =
-planPrice || "0";
+planNameElement.textContent =
+urlPlanName || "Membership";
 
 
-// =========================
-// USER
-// =========================
+planPriceElement.textContent =
+urlPlanPrice || "0";
+
+
+
+/* =========================
+   CURRENT USER
+========================= */
 
 let currentUser = null;
 
 
-onAuthStateChanged(auth, async (user) => {
 
-  if (!user) {
+onAuthStateChanged(
+auth,
+async (user) => {
+
+
+  if(!user){
 
     window.location.href =
     "login.html";
 
     return;
+
   }
 
-  currentUser = user;
 
-  document.getElementById("email").value =
+  currentUser =
+  user;
+
+
+  emailInput.value =
   user.email || "";
 
 
-  try {
+  try{
+
 
     const studentRef =
-    doc(db, "students", user.uid);
+    doc(
+      db,
+      "students",
+      user.uid
+    );
+
 
     const studentSnap =
-    await getDoc(studentRef);
+    await getDoc(
+      studentRef
+    );
 
 
-    if (studentSnap.exists()) {
+    if(studentSnap.exists()){
 
       const data =
       studentSnap.data();
 
-      document.getElementById("name").value =
-      data.name || user.displayName || "";
 
-      document.getElementById("mobile").value =
-      data.mobile || "";
+      nameInput.value =
+      data.name ||
+      user.displayName ||
+      "";
 
-    } else {
 
-      document.getElementById("name").value =
-      user.displayName || "";
+      mobileInput.value =
+      data.mobile ||
+      "";
 
     }
 
-  } catch (error) {
+    else{
 
-    console.error(error);
+      nameInput.value =
+      user.displayName ||
+      "";
+
+    }
+
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Student profile error:",
+      error
+    );
 
   }
 
 });
 
 
-// =========================
-// PAY NOW
-// =========================
 
-document.getElementById("payBtn")
-.addEventListener("click", () => {
+/* =========================
+   JSONP HELPER
+========================= */
 
-  const button =
-  document.getElementById("payBtn");
+function jsonpRequest(
+  url
+){
 
-  const message =
-  document.getElementById("message");
+  return new Promise(
+    (resolve,reject) => {
 
 
-  if (!currentUser) {
+      const callbackName =
+      "callback_" +
+      Date.now() +
+      "_" +
+      Math.random()
+      .toString(36)
+      .substring(2);
+
+
+      const script =
+      document.createElement("script");
+
+
+      const separator =
+      url.includes("?")
+      ? "&"
+      : "?";
+
+
+      const finalUrl =
+      url +
+      separator +
+      "callback=" +
+      encodeURIComponent(
+        callbackName
+      );
+
+
+      window[callbackName] =
+      function(data){
+
+        cleanup();
+
+        resolve(data);
+
+      };
+
+
+      function cleanup(){
+
+        delete window[
+          callbackName
+        ];
+
+        script.remove();
+
+      }
+
+
+      script.src =
+      finalUrl;
+
+
+      script.onerror =
+      function(){
+
+        cleanup();
+
+        reject(
+          new Error(
+            "Unable to connect to payment server."
+          )
+        );
+
+      };
+
+
+      document.body.appendChild(
+        script
+      );
+
+
+    }
+  );
+
+}
+
+
+
+/* =========================
+   PAY NOW
+========================= */
+
+payBtn.addEventListener(
+"click",
+async () => {
+
+
+  if(!currentUser){
 
     message.textContent =
     "Please login first.";
 
     return;
+
   }
 
 
-  if (!plan) {
+  if(!plan){
 
     message.textContent =
     "Invalid membership plan.";
 
     return;
+
   }
 
 
-  if (
-    !RAZORPAY_KEY_ID ||
-    RAZORPAY_KEY_ID ===
-    "YOUR_FULL_RAZORPAY_TEST_KEY_ID"
-  ) {
+  if(!RAZORPAY_KEY_ID){
 
     message.textContent =
-    "Please add your Razorpay Test Key ID.";
+    "Razorpay Test Key ID is missing.";
 
     return;
+
   }
 
 
-  button.disabled = true;
+  payBtn.disabled =
+  true;
 
-  button.textContent =
+
+  payBtn.textContent =
   "Creating Order...";
 
-  message.textContent = "";
+
+  message.textContent =
+  "Please wait...";
 
 
-  const callbackName =
-  "razorpayCallback_" +
-  Date.now();
+  try{
 
 
-  window[callbackName] =
-  function(data) {
+    /* =========================
+       CREATE ORDER
+    ========================= */
+
+    const orderResult =
+    await jsonpRequest(
+      BACKEND_URL +
+      "?plan=" +
+      encodeURIComponent(plan)
+    );
 
 
-    delete window[callbackName];
+    console.log(
+      "Order result:",
+      orderResult
+    );
 
 
-    if (!data.success) {
+    if(!orderResult.success){
 
-      message.textContent =
-      data.message ||
-      "Order creation failed.";
+      throw new Error(
+        orderResult.message ||
+        "Order creation failed."
+      );
 
-      button.disabled = false;
-
-      button.textContent =
-      "Pay Now";
-
-      return;
     }
 
 
-    // =========================
-    // RAZORPAY CHECKOUT
-    // =========================
+    /* =========================
+       USE REAL BACKEND PRICE
+    ========================= */
+
+    planNameElement.textContent =
+    orderResult.plan_name;
+
+
+    planPriceElement.textContent =
+    orderResult.price;
+
+
+    /* =========================
+       RAZORPAY CHECKOUT
+    ========================= */
 
     const options = {
 
       key:
       RAZORPAY_KEY_ID,
 
+
       amount:
-      data.amount,
+      orderResult.amount,
+
 
       currency:
-      data.currency,
+      orderResult.currency,
+
 
       name:
       "Al Noor Islamic Academy",
 
+
       description:
-      data.plan_name,
+      orderResult.plan_name,
+
 
       order_id:
-      data.order_id,
+      orderResult.order_id,
 
 
       prefill: {
 
         name:
-        document.getElementById("name").value,
+        nameInput.value,
 
         email:
-        document.getElementById("email").value,
+        emailInput.value,
 
         contact:
-        document.getElementById("mobile").value
+        mobileInput.value
 
       },
 
@@ -405,35 +739,141 @@ document.getElementById("payBtn")
 
 
       handler:
-      function(response) {
+      async function(response){
+
 
         console.log(
-          "Payment ID:",
-          response.razorpay_payment_id
-        );
-
-        console.log(
-          "Order ID:",
-          response.razorpay_order_id
-        );
-
-        console.log(
-          "Signature:",
-          response.razorpay_signature
+          "Razorpay response:",
+          response
         );
 
 
-        message.innerHTML =
-        "Payment completed successfully.<br>" +
-        "Payment ID: " +
-        response.razorpay_payment_id;
+        message.textContent =
+        "Verifying payment...";
 
 
-        button.disabled =
-        false;
+        try{
 
-        button.textContent =
-        "Pay Now";
+
+          /* =========================
+             VERIFY PAYMENT
+          ========================= */
+
+          const verifyResult =
+          await jsonpRequest(
+
+            BACKEND_URL +
+
+            "?action=verify" +
+
+            "&payment_id=" +
+            encodeURIComponent(
+              response.razorpay_payment_id
+            ) +
+
+            "&order_id=" +
+            encodeURIComponent(
+              response.razorpay_order_id
+            ) +
+
+            "&signature=" +
+            encodeURIComponent(
+              response.razorpay_signature
+            )
+
+          );
+
+
+          console.log(
+            "Verification result:",
+            verifyResult
+          );
+
+
+          if(
+            !verifyResult.success
+          ){
+
+            throw new Error(
+              verifyResult.message ||
+              "Payment verification failed."
+            );
+
+          }
+          /* =========================
+   ACTIVATE MEMBERSHIP
+========================= */
+
+const studentRef = doc(
+  db,
+  "students",
+  currentUser.uid
+);
+
+await updateDoc(studentRef, {
+
+  membershipActive: true,
+
+  membershipPlan: orderResult.plan,
+
+  membershipPlanName: orderResult.plan_name,
+
+  membershipPrice: orderResult.price,
+
+  paymentId: response.razorpay_payment_id,
+
+  orderId: response.razorpay_order_id,
+
+  membershipActivatedAt: serverTimestamp()
+
+});
+
+
+          /* =========================
+             VERIFIED
+          ========================= */
+
+          message.innerHTML =
+
+          "✅ Payment verified successfully." +
+
+          "<br><br>" +
+
+          "Payment ID: " +
+
+          response.razorpay_payment_id;
+
+
+          payBtn.disabled =
+          false;
+
+
+          payBtn.textContent =
+          "Payment Verified";
+
+
+        }
+
+        catch(error){
+
+          console.error(
+            error
+          );
+
+
+          message.textContent =
+          "Payment verification failed: " +
+          error.message;
+
+
+          payBtn.disabled =
+          false;
+
+
+          payBtn.textContent =
+          "Pay Now";
+
+        }
 
       },
 
@@ -441,13 +881,15 @@ document.getElementById("payBtn")
       modal: {
 
         ondismiss:
-        function() {
+        function(){
 
-          button.disabled =
+          payBtn.disabled =
           false;
 
-          button.textContent =
+
+          payBtn.textContent =
           "Pay Now";
+
 
           message.textContent =
           "Payment window closed.";
@@ -460,51 +902,69 @@ document.getElementById("payBtn")
 
 
     const razorpay =
-    new Razorpay(options);
+    new Razorpay(
+      options
+    );
+
+
+    razorpay.on(
+      "payment.failed",
+      function(response){
+
+        console.error(
+          "Payment failed:",
+          response.error
+        );
+
+
+        message.textContent =
+        response.error.description ||
+        "Payment failed.";
+
+
+        payBtn.disabled =
+        false;
+
+
+        payBtn.textContent =
+        "Pay Now";
+
+      }
+    );
+
 
     razorpay.open();
 
-  };
 
+  }
 
-  // =========================
-  // JSONP REQUEST
-  // =========================
+  catch(error){
 
-  const script =
-  document.createElement("script");
+    console.error(
+      "Payment error:",
+      error
+    );
 
-
-  script.src =
-  BACKEND_URL +
-  "?plan=" +
-  encodeURIComponent(plan) +
-  "&callback=" +
-  encodeURIComponent(callbackName);
-
-
-  script.onerror =
-  function() {
-
-    delete window[callbackName];
 
     message.textContent =
-    "Unable to connect to payment server.";
+    error.message ||
+    "Unable to create payment order.";
 
-    button.disabled =
+
+    payBtn.disabled =
     false;
 
-    button.textContent =
+
+    payBtn.textContent =
     "Pay Now";
 
-  };
-
-
-  document.body.appendChild(script);
+  }
 
 });
 
 </script>
 
+
 </body>
+
 </html>
