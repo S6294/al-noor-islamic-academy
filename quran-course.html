@@ -318,6 +318,31 @@
 
         }
 
+    
+        .access-status{
+            display:inline-block;
+            margin-bottom:12px;
+            padding:7px 12px;
+            border-radius:20px;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .access-active{
+            background:#174f3d;
+            color:#9ff0c9;
+        }
+        .access-required{
+            background:#3d3517;
+            color:#f1d875;
+        }
+        .lesson.open{
+            cursor:pointer;
+            border:1px solid #d4af37;
+        }
+        .lesson.open .lesson-status{
+            color:#9ff0c9;
+        }
+
     </style>
 
 </head>
@@ -483,7 +508,7 @@
                     Lesson 01 — Arabic Letters
                 </span>
 
-                <span class="lesson-status">
+                <span class="lesson-status" data-lesson-status="1">
                     🔒 Premium
                 </span>
 
@@ -496,7 +521,7 @@
                     Lesson 02 — Letter Pronunciation
                 </span>
 
-                <span class="lesson-status">
+                <span class="lesson-status" data-lesson-status="2">
                     🔒 Premium
                 </span>
 
@@ -509,7 +534,7 @@
                     Lesson 03 — Harakat
                 </span>
 
-                <span class="lesson-status">
+                <span class="lesson-status" data-lesson-status="3">
                     🔒 Premium
                 </span>
 
@@ -522,7 +547,7 @@
                     Lesson 04 — Joining Letters
                 </span>
 
-                <span class="lesson-status">
+                <span class="lesson-status" data-lesson-status="4">
                     🔒 Premium
                 </span>
 
@@ -535,7 +560,7 @@
                     Lesson 05 — Quran Reading Practice
                 </span>
 
-                <span class="lesson-status">
+                <span class="lesson-status" data-lesson-status="5">
                     🔒 Premium
                 </span>
 
@@ -549,15 +574,16 @@
 
         <div class="enroll">
 
-            <a href="membership.html"
+            <div id="accessStatus" class="access-status access-required">
+                Checking membership...
+            </div>
+
+            <a id="enrollButton" href="membership.html"
                class="enroll-button">
-
                 Enroll Now
-
             </a>
 
-
-            <p>
+            <p id="accessText">
                 Membership is required to access
                 the complete course.
             </p>
@@ -575,6 +601,132 @@
 
     </footer>
 
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+    authDomain: "al-noor-islamic-academy.firebaseapp.com",
+    projectId: "al-noor-islamic-academy",
+    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+    messagingSenderId: "571799539455",
+    appId: "1:571799539455:web:d42728685908430296c6ca"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const accessStatus = document.getElementById("accessStatus");
+const enrollButton = document.getElementById("enrollButton");
+const accessText = document.getElementById("accessText");
+
+function setMemberAccess(active){
+
+    const statuses =
+        document.querySelectorAll("[data-lesson-status]");
+
+    if(active){
+
+        accessStatus.className =
+            "access-status access-active";
+
+        accessStatus.textContent =
+            "✓ Membership Active";
+
+        enrollButton.style.display = "none";
+
+        accessText.textContent =
+            "You have full access to this course.";
+
+        statuses.forEach((status) => {
+            status.textContent = "▶ Available";
+        });
+
+        document.querySelectorAll(".lesson").forEach((lesson) => {
+            lesson.classList.add("open");
+        });
+
+    }else{
+
+        accessStatus.className =
+            "access-status access-required";
+
+        accessStatus.textContent =
+            "Membership Required";
+
+        enrollButton.style.display = "inline-block";
+        enrollButton.href = "membership.html";
+        enrollButton.textContent = "Enroll Now";
+
+        accessText.textContent =
+            "Membership is required to access the complete course.";
+
+        statuses.forEach((status) => {
+            status.textContent = "🔒 Premium";
+        });
+
+    }
+}
+
+
+onAuthStateChanged(auth, async (user) => {
+
+    if(!user){
+        window.location.href = "login.html";
+        return;
+    }
+
+    try{
+
+        const studentRef = doc(db, "students", user.uid);
+        const studentSnap = await getDoc(studentRef);
+
+        if(!studentSnap.exists()){
+            setMemberAccess(false);
+            return;
+        }
+
+        const studentData = studentSnap.data();
+
+        /*
+         * Payment page stores:
+         * membershipActive: true
+         */
+        const isMember =
+            studentData.membershipActive === true;
+
+        setMemberAccess(isMember);
+
+    }catch(error){
+
+        console.error("Membership check error:", error);
+
+        // Do not grant paid access if Firebase check fails.
+        setMemberAccess(false);
+    }
+
+});
+
+</script>
 
 </body>
 
