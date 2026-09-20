@@ -1,1 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Membership Management | Al Noor Islamic Academy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =========================
+   ROOT
+========================= */
+
+:root{
+
+    --bg:#031713;
+    --bg2:#06231c;
+    --card:#092b22;
+
+    --gold:#d4af37;
+    --gold-light:#f1d66b;
+
+    --white:#f7f6ee;
+    --muted:#aabbb5;
+
+    --border:rgba(212,175,55,.20);
+
+    --danger:#ff7777;
+    --success:#65dfa0;
+
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+
+    font-family:Inter,Arial,sans-serif;
+
+    color:var(--white);
+
+    min-height:100vh;
+
+    background:
+
+    radial-gradient(
+        circle at 10% 0%,
+        rgba(212,175,55,.08),
+        transparent 28%
+    ),
+
+    radial-gradient(
+        circle at 100% 20%,
+        rgba(24,96,76,.15),
+        transparent 30%
+    ),
+
+    linear-gradient(
+        145deg,
+        #021410,
+        #06241d,
+        #031713
+    );
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    min-height:78px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:11px 5%;
+
+    background:
+    rgba(3,23,19,.92);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+
+.brand{
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    text-decoration:none;
+
+}
+
+
+.brand img{
+
+    width:50px;
+    height:50px;
+
+    object-fit:contain;
+
+    border-radius:50%;
+
+}
+
+
+.brand-text{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+
+.brand-name{
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    font-size:25px;
+
+    font-weight:700;
+
+    letter-spacing:1.5px;
+
+    color:var(--gold-light);
+
+    line-height:1;
+
+}
+
+
+.brand-sub{
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    color:#9eafa9;
+
+    margin-top:5px;
+
+}
+
+
+.back-btn{
+
+    text-decoration:none;
+
+    border:1px solid var(--gold);
+
+    color:var(--gold-light);
+
+    padding:10px 15px;
+
+    border-radius:11px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+
+.back-btn:hover{
+
+    background:var(--gold);
+
+    color:#071711;
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+
+    width:min(1100px,92%);
+
+    margin:auto;
+
+    padding:40px 0 60px;
+
+}
+
+
+/* =========================
+   PAGE HERO
+========================= */
+
+.page-hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:32px;
+
+    border-radius:25px;
+
+    margin-bottom:28px;
+
+    border:1px solid var(--border);
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #123d31,
+        #06271f
+    );
+
+}
+
+
+.page-hero::after{
+
+    content:"✦";
+
+    position:absolute;
+
+    right:30px;
+    top:-5px;
+
+    font-size:100px;
+
+    color:
+    rgba(212,175,55,.06);
+
+}
+
+
+.page-hero h1{
+
+    position:relative;
+    z-index:2;
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    color:var(--gold-light);
+
+    font-size:40px;
+
+    margin-bottom:7px;
+
+}
+
+
+.page-hero p{
+
+    position:relative;
+    z-index:2;
+
+    color:#b6c7c1;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+}
+
+
+.arabic{
+
+    position:relative;
+    z-index:2;
+
+    font-family:Amiri,serif;
+
+    color:#d8bd52;
+
+    font-size:24px;
+
+    margin-top:10px;
+
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.top-bar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:18px;
+
+}
+
+
+.top-title{
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    color:var(--gold-light);
+
+    font-size:29px;
+
+}
+
+
+.add-btn{
+
+    border:0;
+
+    cursor:pointer;
+
+    padding:12px 18px;
+
+    border-radius:11px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #f0d15d,
+        #c59d28
+    );
+
+    color:#10170e;
+
+    font-weight:800;
+
+}
+
+
+/* =========================
+   PLAN GRID
+========================= */
+
+.plans{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+
+/* =========================
+   PLAN CARD
+========================= */
+
+.plan-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:25px;
+
+    border-radius:22px;
+
+    background:
+
+    linear-gradient(
+        145deg,
+        #0a3026,
+        #06241d
+    );
+
+    border:
+    1px solid
+    rgba(174,204,195,.14);
+
+    box-shadow:
+    0 12px 30px
+    rgba(0,0,0,.20);
+
+}
+
+
+.plan-card.inactive{
+
+    opacity:.62;
+
+}
+
+
+.plan-card::after{
+
+    content:"✦";
+
+    position:absolute;
+
+    right:-5px;
+    top:-22px;
+
+    font-size:80px;
+
+    color:
+    rgba(212,175,55,.04);
+
+}
+
+
+.plan-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+
+.plan-name{
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    color:var(--gold-light);
+
+    font-size:27px;
+
+    font-weight:700;
+
+}
+
+
+.status{
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    font-size:9px;
+
+    font-weight:800;
+
+}
+
+
+.status.active{
+
+    background:#164d32;
+
+    color:#6dffae;
+
+}
+
+
+.status.inactive{
+
+    background:#3b3030;
+
+    color:#ff9b9b;
+
+}
+
+
+.price{
+
+    margin:22px 0 12px;
+
+    color:white;
+
+    font-size:30px;
+
+    font-weight:800;
+
+}
+
+
+.price span{
+
+    color:#8ea29b;
+
+    font-size:12px;
+
+    font-weight:500;
+
+}
+
+
+.description{
+
+    min-height:70px;
+
+    color:#9fb1ab;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+}
+
+
+.plan-actions{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:20px;
+
+}
+
+
+.edit-btn,
+.toggle-btn,
+.delete-btn{
+
+    flex:1;
+
+    border-radius:9px;
+
+    padding:10px 7px;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.edit-btn{
+
+    border:1px solid var(--gold);
+
+    background:transparent;
+
+    color:var(--gold-light);
+
+}
+
+
+.toggle-btn{
+
+    border:1px solid #557a6d;
+
+    background:#12382e;
+
+    color:#b9ccc5;
+
+}
+
+
+.delete-btn{
+
+    border:1px solid #754848;
+
+    background:#351f1f;
+
+    color:#ff9b9b;
+
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+
+    text-align:center;
+
+    padding:50px 20px;
+
+    color:#899c95;
+
+    border:1px dashed #34554a;
+
+    border-radius:20px;
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:999;
+
+    padding:20px;
+
+    background:
+    rgba(0,0,0,.72);
+
+    backdrop-filter:blur(8px);
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.modal.show{
+
+    display:flex;
+
+}
+
+
+.modal-box{
+
+    width:min(500px,100%);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    padding:28px;
+
+    border-radius:23px;
+
+    background:#08271f;
+
+    border:
+    1px solid
+    rgba(212,175,55,.30);
+
+    box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.45);
+
+}
+
+
+.modal-box h2{
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    color:var(--gold-light);
+
+    font-size:30px;
+
+    margin-bottom:20px;
+
+}
+
+
+.form-group{
+
+    margin-bottom:15px;
+
+}
+
+
+.form-group label{
+
+    display:block;
+
+    color:#aebfb9;
+
+    font-size:12px;
+
+    margin-bottom:7px;
+
+}
+
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+
+    border:
+    1px solid
+    #34564b;
+
+    outline:none;
+
+    background:#041b15;
+
+    color:white;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    font-family:Inter,sans-serif;
+
+}
+
+
+.form-group textarea{
+
+    min-height:100px;
+
+    resize:vertical;
+
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    border-color:var(--gold);
+
+}
+
+
+.modal-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+
+.save-btn{
+
+    flex:1;
+
+    border:0;
+
+    cursor:pointer;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #f0d15d,
+        #c59d28
+    );
+
+    color:#10170e;
+
+    font-weight:800;
+
+}
+
+
+.cancel-btn{
+
+    flex:1;
+
+    border:1px solid #526c63;
+
+    background:transparent;
+
+    color:#b9c8c3;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading{
+
+    text-align:center;
+
+    padding:40px;
+
+    color:#93a69f;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .plans{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .brand-name{
+
+        font-size:19px;
+
+    }
+
+
+    .brand-sub{
+
+        display:none;
+
+    }
+
+
+    .brand img{
+
+        width:43px;
+        height:43px;
+
+    }
+
+
+    .back-btn{
+
+        padding:8px 11px;
+
+        font-size:10px;
+
+    }
+
+
+    .container{
+
+        width:92%;
+
+        padding-top:25px;
+
+    }
+
+
+    .page-hero{
+
+        padding:25px 21px;
+
+        border-radius:21px;
+
+    }
+
+
+    .page-hero h1{
+
+        font-size:32px;
+
+    }
+
+
+    .top-bar{
+
+        align-items:flex-start;
+
+    }
+
+
+    .top-title{
+
+        font-size:26px;
+
+    }
+
+
+    .add-btn{
+
+        padding:10px 12px;
+
+        font-size:11px;
+
+    }
+
+
+    .plans{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .plan-card{
+
+        padding:23px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+
+<a
+href="admin.html"
+class="brand">
+
+
+<img
+src="images/logo.png"
+alt="Al Noor Islamic Academy">
+
+
+<div class="brand-text">
+
+
+<div class="brand-name">
+
+AL NOOR ISLAMIC ACADEMY
+
+</div>
+
+
+<div class="brand-sub">
+
+ADMINISTRATION PANEL
+
+</div>
+
+
+</div>
+
+
+</a>
+
+
+
+<a
+href="admin.html"
+class="back-btn">
+
+← Admin Panel
+
+</a>
+
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="page-hero">
+
+
+<h1>
+
+Membership Management
+
+</h1>
+
+
+<p>
+
+Create and manage the membership plans
+available to students.
+
+</p>
+
+
+<div class="arabic">
+
+أكاديمية النور الإسلامية
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<div class="top-bar">
+
+
+<h2 class="top-title">
+
+Membership Plans
+
+</h2>
+
+
+<button
+id="addPlanButton"
+class="add-btn">
+
++ Add Membership
+
+</button>
+
+
+</div>
+
+
+
+<!-- =========================
+     PLANS
+========================= -->
+
+<section
+id="plansContainer"
+class="plans">
+
+
+<div class="loading">
+
+Loading membership plans...
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+id="planModal"
+class="modal">
+
+
+<div class="modal-box">
+
+
+<h2 id="modalTitle">
+
+Add Membership
+
+</h2>
+
+
+<form id="planForm">
+
+
+<div class="form-group">
+
+<label>
+Plan ID
+</label>
+
+<input
+type="text"
+id="planId"
+placeholder="Example: basic"
+required>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+Membership Name
+</label>
+
+<input
+type="text"
+id="planName"
+placeholder="Example: Basic Membership"
+required>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+Price (₹)
+</label>
+
+<input
+type="number"
+id="planPrice"
+placeholder="299"
+min="1"
+required>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+Description
+</label>
+
+<textarea
+id="planDescription"
+placeholder="Describe this membership..."></textarea>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+Features
+</label>
+
+<textarea
+id="planFeatures"
+placeholder="Quran Reading&#10;Live Classes&#10;Islamic Studies"></textarea>
+
+</div>
+
+
+
+<div class="modal-actions">
+
+
+<button
+type="button"
+id="cancelButton"
+class="cancel-btn">
+
+Cancel
+
+</button>
+
+
+<button
+type="submit"
+class="save-btn">
+
+Save Membership
+
+</button>
+
+
+</div>
+
+
+</form>
+
+
+</div>
+
+</div>
+
+
+
+<script type="module">
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    getDoc,
+    setDoc,
+    updateDoc,
+    deleteDoc
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+
+    authDomain:
+    "al-noor-islamic-academy.firebaseapp.com",
+
+    projectId:
+    "al-noor-islamic-academy",
+
+    storageBucket:
+    "al-noor-islamic-academy.firebasestorage.app",
+
+    messagingSenderId:
+    "571799539455",
+
+    appId:
+    "1:571799539455:web:d42728685908430296c6ca"
+
+};
+
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const plansContainer =
+document.getElementById(
+    "plansContainer"
+);
+
+
+const planModal =
+document.getElementById(
+    "planModal"
+);
+
+
+const planForm =
+document.getElementById(
+    "planForm"
+);
+
+
+const modalTitle =
+document.getElementById(
+    "modalTitle"
+);
+
+
+const addPlanButton =
+document.getElementById(
+    "addPlanButton"
+);
+
+
+const cancelButton =
+document.getElementById(
+    "cancelButton"
+);
+
+
+const planId =
+document.getElementById(
+    "planId"
+);
+
+
+const planName =
+document.getElementById(
+    "planName"
+);
+
+
+const planPrice =
+document.getElementById(
+    "planPrice"
+);
+
+
+const planDescription =
+document.getElementById(
+    "planDescription"
+);
+
+
+const planFeatures =
+document.getElementById(
+    "planFeatures"
+);
+
+
+
+let editingId = null;
+
+
+
+/* =========================
+   ESCAPE
+========================= */
+
+function escapeHtml(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "";
+
+    }
+
+
+    return String(value)
+
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* =========================
+   ADMIN CHECK
+========================= */
+
+async function checkAdmin(user){
+
+    if(!user){
+
+        window.location.replace(
+            "admin-login.html"
+        );
+
+        return false;
+
+    }
+
+
+    const adminRef =
+    doc(
+        db,
+        "admins",
+        user.uid
+    );
+
+
+    const adminSnap =
+    await getDoc(adminRef);
+
+
+    if(!adminSnap.exists()){
+
+        alert(
+            "You are not authorized as an admin."
+        );
+
+
+        window.location.replace(
+            "admin-login.html"
+        );
+
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+
+/* =========================
+   LOAD PLANS
+========================= */
+
+async function loadPlans(){
+
+    plansContainer.innerHTML = `
+
+        <div class="loading">
+
+            Loading membership plans...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "membershipPlans"
+            )
+        );
+
+
+        if(snapshot.empty){
+
+            plansContainer.innerHTML = `
+
+                <div class="empty">
+
+                    <h3>
+                        No Membership Plans
+                    </h3>
+
+                    <p>
+                        Click "Add Membership" to create your first plan.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        let html = "";
+
+
+        snapshot.forEach(item => {
+
+            const data =
+            item.data();
+
+
+            const active =
+            data.active !== false;
+
+
+            const features =
+            Array.isArray(data.features)
+            ? data.features
+            : [];
+
+
+            const featureText =
+            features.length
+            ? features.join(" • ")
+            : data.description ||
+              "Membership plan";
+
+
+            html += `
+
+                <article
+                class="plan-card
+                ${active ? "" : "inactive"}">
+
+
+                    <div class="plan-top">
+
+
+                        <div class="plan-name">
+
+                            ${escapeHtml(
+                                data.name ||
+                                item.id
+                            )}
+
+                        </div>
+
+
+                        <span
+                        class="status
+                        ${active ? "active" : "inactive"}">
+
+                            ${active
+                            ? "ACTIVE"
+                            : "INACTIVE"}
+
+                        </span>
+
+
+                    </div>
+
+
+
+                    <div class="price">
+
+                        ₹${Number(
+                            data.price || 0
+                        )}
+
+                        <span>
+                            / month
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="description">
+
+                        ${escapeHtml(
+                            data.description ||
+                            "No description added."
+                        )}
+
+                        <br><br>
+
+                        <small>
+                            ${escapeHtml(
+                                featureText
+                            )}
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="plan-actions">
+
+
+                        <button
+                        class="edit-btn"
+                        data-edit="${escapeHtml(item.id)}">
+
+                            Edit
+
+                        </button>
+
+
+                        <button
+                        class="toggle-btn"
+                        data-toggle="${escapeHtml(item.id)}">
+
+                            ${active
+                            ? "Disable"
+                            : "Enable"}
+
+                        </button>
+
+
+                        <button
+                        class="delete-btn"
+                        data-delete="${escapeHtml(item.id)}">
+
+                            Delete
+
+                        </button>
+
+
+                    </div>
+
+
+                </article>
+
+            `;
+
+        });
+
+
+        plansContainer.innerHTML =
+        html;
+
+
+        attachPlanButtons();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+
+        plansContainer.innerHTML = `
+
+            <div class="empty">
+
+                Unable to load membership plans.
+
+                <br><br>
+
+                ${escapeHtml(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+function attachPlanButtons(){
+
+
+    document
+    .querySelectorAll(
+        "[data-edit]"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                openEdit(
+                    button.dataset.edit
+                );
+
+            }
+        );
+
+    });
+
+
+
+    document
+    .querySelectorAll(
+        "[data-toggle]"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                togglePlan(
+                    button.dataset.toggle
+                );
+
+            }
+        );
+
+    });
+
+
+
+    document
+    .querySelectorAll(
+        "[data-delete]"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                deletePlan(
+                    button.dataset.delete
+                );
+
+            }
+        );
+
+    });
+
+}
+
+
+
+/* =========================
+   OPEN ADD
+========================= */
+
+addPlanButton.addEventListener(
+    "click",
+    () => {
+
+        editingId = null;
+
+
+        modalTitle.textContent =
+        "Add Membership";
+
+
+        planForm.reset();
+
+
+        planId.disabled = false;
+
+
+        planModal.classList.add(
+            "show"
+        );
+
+    }
+);
+
+
+
+/* =========================
+   CANCEL
+=================
