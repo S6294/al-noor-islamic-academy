@@ -1,1 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arabic Language | Al Noor Islamic Academy</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+    background:#071a17;
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 20px;
+    background:#0b2520;
+    border-bottom:1px solid #29453e;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.back{
+    color:#d4af37;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.hero{
+    max-width:1000px;
+    margin:auto;
+    padding:45px 20px;
+    text-align:center;
+}
+
+.course-icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    color:#d4af37;
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#aaa;
+    max-width:650px;
+    margin:auto;
+    line-height:1.7;
+}
+
+.info-container{
+    max-width:1000px;
+    margin:auto;
+    padding:0 20px 40px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.info-card{
+    background:#0c2923;
+    border:1px solid #29453e;
+    border-radius:15px;
+    padding:22px;
+    text-align:center;
+}
+
+.info-card h3{
+    color:#d4af37;
+    margin-bottom:8px;
+    font-size:16px;
+}
+
+.info-card p{
+    color:#ccc;
+    font-size:14px;
+}
+
+.details,.lessons{
+    background:#0c2923;
+    border:1px solid #29453e;
+    border-radius:18px;
+    padding:28px;
+    margin-bottom:25px;
+}
+
+.details h2,.lessons h2{
+    color:#d4af37;
+    margin-bottom:15px;
+}
+
+.details p{
+    color:#ccc;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.details ul{
+    list-style:none;
+    color:#ccc;
+    line-height:2;
+}
+
+.lesson{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    margin-bottom:10px;
+    background:#071a17;
+    border-radius:10px;
+}
+
+.lesson-name{
+    color:#ddd;
+    font-size:14px;
+}
+
+.lesson-status{
+    color:#d4af37;
+    font-size:12px;
+}
+
+.lesson.open{
+    cursor:pointer;
+    border:1px solid #d4af37;
+}
+
+.lesson.open .lesson-status{
+    color:#9ff0c9;
+}
+
+.access-status{
+    display:inline-block;
+    margin-bottom:12px;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.access-active{
+    background:#174f3d;
+    color:#9ff0c9;
+}
+
+.access-required{
+    background:#3d3517;
+    color:#f1d875;
+}
+
+.enroll{
+    text-align:center;
+    padding:20px;
+}
+
+.enroll-button{
+    display:inline-block;
+    background:#d4af37;
+    color:#071a17;
+    padding:14px 35px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:16px;
+}
+
+.enroll p{
+    color:#999;
+    font-size:13px;
+    margin-top:12px;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    background:#051310;
+    color:#888;
+    margin-top:20px;
+}
+
+@media(max-width:600px){
+    .hero h1{font-size:28px}
+    .lesson{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">AL NOOR</div>
+    <a href="courses.html" class="back">← Courses</a>
+</header>
+
+<section class="hero">
+    <div class="course-icon">🌙</div>
+
+    <h1>Arabic Language</h1>
+
+    <p>
+        Learn Arabic reading, grammar, vocabulary and conversation
+        through a structured online course.
+    </p>
+</section>
+
+<section class="info-container">
+
+    <div class="info-grid">
+
+        <div class="info-card">
+            <h3>👨‍🏫 Teacher</h3>
+            <p>Qualified Teacher</p>
+        </div>
+
+        <div class="info-card">
+            <h3>⏱️ Duration</h3>
+            <p>12 Weeks</p>
+        </div>
+
+        <div class="info-card">
+            <h3>📚 Lessons</h3>
+            <p>30 Lessons</p>
+        </div>
+
+        <div class="info-card">
+            <h3>🎓 Level</h3>
+            <p>Beginner</p>
+        </div>
+
+    </div>
+
+    <div class="details">
+        <h2>About This Course</h2>
+
+        <p>
+            This course is designed for students who want to learn
+            Arabic from the basics and gradually improve their
+            reading, grammar, vocabulary and conversation skills.
+        </p>
+
+        <ul>
+            <li>✓ Arabic Reading</li>
+            <li>✓ Basic Arabic Grammar</li>
+            <li>✓ Vocabulary Building</li>
+            <li>✓ Conversation Practice</li>
+            <li>✓ Reading & Writing</li>
+        </ul>
+    </div>
+
+    <div class="lessons">
+        <h2>Course Lessons</h2>
+
+        <div class="lesson">
+            <span class="lesson-name">Lesson 01 — Arabic Alphabet</span>
+            <span class="lesson-status">🔒 Locked</span>
+        </div>
+
+        <div class="lesson">
+            <span class="lesson-name">Lesson 02 — Arabic Pronunciation</span>
+            <span class="lesson-status">🔒 Locked</span>
+        </div>
+
+        <div class="lesson">
+            <span class="lesson-name">Lesson 03 — Basic Vocabulary</span>
+            <span class="lesson-status">🔒 Locked</span>
+        </div>
+
+        <div class="lesson">
+            <span class="lesson-name">Lesson 04 — Basic Grammar</span>
+            <span class="lesson-status">🔒 Locked</span>
+        </div>
+
+        <div class="lesson">
+            <span class="lesson-name">Lesson 05 — Simple Conversation</span>
+            <span class="lesson-status">🔒 Locked</span>
+        </div>
+    </div>
+
+    <div class="enroll">
+
+        <div id="accessStatus"
+             class="access-status access-required">
+            Checking course access...
+        </div>
+
+        <a id="enrollButton"
+           href="payment.html?course=arabic-language&name=Arabic%20Language&price=299"
+           class="enroll-button">
+            Join Arabic Language — ₹299
+        </a>
+
+        <p id="accessText">
+            Purchase the Arabic Language course for ₹299 to access all lessons.
+        </p>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Al Noor Islamic Academy
+</footer>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+    authDomain: "al-noor-islamic-academy.firebaseapp.com",
+    projectId: "al-noor-islamic-academy",
+    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+    messagingSenderId: "571799539455",
+    appId: "1:571799539455:web:d42728685908430296c6ca"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+const accessStatus =
+    document.getElementById("accessStatus");
+
+const enrollButton =
+    document.getElementById("enrollButton");
+
+const accessText =
+    document.getElementById("accessText");
+
+
+function setCourseAccess(active){
+
+    const statuses =
+        document.querySelectorAll(".lesson-status");
+
+    const lessons =
+        document.querySelectorAll(".lesson");
+
+
+    if(active){
+
+        accessStatus.className =
+            "access-status access-active";
+
+        accessStatus.textContent =
+            "✓ Arabic Language Access Active";
+
+        enrollButton.style.display =
+            "none";
+
+        accessText.textContent =
+            "You have full access to the Arabic Language course.";
+
+        statuses.forEach((status) => {
+            status.textContent =
+                "▶ Available";
+        });
+
+        lessons.forEach((lesson) => {
+            lesson.classList.add("open");
+        });
+
+    }else{
+
+        accessStatus.className =
+            "access-status access-required";
+
+        accessStatus.textContent =
+            "Arabic Language Purchase Required";
+
+        enrollButton.style.display =
+            "inline-block";
+
+        accessText.textContent =
+            "Purchase the Arabic Language course for ₹299 to access all lessons.";
+
+        statuses.forEach((status) => {
+            status.textContent =
+                "🔒 Locked";
+        });
+
+    }
+}
+
+
+onAuthStateChanged(auth, async (user) => {
+
+    if(!user){
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    try{
+
+        const studentRef =
+            doc(db, "students", user.uid);
+
+        const studentSnap =
+            await getDoc(studentRef);
+
+
+        if(!studentSnap.exists()){
+
+            setCourseAccess(false);
+
+            return;
+        }
+
+
+        const studentData =
+            studentSnap.data();
+
+
+        const hasArabicAccess =
+            studentData.arabicLanguageActive === true;
+
+
+        setCourseAccess(
+            hasArabicAccess
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Arabic Language access check error:",
+            error
+        );
+
+        // Never grant paid access when Firebase check fails.
+        setCourseAccess(false);
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
 
