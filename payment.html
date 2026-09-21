@@ -203,21 +203,21 @@ const RAZORPAY_KEY_ID =
 const params =
 new URLSearchParams(window.location.search);
 
-const plan =
-params.get("plan");
+const course =
+params.get("course");
 
-const planName =
+const courseName =
 params.get("name");
 
-const planPrice =
+const coursePrice =
 params.get("price");
 
 
 document.getElementById("planName").textContent =
-planName || "Membership";
+courseName || "Course";
 
 document.getElementById("planPrice").textContent =
-planPrice || "0";
+coursePrice || "0";
 
 
 // =========================
