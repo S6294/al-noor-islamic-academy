@@ -139,7 +139,7 @@ import {
   getFirestore,
   doc,
   getDoc,
-  setDoc,
+  updateDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -193,7 +193,7 @@ const BACKEND_URL =
 // এখানে তোমার সম্পূর্ণ Test Key ID বসাও
 
 const RAZORPAY_KEY_ID =
-"rzp_test_TdwKPsC4k8qiM5";
+"rzp_live_TejWmbl3MZQfm2";
 
 
 // =========================
@@ -203,41 +203,21 @@ const RAZORPAY_KEY_ID =
 const params =
 new URLSearchParams(window.location.search);
 
-const course =
-params.get("course");
+const plan =
+params.get("plan");
 
-const courseName =
+const planName =
 params.get("name");
 
-const coursePrice =
+const planPrice =
 params.get("price");
 
-const validCourses = {
-  "tajweed": {
-    name: "Tajweed",
-    price: "299"
-  },
-  "arabic-language": {
-    name: "Arabic Language",
-    price: "299"
-  }
-};
 
-const selectedCourse = validCourses[course];
+document.getElementById("planName").textContent =
+planName || "Membership";
 
-if (selectedCourse) {
-  document.getElementById("planName").textContent =
-    selectedCourse.name;
-
-  document.getElementById("planPrice").textContent =
-    selectedCourse.price;
-} else {
-  document.getElementById("planName").textContent =
-    "Invalid Course";
-
-  document.getElementById("planPrice").textContent =
-    "0";
-}
+document.getElementById("planPrice").textContent =
+planPrice || "0";
 
 
 // =========================
@@ -322,7 +302,7 @@ document.getElementById("payBtn")
   }
 
 
-  if (!selectedCourse || !course) {
+  if (!plan) {
 
     message.textContent =
     "Invalid course.";
@@ -492,13 +472,11 @@ document.getElementById("payBtn")
               ? "tajweedPurchasedAt"
               : "arabicLanguagePurchasedAt";
 
-            await setDoc(studentRef, {
+            await updateDoc(studentRef, {
               [courseField]: true,
               [paymentField]: response.razorpay_payment_id,
               [orderField]: response.razorpay_order_id,
               [purchaseField]: serverTimestamp()
-            }, {
-              merge: true
             });
 
             message.innerHTML =
