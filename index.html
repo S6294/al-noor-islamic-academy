@@ -1,1228 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Al Noor Islamic Academy - Learn Quran, Arabic, Hadith and Islamic Studies online.">
-
-    <title>Al Noor Islamic Academy</title>
-
-
-    <!-- PREMIUM FONTS -->
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
-
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-
-        body {
-            font-family: 'Inter', Arial, sans-serif;
-            background: #061713;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-
-
-        /* =========================
-           GLOBAL
-        ========================= */
-
-        :root {
-            --green: #061713;
-            --green2: #0a211c;
-            --green3: #0d2d25;
-            --gold: #d4af37;
-            --gold-light: #f0d477;
-            --text: #ffffff;
-            --muted: #aebbb7;
-            --border: rgba(212, 175, 55, 0.25);
-        }
-
-
-        a {
-            text-decoration: none;
-        }
-
-
-        .container {
-            width: min(1120px, 92%);
-            margin: auto;
-        }
-
-
-        .gold {
-            color: var(--gold);
-        }
-
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            height: 76px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 5%;
-
-            background: rgba(6, 23, 19, 0.92);
-
-            backdrop-filter: blur(14px);
-
-            border-bottom: 1px solid rgba(212,175,55,0.15);
-        }
-
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-        }
-
-
-        .brand img {
-            width: 48px;
-            height: 48px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            background: #ffffff;
-        }
-
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-        }
-
-
-        .brand-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 25px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--gold);
-        }
-
-
-        .brand-sub {
-            font-size: 8px;
-            letter-spacing: 2px;
-            color: #b7c2be;
-            margin-top: 5px;
-        }
-
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-
-        .admin-link {
-            color: var(--gold-light);
-            font-size: 13px;
-            font-weight: 600;
-            padding: 9px 10px;
-        }
-
-
-        .login-btn {
-            background: linear-gradient(
-                135deg,
-                #e4c24c,
-                #c99f25
-            );
-
-            color: #071a17;
-
-            padding: 11px 20px;
-
-            border-radius: 10px;
-
-            font-weight: 700;
-
-            box-shadow:
-                0 8px 25px rgba(212,175,55,0.18);
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            position: relative;
-
-            min-height: 720px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-
-            padding: 70px 20px 90px;
-
-            overflow: hidden;
-        }
-
-
-        .hero::before {
-            content: "";
-
-            position: absolute;
-
-            width: 500px;
-            height: 500px;
-
-            border-radius: 50%;
-
-            background: rgba(212,175,55,0.07);
-
-            filter: blur(50px);
-
-            top: -180px;
-            left: 50%;
-
-            transform: translateX(-50%);
-        }
-
-
-        .hero::after {
-            content: "";
-
-            position: absolute;
-
-            width: 320px;
-            height: 320px;
-
-            border-radius: 50%;
-
-            border: 1px solid rgba(212,175,55,0.12);
-
-            top: 110px;
-            left: 50%;
-
-            transform: translateX(-50%);
-        }
-
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-
-            max-width: 850px;
-        }
-
-
-        .hero-logo {
-            width: 150px;
-            height: 150px;
-
-            object-fit: cover;
-
-            border-radius: 50%;
-
-            background: white;
-
-            border: 3px solid var(--gold);
-
-            box-shadow:
-                0 0 0 8px rgba(212,175,55,0.06),
-                0 20px 60px rgba(0,0,0,0.45);
-
-            margin-bottom: 28px;
-        }
-
-
-        .arabic {
-            font-family: 'Amiri', serif;
-
-            font-size: 34px;
-
-            color: var(--gold-light);
-
-            direction: rtl;
-
-            margin-bottom: 10px;
-        }
-
-
-        .welcome {
-            color: #8fa39d;
-
-            font-size: 12px;
-
-            letter-spacing: 4px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 13px;
-        }
-
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: clamp(46px, 8vw, 76px);
-
-            line-height: 0.95;
-
-            font-weight: 700;
-
-            letter-spacing: 1px;
-
-            margin-bottom: 22px;
-
-            background: linear-gradient(
-                135deg,
-                #ffffff 30%,
-                #d4af37 90%
-            );
-
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-
-        .hero p {
-            max-width: 650px;
-
-            margin: auto;
-
-            color: #b8c3bf;
-
-            font-size: 16px;
-
-            line-height: 1.8;
-
-            margin-bottom: 32px;
-        }
-
-
-        .hero-buttons {
-            display: flex;
-
-            justify-content: center;
-
-            gap: 13px;
-
-            flex-wrap: wrap;
-        }
-
-
-        .primary-btn {
-            display: inline-block;
-
-            padding: 15px 27px;
-
-            border-radius: 11px;
-
-            background: linear-gradient(
-                135deg,
-                #e4c24c,
-                #c79c20
-            );
-
-            color: #071a17;
-
-            font-weight: 700;
-
-            box-shadow:
-                0 12px 30px rgba(212,175,55,0.18);
-        }
-
-
-        .secondary-btn {
-            display: inline-block;
-
-            padding: 14px 27px;
-
-            border-radius: 11px;
-
-            border: 1px solid rgba(212,175,55,0.5);
-
-            color: var(--gold-light);
-
-            font-weight: 600;
-
-            background: rgba(255,255,255,0.02);
-        }
-
-
-        /* =========================
-           STATS
-        ========================= */
-
-        .stats {
-            padding: 0 20px 80px;
-        }
-
-
-        .stats-box {
-            max-width: 900px;
-
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            background: linear-gradient(
-                145deg,
-                #0b2922,
-                #081d18
-            );
-
-            border: 1px solid var(--border);
-
-            border-radius: 20px;
-
-            overflow: hidden;
-        }
-
-
-        .stat {
-            text-align: center;
-
-            padding: 25px 12px;
-
-            border-right: 1px solid var(--border);
-        }
-
-
-        .stat:last-child {
-            border-right: none;
-        }
-
-
-        .stat strong {
-            display: block;
-
-            font-family: 'Cormorant Garamond', serif;
-
-            color: var(--gold);
-
-            font-size: 30px;
-
-            margin-bottom: 4px;
-        }
-
-
-        .stat span {
-            color: #9caeaa;
-
-            font-size: 12px;
-
-            letter-spacing: 1px;
-        }
-
-
-        /* =========================
-           SECTION TITLE
-        ========================= */
-
-        .section-title {
-            text-align: center;
-
-            margin-bottom: 42px;
-        }
-
-
-        .section-title small {
-            color: var(--gold);
-
-            text-transform: uppercase;
-
-            letter-spacing: 3px;
-
-            font-size: 11px;
-        }
-
-
-        .section-title h2 {
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: 43px;
-
-            margin-top: 8px;
-
-            color: white;
-        }
-
-
-        .section-title p {
-            color: #899b96;
-
-            margin-top: 10px;
-
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           COURSES
-        ========================= */
-
-        .courses {
-            padding: 80px 20px;
-        }
-
-
-        .course-container {
-
-            width: min(1100px, 92%);
-
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(250px, 1fr));
-
-            gap: 18px;
-        }
-
-
-        .course-card {
-
-            position: relative;
-
-            background: linear-gradient(
-                145deg,
-                #0d3028,
-                #09221d
-            );
-
-            padding: 28px;
-
-            min-height: 210px;
-
-            border-radius: 18px;
-
-            border: 1px solid rgba(212,175,55,0.16);
-
-            transition: 0.3s;
-
-            overflow: hidden;
-        }
-
-
-        .course-card::before {
-            content: "";
-
-            position: absolute;
-
-            width: 100px;
-            height: 100px;
-
-            border-radius: 50%;
-
-            background: rgba(212,175,55,0.05);
-
-            top: -40px;
-            right: -40px;
-        }
-
-
-        .course-card:hover {
-            transform: translateY(-6px);
-
-            border-color:
-                rgba(212,175,55,0.45);
-
-            box-shadow:
-                0 15px 40px rgba(0,0,0,0.25);
-        }
-
-
-        .course-icon {
-            font-size: 30px;
-
-            margin-bottom: 18px;
-        }
-
-
-        .course-card h3 {
-            font-family: 'Cormorant Garamond', serif;
-
-            color: var(--gold);
-
-            font-size: 25px;
-
-            margin-bottom: 9px;
-        }
-
-
-        .course-card p {
-            color: #aebbb7;
-
-            font-size: 13px;
-
-            line-height: 1.7;
-        }
-
-
-        /* =========================
-           WHY AL NOOR
-        ========================= */
-
-        .why {
-            padding: 80px 20px;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #061713,
-                    #0a211c,
-                    #061713
-                );
-        }
-
-
-        .why-grid {
-            width: min(1000px, 92%);
-
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-
-            gap: 18px;
-        }
-
-
-        .why-card {
-            padding: 28px;
-
-            text-align: center;
-
-            border: 1px solid rgba(212,175,55,0.14);
-
-            border-radius: 18px;
-
-            background: rgba(255,255,255,0.025);
-        }
-
-
-        .why-icon {
-            font-size: 30px;
-
-            margin-bottom: 15px;
-        }
-
-
-        .why-card h3 {
-            color: white;
-
-            font-size: 17px;
-
-            margin-bottom: 8px;
-        }
-
-
-        .why-card p {
-            color: #91a39e;
-
-            font-size: 13px;
-
-            line-height: 1.6;
-        }
-/* =========================
-   FOUNDER
-========================= */
-
-.founder {
-    padding: 80px 20px;
-    text-align: center;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Al Noor Islamic Academy - Online Quran, Tajweed, Hifz, Arabic, Hadith and Islamic Studies.">
+<title>Al Noor Islamic Academy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:#061713;color:#fff;line-height:1.6}
+a{text-decoration:none}
+:root{--green:#061713;--green2:#0b2922;--green3:#0d3028;--gold:#d4af37;--gold2:#f0d477;--muted:#aebbb7}
+.container{width:min(1120px,92%);margin:auto}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:1000;height:72px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(6,23,19,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(212,175,55,.15)}
+.brand{display:flex;align-items:center;gap:10px;color:#fff}
+.brand img{width:45px;height:45px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid var(--gold)}
+.brand-name{font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:24px;font-weight:700;letter-spacing:2px;display:block;line-height:1}
+.brand-sub{font-size:8px;color:#aebbb7;letter-spacing:2px}
+.header-actions{display:flex;align-items:center;gap:10px}
+.admin{color:var(--gold2);font-size:13px;padding:8px 10px}
+.login{background:linear-gradient(135deg,#e4c24c,#c99f25);color:#071a17;padding:10px 18px;border-radius:10px;font-weight:700}
+
+/* HERO */
+.hero{min-height:700px;display:flex;align-items:center;justify-content:center;text-align:center;padding:70px 20px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:rgba(212,175,55,.06);filter:blur(55px);top:-180px;left:50%;transform:translateX(-50%)}
+.hero-content{position:relative;z-index:2;max-width:850px}
+.hero-logo{width:145px;height:145px;border-radius:50%;object-fit:cover;background:#fff;border:3px solid var(--gold);box-shadow:0 0 0 8px rgba(212,175,55,.05),0 20px 55px rgba(0,0,0,.4);margin-bottom:25px}
+.welcome{font-size:11px;letter-spacing:4px;color:#8fa39d;margin-bottom:10px}
+.arabic{font-family:Amiri,serif;color:var(--gold2);font-size:31px;direction:rtl;margin-bottom:8px}
+.hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(45px,8vw,76px);line-height:1;color:#fff;margin-bottom:20px}
+.hero p{max-width:650px;margin:auto;color:#b8c3bf;font-size:15px;line-height:1.8;margin-bottom:30px}
+.buttons{display:flex;justify-content:center;gap:13px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 25px;border-radius:11px;font-weight:700}
+.primary{background:linear-gradient(135deg,#e4c24c,#c79c20);color:#071a17}
+.secondary{border:1px solid rgba(212,175,55,.5);color:var(--gold2);background:rgba(255,255,255,.02)}
+
+/* STATS */
+.stats{padding:0 20px 75px}
+.stats-box{max-width:900px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);background:linear-gradient(145deg,#0b2922,#081d18);border:1px solid rgba(212,175,55,.2);border-radius:20px;overflow:hidden}
+.stat{text-align:center;padding:24px 12px;border-right:1px solid rgba(212,175,55,.2)}
+.stat:last-child{border-right:0}
+.stat strong{display:block;color:var(--gold);font-family:"Cormorant Garamond",serif;font-size:30px}
+.stat span{color:#9caeaa;font-size:12px}
+
+/* COMMON */
+section{scroll-margin-top:80px}
+.section{padding:80px 20px}
+.title{text-align:center;margin-bottom:40px}
+.title small{color:var(--gold);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.title h2{font-family:"Cormorant Garamond",serif;font-size:43px;margin-top:7px}
+.title p{color:#899b96;font-size:14px;margin-top:8px}
+
+/* COURSES */
+.course-grid{width:min(1100px,92%);margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:linear-gradient(145deg,#0d3028,#09221d);padding:28px;border-radius:18px;border:1px solid rgba(212,175,55,.15);transition:.25s}
+.card:hover{transform:translateY(-5px);border-color:rgba(212,175,55,.4)}
+.icon{font-size:29px;margin-bottom:14px}
+.card h3{font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:25px;margin-bottom:7px}
+.card p{color:#aebbb7;font-size:13px}
+
+/* WHY */
+.why{background:linear-gradient(180deg,#061713,#0a211c,#061713)}
+.why-grid{width:min(1000px,92%);margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.why-card{text-align:center;padding:28px;border:1px solid rgba(212,175,55,.14);border-radius:18px;background:rgba(255,255,255,.025)}
+.why-card h3{font-size:17px;margin:8px 0;color:#fff}
+.why-card p{font-size:13px;color:#91a39e}
+
+/* CTA */
+.cta{text-align:center}
+.cta-box{width:min(900px,92%);margin:auto;padding:55px 25px;border-radius:25px;background:radial-gradient(circle at top,rgba(212,175,55,.11),transparent 55%),#0b2922;border:1px solid rgba(212,175,55,.22)}
+.cta-box .arabic{font-size:25px}
+.cta-box h2{font-family:"Cormorant Garamond",serif;font-size:40px;margin-bottom:10px}
+.cta-box p{max-width:600px;margin:0 auto 24px;color:#9eafaa}
+
+/* FOUNDER - VERY BOTTOM BEFORE FOOTER */
+.founder{padding:75px 20px 55px;text-align:center}
+.founder-card{width:min(700px,92%);margin:auto;padding:42px 25px;border-radius:24px;background:linear-gradient(145deg,#0d3028,#081f19);border:1px solid rgba(212,175,55,.25);box-shadow:0 18px 50px rgba(0,0,0,.25)}
+.founder-label{color:#aebbb7;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.founder-name{font-family:"Cormorant Garamond",serif;color:var(--gold2);font-size:42px;font-weight:700}
+.founder-line{width:70px;height:1px;background:var(--gold);margin:18px auto}
+.founder-contact{color:#c4cfcb;font-size:14px;line-height:2}
+.founder-contact a{color:var(--gold2)}
+.founder-arabic{font-family:Amiri,serif;color:var(--gold);font-size:22px;margin-top:10px}
+
+/* FOOTER */
+footer{padding:40px 20px 25px;text-align:center;background:#04100d;border-top:1px solid rgba(212,175,55,.12)}
+.footer-logo{font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:29px;font-weight:700;letter-spacing:2px}
+footer p{color:#687772;font-size:12px;margin-top:8px}
+
+@media(max-width:600px){
+header{height:68px;padding:0 12px}
+.brand img{width:39px;height:39px}.brand-name{font-size:20px}.brand-sub{font-size:7px}
+.admin{font-size:11px}.login{padding:8px 13px;font-size:12px}
+.hero{min-height:650px;padding:50px 18px}.hero-logo{width:125px;height:125px}
+.arabic{font-size:27px}.hero h1{font-size:48px}.hero p{font-size:14px}
+.stats-box{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid rgba(212,175,55,.2)}.stat:last-child{border-bottom:0}
+.title h2{font-size:36px}.founder-name{font-size:36px}
 }
-
-.founder-card {
-    width: min(700px, 92%);
-    margin: auto;
-    padding: 45px 25px;
-    border-radius: 24px;
-
-    background: linear-gradient(
-        145deg,
-        #0d3028,
-        #081f19
-    );
-
-    border: 1px solid rgba(212,175,55,0.25);
-
-    box-shadow:
-        0 18px 50px rgba(0,0,0,0.25);
-}
-
-.founder-label {
-    color: #aebbb7;
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-}
-
-.founder-name {
-    font-family: 'Cormorant Garamond', serif;
-    color: var(--gold-light);
-    font-size: 42px;
-    font-weight: 700;
-    margin-bottom: 6px;
-}
-
-.founder-line {
-    width: 70px;
-    height: 1px;
-    background: var(--gold);
-    margin: 20px auto;
-}
-
-.founder-role {
-    color: #c4cfcb;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-
-.founder-arabic {
-    font-family: 'Amiri', serif;
-    color: var(--gold);
-    font-size: 24px;
-    direction: rtl;
-    margin-top: 12px;
-}
-
-    <!-- =========================
-     FOUNDER
-========================== -->
-
-<section class="founder">
-
-    <div class="founder-card">
-
-        <div class="founder-label">
-            Under the Guidance of
-        </div>
-
-        <div class="founder-name">
-            Hafiz Hasan Ali
-        </div>
-
-        <div class="founder-line"></div>
-
-        <div class="founder-role">
-            Head &amp; Founder, Al Noor Islamic Academy
-        </div>
-
-        <div class="founder-arabic">
-            حفظه الله
-        </div>
-
-    </div>
-
-</section>
-        /* =========================
-           CTA
-        ========================= */
-
-        .cta {
-            padding: 90px 20px;
-
-            text-align: center;
-        }
-
-
-        .cta-box {
-            width: min(900px, 92%);
-
-            margin: auto;
-
-            padding: 60px 25px;
-
-            border-radius: 25px;
-
-            background:
-                radial-gradient(
-                    circle at top,
-                    rgba(212,175,55,0.12),
-                    transparent 55%
-                ),
-                #0b2922;
-
-            border: 1px solid rgba(212,175,55,0.25);
-        }
-
-
-        .cta-arabic {
-            font-family: 'Amiri', serif;
-
-            color: var(--gold);
-
-            font-size: 28px;
-
-            direction: rtl;
-
-            margin-bottom: 10px;
-        }
-
-
-        .cta h2 {
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: 40px;
-
-            margin-bottom: 12px;
-        }
-
-
-        .cta p {
-            color: #9eafaa;
-
-            max-width: 600px;
-
-            margin: 0 auto 25px;
-
-            line-height: 1.7;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            padding: 45px 20px 25px;
-
-            background: #04100d;
-
-            border-top: 1px solid rgba(212,175,55,0.12);
-
-            text-align: center;
-        }
-
-
-        .footer-logo {
-            color: var(--gold);
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: 29px;
-
-            font-weight: 700;
-
-            letter-spacing: 2px;
-        }
-
-
-        .footer-arabic {
-            font-family: 'Amiri', serif;
-
-            direction: rtl;
-
-            color: #8f9d99;
-
-            font-size: 20px;
-
-            margin: 5px 0 15px;
-        }
-
-
-        footer p {
-            color: #687772;
-
-            font-size: 12px;
-
-            line-height: 1.7;
-        }
-
-
-        .footer-line {
-            width: 80px;
-
-            height: 1px;
-
-            background: var(--gold);
-
-            margin: 20px auto;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 600px) {
-
-            header {
-                height: 70px;
-                padding: 0 14px;
-            }
-
-
-            .brand img {
-                width: 40px;
-                height: 40px;
-            }
-
-
-            .brand-name {
-                font-size: 21px;
-            }
-
-
-            .brand-sub {
-                font-size: 7px;
-            }
-
-
-            .admin-link {
-                font-size: 12px;
-            }
-
-
-            .login-btn {
-                padding: 9px 14px;
-                font-size: 13px;
-            }
-
-
-            .hero {
-                min-height: 650px;
-                padding-top: 45px;
-            }
-
-
-            .hero-logo {
-                width: 125px;
-                height: 125px;
-            }
-
-
-            .arabic {
-                font-size: 27px;
-            }
-
-
-            .welcome {
-                font-size: 9px;
-                letter-spacing: 3px;
-            }
-
-
-            .hero h1 {
-                font-size: 48px;
-            }
-
-
-            .hero p {
-                font-size: 14px;
-            }
-
-
-            .stats-box {
-                grid-template-columns: 1fr;
-            }
-
-
-            .stat {
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
-
-
-            .stat:last-child {
-                border-bottom: none;
-            }
-
-
-            .section-title h2 {
-                font-size: 36px;
-            }
-
-
-            .course-container,
-            .why-grid {
-                grid-template-columns: 1fr;
-            }
-
-
-            .cta h2 {
-                font-size: 34px;
-            }
-
-        }
-
-    </style>
-
+</style>
 </head>
-
 
 <body>
 
-
-    <!-- =========================
-         HEADER
-    ========================== -->
-
-    <header>
-
-        <a href="index.html" class="brand">
-
-            <img src="images/logo.png"
-                 alt="Al Noor Islamic Academy Logo">
-
-            <div class="brand-text">
-
-                <span class="brand-name">
-                    AL NOOR
-                </span>
-
-                <span class="brand-sub">
-                    ISLAMIC ACADEMY
-                </span>
-
-            </div>
-
-        </a>
-
-
-        <div class="header-actions">
-
-            <a href="admin-login.html"
-               class="admin-link">
-                Admin
-            </a>
-
-
-            <a href="login.html"
-               class="login-btn">
-                Login
-            </a>
-
-        </div>
-
-    </header>
-
-
-
-    <!-- =========================
-         HERO
-    ========================== -->
-
-    <section class="hero">
-
-        <div class="hero-content">
-
-
-            <img src="images/logo.png"
-                 alt="Al Noor Islamic Academy"
-                 class="hero-logo">
-
-
-            <div class="welcome">
-                WELCOME TO
-            </div>
-
-
-            <div class="arabic">
-                أكاديمية النور الإسلامية
-            </div>
-
-
-            <h1>
-                Al Noor Islamic Academy
-            </h1>
-
-
-            <p>
-                Learn the Quran, Arabic, Hadith and
-                Islamic Studies through structured
-                online education from the comfort
-                of your home.
-            </p>
-
-
-            <div class="hero-buttons">
-
-                <a href="#courses"
-                   class="primary-btn">
-                    Explore Courses
-                </a>
-
-
-                <a href="signup.html"
-                   class="secondary-btn">
-                    Join Academy
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         STATS
-    ========================== -->
-
-    <section class="stats">
-
-        <div class="stats-box">
-
-            <div class="stat">
-
-                <strong>6+</strong>
-
-                <span>
-                    Islamic Courses
-                </span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <strong>100%</strong>
-
-                <span>
-                    Online Learning
-                </span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <strong>24/7</strong>
-
-                <span>
-                    Learning Access
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         COURSES
-    ========================== -->
-
-    <section class="courses"
-             id="courses">
-
-
-        <div class="section-title">
-
-            <small>
-                OUR PROGRAMS
-            </small>
-
-            <h2>
-                Learn. Grow. Practice.
-            </h2>
-
-            <p>
-                Build your Islamic knowledge with
-                structured online courses.
-            </p>
-
-        </div>
-
-
-        <div class="course-container">
-
-
-            <div class="course-card">
-
-                <div class="course-icon">
-                    📖
-                </div>
-
-                <h3>
-                    Quran Reading
-                </h3>
-
-                <p>
-                    Learn Quran reading with proper
-                    pronunciation and Tajweed.
-                </p>
-
-            </div>
-
-
-            <div class="course-card">
-
-                <div class="course-icon">
-                    🕌
-                </div>
-
-                <h3>
-                    Tajweed
-                </h3>
-
-                <p>
-                    Understand the rules of Quranic
-                    recitation and improve your reading.
-                </p>
-
-            </div>
-
-
-            <div class="course-card">
-
-                <div class="course-icon">
-                    📚
-                </div>
-
-                <h3>
-                    Hifz-ul-Quran
-                </h3>
-
-                <p>
-                    Follow a structured approach to
-                    Quran memorization a
+<header>
+<a href="index.html" class="brand">
+<img src="images/logo.png" alt="Al Noor Islamic Academy Logo">
+<div>
+<span class="brand-name">AL NOOR</span>
+<span class="brand-sub">ISLAMIC ACADEMY</span>
+</div>
+</a>
+<div class="header-actions">
+<a href="admin-login.html" class="admin">Admin</a>
+<a href="login.html" class="login">Login</a>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-content">
+<img src="images/logo.png" alt="Al Noor Islamic Academy" class="hero-logo">
+<div class="welcome">WELCOME TO</div>
+<div class="arabic">أكاديمية النور الإسلامية</div>
+<h1>Al Noor Islamic Academy</h1>
+<p>Learn the Quran, Arabic, Hadith and Islamic Studies through structured online education from the comfort of your home.</p>
+<div class="buttons">
+<a href="#courses" class="btn primary">Explore Courses</a>
+<a href="signup.html" class="btn secondary">Join Academy</a>
+</div>
+</div>
+</section>
+
+<section class="stats">
+<div class="stats-box">
+<div class="stat"><strong>6+</strong><span>Islamic Courses</span></div>
+<div class="stat"><strong>100%</strong><span>Online Learning</span></div>
+<div class="stat"><strong>24/7</strong><span>Learning Access</span></div>
+</div>
+</section>
+
+<section class="section" id="courses">
+<div class="title">
+<small>OUR PROGRAMS</small>
+<h2>Learn. Grow. Practice.</h2>
+<p>Build your Islamic knowledge with structured online courses.</p>
+</div>
+<div class="course-grid">
+<div class="card"><div class="icon">📖</div><h3>Quran Reading</h3><p>Learn Quran reading with proper pronunciation and Tajweed.</p></div>
+<div class="card"><div class="icon">🕌</div><h3>Tajweed</h3><p>Understand the rules of Quranic recitation and improve your reading.</p></div>
+<div class="card"><div class="icon">📚</div><h3>Hifz-ul-Quran</h3><p>Follow a structured approach to Quran memorization.</p></div>
+<div class="card"><div class="icon">🗣️</div><h3>Arabic Language</h3><p>Build your Arabic language skills through structured learning.</p></div>
+<div class="card"><div class="icon">📜</div><h3>Hadith Studies</h3><p>Study selected Hadith with understanding and guidance.</p></div>
+<div class="card"><div class="icon">☪️</div><h3>Islamic Studies</h3><p>Learn essential Islamic knowledge, manners, Sirah, Aqeedah and Fiqh.</p></div>
+</div>
+</section>
+
+<section class="section why">
+<div class="title">
+<small>WHY AL NOOR</small>
+<h2>Learn With Purpose</h2>
+<p>A simple and structured environment for online Islamic learning.</p>
+</div>
+<div class="why-grid">
+<div class="why-card"><div class="icon">🎓</div><h3>Structured Learning</h3><p>Organized courses designed for consistent learning.</p></div>
+<div class="why-card"><div class="icon">🌙</div><h3>Islamic Environment</h3><p>Learn Islamic knowledge in a focused and respectful environment.</p></div>
+<div class="why-card"><div class="icon">💻</div><h3>Online Access</h3><p>Access your learning from wherever you are.</p></div>
+<div class="why-card"><div class="icon">📅</div><h3>Regular Classes</h3><p>Follow your classes and learning schedule online.</p></div>
+</div>
+</section>
+
+<section class="section cta">
+<div class="cta-box">
+<div class="arabic">وَقُلْ رَبِّ زِدْنِي عِلْمًا</div>
+<h2>Begin Your Learning Journey</h2>
+<p>Join Al Noor Islamic Academy and build your Islamic knowledge through structured online education.</p>
+<a href="signup.html" class="btn primary">Join Academy</a>
+</div>
+</section>
+
+<!-- FOUNDER AND CONTACT ARE THE LAST CONTENT SECTION -->
+<section class="founder">
+<div class="founder-card">
+<div class="founder-label">Head &amp; Founder</div>
+<div class="founder-name">Hapiz Hasan Ali</div>
+<div class="founder-line"></div>
+<div class="founder-contact">
+<div>📱 <a href="tel:+919339886161">+91 93398 86161</a></div>
+<div>📧 <a href="mailto:alnoorislamicacademy2@gmail.com">alnoorislamicacademy2@gmail.com</a></div>
+</div>
+<div class="founder-arabic">حفظه الله</div>
+</div>
+</section>
+
+<footer>
+<div class="footer-logo">AL NOOR</div>
+<p>Al Noor Islamic Academy</p>
+<p>© 2026 Al Noor Islamic Academy. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
