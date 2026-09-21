@@ -1,1 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Arabic Language Classes - Admin | Al Noor Islamic Academy</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#071d17;
+    color:white;
+}
+
+.header{
+    background:#0d3027;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #c9a227;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.admin{
+    color:#d4af37;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:25px 18px;
+}
+
+h1{
+    color:#d4af37;
+    margin-bottom:20px;
+}
+
+.add-box{
+    background:#0d3027;
+    padding:20px;
+    border-radius:15px;
+    border:1px solid #80691d;
+    margin-bottom:30px;
+}
+
+.add-box h2{
+    color:#d4af37;
+    margin-bottom:18px;
+}
+
+input, select{
+    width:100%;
+    padding:13px;
+    margin-bottom:12px;
+    border:none;
+    border-radius:8px;
+    background:#f5f5f5;
+    color:#111;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:#d4af37;
+    color:#071d17;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.class-card{
+    background:#0d3027;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:15px;
+    border:1px solid #80691d;
+}
+
+.class-card h3{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.info{
+    line-height:1.8;
+    color:#ddd;
+}
+
+.status{
+    display:inline-block;
+    margin-top:10px;
+    padding:5px 10px;
+    border-radius:20px;
+    background:#174d3d;
+    color:#7ff0b7;
+    font-size:13px;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.actions button{
+    width:50%;
+}
+
+.delete{
+    background:#8b2525;
+    color:white;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:25px;
+    color:#d4af37;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">AL NOOR</div>
+    <div class="admin">👑 Admin</div>
+</header>
+
+<div class="container">
+
+<h1>🗣️ Arabic Language Classes Management</h1>
+
+<div class="add-box">
+
+<h2>➕ Add Arabic Language Class</h2>
+
+<input type="text" id="course" value="Arabic Language" readonly>
+
+<input type="text" id="teacher" placeholder="Teacher Name">
+
+<input type="date" id="date">
+
+<input type="time" id="time">
+
+<input type="text" id="platform" placeholder="Platform (Google Meet / Zoom)">
+
+<input type="url" id="link" placeholder="Live Class Link">
+
+<button onclick="addClass()">Add Tajweed Class</button>
+
+</div>
+
+
+<h2 style="color:#d4af37;margin-bottom:15px;">
+🗣️ Arabic Language Classes
+</h2>
+
+
+<div id="classList"></div>
+
+<span class="status">🟢 LIVE / UPCOMING</span>
+
+<div class="actions">
+<button onclick="alert('Edit feature will be connected later.')">
+✏️ Edit
+</button>
+
+<button class="delete" onclick="deleteClass(this)">
+🗑️ Delete
+</button>
+</div>
+
+</div>
+
+
+<div class="class-card">
+
+<h3>🕌 Arabic Language</h3>
+
+<div class="info">
+👨‍🏫 Teacher: Arabic Teacher<br>
+📅 Date: Monday<br>
+⏰ Time: 7:00 PM<br>
+💻 Platform: Google Meet
+</div>
+
+<span class="status">🟢 UPCOMING</span>
+
+<div class="actions">
+<button onclick="alert('Edit feature will be connected later.')">
+✏️ Edit
+</button>
+
+<button class="delete" onclick="deleteClass(this)">
+🗑️ Delete
+</button>
+</div>
+
+</div>
+
+</div>
+
+<a href="admin.html" class="back">
+← Back to Admin Dashboard
+</a>
+
+</div>
+
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    serverTimestamp,
+    doc,
+    updateDoc,
+    deleteDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+    authDomain: "al-noor-islamic-academy.firebaseapp.com",
+    projectId: "al-noor-islamic-academy",
+    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+    messagingSenderId: "571799539455",
+    appId: "1:571799539455:web:d42728685908430296c6ca"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const list = document.getElementById("classList");
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+function clearForm() {
+    document.getElementById("course").value = "Tajweed";
+    document.getElementById("teacher").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("time").value = "";
+    document.getElementById("platform").value = "";
+    document.getElementById("link").value = "";
+}
+
+async function loadClasses() {
+    list.innerHTML = '<p style="color:#aaa;">Loading Arabic Language classes...</p>';
+
+    try {
+        const q = query(
+            collection(db, "arabicLanguageClasses"),
+            orderBy("createdAt", "desc")
+        );
+
+        const snapshot = await getDocs(q);
+
+        if (snapshot.empty) {
+            list.innerHTML =
+                '<div class="class-card"><p class="info">No Arabic Language classes added yet.</p></div>';
+            return;
+        }
+
+        list.innerHTML = "";
+
+        snapshot.forEach((item) => {
+            const data = item.data();
+
+            const card = document.createElement("div");
+            card.className = "class-card";
+            card.dataset.id = item.id;
+
+            card.innerHTML = `
+                <h3>📖 ${escapeHtml(data.course || "Arabic Language")}</h3>
+
+                <div class="info">
+                    👨‍🏫 Teacher: ${escapeHtml(data.teacher)}<br>
+                    📅 Date: ${escapeHtml(data.date)}<br>
+                    ⏰ Time: ${escapeHtml(data.time)}<br>
+                    💻 Platform: ${escapeHtml(data.platform)}
+                </div>
+
+                <span class="status">🟢 ARABIC LANGUAGE CLASS</span>
+
+                <div class="actions">
+                    <button class="join-btn">
+                        🔗 Open Class
+                    </button>
+
+                    <button class="edit-btn">
+                        ✏️ Edit
+                    </button>
+
+                    <button class="delete">
+                        🗑️ Delete
+                    </button>
+                </div>
+            `;
+
+            card.querySelector(".join-btn").onclick = () => {
+                if (data.link) {
+                    window.open(data.link, "_blank");
+                } else {
+                    alert("No class link is available.");
+                }
+            };
+
+            card.querySelector(".edit-btn").onclick = async () => {
+                const teacher = prompt("Teacher Name:", data.teacher || "");
+                if (teacher === null) return;
+
+                const date = prompt("Date:", data.date || "");
+                if (date === null) return;
+
+                const time = prompt("Time:", data.time || "");
+                if (time === null) return;
+
+                const platform = prompt("Platform:", data.platform || "");
+                if (platform === null) return;
+
+                const link = prompt("Live Class Link:", data.link || "");
+                if (link === null) return;
+
+                try {
+                    await updateDoc(doc(db, "arabicLanguageClasses", item.id), {
+                        course: "Arabic Language",
+                        teacher: teacher.trim(),
+                        date: date.trim(),
+                        time: time.trim(),
+                        platform: platform.trim(),
+                        link: link.trim(),
+                        updatedAt: serverTimestamp()
+                    });
+
+                    alert("Arabic Language class updated successfully!");
+                    await loadClasses();
+                } catch (error) {
+                    console.error(error);
+                    alert("Could not update Arabic Language class. Check Firestore rules.");
+                }
+            };
+
+            card.querySelector(".delete").onclick = async () => {
+                if (!confirm("Are you sure you want to delete this Arabic Language class?")) {
+                    return;
+                }
+
+                try {
+                    await deleteDoc(doc(db, "arabicLanguageClasses", item.id));
+                    alert("Arabic Language class deleted.");
+                    await loadClasses();
+                } catch (error) {
+                    console.error(error);
+                    alert("Could not delete Arabic Language class. Check Firestore rules.");
+                }
+            };
+
+            list.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error(error);
+        list.innerHTML =
+            '<div class="class-card"><p class="info">Could not load Arabic Language classes. Check Firestore rules.</p></div>';
+    }
+}
+
+window.addClass = async function () {
+    const teacher = document.getElementById("teacher").value.trim();
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+    const platform = document.getElementById("platform").value.trim();
+    const link = document.getElementById("link").value.trim();
+
+    if (!teacher || !date || !time || !platform || !link) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    try {
+        await addDoc(collection(db, "arabicLanguageClasses"), {
+            course: "Arabic Language",
+            teacher,
+            date,
+            time,
+            platform,
+            link,
+            createdAt: serverTimestamp()
+        });
+
+        clearForm();
+        alert("Arabic Language class added successfully!");
+        await loadClasses();
+
+    } catch (error) {
+        console.error(error);
+        alert("Could not save Arabic Language class. Check Firestore rules.");
+    }
+};
+
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.replace("admin-login.html");
+        return;
+    }
+
+    loadClasses();
+});
+</script>
+
+</body>
+</html>
