@@ -287,7 +287,7 @@ footer{
         📚 Tajweed Rules<br>
         🎥 Recorded Lessons<br>
         🔴 Live Practice<br>
-       💰 Monthly Course Fee: ₹299<br>
+      💰 Monthly Course Fee: ₹299<br>
 📅 Course Duration: 6 Months
     </div>
 
@@ -316,9 +316,8 @@ footer{
         🔤 Grammar<br>
         🗣️ Conversation<br>
         📚 Vocabulary<br>
-       💰 Monthly Course Fee: ₹299<br>
+        💰 Monthly Course Fee: ₹299<br>
 📅 Course Duration: 6 Months
-          
     </div>
 
     <a id="arabicBtn"
@@ -490,14 +489,36 @@ onAuthStateChanged(auth, async (user) => {
 
         const data = studentSnap.data();
 
-        if (data.tajweedActive === true) {
-            tajweedBtn.textContent = "Open Tajweed Course";
-            tajweedBtn.href = "quran-course.html";
+        // 30-day course access
+        const now = Date.now();
+        const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+
+        if (data.tajweedActive === true && data.tajweedPurchasedAt) {
+            const purchasedAt = data.tajweedPurchasedAt.toDate
+                ? data.tajweedPurchasedAt.toDate().getTime()
+                : new Date(data.tajweedPurchasedAt).getTime();
+
+            if (now - purchasedAt < THIRTY_DAYS) {
+                tajweedBtn.textContent = "Open Tajweed Course";
+                tajweedBtn.href = "quran-course.html";
+            } else {
+                tajweedBtn.textContent = "Renew Tajweed — ₹299";
+                tajweedBtn.href = "payment.html?course=tajweed&name=Tajweed&price=299";
+            }
         }
 
-        if (data.arabicLanguageActive === true) {
-            arabicBtn.textContent = "Open Arabic Course";
-            arabicBtn.href = "arabic-language.html";
+        if (data.arabicLanguageActive === true && data.arabicLanguagePurchasedAt) {
+            const purchasedAt = data.arabicLanguagePurchasedAt.toDate
+                ? data.arabicLanguagePurchasedAt.toDate().getTime()
+                : new Date(data.arabicLanguagePurchasedAt).getTime();
+
+            if (now - purchasedAt < THIRTY_DAYS) {
+                arabicBtn.textContent = "Open Arabic Course";
+                arabicBtn.href = "arabic-language.html";
+            } else {
+                arabicBtn.textContent = "Renew Arabic — ₹299";
+                arabicBtn.href = "payment.html?course=arabic-language&name=Arabic%20Language&price=299";
+            }
         }
 
     } catch (error) {
