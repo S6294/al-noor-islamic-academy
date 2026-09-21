@@ -12,354 +12,502 @@
 
 
     <style>
-*{margin:0;padding:0;box-sizing:border-box}
 
-body{
-    font-family:Arial,sans-serif;
-    background:
-      radial-gradient(circle at 0% 0%,rgba(212,175,55,.13),transparent 28%),
-      radial-gradient(circle at 100% 20%,rgba(20,120,90,.10),transparent 30%),
-      #061512;
-    color:#fff;
-    min-height:100vh;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:16px 20px;
-    background:rgba(7,27,23,.92);
-    border-bottom:1px solid rgba(212,175,55,.22);
-    box-shadow:0 8px 30px rgba(0,0,0,.28);
-    position:sticky;
-    top:0;
-    z-index:50;
-    backdrop-filter:blur(14px);
-}
 
-.logo{
-    color:#e2c15b;
-    font-size:19px;
-    font-weight:800;
-    letter-spacing:.8px;
-}
+        body {
+            font-family: Arial, sans-serif;
 
-.profile{
-    width:43px;height:43px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:50%;
-    background:linear-gradient(135deg,#f0cf68,#a98220);
-    color:#061512;
-    font-weight:800;
-    border:2px solid rgba(255,255,255,.16);
-    box-shadow:0 6px 20px rgba(212,175,55,.22);
-}
+            background: #071a17;
 
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:28px 18px 10px;
-}
+            color: white;
 
-.premium-hero{
-    position:relative;
-    overflow:hidden;
-    background:linear-gradient(135deg,#10382e,#09251f);
-    border:1px solid rgba(212,175,55,.35);
-    border-radius:24px;
-    padding:28px 24px;
-    margin-bottom:30px;
-    box-shadow:0 18px 45px rgba(0,0,0,.30);
-}
+            min-height: 100vh;
+        }
 
-.premium-hero:before{
-    content:"";
-    position:absolute;
-    width:190px;height:190px;
-    right:-70px;top:-95px;
-    border-radius:50%;
-    background:rgba(212,175,55,.09);
-}
 
-.premium-label{
-    color:#e2c15b;
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:2px;
-    margin-bottom:9px;
-}
+        /* HEADER */
 
-.premium-hero h1{
-    color:#fff;
-    font-size:29px;
-    margin-bottom:9px;
-}
+        header {
+            display: flex;
 
-.premium-hero p{
-    color:#b8c8c2;
-    font-size:14px;
-    line-height:1.65;
-}
+            justify-content: space-between;
 
-.section-title{
-    color:#e2c15b;
-    font-size:22px;
-    margin-bottom:17px;
-    letter-spacing:.2px;
-}
+            align-items: center;
 
-.dashboard-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    margin-bottom:30px;
-}
+            padding: 18px 20px;
 
-.dashboard-card{
-    position:relative;
-    overflow:hidden;
-    background:linear-gradient(145deg,#10352c,#0a241e);
-    border:1px solid #234b40;
-    border-radius:19px;
-    padding:21px;
-    min-height:145px;
-    box-shadow:0 12px 28px rgba(0,0,0,.22);
-    transition:.25s ease;
-}
+            background: #0b2520;
 
-.dashboard-card:hover{
-    transform:translateY(-5px);
-    border-color:rgba(226,193,91,.70);
-    box-shadow:0 18px 38px rgba(0,0,0,.30);
-}
+            border-bottom: 1px solid #29453e;
+        }
 
-.dashboard-card:after{
-    content:"";
-    position:absolute;
-    width:85px;height:85px;
-    right:-35px;bottom:-40px;
-    border-radius:50%;
-    background:rgba(226,193,91,.06);
-}
 
-.icon{
-    width:48px;height:48px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:14px;
-    background:rgba(226,193,91,.10);
-    border:1px solid rgba(226,193,91,.18);
-    font-size:25px;
-    margin-bottom:14px;
-}
+        .logo {
+            color: #d4af37;
 
-.dashboard-card h3{
-    color:#e2c15b;
-    margin-bottom:7px;
-    font-size:17px;
-}
+            font-size: 20px;
 
-.dashboard-card p{
-    color:#aebdb8;
-    font-size:13px;
-    line-height:1.55;
-}
+            font-weight: bold;
+        }
 
-.live-preview{
-    background:linear-gradient(145deg,#281515,#170c0c);
-    border:1px solid rgba(185,28,28,.55);
-    border-radius:22px;
-    padding:22px;
-    margin-bottom:31px;
-    box-shadow:0 14px 34px rgba(0,0,0,.25);
-}
 
-.live-preview-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-    margin-bottom:15px;
-}
+        .profile {
+            width: 42px;
+            height: 42px;
 
-.live-title{
-    color:#fff;
-    font-size:20px;
-    font-weight:800;
-}
+            display: flex;
 
-.live-now{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    background:#b91c1c;
-    color:#fff;
-    padding:6px 10px;
-    border-radius:20px;
-    font-size:10px;
-    font-weight:800;
-}
+            justify-content: center;
 
-.live-dot{
-    width:7px;height:7px;
-    border-radius:50%;
-    background:#fff;
-}
+            align-items: center;
 
-.live-preview p{
-    color:#c1adab;
-    font-size:13px;
-    line-height:1.6;
-    margin-bottom:15px;
-}
+            border-radius: 50%;
 
-.live-locked{
-    padding:13px 15px;
-    border-radius:12px;
-    background:rgba(255,255,255,.045);
-    color:#aaa;
-    font-size:12px;
-    border:1px solid rgba(255,255,255,.08);
-}
+            background: #d4af37;
 
-.live-open{
-    display:inline-block;
-    padding:11px 17px;
-    border-radius:10px;
-    background:linear-gradient(135deg,#e4c35f,#b88e25);
-    color:#071a17;
-    font-weight:800;
-    text-decoration:none;
-}
+            color: #071a17;
 
-.courses{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:17px;
-}
+            font-weight: bold;
+        }
 
-.course{
-    background:linear-gradient(145deg,#10352c,#0a241e);
-    border:1px solid #234b40;
-    border-radius:20px;
-    padding:21px;
-    box-shadow:0 12px 28px rgba(0,0,0,.20);
-}
 
-.course h3{
-    color:#e2c15b;
-    margin-bottom:9px;
-}
+        /* MAIN */
 
-.course p{
-    color:#aebdb8;
-    font-size:13px;
-    margin-bottom:14px;
-    line-height:1.55;
-}
+        .container {
+            max-width: 1100px;
 
-.course-status{
-    display:inline-block;
-    margin-top:9px;
-    padding:7px 11px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:800;
-    background:#203e36;
-    color:#aaa;
-}
+            margin: auto;
 
-.course.locked{opacity:.75}
+            padding: 30px 20px;
+        }
 
-.course.unlocked{
-    border-color:rgba(226,193,91,.70);
-    box-shadow:0 14px 32px rgba(212,175,55,.08);
-}
 
-.course-link{
-    display:block;
-    text-decoration:none;
-    color:inherit;
-    cursor:pointer;
-    transition:.25s ease;
-}
+        .welcome {
+            margin-bottom: 30px;
+        }
 
-.course-link:hover{
-    transform:translateY(-5px);
-}
 
-.premium-course{
-    position:relative;
-    overflow:hidden;
-    min-height:175px;
-}
+        .welcome h1 {
+            font-size: 28px;
 
-.premium-course:before{
-    content:"";
-    position:absolute;
-    top:0;left:0;right:0;
-    height:3px;
-    background:linear-gradient(90deg,#9b741b,#e2c15b,#9b741b);
-}
+            color: #d4af37;
 
-.course-icon{
-    width:48px;height:48px;
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(226,193,91,.10);
-    border:1px solid rgba(226,193,91,.15);
-    font-size:24px;
-    margin-bottom:14px;
-}
+            margin-bottom: 8px;
+        }
 
-.access-badge{
-    display:inline-block;
-    margin-top:12px;
-    padding:6px 10px;
-    border-radius:20px;
-    font-size:10px;
-    font-weight:800;
-    border:1px solid #36554d;
-    color:#aaa;
-}
 
-.access-badge.active{
-    color:#e2c15b;
-    border-color:#8d7625;
-    background:rgba(212,175,55,.08);
-}
+        .welcome p {
+            color: #aaa;
+        }
 
-footer{
-    text-align:center;
-    padding:25px;
-    margin-top:30px;
-    background:#04100e;
-    border-top:1px solid rgba(212,175,55,.10);
-    color:#788984;
-    font-size:12px;
-}
 
-@media(max-width:750px){
-    .dashboard-grid{grid-template-columns:1fr 1fr}
-}
+        /* SECTION TITLE */
 
-@media(max-width:600px){
-    header{padding:14px 15px}
-    .logo{font-size:16px}
-    .container{padding:22px 14px 8px}
-    .premium-hero{padding:23px 19px;border-radius:21px}
-    .premium-hero h1{font-size:24px}
-    .dashboard-grid{grid-template-columns:1fr;gap:12px}
-    .dashboard-card{min-height:125px;padding:18px}
-    .live-preview{padding:18px;border-radius:19px}
-    .live-preview-header{align-items:flex-start}
-}
+        .section-title {
+            color: #d4af37;
+
+            font-size: 24px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* DASHBOARD CARDS */
+
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(210px, 1fr));
+
+            gap: 18px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .dashboard-card {
+            background: #0c2923;
+
+            border: 1px solid #29453e;
+
+            border-radius: 15px;
+
+            padding: 22px;
+        }
+
+
+        .icon {
+            font-size: 28px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .dashboard-card h3 {
+            color: #d4af37;
+
+            margin-bottom: 8px;
+        }
+
+
+        .dashboard-card p {
+            color: #aaa;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+        /* CLICKABLE DASHBOARD / COURSE CARDS */
+
+        .dashboard-link,
+        .course-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dashboard-link:hover,
+        .course-link:hover {
+            transform: translateY(-4px);
+            border-color: #d4af37;
+        }
+
+        .dashboard-link:active,
+        .course-link:active {
+            transform: scale(0.99);
+        }
+
+
+        /* LIVE CLASS */
+
+        .live-class {
+            background: #0c2923;
+
+            border: 1px solid #29453e;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .live-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+
+        .live-header h2 {
+            color: #d4af37;
+
+            font-size: 22px;
+        }
+
+
+        .live-badge {
+            background: #b91c1c;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .class-name {
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .class-info {
+            color: #aaa;
+
+            line-height: 1.7;
+
+            margin-bottom: 18px;
+        }
+
+
+        .join-button {
+            display: inline-block;
+
+            background: #d4af37;
+
+            color: #071a17;
+
+            padding: 12px 20px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        /* COURSES */
+
+        .courses {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 18px;
+        }
+
+
+        .course {
+            background: #0c2923;
+
+            border: 1px solid #29453e;
+
+            border-radius: 15px;
+
+            padding: 22px;
+        }
+
+
+        .course h3 {
+            color: #d4af37;
+
+            margin-bottom: 10px;
+        }
+
+
+        .course p {
+            color: #aaa;
+
+            font-size: 14px;
+
+            margin-bottom: 15px;
+        }
+
+        .course-status {
+            display:inline-block;
+            margin-top:10px;
+            padding:7px 10px;
+            border-radius:20px;
+            font-size:12px;
+            font-weight:bold;
+            background:#29453e;
+            color:#aaa;
+        }
+
+        .course.locked {
+            opacity:.72;
+        }
+
+        .course.unlocked {
+            border-color:#d4af37;
+        }
+
+
+        .progress {
+            height: 7px;
+
+            background: #071a17;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            margin-bottom: 8px;
+        }
+
+
+        .progress-bar {
+            height: 100%;
+
+            width: 65%;
+
+            background: #d4af37;
+        }
+
+
+        .progress-text {
+            color: #999;
+
+            font-size: 12px;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 30px;
+
+            background: #051310;
+
+            color: #888;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .welcome h1 {
+                font-size: 24px;
+            }
+
+        }
+
+    
+        .premium-hero{
+            background:linear-gradient(135deg,#0d3028,#123c31);
+            border:1px solid #5b5125;
+            border-radius:22px;
+            padding:25px 22px;
+            margin-bottom:28px;
+            box-shadow:0 12px 35px rgba(0,0,0,.28);
+            position:relative;
+            overflow:hidden;
+        }
+        .premium-hero:after{
+            content:"";
+            position:absolute;
+            width:150px;height:150px;
+            right:-55px;top:-65px;
+            border-radius:50%;
+            background:rgba(212,175,55,.12);
+        }
+        .premium-label{
+            color:#d4af37;
+            font-size:12px;
+            font-weight:bold;
+            letter-spacing:1.5px;
+            text-transform:uppercase;
+            margin-bottom:8px;
+        }
+        .premium-hero h1{
+            color:#fff;
+            font-size:27px;
+            margin-bottom:8px;
+        }
+        .premium-hero p{color:#b9c6c1;font-size:14px;line-height:1.6}
+        .premium-course{
+            position:relative;
+            overflow:hidden;
+            min-height:170px;
+            background:linear-gradient(145deg,#0d3028,#0a241f);
+            box-shadow:0 10px 28px rgba(0,0,0,.22);
+        }
+        .premium-course:before{
+            content:"";
+            position:absolute;
+            left:0;top:0;right:0;
+            height:3px;
+            background:#d4af37;
+        }
+        .course-icon{
+            width:48px;height:48px;
+            border-radius:14px;
+            display:flex;align-items:center;justify-content:center;
+            background:rgba(212,175,55,.13);
+            font-size:24px;
+            margin-bottom:14px;
+        }
+        .access-badge{
+            display:inline-block;
+            margin-top:12px;
+            padding:6px 10px;
+            border-radius:20px;
+            font-size:11px;
+            font-weight:bold;
+            border:1px solid #36554d;
+            color:#aaa;
+        }
+        .access-badge.active{
+            color:#d4af37;
+            border-color:#8d7625;
+            background:rgba(212,175,55,.08);
+        }
+        .live-preview{
+            background:linear-gradient(145deg,#241414,#160e0e);
+            border:1px solid #5c2a2a;
+            border-radius:20px;
+            padding:22px;
+            margin-bottom:30px;
+            box-shadow:0 10px 28px rgba(0,0,0,.24);
+        }
+        .live-preview-header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+            margin-bottom:15px;
+        }
+        .live-title{
+            color:#fff;
+            font-size:20px;
+            font-weight:bold;
+        }
+        .live-now{
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            background:#b91c1c;
+            color:#fff;
+            padding:6px 10px;
+            border-radius:20px;
+            font-size:11px;
+            font-weight:bold;
+        }
+        .live-dot{
+            width:7px;height:7px;border-radius:50%;
+            background:#fff;
+        }
+        .live-preview p{
+            color:#b7aaa8;
+            font-size:14px;
+            line-height:1.6;
+            margin-bottom:16px;
+        }
+        .live-locked{
+            padding:12px 14px;
+            border-radius:12px;
+            background:rgba(255,255,255,.04);
+            color:#aaa;
+            font-size:13px;
+            border:1px solid #3b2525;
+        }
+        .live-open{
+            display:inline-block;
+            padding:11px 17px;
+            border-radius:10px;
+            background:#d4af37;
+            color:#071a17;
+            font-weight:bold;
+            text-decoration:none;
+        }
+
     </style>
 
 </head>
@@ -372,11 +520,13 @@ footer{
 
     <header>
 
-        <div class="logo">AL NOOR ISLAMIC ACADEMY</div>
+        <div class="logo">
+            AL NOOR ISLAMIC ACADEMY
+        </div>
 
 
         <a href="profile.html" style="text-decoration:none;">
-    <div class="profile" id="profileInitials">--</div>
+    <div class="profile" id="profileInitials">AN</div>
         </a>
 
     </header>
@@ -426,18 +576,25 @@ footer{
 
 
 
-            <a href="live-classes.html" class="dashboard-card" style="text-decoration:none; color:inherit;">
+            
+
+
+
+            <a href="schedule.html" class="dashboard-card dashboard-link">
 
                 <div class="icon">
-                    🔴
+                    📅
                 </div>
 
                 <h3>
-                    Live Classes
+                    Schedule
                 </h3>
 
-            
+                <p>
+                    View your weekly class schedule.
+                </p>
 
+            </a>
 
 
             <a href="notifications.html" class="dashboard-card" style="text-decoration: none; color: inherit;">
@@ -457,29 +614,7 @@ footer{
             </a>
 
         </div>
-
-
-
-        <!-- LIVE CLASS PREVIEW -->
-        <section class="live-preview">
-
-            <div class="live-preview-header">
-                <div class="live-title">🎥 Live Classes</div>
-                <span class="live-now">
-                    <span class="live-dot"></span>
-                    LIVE
-                </span>
-            </div>
-
-            <p id="liveClassInfo">
-                Admin live classes will appear here when available.
-            </p>
-
-            <div id="liveAccessBox" class="live-locked">
-                🔒 Live class access is available only to students who have paid for Live Classes.
-            </div>
-
-        </section>
+      
 
 
         <!-- MY COURSES -->
@@ -586,25 +721,9 @@ const tajweedCard = document.getElementById("tajweedCard");
 const arabicCard = document.getElementById("arabicCard");
 const tajweedStatus = document.getElementById("tajweedStatus");
 const arabicStatus = document.getElementById("arabicStatus");
-const studentNameEl = document.getElementById("studentName");
-const profileInitialsEl = document.getElementById("profileInitials");
 
-function getStudentName(data, user) {
-    return (
-        data.name ||
-        data.fullName ||
-        data.studentName ||
-        user.displayName ||
-        (user.email ? user.email.split("@")[0] : "Student")
-    ).trim();
-}
-
-function getInitials(name) {
-    const parts = name.split(/\\s+/).filter(Boolean);
-    if (!parts.length) return "ST";
-    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-}
+const profileInitials = document.getElementById("profileInitials");
+const studentName = document.getElementById("studentName");
 
 function lock(card, status, text) {
     card.classList.add("locked");
@@ -664,9 +783,26 @@ onAuthStateChanged(auth, async (user) => {
 
         const data = snap.exists() ? snap.data() : {};
 
-        const studentName = getStudentName(data, user);
-        studentNameEl.textContent = studentName;
-        profileInitialsEl.textContent = getInitials(studentName);
+        // Show the logged-in student's name and first two initials.
+        const name =
+            data.name ||
+            data.fullName ||
+            data.displayName ||
+            user.displayName ||
+            "Student";
+
+        const cleanName = String(name).trim();
+
+        studentName.textContent = cleanName;
+
+        const initials = cleanName
+            .split(/\\s+/)
+            .filter(Boolean)
+            .slice(0, 2)
+            .map(word => word.charAt(0).toUpperCase())
+            .join("");
+
+        profileInitials.textContent = initials || "ST";
 
         // Live Classes access is separate from Tajweed and Arabic.
         // Only liveClassesActive can unlock Live Classes.
