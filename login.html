@@ -89,6 +89,10 @@ input:focus{border-color:#d4af37}
 
     </form>
 
+    <a href="#" id="forgotPassword" class="forgot">
+        Forgot Password?
+    </a>
+
     <div id="message" class="message"></div>
 
     <a href="#" id="resendVerification" class="forgot" style="display:none;">
@@ -115,6 +119,7 @@ import {
     getAuth,
     signInWithEmailAndPassword,
     sendEmailVerification,
+    sendPasswordResetEmail,
     signOut
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
@@ -136,6 +141,7 @@ const loginForm = document.getElementById("loginForm");
 const loginButton = document.getElementById("loginButton");
 const message = document.getElementById("message");
 const resendVerification = document.getElementById("resendVerification");
+const forgotPassword = document.getElementById("forgotPassword");
 
 let unverifiedUser = null;
 
@@ -234,6 +240,50 @@ loginForm.addEventListener("submit", async (e) => {
     }
 });
 
+
+forgotPassword.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+
+    if (!email) {
+        showMessage("Please enter your registered email address first.");
+        document.getElementById("email").focus();
+        return;
+    }
+
+    if (!email.includes("@")) {
+        showMessage("Please enter a valid email address.");
+        return;
+    }
+
+    forgotPassword.style.pointerEvents = "none";
+    forgotPassword.textContent = "Sending reset email...";
+
+    try {
+        await sendPasswordResetEmail(auth, email);
+
+        showMessage(
+            "Password reset email sent to " + email +
+            ". Please check your inbox and follow the link to create a new password."
+        );
+    } catch (error) {
+        console.error(error);
+
+        if (error.code === "auth/user-not-found") {
+            showMessage("No account was found with this email address.");
+        } else if (error.code === "auth/invalid-email") {
+            showMessage("Please enter a valid email address.");
+        } else if (error.code === "auth/too-many-requests") {
+            showMessage("Too many requests. Please wait a while and try again.");
+        } else {
+            showMessage("Unable to send the reset email. Please try again.");
+        }
+    } finally {
+        forgotPassword.style.pointerEvents = "auto";
+        forgotPassword.textContent = "Forgot Password?";
+    }
+});
 
 resendVerification.addEventListener("click", async (e) => {
 
