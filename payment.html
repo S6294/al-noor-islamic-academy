@@ -203,21 +203,21 @@ const RAZORPAY_KEY_ID =
 const params =
 new URLSearchParams(window.location.search);
 
-const course =
-params.get("course");
+const plan =
+params.get("plan");
 
-const courseName =
+const planName =
 params.get("name");
 
-const coursePrice =
+const planPrice =
 params.get("price");
 
 
 document.getElementById("planName").textContent =
-courseName || "Course";
+planName || "Membership";
 
 document.getElementById("planPrice").textContent =
-coursePrice || "0";
+planPrice || "0";
 
 
 // =========================
@@ -302,7 +302,7 @@ document.getElementById("payBtn")
   }
 
 
-  if (!course) {
+  if (!plan) {
 
     message.textContent =
     "Invalid course.";
