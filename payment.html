@@ -571,8 +571,12 @@ document.getElementById("payBtn")
   BACKEND_URL +
   "?course=" +
   encodeURIComponent(course) +
+  "&price=" +
+  encodeURIComponent(coursePrice || "") +
   "&callback=" +
-  encodeURIComponent(callbackName);
+  encodeURIComponent(callbackName) +
+  "&_=" +
+  Date.now();
 
 
   script.onerror =
