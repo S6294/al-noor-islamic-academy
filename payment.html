@@ -139,7 +139,7 @@ import {
   getFirestore,
   doc,
   getDoc,
-  updateDoc,
+  setDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -472,12 +472,12 @@ document.getElementById("payBtn")
               ? "tajweedPurchasedAt"
               : "arabicLanguagePurchasedAt";
 
-            await updateDoc(studentRef, {
+            await setDoc(studentRef, {
               [courseField]: true,
               [paymentField]: response.razorpay_payment_id,
               [orderField]: response.razorpay_order_id,
               [purchaseField]: serverTimestamp()
-            });
+            }, { merge: true });
 
             message.innerHTML =
             "Payment completed successfully.<br>" +
