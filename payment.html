@@ -119,18 +119,6 @@
 
   <button id="payBtn">Pay Now</button>
 
-  <div id="recoveryBox" style="display:none; margin-top:18px;">
-    <input
-      type="text"
-      id="recoveryPaymentId"
-      placeholder="Enter Razorpay Payment ID"
-      style="margin-top:0;"
-    >
-    <button id="checkPaymentBtn" type="button">
-      Check Payment Status
-    </button>
-  </div>
-
   <div id="message"></div>
 
 </div>
@@ -289,78 +277,6 @@ onAuthStateChanged(auth, async (user) => {
   }
 
 });
-
-
-// =========================
-// PAYMENT ACTIVATION HELPER
-// =========================
-
-async function activateCourse(paymentId, orderId) {
-
-  const message =
-    document.getElementById("message");
-
-  try {
-
-    const studentRef =
-      doc(db, "students", currentUser.uid);
-
-    const courseField =
-      course === "tajweed"
-        ? "tajweedActive"
-        : "arabicLanguageActive";
-
-    const paymentField =
-      course === "tajweed"
-        ? "tajweedPaymentId"
-        : "arabicLanguagePaymentId";
-
-    const orderField =
-      course === "tajweed"
-        ? "tajweedOrderId"
-        : "arabicLanguageOrderId";
-
-    const purchaseField =
-      course === "tajweed"
-        ? "tajweedPurchasedAt"
-        : "arabicLanguagePurchasedAt";
-
-    await updateDoc(studentRef, {
-      [courseField]: true,
-      [paymentField]: paymentId,
-      [orderField]: orderId,
-      [purchaseField]: serverTimestamp()
-    });
-
-    message.innerHTML =
-      "Payment verified successfully.<br>" +
-      courseName +
-      " access activated.";
-
-    document.getElementById("payBtn").textContent =
-      "Course Activated";
-
-    document.getElementById("payBtn").disabled =
-      true;
-
-    document.getElementById("recoveryBox").style.display =
-      "none";
-
-    return true;
-
-  } catch (error) {
-
-    console.error(
-      "Course activation error:",
-      error
-    );
-
-    message.textContent =
-      "Payment verified, but course activation failed.";
-
-    return false;
-  }
-}
 
 
 // =========================
@@ -531,10 +447,55 @@ document.getElementById("payBtn")
             return;
           }
 
-          await activateCourse(
-            response.razorpay_payment_id,
-            response.razorpay_order_id
-          );
+          try {
+
+            const studentRef =
+            doc(db, "students", currentUser.uid);
+
+            const courseField =
+            course === "tajweed"
+              ? "tajweedActive"
+              : "arabicLanguageActive";
+
+            const paymentField =
+            course === "tajweed"
+              ? "tajweedPaymentId"
+              : "arabicLanguagePaymentId";
+
+            const orderField =
+            course === "tajweed"
+              ? "tajweedOrderId"
+              : "arabicLanguageOrderId";
+
+            const purchaseField =
+            course === "tajweed"
+              ? "tajweedPurchasedAt"
+              : "arabicLanguagePurchasedAt";
+
+            await updateDoc(studentRef, {
+              [courseField]: true,
+              [paymentField]: response.razorpay_payment_id,
+              [orderField]: response.razorpay_order_id,
+              [purchaseField]: serverTimestamp()
+            });
+
+            message.innerHTML =
+            "Payment completed successfully.<br>" +
+            courseName +
+            " access activated.";
+
+            button.textContent = "Course Activated";
+
+          } catch (error) {
+
+            console.error(error);
+
+            message.textContent =
+            "Payment verified, but course activation failed. Please contact admin.";
+
+            button.disabled = false;
+            button.textContent = "Pay Now";
+          }
         };
 
         const verifyScript =
@@ -589,31 +550,6 @@ document.getElementById("payBtn")
 
     };
 
-    // If Razorpay reports a failure, show the recovery
-    // option. Do not activate access from a failed event.
-    razorpay.on(
-      "payment.failed",
-      function(failure) {
-
-        console.error(
-          "Razorpay payment.failed:",
-          failure
-        );
-
-        document.getElementById(
-          "recoveryBox"
-        ).style.display = "block";
-
-        message.textContent =
-          "Payment could not be completed. " +
-          "If Razorpay shows the payment as Captured, " +
-          "enter the Payment ID below and check again.";
-
-        button.disabled = false;
-        button.textContent = "Pay Now";
-      }
-    );
-
 
     const razorpay =
     new Razorpay(options);
@@ -621,85 +557,6 @@ document.getElementById("payBtn")
     razorpay.open();
 
   };
-
-
-  // =========================
-  // PAYMENT STATUS RECOVERY
-  // =========================
-
-  document
-    .getElementById("checkPaymentBtn")
-    .addEventListener("click", () => {
-
-      const paymentId =
-        document.getElementById(
-          "recoveryPaymentId"
-        ).value.trim();
-
-      const message =
-        document.getElementById("message");
-
-      if (!paymentId) {
-
-        message.textContent =
-          "Enter the Razorpay Payment ID.";
-
-        return;
-      }
-
-      message.textContent =
-        "Checking payment status...";
-
-      const recoveryCallback =
-        "recoveryCallback_" +
-        Date.now();
-
-      window[recoveryCallback] =
-        async function(data) {
-
-          delete window[recoveryCallback];
-
-          if (!data.success) {
-
-            message.textContent =
-              data.message ||
-              "Payment is not captured.";
-
-            return;
-          }
-
-          await activateCourse(
-            data.payment_id,
-            data.order_id
-          );
-        };
-
-      const recoveryScript =
-        document.createElement("script");
-
-      recoveryScript.src =
-        BACKEND_URL +
-        "?action=recover" +
-        "&payment_id=" +
-        encodeURIComponent(paymentId) +
-        "&course=" +
-        encodeURIComponent(course) +
-        "&callback=" +
-        encodeURIComponent(recoveryCallback);
-
-      recoveryScript.onerror =
-        function() {
-
-          delete window[recoveryCallback];
-
-          message.textContent =
-            "Unable to check payment status.";
-        };
-
-      document.body.appendChild(
-        recoveryScript
-      );
-    });
 
 
   // =========================
