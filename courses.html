@@ -1,601 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Payment | Al Noor Islamic Academy</title>
+<meta charset="UTF-8">
 
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<title>Courses - Al Noor Islamic Academy</title>
 
-    body {
-      background: #071c16;
-      color: white;
-      min-height: 100vh;
-      padding: 25px;
-    }
+<style>
 
-    .container {
-      max-width: 500px;
-      margin: 40px auto;
-      background: #0d2a22;
-      padding: 30px;
-      border-radius: 18px;
-      border: 1px solid #d4af37;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    h1 {
-      text-align: center;
-      color: #d4af37;
-      margin-bottom: 25px;
-    }
+body{
+    font-family:Arial,sans-serif;
+    background:#071a17;
+    color:#fff;
+    min-height:100vh;
+}
 
-    .plan {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 20px;
+    background:#0b2520;
+    border-bottom:1px solid #d4af37;
+}
 
-    .plan-name {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+.logo{color:#d4af37;font-size:20px;font-weight:bold;}
+.back{color:#d4af37;text-decoration:none;font-size:14px;}
 
-    .price {
-      font-size: 32px;
-      color: #d4af37;
-      font-weight: bold;
-    }
+.hero{text-align:center;padding:40px 20px 25px;}
+.hero h1{color:#d4af37;font-size:32px;margin-bottom:12px;}
+.hero p{color:#aaa;line-height:1.6;max-width:600px;margin:auto;}
 
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 6px;
-    }
+.courses{
+    max-width:1100px;
+    margin:auto;
+    padding:25px 20px 60px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:22px;
+}
 
-    input {
-      width: 100%;
-      padding: 13px;
-      border-radius: 8px;
-      border: 1px solid #555;
-      background: #071c16;
-      color: white;
-    }
+.course-card{
+    background:#0c2923;
+    border:1px solid #29453e;
+    border-radius:18px;
+    padding:25px;
+    overflow:hidden;
+    transition:0.3s;
+}
 
-    button {
-      width: 100%;
-      margin-top: 25px;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      background: #d4af37;
-      color: #071c16;
-      font-size: 17px;
-      font-weight: bold;
-    }
+.course-card:hover{transform:translateY(-5px);border-color:#d4af37;}
 
-    button:disabled {
-      opacity: 0.6;
-    }
+.course-icon{
+    width:70px;height:70px;
+    display:flex;align-items:center;justify-content:center;
+    background:#071a17;border:1px solid #d4af37;
+    border-radius:15px;font-size:38px;margin-bottom:18px;
+}
 
-    #message {
-      text-align: center;
-      margin-top: 18px;
-      color: #d4af37;
-    }
-  </style>
+.course-card h2{color:#d4af37;font-size:21px;margin-bottom:12px;}
+.course-card p{color:#bbb;line-height:1.6;font-size:14px;margin-bottom:18px;}
+.course-info{color:#ddd;font-size:14px;line-height:2;margin-bottom:20px;}
+
+.course-btn{
+    display:block;width:100%;text-align:center;
+    background:#d4af37;color:#071a17;padding:13px;
+    border-radius:9px;text-decoration:none;font-weight:bold;
+    transition:0.2s;
+}
+
+.course-btn:hover{background:#e5c04a;}
+
+footer{text-align:center;padding:25px;background:#051310;color:#888;}
+
+@media(max-width:600px){
+    .hero{padding-top:35px;}
+    .hero h1{font-size:27px;}
+    .courses{padding:20px 15px 50px;}
+    .course-card{padding:22px;}
+}
+
+</style>
+
 </head>
 
 <body>
 
-<div class="container">
+<header>
+    <div class="logo">AL NOOR</div>
+    <a href="dashboard.html" class="back">← Dashboard</a>
+</header>
 
-  <h1>Al Noor Islamic Academy</h1>
+<section class="hero">
+    <h1>Our Courses</h1>
+    <p>Learn Quran, Arabic and Islamic Studies with our structured online courses.</p>
+</section>
 
-  <div class="plan">
-    <div class="plan-name" id="planName">Course</div>
+<section class="courses">
 
-    <div class="price">
-      ₹<span id="planPrice">0</span>
+<div class="course-card">
+    <div class="course-icon">🕌</div>
+    <h2>Tajweed</h2>
+    <p>Learn the rules of Quranic recitation and pronunciation.</p>
+    <div class="course-info">
+        📚 Tajweed Rules<br>
+        🎥 Recorded Lessons<br>
+        🔴 Live Practice<br>
+        💰 Course Fee: ₹10
     </div>
-  </div>
-
-  <label>Full Name</label>
-  <input type="text" id="name" readonly>
-
-  <label>Email</label>
-  <input type="email" id="email" readonly>
-
-  <label>Mobile</label>
-  <input type="text" id="mobile" readonly>
-
-  <button id="payBtn">Pay Now</button>
-
-  <div id="message"></div>
-
+    <a id="tajweedBtn"
+       href="https://s6294.github.io/al-noor-islamic-academy/payment.html?course=tajweed&name=Tajweed&price=10"
+       class="course-btn">
+        Join Course — ₹10
+    </a>
 </div>
 
+<div class="course-card">
+    <div class="course-icon">🌙</div>
+    <h2>Arabic Language</h2>
+    <p>Learn Arabic reading, grammar, vocabulary and conversation.</p>
+    <div class="course-info">
+        🔤 Grammar<br>
+        🗣️ Conversation<br>
+        📚 Vocabulary<br>
+        💰 Course Fee: ₹10
+    </div>
+    <a id="arabicBtn"
+       href="https://s6294.github.io/al-noor-islamic-academy/payment.html?course=arabic-language&name=Arabic%20Language&price=10"
+       class="course-btn">
+        Join Course — ₹10
+    </a>
+</div>
+
+<div class="course-card">
+    <div class="course-icon">📕</div>
+    <h2>Hifz-ul-Quran</h2>
+    <p>A structured Quran memorization program with regular revision.</p>
+    <div class="course-info">
+        📖 Memorization<br>
+        🔄 Daily Revision<br>
+        👨‍🏫 Teacher Guidance
+    </div>
+    <div class="course-btn" style="background:#29453e;color:#d4af37;cursor:default;">Coming Soon</div>
+</div>
+
+<div class="course-card">
+    <div class="course-icon">📖</div>
+    <h2>Quran Reading</h2>
+    <p>Learn to read the Holy Quran correctly with proper pronunciation.</p>
+    <div class="course-info">
+        📚 Nazira Quran<br>
+        🎥 Video Lessons<br>
+        🕌 Tajweed Included
+    </div>
+    <div class="course-btn" style="background:#29453e;color:#d4af37;cursor:default;">Coming Soon</div>
+</div>
+
+<div class="course-card">
+    <div class="course-icon">📜</div>
+    <h2>Hadith Studies</h2>
+    <p>Study selected Hadith with explanation and lessons.</p>
+    <div class="course-info">
+        📖 Selected Hadith<br>
+        📝 Explanation<br>
+        🎥 Recorded Lessons
+    </div>
+    <div class="course-btn" style="background:#29453e;color:#d4af37;cursor:default;">Coming Soon</div>
+</div>
+
+<div class="course-card">
+    <div class="course-icon">🕋</div>
+    <h2>Islamic Studies</h2>
+    <p>Learn Seerah, Aqeedah, Fiqh and Islamic manners.</p>
+    <div class="course-info">
+        🕌 Seerah<br>
+        📚 Aqeedah & Fiqh<br>
+        ❤️ Islamic Manners
+    </div>
+    <div class="course-btn" style="background:#29453e;color:#d4af37;cursor:default;">Coming Soon</div>
+</div>
+
+</section>
+
+<footer>© 2026 Al Noor Islamic Academy</footer>
 
 <script type="module">
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, onAuthStateChanged }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-import {
-  getAuth,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-
-// =========================
-// FIREBASE
-// =========================
+import { getFirestore, doc, getDoc }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
-
-  authDomain:
-    "al-noor-islamic-academy.firebaseapp.com",
-
-  projectId:
-    "al-noor-islamic-academy",
-
-  storageBucket:
-    "al-noor-islamic-academy.firebasestorage.app",
-
-  messagingSenderId:
-    "571799539455",
-
-  appId:
-    "1:571799539455:web:d42728685908430296c6ca"
-
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+    authDomain: "al-noor-islamic-academy.firebaseapp.com",
+    projectId: "al-noor-islamic-academy",
+    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+    messagingSenderId: "571799539455",
+    appId: "1:571799539455:web:d42728685908430296c6ca"
 };
 
-
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
-
 const db = getFirestore(app);
 
-
-// =========================
-// BACKEND
-// =========================
-
-const BACKEND_URL =
-"https://script.google.com/macros/s/AKfycbyCH2v1uORdSwK42KMe89uvawYaeX-QCynsvTuv2Auorcl31e9CG5SVXj9hYHnJduX6Nw/exec";
-
-
-// =========================
-// RAZORPAY TEST KEY
-// =========================
-
-// এখানে তোমার সম্পূর্ণ Test Key ID বসাও
-
-const RAZORPAY_KEY_ID =
-"rzp_live_TejWmbl3MZQfm2";
-
-
-// =========================
-// PLAN
-// =========================
-
-const params =
-new URLSearchParams(window.location.search);
-
-const course =
-params.get("course");
-
-const courseName =
-params.get("name");
-
-const coursePrice =
-params.get("price");
-
-
-document.getElementById("planName").textContent =
-courseName || "Course";
-
-document.getElementById("planPrice").textContent =
-coursePrice || "0";
-
-
-// =========================
-// USER
-// =========================
-
-let currentUser = null;
-
+const tajweedBtn = document.getElementById("tajweedBtn");
+const arabicBtn = document.getElementById("arabicBtn");
 
 onAuthStateChanged(auth, async (user) => {
+    if (!user) return;
 
-  if (!user) {
+    try {
+        const studentRef = doc(db, "students", user.uid);
+        const studentSnap = await getDoc(studentRef);
 
-    window.location.href =
-    "login.html";
+        if (!studentSnap.exists()) return;
 
-    return;
-  }
+        const data = studentSnap.data();
 
-  currentUser = user;
-
-  document.getElementById("email").value =
-  user.email || "";
-
-
-  try {
-
-    const studentRef =
-    doc(db, "students", user.uid);
-
-    const studentSnap =
-    await getDoc(studentRef);
-
-
-    if (studentSnap.exists()) {
-
-      const data =
-      studentSnap.data();
-
-      document.getElementById("name").value =
-      data.name || user.displayName || "";
-
-      document.getElementById("mobile").value =
-      data.mobile || "";
-
-    } else {
-
-      document.getElementById("name").value =
-      user.displayName || "";
-
-    }
-
-  } catch (error) {
-
-    console.error(error);
-
-  }
-
-});
-
-
-// =========================
-// PAY NOW
-// =========================
-
-document.getElementById("payBtn")
-.addEventListener("click", () => {
-
-  const button =
-  document.getElementById("payBtn");
-
-  const message =
-  document.getElementById("message");
-
-
-  if (!currentUser) {
-
-    message.textContent =
-    "Please login first.";
-
-    return;
-  }
-
-
-  if (!course) {
-
-    message.textContent =
-    "Invalid course.";
-
-    return;
-  }
-
-
-  if (
-    !RAZORPAY_KEY_ID ||
-    RAZORPAY_KEY_ID ===
-    "YOUR_FULL_RAZORPAY_TEST_KEY_ID"
-  ) {
-
-    message.textContent =
-    "Please add your Razorpay Test Key ID.";
-
-    return;
-  }
-
-
-  button.disabled = true;
-
-  button.textContent =
-  "Creating Order...";
-
-  message.textContent = "";
-
-
-  const callbackName =
-  "razorpayCallback_" +
-  Date.now();
-
-
-  window[callbackName] =
-  function(data) {
-
-
-    delete window[callbackName];
-
-
-    if (!data.success) {
-
-      message.textContent =
-      data.message ||
-      "Order creation failed.";
-
-      button.disabled = false;
-
-      button.textContent =
-      "Pay Now";
-
-      return;
-    }
-
-
-    // =========================
-    // RAZORPAY CHECKOUT
-    // =========================
-
-    const options = {
-
-      key:
-      RAZORPAY_KEY_ID,
-
-      amount:
-      data.amount,
-
-      currency:
-      data.currency,
-
-      name:
-      "Al Noor Islamic Academy",
-
-      description:
-      data.course_name,
-
-      order_id:
-      data.order_id,
-
-
-      prefill: {
-
-        name:
-        document.getElementById("name").value,
-
-        email:
-        document.getElementById("email").value,
-
-        contact:
-        document.getElementById("mobile").value
-
-      },
-
-
-      theme: {
-
-        color:
-        "#d4af37"
-
-      },
-
-
-      handler:
-      function(response) {
-
-        console.log(
-          "Payment ID:",
-          response.razorpay_payment_id
-        );
-
-        console.log(
-          "Order ID:",
-          response.razorpay_order_id
-        );
-
-        console.log(
-          "Signature:",
-          response.razorpay_signature
-        );
-
-
-        message.textContent =
-        "Verifying payment...";
-
-        const verifyCallbackName =
-        "verifyCallback_" + Date.now();
-
-        window[verifyCallbackName] =
-        async function(verifyResult) {
-
-          delete window[verifyCallbackName];
-
-          if (!verifyResult.success) {
-
-            message.textContent =
-            verifyResult.message ||
-            "Payment verification failed.";
-
-            button.disabled = false;
-            button.textContent = "Pay Now";
-            return;
-          }
-
-          try {
-
-            const studentRef =
-            doc(db, "students", currentUser.uid);
-
-            const courseField =
-            course === "tajweed"
-              ? "tajweedActive"
-              : "arabicLanguageActive";
-
-            const paymentField =
-            course === "tajweed"
-              ? "tajweedPaymentId"
-              : "arabicLanguagePaymentId";
-
-            const orderField =
-            course === "tajweed"
-              ? "tajweedOrderId"
-              : "arabicLanguageOrderId";
-
-            const purchaseField =
-            course === "tajweed"
-              ? "tajweedPurchasedAt"
-              : "arabicLanguagePurchasedAt";
-
-            await setDoc(studentRef, {
-              [courseField]: true,
-              [paymentField]: response.razorpay_payment_id,
-              [orderField]: response.razorpay_order_id,
-              [purchaseField]: serverTimestamp()
-            }, { merge: true });
-
-            message.innerHTML =
-            "Payment completed successfully.<br>" +
-            courseName +
-            " access activated.";
-
-            button.textContent = "Course Activated";
-
-          } catch (error) {
-
-            console.error(error);
-
-            message.textContent =
-            "Payment verified, but course activation failed. Please contact admin.";
-
-            button.disabled = false;
-            button.textContent = "Pay Now";
-          }
-        };
-
-        const verifyScript =
-        document.createElement("script");
-
-        verifyScript.src =
-        BACKEND_URL +
-        "?action=verify" +
-        "&payment_id=" +
-        encodeURIComponent(response.razorpay_payment_id) +
-        "&order_id=" +
-        encodeURIComponent(response.razorpay_order_id) +
-        "&signature=" +
-        encodeURIComponent(response.razorpay_signature) +
-        "&callback=" +
-        encodeURIComponent(verifyCallbackName);
-
-        verifyScript.onerror =
-        function() {
-
-          delete window[verifyCallbackName];
-
-          message.textContent =
-          "Unable to verify payment.";
-
-          button.disabled = false;
-          button.textContent = "Pay Now";
-        };
-
-        document.body.appendChild(verifyScript);
-
-      },
-
-
-      modal: {
-
-        ondismiss:
-        function() {
-
-          button.disabled =
-          false;
-
-          button.textContent =
-          "Pay Now";
-
-          message.textContent =
-          "Payment window closed.";
-
+        if (data.tajweedActive === true) {
+            tajweedBtn.textContent = "Open Tajweed Course";
+            tajweedBtn.href = "quran-course.html";
         }
 
-      }
+        if (data.arabicLanguageActive === true) {
+            arabicBtn.textContent = "Open Arabic Course";
+            arabicBtn.href = "arabic-language.html";
+        }
 
-    };
-
-
-    const razorpay =
-    new Razorpay(options);
-
-    razorpay.open();
-
-  };
-
-
-  // =========================
-  // JSONP REQUEST
-  // =========================
-
-  const script =
-  document.createElement("script");
-
-
-  script.src =
-  BACKEND_URL +
-  "?course=" +
-  encodeURIComponent(course) +
-  "&callback=" +
-  encodeURIComponent(callbackName);
-
-
-  script.onerror =
-  function() {
-
-    delete window[callbackName];
-
-    message.textContent =
-    "Unable to connect to payment server.";
-
-    button.disabled =
-    false;
-
-    button.textContent =
-    "Pay Now";
-
-  };
-
-
-  document.body.appendChild(script);
-
+    } catch (error) {
+        console.error("Course access check error:", error);
+    }
 });
-
 </script>
 
 </body>
