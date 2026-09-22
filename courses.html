@@ -25,183 +25,439 @@ body{
     min-height:100vh;
 }
 
+/* HEADER */
+
 header{
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     padding:18px 20px;
+
     background:#0b2520;
+
     border-bottom:1px solid #d4af37;
 }
 
-.logo{color:#d4af37;font-size:20px;font-weight:bold;}
-.back{color:#d4af37;text-decoration:none;font-size:14px;}
+.logo{
+    color:#d4af37;
+    font-size:20px;
+    font-weight:bold;
+}
 
-.hero{text-align:center;padding:40px 20px 25px;}
-.hero h1{color:#d4af37;font-size:32px;margin-bottom:12px;}
-.hero p{color:#aaa;line-height:1.6;max-width:600px;margin:auto;}
+.back{
+    color:#d4af37;
+    text-decoration:none;
+    font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:40px 20px 25px;
+}
+
+.hero h1{
+    color:#d4af37;
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#aaa;
+    line-height:1.6;
+    max-width:600px;
+    margin:auto;
+}
+
+/* COURSES */
 
 .courses{
     max-width:1100px;
     margin:auto;
+
     padding:25px 20px 60px;
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
     gap:22px;
 }
 
+/* COURSE CARD */
+
 .course-card{
     background:#0c2923;
+
     border:1px solid #29453e;
+
     border-radius:18px;
+
     padding:25px;
+
     overflow:hidden;
+
     transition:0.3s;
 }
 
-.course-card:hover{transform:translateY(-5px);border-color:#d4af37;}
-
-.course-icon{
-    width:70px;height:70px;
-    display:flex;align-items:center;justify-content:center;
-    background:#071a17;border:1px solid #d4af37;
-    border-radius:15px;font-size:38px;margin-bottom:18px;
+.course-card:hover{
+    transform:translateY(-5px);
+    border-color:#d4af37;
 }
 
-.course-card h2{color:#d4af37;font-size:21px;margin-bottom:12px;}
-.course-card p{color:#bbb;line-height:1.6;font-size:14px;margin-bottom:18px;}
-.course-info{color:#ddd;font-size:14px;line-height:2;margin-bottom:20px;}
+/* ICON */
+
+.course-icon{
+    width:70px;
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#071a17;
+
+    border:1px solid #d4af37;
+
+    border-radius:15px;
+
+    font-size:38px;
+
+    margin-bottom:18px;
+}
+
+/* TITLE */
+
+.course-card h2{
+    color:#d4af37;
+
+    font-size:21px;
+
+    margin-bottom:12px;
+}
+
+/* DESCRIPTION */
+
+.course-card p{
+    color:#bbb;
+
+    line-height:1.6;
+
+    font-size:14px;
+
+    margin-bottom:18px;
+}
+
+/* INFO */
+
+.course-info{
+    color:#ddd;
+
+    font-size:14px;
+
+    line-height:2;
+
+    margin-bottom:20px;
+}
+
+/* BUTTON */
 
 .course-btn{
-    display:block;width:100%;text-align:center;
-    background:#d4af37;color:#071a17;padding:13px;
-    border-radius:9px;text-decoration:none;font-weight:bold;
+    display:block;
+
+    width:100%;
+
+    text-align:center;
+
+    background:#d4af37;
+
+    color:#071a17;
+
+    padding:13px;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
     transition:0.2s;
 }
 
-.course-btn:hover{background:#e5c04a;}
+.course-btn:hover{
+    background:#e5c04a;
+}
 
-footer{text-align:center;padding:25px;background:#051310;color:#888;}
+/* FOOTER */
+
+footer{
+    text-align:center;
+
+    padding:25px;
+
+    background:#051310;
+
+    color:#888;
+}
+
+/* MOBILE */
 
 @media(max-width:600px){
-    .hero{padding-top:35px;}
-    .hero h1{font-size:27px;}
-    .courses{padding:20px 15px 50px;}
-    .course-card{padding:22px;}
+
+    .hero{
+        padding-top:35px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+
+    .courses{
+        padding:20px 15px 50px;
+    }
+
+    .course-card{
+        padding:22px;
+    }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
 
+
+<!-- HEADER -->
+
 <header>
-    <div class="logo">AL NOOR</div>
-    <a href="dashboard.html" class="back">← Dashboard</a>
+
+    <div class="logo">
+        AL NOOR
+    </div>
+
+    <a href="dashboard.html"
+       class="back">
+
+        ← Dashboard
+
+    </a>
+
 </header>
 
+
+<!-- HERO -->
+
 <section class="hero">
-    <h1>Our Courses</h1>
-    <p>Learn Quran, Arabic and Islamic Studies with our structured online courses.</p>
+
+    <h1>
+        Our Courses
+    </h1>
+
+    <p>
+        Learn Quran, Arabic and Islamic Studies
+        with our structured online courses.
+    </p>
+
 </section>
+
+
+<!-- COURSES -->
 
 <section class="courses">
 
+<!-- TAJWEED -->
 <div class="course-card">
+
     <div class="course-icon">🕌</div>
+
     <h2>Tajweed</h2>
-    <p>Learn the rules of Quranic recitation and pronunciation.</p>
+
+    <p>
+        Learn the rules of Quranic
+        recitation and pronunciation.
+    </p>
+
     <div class="course-info">
         📚 Tajweed Rules<br>
         🎥 Recorded Lessons<br>
         🔴 Live Practice<br>
-        💰 Course Fee: ₹10
+        💰 Course Fee: ₹299
     </div>
+
     <a id="tajweedBtn"
-       href="https://s6294.github.io/al-noor-islamic-academy/payment.html?course=tajweed&name=Tajweed&price=10"
+       href="payment.html?course=tajweed&name=Tajweed&price=299"
        class="course-btn">
-        Join Course — ₹10
+        Join Course — ₹299
     </a>
+
 </div>
 
+
+<!-- ARABIC LANGUAGE -->
 <div class="course-card">
+
     <div class="course-icon">🌙</div>
+
     <h2>Arabic Language</h2>
-    <p>Learn Arabic reading, grammar, vocabulary and conversation.</p>
+
+    <p>
+        Learn Arabic reading, grammar,
+        vocabulary and conversation.
+    </p>
+
     <div class="course-info">
         🔤 Grammar<br>
         🗣️ Conversation<br>
         📚 Vocabulary<br>
-        💰 Course Fee: ₹10
+        💰 Course Fee: ₹299
     </div>
+
     <a id="arabicBtn"
-       href="https://s6294.github.io/al-noor-islamic-academy/payment.html?course=arabic-language&name=Arabic%20Language&price=10"
+       href="payment.html?course=arabic-language&name=Arabic%20Language&price=299"
        class="course-btn">
-        Join Course — ₹10
+        Join Course — ₹299
     </a>
+
 </div>
 
+
+<!-- HIFZ -->
 <div class="course-card">
+
     <div class="course-icon">📕</div>
+
     <h2>Hifz-ul-Quran</h2>
-    <p>A structured Quran memorization program with regular revision.</p>
+
+    <p>
+        A structured Quran memorization
+        program with regular revision.
+    </p>
+
     <div class="course-info">
         📖 Memorization<br>
         🔄 Daily Revision<br>
         👨‍🏫 Teacher Guidance
     </div>
-    <div class="course-btn" style="background:#29453e;color:#d4af37;cursor:default;">Coming Soon</div>
+
+    <div class="course-btn"
+         style="background:#29453e;color:#d4af37;cursor:default;">
+        Coming Soon
+    </div>
+
 </div>
 
+
+<!-- QURAN READING -->
 <div class="course-card">
+
     <div class="course-icon">📖</div>
+
     <h2>Quran Reading</h2>
-    <p>Learn to read the Holy Quran correctly with proper pronunciation.</p>
+
+    <p>
+        Learn to read the Holy Quran
+        correctly with proper pronunciation.
+    </p>
+
     <div class="course-info">
         📚 Nazira Quran<br>
         🎥 Video Lessons<br>
         🕌 Tajweed Included
     </div>
-    <div class="course-btn" style="background:#29453e;color:#d4af37;cursor:default;">Coming Soon</div>
+
+    <div class="course-btn"
+         style="background:#29453e;color:#d4af37;cursor:default;">
+        Coming Soon
+    </div>
+
 </div>
 
+
+<!-- HADITH -->
 <div class="course-card">
+
     <div class="course-icon">📜</div>
+
     <h2>Hadith Studies</h2>
-    <p>Study selected Hadith with explanation and lessons.</p>
+
+    <p>
+        Study selected Hadith with
+        explanation and lessons.
+    </p>
+
     <div class="course-info">
         📖 Selected Hadith<br>
         📝 Explanation<br>
         🎥 Recorded Lessons
     </div>
-    <div class="course-btn" style="background:#29453e;color:#d4af37;cursor:default;">Coming Soon</div>
+
+    <div class="course-btn"
+         style="background:#29453e;color:#d4af37;cursor:default;">
+        Coming Soon
+    </div>
+
 </div>
 
+
+<!-- ISLAMIC STUDIES -->
 <div class="course-card">
+
     <div class="course-icon">🕋</div>
+
     <h2>Islamic Studies</h2>
-    <p>Learn Seerah, Aqeedah, Fiqh and Islamic manners.</p>
+
+    <p>
+        Learn Seerah, Aqeedah, Fiqh
+        and Islamic manners.
+    </p>
+
     <div class="course-info">
         🕌 Seerah<br>
         📚 Aqeedah & Fiqh<br>
         ❤️ Islamic Manners
     </div>
-    <div class="course-btn" style="background:#29453e;color:#d4af37;cursor:default;">Coming Soon</div>
+
+    <div class="course-btn"
+         style="background:#29453e;color:#d4af37;cursor:default;">
+        Coming Soon
+    </div>
+
 </div>
 
 </section>
 
-<footer>© 2026 Al Noor Islamic Academy</footer>
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
+
+
 
 <script type="module">
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-import { getAuth, onAuthStateChanged }
+import {
+    getAuth,
+    onAuthStateChanged
+}
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-import { getFirestore, doc, getDoc }
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -248,4 +504,5 @@ onAuthStateChanged(auth, async (user) => {
 </script>
 
 </body>
+
 </html>
