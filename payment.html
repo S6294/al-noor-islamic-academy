@@ -431,123 +431,136 @@ document.getElementById("payBtn")
         const verifyCallbackName =
         "verifyCallback_" + Date.now();
 
-        window[verifyCallbackName] =
-        async function(verifyResult) {
+        let verificationFinished = false;
+        let verificationAttempts = 0;
 
-          delete window[verifyCallbackName];
+        function verifyPaymentWithJSONP() {
 
-          if (!verifyResult.success) {
+          verificationAttempts++;
+
+          const callback =
+          verificationAttempts === 1
+            ? verifyCallbackName
+            : verifyCallbackName + "_retry";
+
+          window[callback] =
+          async function(verifyResult) {
+
+            verificationFinished = true;
+
+            delete window[callback];
+
+            if (!verifyResult.success) {
+
+              message.textContent =
+              verifyResult.message ||
+              "Payment verification failed.";
+
+              button.disabled = false;
+              button.textContent = "Pay Now";
+              return;
+            }
+
+            try {
+
+              const studentRef =
+              doc(db, "students", currentUser.uid);
+
+              const courseField =
+              course === "tajweed"
+                ? "tajweedActive"
+                : "arabicLanguageActive";
+
+              const paymentField =
+              course === "tajweed"
+                ? "tajweedPaymentId"
+                : "arabicLanguagePaymentId";
+
+              const orderField =
+              course === "tajweed"
+                ? "tajweedOrderId"
+                : "arabicLanguageOrderId";
+
+              const purchaseField =
+              course === "tajweed"
+                ? "tajweedPurchasedAt"
+                : "arabicLanguagePurchasedAt";
+
+              await setDoc(studentRef, {
+                [courseField]: true,
+                [paymentField]: response.razorpay_payment_id,
+                [orderField]: response.razorpay_order_id,
+                [purchaseField]: serverTimestamp()
+              }, { merge: true });
+
+              message.innerHTML =
+              "Payment completed successfully.<br>" +
+              courseName +
+              " access activated.";
+
+              button.textContent = "Course Activated";
+
+            } catch (error) {
+
+              console.error(error);
+
+              message.textContent =
+              "Payment verified, but course activation failed. Please contact admin.";
+
+              button.disabled = false;
+              button.textContent = "Pay Now";
+            }
+          };
+
+          const verifyScript =
+          document.createElement("script");
+
+          verifyScript.src =
+          BACKEND_URL +
+          "?action=verify" +
+          "&payment_id=" +
+          encodeURIComponent(response.razorpay_payment_id) +
+          "&order_id=" +
+          encodeURIComponent(response.razorpay_order_id) +
+          "&signature=" +
+          encodeURIComponent(response.razorpay_signature) +
+          "&course=" +
+          encodeURIComponent(course) +
+          "&callback=" +
+          encodeURIComponent(callback) +
+          "&cache=" +
+          Date.now();
+
+          verifyScript.onerror =
+          function() {
+
+            delete window[callback];
+
+            if (!verificationFinished &&
+                verificationAttempts < 2) {
+
+              message.textContent =
+              "Reconnecting to payment verification...";
+
+              setTimeout(
+                verifyPaymentWithJSONP,
+                1200
+              );
+
+              return;
+            }
 
             message.textContent =
-            verifyResult.message ||
-            "Payment verification failed.";
+            "Unable to connect to payment verification server. Please try again.";
 
             button.disabled = false;
             button.textContent = "Pay Now";
-            return;
-          }
+          };
 
-          try {
+          document.body.appendChild(verifyScript);
+        }
 
-            const studentRef =
-            doc(db, "students", currentUser.uid);
-
-            const courseField =
-            course === "tajweed"
-              ? "tajweedActive"
-              : "arabicLanguageActive";
-
-            const paymentField =
-            course === "tajweed"
-              ? "tajweedPaymentId"
-              : "arabicLanguagePaymentId";
-
-            const orderField =
-            course === "tajweed"
-              ? "tajweedOrderId"
-              : "arabicLanguageOrderId";
-
-            const purchaseField =
-            course === "tajweed"
-              ? "tajweedPurchasedAt"
-              : "arabicLanguagePurchasedAt";
-
-            await setDoc(studentRef, {
-              [courseField]: true,
-              [paymentField]: response.razorpay_payment_id,
-              [orderField]: response.razorpay_order_id,
-              [purchaseField]: serverTimestamp()
-            }, { merge: true });
-
-            message.innerHTML =
-            "Payment completed successfully.<br>" +
-            courseName +
-            " access activated.";
-
-            button.textContent = "Course Activated";
-
-          } catch (error) {
-
-            console.error(error);
-
-            message.textContent =
-            "Payment verified, but course activation failed. Please contact admin.";
-
-            button.disabled = false;
-            button.textContent = "Pay Now";
-          }
-        };
-
-        const verifyScript =
-        document.createElement("script");
-
-        verifyScript.src =
-        BACKEND_URL +
-        "?action=verify" +
-        "&payment_id=" +
-        encodeURIComponent(response.razorpay_payment_id) +
-        "&order_id=" +
-        encodeURIComponent(response.razorpay_order_id) +
-        "&signature=" +
-        encodeURIComponent(response.razorpay_signature) +
-        "&callback=" +
-        encodeURIComponent(verifyCallbackName);
-
-        verifyScript.onload =
-        function() {
-          // JSONP callback handles the verification response.
-        };
-
-        verifyScript.onerror =
-        function() {
-
-          delete window[verifyCallbackName];
-
-          message.textContent =
-          "Unable to connect to payment verification server. Please try again.";
-
-          button.disabled = false;
-          button.textContent = "Pay Now";
-        };
-
-        document.body.appendChild(verifyScript);
-
-        // If the backend does not call the JSONP callback,
-        // prevent the page from waiting indefinitely.
-        setTimeout(function() {
-
-          if (window[verifyCallbackName]) {
-
-            delete window[verifyCallbackName];
-
-            message.textContent =
-            "Payment verification response was not received. Please try again.";
-
-            button.disabled = false;
-            button.textContent = "Pay Now";
-          }
-
-        }, 15000);
+        verifyPaymentWithJSONP();
 
       },
 
