@@ -480,8 +480,8 @@ onAuthStateChanged(auth, async (user) => {
         setStatus("arabicStatus", arabicActive, "Active", "Not Purchased");
 
         const paid = [];
-        if (tajweedActive) paid.push("Tajweed — ₹299");
-        if (arabicActive) paid.push("Arabic Language — ₹299");
+        if (tajweedActive) paid.push("Tajweed — ₹10");
+        if (arabicActive) paid.push("Arabic Language — ₹10");
 
         $("paidCourses").textContent = paid.length ? paid.join(" • ") : "None";
 
