@@ -513,19 +513,41 @@ document.getElementById("payBtn")
         "&callback=" +
         encodeURIComponent(verifyCallbackName);
 
+        verifyScript.onload =
+        function() {
+          // JSONP callback handles the verification response.
+        };
+
         verifyScript.onerror =
         function() {
 
           delete window[verifyCallbackName];
 
           message.textContent =
-          "Unable to verify payment.";
+          "Unable to connect to payment verification server. Please try again.";
 
           button.disabled = false;
           button.textContent = "Pay Now";
         };
 
         document.body.appendChild(verifyScript);
+
+        // If the backend does not call the JSONP callback,
+        // prevent the page from waiting indefinitely.
+        setTimeout(function() {
+
+          if (window[verifyCallbackName]) {
+
+            delete window[verifyCallbackName];
+
+            message.textContent =
+            "Payment verification response was not received. Please try again.";
+
+            button.disabled = false;
+            button.textContent = "Pay Now";
+          }
+
+        }, 15000);
 
       },
 
