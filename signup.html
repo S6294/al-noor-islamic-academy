@@ -158,10 +158,6 @@
             Join Al Noor Islamic Academy
         </p>
 
-        <p style="text-align:center;color:#d4af37;font-size:13px;margin:-14px 0 24px;line-height:1.5;">
-            Email verification is required to activate your account.
-        </p>
-
 
         <form id="signupForm">
 
@@ -285,9 +281,15 @@
         import {
             getAuth,
             createUserWithEmailAndPassword,
-            updateProfile,
-            sendEmailVerification
+            updateProfile
         } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+        import {
+            getFirestore,
+            doc,
+            setDoc,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
         const firebaseConfig = {
@@ -310,6 +312,7 @@
         const app = initializeApp(firebaseConfig);
 
         const auth = getAuth(app);
+        const db = getFirestore(app);
 
 
         const signupForm =
@@ -363,11 +366,9 @@
             }
 
 
-            if (!/^[6-9]\d{9}$/.test(mobile)) {
+            if (mobile.length < 10) {
 
-                alert(
-                    "Please enter a valid 10-digit Indian mobile number."
-                );
+                alert("Please enter a valid mobile number.");
 
                 return;
 
@@ -399,18 +400,24 @@
 
                 });
 
-                // Send a verification link to the email address.
-                await sendEmailVerification(user);
+                // Save the student's profile in Firestore so the
+                // mobile number is available on the payment page.
+                await setDoc(doc(db, "students", user.uid), {
+                    uid: user.uid,
+                    name: name,
+                    email: user.email || email,
+                    mobile: mobile,
+                    createdAt: serverTimestamp()
+                });
+
 
                 alert(
-                    "Account created successfully!\n\n" +
-                    "A verification link has been sent to " +
-                    user.email + ".\n\n" +
-                    "Please verify your email first, then login."
+                    "Account created successfully! Welcome to Al Noor Islamic Academy."
                 );
 
+
                 window.location.href =
-                    "login.html";
+                    "dashboard.html";
 
 
             } catch (error) {
