@@ -140,7 +140,8 @@ import {
   doc,
   getDoc,
   setDoc,
-  serverTimestamp
+  serverTimestamp,
+  Timestamp
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
@@ -486,12 +487,69 @@ document.getElementById("payBtn")
                 ? "tajweedPurchasedAt"
                 : "arabicLanguagePurchasedAt";
 
-              await setDoc(studentRef, {
+              const updateData = {
                 [courseField]: true,
                 [paymentField]: response.razorpay_payment_id,
                 [orderField]: response.razorpay_order_id,
                 [purchaseField]: serverTimestamp()
-              }, { merge: true });
+              };
+
+              // Tajweed / Arabic: ₹10 = 30 days.
+              // Renewal adds 30 days to the existing active expiry.
+              if (course === "tajweed" || course === "arabic-language") {
+                const oldSnap = await getDoc(studentRef);
+                const oldData = oldSnap.exists() ? oldSnap.data() : {};
+                const now = new Date();
+
+                const expiryField =
+                  course === "tajweed" ? "tajweedExpiryAt" : "arabicExpiryAt";
+                const purchaseFieldName =
+                  course === "tajweed" ? "tajweedPurchasedAt" : "arabicLanguagePurchasedAt";
+
+                let expiryDate = null;
+
+                if (oldData[expiryField]) {
+                  const rawExpiry = oldData[expiryField];
+                  const oldExpiry = rawExpiry.toDate
+                    ? rawExpiry.toDate()
+                    : rawExpiry.seconds
+                      ? new Date(rawExpiry.seconds * 1000)
+                      : new Date(rawExpiry);
+
+                  if (!isNaN(oldExpiry.getTime()) && oldExpiry > now) {
+                    expiryDate = new Date(oldExpiry.getTime());
+                  }
+                }
+
+                if (!expiryDate && oldData[purchaseFieldName]) {
+                  const rawPurchase = oldData[purchaseFieldName];
+                  const oldPurchase = rawPurchase.toDate
+                    ? rawPurchase.toDate()
+                    : rawPurchase.seconds
+                      ? new Date(rawPurchase.seconds * 1000)
+                      : new Date(rawPurchase);
+
+                  if (!isNaN(oldPurchase.getTime())) {
+                    const legacyExpiry = new Date(
+                      oldPurchase.getTime() + 30 * 24 * 60 * 60 * 1000
+                    );
+
+                    if (legacyExpiry > now) {
+                      expiryDate = legacyExpiry;
+                    }
+                  }
+                }
+
+                if (!expiryDate) expiryDate = now;
+
+                expiryDate = new Date(
+                  expiryDate.getTime() + 30 * 24 * 60 * 60 * 1000
+                );
+
+                updateData[expiryField] = Timestamp.fromDate(expiryDate);
+              }
+
+              await setDoc(studentRef, updateData, { merge: true });
 
               message.innerHTML =
               "Payment completed successfully.<br>" +
