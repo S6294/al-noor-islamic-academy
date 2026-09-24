@@ -4,536 +4,426 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Students - Al Noor Islamic Academy</title>
+<title>Students | Al Noor Islamic Academy</title>
 
 <style>
+
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
 body{
-    font-family:Arial,sans-serif;
     background:#071c16;
     color:white;
 }
 
+/* Header */
+
 header{
-    background:#0d2b22;
+    background:#0b261e;
     padding:18px 20px;
-    border-bottom:1px solid #c9a227;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    border-bottom:1px solid #d4af37;
 }
 
 .logo{
     color:#d4af37;
-    font-size:20px;
+    font-size:21px;
     font-weight:bold;
 }
 
-.back{
+.admin{
     color:#d4af37;
-    text-decoration:none;
+    font-size:14px;
 }
 
+/* Container */
+
 .container{
-    max-width:1100px;
+    max-width:1000px;
     margin:auto;
-    padding:25px 18px;
+    padding:30px 18px;
 }
 
 h1{
-    margin-bottom:20px;
+    text-align:center;
+    color:#d4af37;
+    margin-bottom:8px;
 }
+
+.subtitle{
+    text-align:center;
+    color:#9fb3ab;
+    margin-bottom:30px;
+}
+
+/* Search */
 
 .search{
     width:100%;
     padding:14px;
-    margin-bottom:20px;
-    border-radius:9px;
-    border:1px solid #31584b;
-    background:#0d2b22;
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:10px;
     color:white;
     outline:none;
+    margin-bottom:20px;
 }
 
+.search:focus{
+    border-color:#d4af37;
+}
+
+.search::placeholder{
+    color:#718b82;
+}
+
+/* Student Card */
+
 .student{
-    background:#0d2b22;
-    border:1px solid #21473b;
-    border-radius:14px;
-    padding:18px;
+    background:#0b261e;
+    border:1px solid #31594d;
+    border-radius:15px;
+    padding:20px;
     margin-bottom:15px;
 }
 
-.student h3{
-    color:#d4af37;
-    margin-bottom:10px;
+.student-top{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-.info{
-    color:#c8d2ce;
-    line-height:1.8;
-}
-
-.label{
-    color:#d4af37;
+.avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#d4af37;
+    color:#071c16;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     font-weight:bold;
 }
 
-.empty{
-    text-align:center;
-    padding:30px;
-    color:#9eb0a9;
+.name{
+    font-size:18px;
+    font-weight:bold;
 }
 
-#loading{
-    text-align:center;
-    padding:60px 20px;
+.email{
+    color:#8fa69e;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.details{
+    margin-top:15px;
+    padding-top:15px;
+    border-top:1px solid #23463b;
+    line-height:1.8;
+    color:#b9c9c3;
+}
+
+.badge{
+    display:inline-block;
+    margin-top:10px;
+    padding:5px 10px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.premium{
+    background:#d4af37;
+    color:#071c16;
+}
+
+.basic{
+    background:#183d31;
     color:#d4af37;
 }
 
-#content{
-    display:none;
+.active{
+    color:#6fd39b;
 }
 
-.status{
-    display:inline-block;
-    padding:5px 10px;
-    border-radius:20px;
-    background:#174d38;
-    color:#8ff0bd;
-    font-size:12px;
+/* Back */
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:30px;
+    color:#d4af37;
+    text-decoration:none;
 }
 
-.membership{
-    color:#ffd86a;
+/* Footer */
+
+footer{
+    text-align:center;
+    color:#718b82;
+    padding:30px 10px;
+    margin-top:20px;
+    border-top:1px solid #193b31;
 }
 
-@media(max-width:600px){
-    header{
-        padding:15px;
-    }
 
-    .container{
-        padding:20px 14px;
-    }
+.delete-btn{
+    margin-top:15px;
+    width:100%;
+    padding:11px;
+    border:1px solid #7b3f3f;
+    border-radius:9px;
+    background:#3a2020;
+    color:#ffb0b0;
+    font-weight:bold;
+    cursor:pointer;
 }
+.delete-btn:hover{background:#522525}
+#studentsList{margin-top:5px}
+.status{padding:15px;text-align:center;color:#aabbb5}
 </style>
 </head>
 
 <body>
 
-<div id="loading">
-    Checking admin access...
-</div>
-
-<div id="content">
-
 <header>
 
     <div class="logo">
-        AL NOOR ADMIN
+        AL NOOR
     </div>
 
-    <a href="admin.html" class="back">
-        ← Dashboard
-    </a>
+    <div class="admin">
+        👑 Admin
+    </div>
 
 </header>
 
+
 <div class="container">
 
-    <h1>👨‍🎓 Students</h1>
+    <h1>Students</h1>
+
+    <p class="subtitle">
+        Manage registered academy students
+    </p>
+
 
     <input
-        type="search"
-        id="searchInput"
+        type="text"
         class="search"
-        placeholder="Search by name, email or mobile..."
+        placeholder="🔍 Search student..."
     >
 
-    <div id="studentList">
-        Loading students...
+
+    <div id="studentsList">
+        <div class="status">Loading students...</div>
     </div>
 
-</div>
+    <a href="admin.html" class="back">
+        ← Back to Admin Dashboard
+    </a>
 
 </div>
+
+
+<footer>
+
+    © 2026 Al Noor Islamic Academy
+
+</footer>
 
 
 <script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
-import {
-    getAuth,
-    onAuthStateChanged,
-    signOut
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-import {
-    getFirestore,
-    collection,
-    getDocs,
-    doc,
-    getDoc
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 const firebaseConfig = {
-
-    apiKey:
-    "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
-
-    authDomain:
-    "al-noor-islamic-academy.firebaseapp.com",
-
-    projectId:
-    "al-noor-islamic-academy",
-
-    storageBucket:
-    "al-noor-islamic-academy.firebasestorage.app",
-
-    messagingSenderId:
-    "571799539455",
-
-    appId:
-    "1:571799539455:web:d42728685908430296c6ca"
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+    authDomain: "al-noor-islamic-academy.firebaseapp.com",
+    projectId: "al-noor-islamic-academy",
+    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+    messagingSenderId: "571799539455",
+    appId: "1:571799539455:web:d42728685908430296c6ca"
 };
 
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-const app =
-initializeApp(firebaseConfig);
+const API_BASE_URL = "PASTE_YOUR_DEPLOYED_BACKEND_URL_HERE";
+const list = document.getElementById("studentsList");
+const search = document.querySelector(".search");
 
-const auth =
-getAuth(app);
+let allStudents = [];
 
-const db =
-getFirestore(app);
-
-
-const loading =
-document.getElementById("loading");
-
-const content =
-document.getElementById("content");
-
-const studentList =
-document.getElementById("studentList");
-
-const searchInput =
-document.getElementById("searchInput");
-
-
-let students = [];
-
-
-// ADMIN VERIFICATION
-onAuthStateChanged(auth, async (user) => {
-
-    if(!user){
-
-        window.location.href =
-        "admin-login.html";
-
-        return;
-    }
-
-    try{
-
-        const adminRef =
-        doc(db,"admins",user.uid);
-
-        const adminSnap =
-        await getDoc(adminRef);
-
-        if(!adminSnap.exists()){
-
-            alert(
-                "Access denied. Admin only."
-            );
-
-            await signOut(auth);
-
-            window.location.href =
-            "admin-login.html";
-
-            return;
-        }
-
-
-        loading.style.display =
-        "none";
-
-        content.style.display =
-        "block";
-
-        await loadStudents();
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Admin verification failed."
-        );
-
-        await signOut(auth);
-
-        window.location.href =
-        "admin-login.html";
-    }
-
-});
-
-
-// LOAD STUDENTS
-async function loadStudents(){
-
-    studentList.innerHTML =
-    "Loading students...";
-
-    try{
-
-        const snapshot =
-        await getDocs(
-            collection(db,"students")
-        );
-
-
-        students = [];
-
-        snapshot.forEach((item) => {
-
-            students.push({
-                id:item.id,
-                ...item.data()
-            });
-
-        });
-
-
-        renderStudents(students);
-
-    }catch(error){
-
-        console.error(error);
-
-        studentList.innerHTML =
-        '<div class="empty">Failed to load students.</div>';
-    }
+function esc(value){
+    return String(value ?? "").replace(/[&<>"']/g, c => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    }[c]));
 }
 
+function studentName(d, uid){
+    return d.name || d.fullName || d.displayName || d.studentName || "Student";
+}
 
-// DISPLAY STUDENTS
-function renderStudents(list){
-
-    studentList.innerHTML = "";
-
-
-    if(list.length === 0){
-
-        studentList.innerHTML =
-        '<div class="empty">No students found.</div>';
-
+function renderStudents(items){
+    if(!items.length){
+        list.innerHTML = '<div class="status">No students found.</div>';
         return;
     }
 
+    list.innerHTML = items.map(({uid, data}) => {
+        const name = studentName(data, uid);
+        const email = data.email || "Email not available";
+        const mobile = data.mobile || data.phone || data.phoneNumber || "Not available";
+        const membership = data.membership || data.plan || data.membershipPlan || "Not assigned";
 
-    list.forEach((student) => {
+        const tajweedPaid = data.tajweedPaymentId || data.tajweedActive === true;
+        const arabicPaid = data.arabicLanguagePaymentId || data.arabicLanguageActive === true;
 
-        const div =
-        document.createElement("div");
+        const tajweedStatus = tajweedPaid
+            ? `✓ Paid${data.tajweedPaymentId ? " • " + esc(data.tajweedPaymentId) : ""}`
+            : "None";
 
-        div.className =
-        "student";
+        const arabicStatus = arabicPaid
+            ? `✓ Paid${data.arabicLanguagePaymentId ? " • " + esc(data.arabicLanguagePaymentId) : ""}`
+            : "None";
 
+        const generalPaymentStatus = data.paymentStatus || data.lastPaymentStatus ||
+            (tajweedPaid || arabicPaid ? "Paid" : "None");
+        const generalPaymentCourse = data.paymentCourse || data.lastPaymentCourse ||
+            (data.tajweedPaymentId ? "Tajweed" : data.arabicLanguagePaymentId ? "Arabic Language" : "None");
+        const generalPaymentAmount = data.paymentAmount ?? data.lastPaymentAmount;
+        const generalPaymentId = data.paymentId || data.lastPaymentId ||
+            data.tajweedPaymentId || data.arabicLanguagePaymentId || "None";
+        const initial = name.trim().split(/\s+/).map(x => x[0]).slice(0,2).join("").toUpperCase();
 
-        const name =
-        escapeHtml(
-            student.name || "No name"
-        );
-
-        const email =
-        escapeHtml(
-            student.email || "No email"
-        );
-
-        const mobile =
-        escapeHtml(
-            student.mobile || "Not provided"
-        );
-
-        const membership =
-        escapeHtml(
-            student.membership || "None"
-        );
-
-        const status =
-        escapeHtml(
-            student.status || "Unknown"
-        );
-
-
-        let paymentInfo = "";
-
-        if(student.paymentId){
-
-            paymentInfo += `
+        return `
+        <div class="student" data-uid="${esc(uid)}">
+            <div class="student-top">
+                <div class="avatar">${esc(initial)}</div>
                 <div>
-                    <span class="label">
-                        Payment ID:
-                    </span>
-                    ${escapeHtml(student.paymentId)}
+                    <div class="name">${esc(name)}</div>
+                    <div class="email">${esc(email)}</div>
                 </div>
-            `;
-        }
-
-        if(student.orderId){
-
-            paymentInfo += `
-                <div>
-                    <span class="label">
-                        Order ID:
-                    </span>
-                    ${escapeHtml(student.orderId)}
-                </div>
-            `;
-        }
-
-        if(student.membershipAmount){
-
-            paymentInfo += `
-                <div>
-                    <span class="label">
-                        Amount:
-                    </span>
-                    ₹${escapeHtml(student.membershipAmount)}
-                </div>
-            `;
-        }
-
-
-        div.innerHTML = `
-
-            <h3>
-                ${name}
-            </h3>
-
-            <div class="info">
-
-                <div>
-                    <span class="label">
-                        Email:
-                    </span>
-                    ${email}
-                </div>
-
-                <div>
-                    <span class="label">
-                        Mobile:
-                    </span>
-                    ${mobile}
-                </div>
-
-                <div>
-                    <span class="label">
-                        Membership:
-                    </span>
-
-                    <span class="membership">
-                        ${membership}
-                    </span>
-                </div>
-
-                <div>
-                    <span class="label">
-                        Status:
-                    </span>
-
-                    <span class="status">
-                        ${status}
-                    </span>
-                </div>
-
-                ${paymentInfo}
-
-                <div>
-                    <span class="label">
-                        User ID:
-                    </span>
-                    ${escapeHtml(student.id)}
-                </div>
-
             </div>
-        `;
+            <div class="details">
+                📱 Mobile: ${esc(mobile)}<br>
+                💎 Membership: <span class="badge basic">${esc(membership)}</span><br>
+                💳 Payment: <span class="badge premium">${esc(generalPaymentStatus)}</span><br>
+                📚 Paid Course: ${esc(generalPaymentCourse)}<br>
+                💰 Amount: ${generalPaymentAmount != null ? "₹" + esc(generalPaymentAmount) : "None"}<br>
+                🧾 Payment ID: ${esc(generalPaymentId)}<br>
+                📖 Tajweed: <span class="${tajweedPaid ? "active" : ""}">${tajweedStatus}</span><br>
+                🕌 Arabic Language: <span class="${arabicPaid ? "active" : ""}">${arabicStatus}</span><br>
+                🆔 UID: ${esc(uid)}
+                <button class="delete-btn" data-delete-uid="${esc(uid)}">🗑️ Delete Account</button>
+            </div>
+        </div>`;
+    }).join("");
 
-
-        studentList.appendChild(div);
-
+    list.querySelectorAll("[data-delete-uid]").forEach(btn => {
+        btn.addEventListener("click", () => deleteStudent(btn.dataset.deleteUid));
     });
 }
 
+async function loadStudents(){
+    list.innerHTML = '<div class="status">Loading students...</div>';
+    try{
+        const q = query(collection(db, "students"));
+        const snap = await getDocs(q);
 
-// SEARCH
-searchInput.addEventListener(
-    "input",
-    () => {
-
-        const search =
-        searchInput.value
-        .trim()
-        .toLowerCase();
-
-
-        const filtered =
-        students.filter((student) => {
-
-            const name =
-            String(student.name || "")
-            .toLowerCase();
-
-            const email =
-            String(student.email || "")
-            .toLowerCase();
-
-            const mobile =
-            String(student.mobile || "")
-            .toLowerCase();
-
-
-            return (
-                name.includes(search) ||
-                email.includes(search) ||
-                mobile.includes(search)
-            );
-
+        allStudents = [];
+        snap.forEach(docSnap => {
+            allStudents.push({uid: docSnap.id, data: docSnap.data()});
         });
 
-
-        renderStudents(filtered);
-
+        renderStudents(allStudents);
+    }catch(error){
+        console.error(error);
+        list.innerHTML = '<div class="status">Unable to load students.</div>';
     }
-);
-
-
-// SECURITY
-function escapeHtml(value){
-
-    return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
 }
 
+async function deleteStudent(uid){
+    const student = allStudents.find(x => x.uid === uid);
+    const name = student ? studentName(student.data, uid) : uid;
+
+    if(!confirm(`Delete "${name}" completely?\n\nThis will delete the Firebase Authentication account and students/${uid}.\n\nThis cannot be undone.`)){
+        return;
+    }
+
+    if(API_BASE_URL.includes("PASTE_YOUR")){
+        alert("Backend URL is not configured yet.");
+        return;
+    }
+
+    const user = auth.currentUser;
+    if(!user){
+        alert("Admin login expired. Please login again.");
+        return;
+    }
+
+    try{
+        const token = await user.getIdToken(true);
+
+        const response = await fetch(
+            `${API_BASE_URL.replace(/\/$/, "")}/students/${encodeURIComponent(uid)}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+        );
+
+        const result = await response.json().catch(() => ({}));
+
+        if(!response.ok){
+            throw new Error(result.error || "Delete failed.");
+        }
+
+        alert("Account deleted successfully.");
+        await loadStudents();
+    }catch(error){
+        console.error(error);
+        alert("Delete failed: " + error.message);
+    }
+}
+
+search.addEventListener("input", () => {
+    const term = search.value.trim().toLowerCase();
+
+    const filtered = allStudents.filter(({uid, data}) => {
+        const text = [
+            uid,
+            studentName(data, uid),
+            data.email,
+            data.mobile,
+            data.phone
+        ].filter(Boolean).join(" ").toLowerCase();
+
+        return text.includes(term);
+    });
+
+    renderStudents(filtered);
+});
+
+onAuthStateChanged(auth, user => {
+    if(!user){
+        window.location.replace("admin-login.html");
+        return;
+    }
+    loadStudents();
+});
 </script>
 
 </body>
