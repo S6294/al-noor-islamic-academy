@@ -181,7 +181,25 @@ header{
     border-bottom:none;
 }
 
+/* Course Access Status */
+
+.course-status{
+    margin-top:6px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.course-status.active{
+    color:#d4af37;
+}
+
+.course-status.expired{
+    color:#e07a7a;
+}
+
 /* Buttons */
+
+
 
 .buttons{
     margin-top:25px;
@@ -220,49 +238,6 @@ footer{
     border-top:1px solid #193b31;
 }
 
-
-.course-status{
-    margin-top:15px;
-}
-
-.status-row{
-    display:flex;
-    justify-content:space-between;
-    gap:12px;
-    padding:14px 0;
-    border-bottom:1px solid #23463b;
-    color:#c8d5d0;
-}
-
-.status-row:last-child{
-    border-bottom:none;
-}
-
-.status-row strong{
-    color:#8fa69e;
-    text-align:right;
-}
-
-.status-row strong.active{
-    color:#6ee7b7;
-}
-
-.status-row strong.soon{
-    color:#d4af37;
-}
-
-.course{
-    display:flex;
-    justify-content:space-between;
-    gap:12px;
-}
-
-.course strong{
-    color:#8fa69e;
-    text-align:right;
-    word-break:break-word;
-}
-
 </style>
 </head>
 
@@ -292,11 +267,13 @@ footer{
 
     <div class="profile-card">
 
-        <div class="avatar" id="avatar">
+        <div class="avatar">
             AN
         </div>
 
-        <h2 class="student-name" id="studentName">Loading...</h2>
+        <h2 class="student-name">
+            Student Name
+        </h2>
 
         <p class="student-role">
             Al Noor Student
@@ -307,22 +284,22 @@ footer{
 
             <div class="detail">
                 <span class="label">Full Name</span>
-                <span class="value" id="fullName">Loading...</span>
+                <span class="value">Student Name</span>
             </div>
 
             <div class="detail">
                 <span class="label">Email</span>
-                <span class="value" id="email">Loading...</span>
+                <span class="value">student@email.com</span>
             </div>
 
             <div class="detail">
                 <span class="label">Mobile</span>
-                <span class="value" id="mobile">Not added</span>
+                <span class="value">+91 XXXXX XXXXX</span>
             </div>
 
             <div class="detail">
                 <span class="label">Student ID</span>
-                <span class="value" id="studentId">Loading...</span>
+                <span class="value">AN2026-001</span>
             </div>
 
         </div>
@@ -330,67 +307,32 @@ footer{
     </div>
 
 
-    <!-- Course Access -->
-    <div class="membership">
-        <h2>🎓 My Course Access</h2>
-        <p>Course access is shown separately after each successful purchase.</p>
+    <!-- Courses -->
 
-        <div class="course-status">
-            <div class="status-row">
-                <span>📖 Tajweed</span>
-                <strong id="tajweedStatus">Checking...</strong>
-            </div>
-
-            <div class="status-row">
-                <span>📗 Arabic Language</span>
-                <strong id="arabicStatus">Checking...</strong>
-            </div>
-
-            <div class="status-row">
-                <span>📘 Quran Reading</span>
-                <strong>Coming Soon</strong>
-            </div>
-
-            <div class="status-row">
-                <span>📜 Hadith Studies</span>
-                <strong>Coming Soon</strong>
-            </div>
-
-            <div class="status-row">
-                <span>🕌 Islamic Studies</span>
-                <strong>Coming Soon</strong>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Payment Information -->
     <div class="courses">
-        <h2>💳 Payment Information</h2>
+
+        <h2>📚 My Courses</h2>
 
         <div class="course">
-            <span>Paid Courses</span>
-            <strong id="paidCourses">None</strong>
+            <div>📖 Tajweed</div>
+            <div id="tajweedStatus" class="course-status">Checking...</div>
         </div>
 
         <div class="course">
-            <span>Last Payment ID</span>
-            <strong id="lastPaymentId">Not Paid Yet</strong>
+            <div>📗 Arabic Language</div>
+            <div id="arabicStatus" class="course-status">Checking...</div>
         </div>
 
-        <div class="course">
-            <span>Last Order ID</span>
-            <strong id="lastOrderId">Not Available</strong>
-        </div>
     </div>
+
 
     <!-- Buttons -->
 
     <div class="buttons">
 
-        <a href="#" class="btn edit">
-            ✏️ Edit Profile
-        </a>
+        <button id="logoutBtn" class="btn edit" type="button">
+            🚪 Logout
+        </button>
 
         <a href="dashboard.html" class="btn back">
             ← Dashboard
@@ -409,16 +351,21 @@ footer{
 
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
 import {
     getAuth,
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
 import {
     getFirestore,
     doc,
     getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
@@ -433,87 +380,182 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const $ = (id) => document.getElementById(id);
+const studentNameEl = document.querySelector(".student-name");
+const avatarEls = document.querySelectorAll(".avatar, .profile-icon");
+const detailValues = document.querySelectorAll(".detail .value");
 
-function setStatus(id, active, activeText, inactiveText) {
-    const el = $(id);
-    el.textContent = active ? "✓ " + activeText : inactiveText;
-    el.classList.toggle("active", active);
-    el.classList.toggle("soon", !active);
+const tajweedStatus = document.getElementById("tajweedStatus");
+const arabicStatus = document.getElementById("arabicStatus");
+const logoutBtn = document.getElementById("logoutBtn");
+
+
+function getDateValue(value){
+    if (!value) return null;
+
+    if (typeof value.toDate === "function") {
+        return value.toDate();
+    }
+
+    if (value.seconds) {
+        return new Date(value.seconds * 1000);
+    }
+
+    const date = new Date(value);
+    return isNaN(date.getTime()) ? null : date;
 }
 
+
+function getExpiry(data, expiryField, purchaseField){
+    let expiry = getDateValue(data[expiryField]);
+
+    if (!expiry) {
+        const purchased = getDateValue(data[purchaseField]);
+
+        if (purchased) {
+            expiry = new Date(
+                purchased.getTime() + 30 * 24 * 60 * 60 * 1000
+            );
+        }
+    }
+
+    return expiry;
+}
+
+
+function showCourseStatus(element, active, expiry){
+    element.className = "course-status";
+
+    if (active && expiry && expiry.getTime() > Date.now()) {
+        element.classList.add("active");
+
+        element.textContent =
+            "✓ Active • Expires " +
+            expiry.toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+
+    } else {
+        element.classList.add("expired");
+        element.textContent = "🔒 Expired";
+    }
+}
+
+
 onAuthStateChanged(auth, async (user) => {
+
     if (!user) {
         window.location.href = "login.html";
         return;
     }
 
-    $("email").textContent = user.email || "Not added";
-    $("studentId").textContent = user.uid.slice(0, 10).toUpperCase();
-
     try {
+
         const studentRef = doc(db, "students", user.uid);
         const snap = await getDoc(studentRef);
+
         const data = snap.exists() ? snap.data() : {};
 
-        const name = data.fullName || data.name || user.displayName || "Student";
-        const mobile = data.mobile || data.phone || "Not added";
+        const name =
+            data.name ||
+            data.fullName ||
+            data.displayName ||
+            user.displayName ||
+            "Student";
 
-        $("studentName").textContent = name;
-        $("fullName").textContent = name;
-        $("mobile").textContent = mobile;
+        const cleanName = String(name).trim();
 
-        const initials = name
-            .trim()
+        studentNameEl.textContent = cleanName;
+
+        const initials = cleanName
             .split(/\s+/)
-            .map(word => word[0])
-            .join("")
+            .filter(Boolean)
             .slice(0, 2)
-            .toUpperCase();
+            .map(word => word.charAt(0).toUpperCase())
+            .join("");
 
-        $("avatar").textContent = initials || "AN";
+        avatarEls.forEach(el => {
+            el.textContent = initials || "ST";
+        });
 
-        const tajweedActive = data.tajweedActive === true;
-        const arabicActive = data.arabicLanguageActive === true;
+        detailValues[0].textContent =
+            data.name || data.fullName || cleanName;
 
-        setStatus("tajweedStatus", tajweedActive, "Active", "Not Purchased");
-        setStatus("arabicStatus", arabicActive, "Active", "Not Purchased");
+        detailValues[1].textContent =
+            user.email || data.email || "Not available";
 
-        const paid = [];
-        if (tajweedActive) paid.push("Tajweed — ₹10");
-        if (arabicActive) paid.push("Arabic Language — ₹10");
+        detailValues[2].textContent =
+            data.mobile || "Not available";
 
-        $("paidCourses").textContent = paid.length ? paid.join(" • ") : "None";
+        detailValues[3].textContent =
+            data.studentId || data.studentID || user.uid;
 
-        let lastPaymentId = "Not Paid Yet";
-        let lastOrderId = "Not Available";
+        // Tajweed
+        const tajweedExpiry =
+            getExpiry(data, "tajweedExpiryAt", "tajweedPurchasedAt");
 
-        if (arabicActive && data.arabicLanguagePurchasedAt) {
-            lastPaymentId = data.arabicLanguagePaymentId || lastPaymentId;
-            lastOrderId = data.arabicLanguageOrderId || lastOrderId;
-        }
+        const tajweedActive =
+            data.tajweedActive === true &&
+            (!tajweedExpiry || tajweedExpiry.getTime() > Date.now());
 
-        if (tajweedActive && data.tajweedPurchasedAt) {
-            lastPaymentId = data.tajweedPaymentId || lastPaymentId;
-            lastOrderId = data.tajweedOrderId || lastOrderId;
-        }
+        showCourseStatus(
+            tajweedStatus,
+            tajweedActive,
+            tajweedExpiry
+        );
 
-        $("lastPaymentId").textContent = lastPaymentId;
-        $("lastOrderId").textContent = lastOrderId;
+        // Arabic Language
+        const arabicExpiry =
+            getExpiry(
+                data,
+                "arabicExpiryAt",
+                "arabicLanguagePurchasedAt"
+            );
+
+        const arabicActive =
+            data.arabicLanguageActive === true &&
+            (!arabicExpiry || arabicExpiry.getTime() > Date.now());
+
+        showCourseStatus(
+            arabicStatus,
+            arabicActive,
+            arabicExpiry
+        );
 
     } catch (error) {
-        console.error(error);
-        $("studentName").textContent = user.displayName || "Student";
-        $("fullName").textContent = user.displayName || "Student";
-        $("email").textContent = user.email || "Not added";
-        $("mobile").textContent = "Not added";
-        $("studentId").textContent = user.uid.slice(0, 10).toUpperCase();
 
-        $("tajweedStatus").textContent = "Unable to load";
-        $("arabicStatus").textContent = "Unable to load";
-        $("paidCourses").textContent = "Unable to load";
+        console.error(error);
+
+        tajweedStatus.textContent = "Unable to check status.";
+        arabicStatus.textContent = "Unable to check status.";
     }
+
 });
+
+
+logoutBtn.addEventListener("click", async () => {
+
+    logoutBtn.disabled = true;
+    logoutBtn.textContent = "Logging out...";
+
+    try {
+
+        await signOut(auth);
+        window.location.href = "login.html";
+
+    } catch (error) {
+
+        console.error(error);
+
+        logoutBtn.disabled = false;
+        logoutBtn.textContent = "🚪 Logout";
+
+        alert("Logout failed. Please try again.");
+    }
+
+});
+
 </script>
 
 </body>
