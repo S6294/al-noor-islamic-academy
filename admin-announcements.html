@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Announcements - Al Noor Islamic Academy</title>
+
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{
+            font-family:Arial,sans-serif;
+            background:#071a17;
+            color:#fff;
+            min-height:100vh;
+        }
+        header{
+            padding:18px 20px;
+            background:#0b2520;
+            border-bottom:1px solid #29453e;
+        }
+        .logo{color:#d4af37;font-size:19px;font-weight:bold}
+        main{max-width:900px;margin:auto;padding:25px 18px}
+        h1{color:#d4af37;font-size:26px;margin-bottom:8px}
+        .sub{color:#aaa;font-size:14px;margin-bottom:24px}
+        .panel{
+            background:#0c2923;
+            border:1px solid #29453e;
+            border-radius:18px;
+            padding:20px;
+            margin-bottom:22px;
+        }
+        label{
+            display:block;
+            color:#d4af37;
+            font-weight:bold;
+            font-size:13px;
+            margin:0 0 7px;
+        }
+        input,textarea{
+            width:100%;
+            border:1px solid #36554d;
+            background:#071a17;
+            color:#fff;
+            border-radius:9px;
+            padding:12px;
+            margin-bottom:17px;
+            outline:none;
+        }
+        textarea{min-height:120px;resize:vertical}
+        input:focus,textarea:focus{border-color:#d4af37}
+        .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+        button{
+            border:0;
+            border-radius:9px;
+            padding:12px 17px;
+            background:#d4af37;
+            color:#071a17;
+            font-weight:bold;
+            cursor:pointer;
+        }
+        button:disabled{opacity:.55;cursor:not-allowed}
+        .danger{background:#8e2d2d;color:#fff}
+        .status{
+            margin-top:14px;
+            color:#aaa;
+            font-size:13px;
+            line-height:1.5;
+        }
+        .announcement{
+            background:#071a17;
+            border:1px solid #29453e;
+            border-radius:14px;
+            padding:16px;
+            margin-top:12px;
+        }
+        .announcement h3{color:#d4af37;margin-bottom:7px}
+        .date{color:#888;font-size:11px;margin-bottom:9px}
+        .desc{color:#bbb;font-size:14px;line-height:1.55;margin-bottom:10px}
+        .links{display:flex;flex-wrap:wrap;gap:8px}
+        .links a{
+            color:#071a17;
+            background:#d4af37;
+            padding:8px 10px;
+            border-radius:7px;
+            text-decoration:none;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .empty{color:#999;text-align:center;padding:15px}
+        @media(max-width:650px){
+            .row{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="logo">AL NOOR ISLAMIC ACADEMY — ADMIN</div>
+</header>
+
+<main>
+    <h1>📢 Manage Announcements</h1>
+    <p class="sub">Publish announcements, PDF files and images for students.</p>
+
+    <section class="panel">
+        <form id="announcementForm">
+            <label for="title">Announcement Title</label>
+            <input id="title" type="text" placeholder="e.g. New class schedule" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Write the announcement details..."></textarea>
+
+            <div class="row">
+                <div>
+                    <label for="pdfFile">PDF (optional)</label>
+                    <input id="pdfFile" type="file" accept="application/pdf">
+                </div>
+
+                <div>
+                    <label for="imageFile">Image (optional)</label>
+                    <input id="imageFile" type="file" accept="image/*">
+                </div>
+            </div>
+
+            <button id="publishBtn" type="submit">📢 Publish Announcement</button>
+            <div id="status" class="status"></div>
+        </form>
+    </section>
+
+    <section class="panel">
+        <h2 style="color:#d4af37;font-size:20px;margin-bottom:10px;">Published Announcements</h2>
+        <div id="announcementList">Loading...</div>
+    </section>
+</main>
+
+<script type="module">
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    doc,
+    getDoc,
+    deleteDoc,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+    authDomain: "al-noor-islamic-academy.firebaseapp.com",
+    projectId: "al-noor-islamic-academy",
+    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+    messagingSenderId: "571799539455",
+    appId: "1:571799539455:web:d42728685908430296c6ca"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Cloudinary (unsigned upload preset)
+const CLOUDINARY_CLOUD_NAME = "smlolgrm";
+const CLOUDINARY_UPLOAD_PRESET = "alnoor_announcements";
+const CLOUDINARY_UPLOAD_URL =
+    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`;
+const form = document.getElementById("announcementForm");
+const publishBtn = document.getElementById("publishBtn");
+const statusBox = document.getElementById("status");
+const list = document.getElementById("announcementList");
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+function showStatus(message, ok=false) {
+    statusBox.textContent = message;
+    statusBox.style.color = ok ? "#d4af37" : "#ffb4b4";
+}
+
+function safeFileName(name) {
+    return name.replace(/[^a-zA-Z0-9._-]/g, "_");
+}
+
+async function isAdmin(user) {
+    if (!user) return false;
+
+    // Admins are stored in the admins/{uid} collection.
+    // This matches the Firestore rules and the main admin panel.
+    const snap = await getDoc(doc(db, "admins", user.uid));
+    return snap.exists();
+}
+
+async function uploadFile(file, folder, uid, label) {
+
+    if (!file) return null;
+
+    const maxSize = 20 * 1024 * 1024;
+
+    if (file.size > maxSize) {
+        throw new Error(`${label} is larger than 20 MB.`);
+    }
+
+    showStatus(`Uploading ${label}... Please wait.`);
+
+    const formData = new FormData();
+
+    formData.append("file", file);
+    formData.append(
+        "upload_preset",
+        CLOUDINARY_UPLOAD_PRESET
+    );
+
+    // Folder is allowed as a direct parameter for unsigned uploads.
+    formData.append(
+        "folder",
+        folder
+    );
+
+    const response = await fetch(
+        CLOUDINARY_UPLOAD_URL,
+        {
+            method: "POST",
+            body: formData
+        }
+    );
+
+    let result = null;
+
+    try {
+        result = await response.json();
+    } catch {
+        throw new Error(
+            `${label} upload failed: invalid response from Cloudinary.`
+        );
+    }
+
+    if (!response.ok || !result.secure_url) {
+
+        console.error(
+            "Cloudinary upload error:",
+            result
+        );
+
+        throw new Error(
+            result?.error?.message ||
+            `${label} upload failed.`
+        );
+    }
+
+    return {
+        url: result.secure_url,
+        publicId: result.public_id || "",
+        resourceType: result.resource_type || ""
+    };
+}
+async function loadAnnouncements() {
+    try {
+        const q = query(
+            collection(db, "announcements"),
+            orderBy("createdAt", "desc")
+        );
+
+        const snap = await getDocs(q);
+
+        if (snap.empty) {
+            list.innerHTML = '<div class="empty">No announcements yet.</div>';
+            return;
+        }
+
+        list.innerHTML = "";
+
+        snap.forEach(item => {
+            const data = item.data();
+
+            const date = data.createdAt?.toDate
+                ? data.createdAt.toDate().toLocaleDateString("en-IN", {
+                    day:"2-digit", month:"short", year:"numeric"
+                })
+                : "";
+
+            const div = document.createElement("div");
+            div.className = "announcement";
+
+            let links = "";
+
+            if (data.pdfUrl) {
+                links += `<a href="${escapeHtml(data.pdfUrl)}" target="_blank" rel="noopener">📄 PDF</a>`;
+            }
+
+            if (data.imageUrl) {
+                links += `<a href="${escapeHtml(data.imageUrl)}" target="_blank" rel="noopener">🖼️ Image</a>`;
+            }
+
+            div.innerHTML = `
+                <h3>${escapeHtml(data.title || "Announcement")}</h3>
+                <div class="date">${escapeHtml(date)}</div>
+                <div class="desc">${escapeHtml(data.description || "")}</div>
+                <div class="links">
+                    ${links}
+                    <button class="danger delete-btn" data-id="${escapeHtml(item.id)}"
+                        data-pdf="${escapeHtml(data.pdfPublicId || "")}"
+                        data-image="${escapeHtml(data.imagePublicId || "")}">
+                        🗑️ Delete
+                    </button>
+                </div>
+            `;
+
+            list.appendChild(div);
+        });
+
+        document.querySelectorAll(".delete-btn").forEach(btn => {
+            btn.addEventListener("click", async () => {
+                const id = btn.dataset.id;
+                if (!confirm("Delete this announcement?")) return;
+
+                try {
+                    await deleteDoc(doc(db, "announcements", id));
+
+                    // Cloudinary unsigned uploads cannot be deleted
+                    // securely from browser code. The Firestore announcement
+                    // record is deleted here; the Cloudinary asset remains
+                    // until it is removed from Cloudinary Media Library.
+                    await loadAnnouncements();
+                } catch (error) {
+                    console.error(error);
+                    alert("Delete failed.");
+                }
+            });
+        });
+
+    } catch (error) {
+        console.error(error);
+        list.innerHTML = '<div class="empty">Unable to load announcements.</div>';
+    }
+}
+
+onAuthStateChanged(auth, async user => {
+    try {
+        if (!user) {
+            alert("Please login as Admin.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        const admin = await isAdmin(user);
+
+        if (!admin) {
+            alert("Admin access required.");
+            window.location.href = "dashboard.html";
+            return;
+        }
+
+        await loadAnnouncements();
+
+    } catch (error) {
+        console.error(error);
+        alert("Unable to verify admin access.");
+    }
+});
+
+form.addEventListener("submit", async event => {
+
+    event.preventDefault();
+
+    const user = auth.currentUser;
+
+    if (!user) {
+        showStatus("Please login first.");
+        return;
+    }
+
+    const title =
+        document.getElementById("title").value.trim();
+
+    const description =
+        document.getElementById("description").value.trim();
+
+    const pdfFile =
+        document.getElementById("pdfFile").files[0];
+
+    const imageFile =
+        document.getElementById("imageFile").files[0];
+
+    if (!title) {
+        showStatus("Please enter an announcement title.");
+        return;
+    }
+
+    if (pdfFile && pdfFile.type !== "application/pdf") {
+        showStatus("Please select a valid PDF file.");
+        return;
+    }
+
+    if (imageFile && !imageFile.type.startsWith("image/")) {
+        showStatus("Please select a valid image file.");
+        return;
+    }
+
+    publishBtn.disabled = true;
+    publishBtn.textContent = "⏳ Please wait...";
+
+    try {
+
+        let pdf = null;
+        let image = null;
+
+        if (pdfFile) {
+            pdf = await uploadFile(
+                pdfFile,
+                "al-noor/announcements/pdfs",
+                user.uid,
+                "PDF"
+            );
+        }
+
+        if (imageFile) {
+            image = await uploadFile(
+                imageFile,
+                "al-noor/announcements/images",
+                user.uid,
+                "Image"
+            );
+        }
+
+        showStatus("Saving announcement... Please wait.");
+
+        await addDoc(collection(db, "announcements"), {
+
+            title: title,
+            description: description,
+
+            pdfUrl: pdf ? pdf.url : "",
+            pdfPublicId: pdf ? pdf.publicId : "",
+
+            imageUrl: image ? image.url : "",
+            imagePublicId: image ? image.publicId : "",
+
+            createdAt: serverTimestamp(),
+            createdBy: user.uid
+
+        });
+
+        form.reset();
+
+        showStatus(
+            "Announcement published successfully.",
+            true
+        );
+
+        await loadAnnouncements();
+
+    } catch (error) {
+
+        console.error(
+            "Announcement publish error:",
+            error
+        );
+
+        showStatus(
+            error?.message ||
+            "Failed to publish announcement."
+        );
+
+    } finally {
+
+        publishBtn.disabled = false;
+        publishBtn.textContent =
+            "📢 Publish Announcement";
+
+    }
+});
+</script>
+
+</body>
+</html>
