@@ -740,20 +740,53 @@ onAuthStateChanged(auth, async (user) => {
 
         profileInitials.textContent = initials || "ST";
 
-        // IMPORTANT: Tajweed is checked ONLY by tajweedActive.
-        if (data.tajweedActive === true) {
+        // Tajweed access = active + valid 30-day expiry.
+        let tajweedExpiry = null;
+
+        if (data.tajweedExpiryAt) {
+            tajweedExpiry = data.tajweedExpiryAt.toDate
+                ? data.tajweedExpiryAt.toDate()
+                : new Date(data.tajweedExpiryAt);
+        } else if (data.tajweedPurchasedAt) {
+            const purchasedAt = data.tajweedPurchasedAt.toDate
+                ? data.tajweedPurchasedAt.toDate()
+                : new Date(data.tajweedPurchasedAt);
+
+            if (!isNaN(purchasedAt.getTime())) {
+                tajweedExpiry = new Date(
+                    purchasedAt.getTime() + 30 * 24 * 60 * 60 * 1000
+                );
+            }
+        }
+
+        const tajweedActiveNow =
+            data.tajweedActive === true &&
+            (!tajweedExpiry || tajweedExpiry.getTime() > Date.now());
+
+        if (tajweedActiveNow) {
+            const expiryText = tajweedExpiry
+                ? " • Expires " + tajweedExpiry.toLocaleDateString("en-IN", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                  })
+                : "";
+
             unlock(
                 tajweedCard,
                 tajweedStatus,
-                "Tajweed Access Active",
+                "Tajweed Active" + expiryText,
                 "quran-course.html"
             );
         } else {
             lock(
                 tajweedCard,
                 tajweedStatus,
-                "Tajweed Purchase Required"
+                tajweedExpiry
+                    ? "Tajweed Expired — Renew ₹10"
+                    : "Tajweed Purchase Required"
             );
+
             tajweedCard.onclick = (e) => {
                 e.preventDefault();
                 window.location.href =
@@ -761,24 +794,49 @@ onAuthStateChanged(auth, async (user) => {
             };
         }
 
-        // IMPORTANT: Arabic is checked ONLY by arabicLanguageActive.
-        if (data.arabicLanguageActive === true) {
-            unlock(
-                arabicCard,
-                arabicStatus,
-                "Arabic Language Access Active",
-                "arabic-language.html"
-            );
+        // Arabic access = active + valid 30-day expiry.
+        let arabicExpiry = null;
+
+        if (data.arabicExpiryAt) {
+            const rawExpiry = data.arabicExpiryAt;
+            if (typeof rawExpiry.toDate === "function") {
+                arabicExpiry = rawExpiry.toDate();
+            } else if (rawExpiry.seconds) {
+                arabicExpiry = new Date(rawExpiry.seconds * 1000);
+            } else {
+                const parsedExpiry = new Date(rawExpiry);
+                if (!isNaN(parsedExpiry.getTime())) arabicExpiry = parsedExpiry;
+            }
+        } else if (data.arabicLanguagePurchasedAt) {
+            const rawPurchase = data.arabicLanguagePurchasedAt;
+            let purchasedAt = null;
+            if (typeof rawPurchase.toDate === "function") {
+                purchasedAt = rawPurchase.toDate();
+            } else if (rawPurchase.seconds) {
+                purchasedAt = new Date(rawPurchase.seconds * 1000);
+            } else {
+                const parsedPurchase = new Date(rawPurchase);
+                if (!isNaN(parsedPurchase.getTime())) purchasedAt = parsedPurchase;
+            }
+            if (purchasedAt) {
+                arabicExpiry = new Date(purchasedAt.getTime() + 30 * 24 * 60 * 60 * 1000);
+            }
+        }
+
+        const arabicActiveNow =
+            data.arabicLanguageActive === true &&
+            (!arabicExpiry || arabicExpiry.getTime() > Date.now());
+
+        if (arabicActiveNow) {
+            const expiryText = arabicExpiry
+                ? " • Expires " + arabicExpiry.toLocaleDateString("en-IN", {day:"2-digit", month:"short", year:"numeric"})
+                : "";
+            unlock(arabicCard, arabicStatus, "Arabic Active" + expiryText, "arabic-language.html");
         } else {
-            lock(
-                arabicCard,
-                arabicStatus,
-                "Arabic Language Purchase Required"
-            );
+            lock(arabicCard, arabicStatus, arabicExpiry ? "Arabic Expired — Renew ₹10" : "Arabic Purchase Required");
             arabicCard.onclick = (e) => {
                 e.preventDefault();
-                window.location.href =
-                    "payment.html?course=arabic-language&name=Arabic%20Language&price=10";
+                window.location.href = "payment.html?course=arabic-language&name=Arabic%20Language&price=10";
             };
         }
 
