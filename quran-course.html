@@ -91,7 +91,7 @@ function updateAccess(active) {
     } else {
         accessStatus.className = "access-status required";
         accessStatus.textContent = "Tajweed Purchase Required";
-        joinArea.innerHTML = `<a class="join-course" href="payment.html?course=tajweed&name=Tajweed&price=299">Join Tajweed — ₹299</a>`;
+        joinArea.innerHTML = `<a class="join-course" href="payment.html?course=tajweed&name=Tajweed&price=10">Join Tajweed — ₹10</a>`;
     }
     renderClasses();
 }
@@ -158,7 +158,30 @@ onAuthStateChanged(auth, async user => {
     try {
         const snap = await getDoc(doc(db, "students", user.uid));
         const data = snap.exists() ? snap.data() : {};
-        updateAccess(data.tajweedActive === true);
+
+        let tajweedExpiry = null;
+
+        if (data.tajweedExpiryAt) {
+            tajweedExpiry = data.tajweedExpiryAt.toDate
+                ? data.tajweedExpiryAt.toDate()
+                : new Date(data.tajweedExpiryAt);
+        } else if (data.tajweedPurchasedAt) {
+            const purchasedAt = data.tajweedPurchasedAt.toDate
+                ? data.tajweedPurchasedAt.toDate()
+                : new Date(data.tajweedPurchasedAt);
+
+            if (!isNaN(purchasedAt.getTime())) {
+                tajweedExpiry = new Date(
+                    purchasedAt.getTime() + 30 * 24 * 60 * 60 * 1000
+                );
+            }
+        }
+
+        const tajweedActiveNow =
+            data.tajweedActive === true &&
+            (!tajweedExpiry || tajweedExpiry.getTime() > Date.now());
+
+        updateAccess(tajweedActiveNow);
         await loadClasses();
     } catch (error) {
         console.error("Tajweed access error:", error);
