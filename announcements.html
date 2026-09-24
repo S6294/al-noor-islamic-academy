@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Announcements - Al Noor Islamic Academy</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#071a17;
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 20px;
+    background:#0b2520;
+    border-bottom:1px solid #29453e;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.back{
+    color:#d4af37;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:30px 20px;
+}
+
+.page-title{
+    color:#d4af37;
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.page-subtitle{
+    color:#aaa;
+    margin-bottom:25px;
+    line-height:1.5;
+}
+
+.announcement{
+    background:#0c2923;
+    border:1px solid #29453e;
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:18px;
+}
+
+.announcement h2{
+    color:#d4af37;
+    font-size:20px;
+    margin-bottom:8px;
+}
+
+.announcement-date{
+    color:#888;
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+.announcement-description{
+    color:#bbb;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.announcement-image{
+    width:100%;
+    max-height:450px;
+    object-fit:contain;
+    border-radius:12px;
+    margin:10px 0 15px;
+    background:#071a17;
+}
+
+.buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:10px 15px;
+    border-radius:9px;
+    text-decoration:none;
+    font-weight:bold;
+    background:#d4af37;
+    color:#071a17;
+    border:none;
+    cursor:pointer;
+    font:inherit;
+}
+
+.empty{
+    background:#0c2923;
+    border:1px solid #29453e;
+    border-radius:16px;
+    padding:25px;
+    color:#aaa;
+    text-align:center;
+}
+
+.error{
+    color:#fca5a5;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    margin-top:30px;
+    background:#051310;
+    color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">AL NOOR ISLAMIC ACADEMY</div>
+    <a href="dashboard.html" class="back">← Dashboard</a>
+</header>
+
+<main class="container">
+
+    <h1 class="page-title">📢 Announcements</h1>
+
+    <p class="page-subtitle">
+        Important academy announcements, notices, PDF files and updates.
+    </p>
+
+    <div id="announcementsList">
+        <div class="empty">Loading announcements...</div>
+    </div>
+
+</main>
+
+<footer>
+    © 2026 Al Noor Islamic Academy
+</footer>
+
+<script type="module">
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import { getAuth, onAuthStateChanged }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    orderBy,
+    getDocs
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
+    authDomain: "al-noor-islamic-academy.firebaseapp.com",
+    projectId: "al-noor-islamic-academy",
+    storageBucket: "al-noor-islamic-academy.firebasestorage.app",
+    messagingSenderId: "571799539455",
+    appId: "1:571799539455:web:d42728685908430296c6ca"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const list = document.getElementById("announcementsList");
+
+function formatDate(value){
+    if(!value) return "";
+
+    try{
+        if(typeof value.toDate === "function"){
+            return value.toDate().toLocaleString();
+        }
+
+        const date = new Date(value);
+        if(!isNaN(date.getTime())){
+            return date.toLocaleString();
+        }
+    }catch(error){}
+
+    return "";
+}
+
+async function loadAnnouncements(){
+
+    try{
+
+        const q = query(
+            collection(db, "announcements"),
+            orderBy("createdAt", "desc")
+        );
+
+        const snapshot = await getDocs(q);
+
+        if(snapshot.empty){
+            list.innerHTML =
+                '<div class="empty">No announcements available right now.</div>';
+            return;
+        }
+
+        list.innerHTML = "";
+
+        snapshot.forEach(docSnap => {
+
+            const data = docSnap.data();
+
+            const card = document.createElement("article");
+            card.className = "announcement";
+
+            const title = document.createElement("h2");
+            title.textContent = data.title || "Announcement";
+
+            const date = document.createElement("div");
+            date.className = "announcement-date";
+            date.textContent = formatDate(data.createdAt);
+
+            const description = document.createElement("div");
+            description.className = "announcement-description";
+            description.textContent = data.description || "";
+
+            card.appendChild(title);
+
+            if(date.textContent){
+                card.appendChild(date);
+            }
+
+            if(data.description){
+                card.appendChild(description);
+            }
+
+            if(data.imageUrl){
+
+                const image = document.createElement("img");
+                image.className = "announcement-image";
+                image.src = data.imageUrl;
+                image.alt = data.title || "Announcement";
+
+                card.appendChild(image);
+            }
+
+            if(data.pdfUrl){
+
+                const buttons = document.createElement("div");
+                buttons.className = "buttons";
+
+                const view = document.createElement("button");
+                view.className = "btn";
+                view.type = "button";
+                view.textContent = "📄 View PDF";
+                view.onclick = () => {
+                    window.open(data.pdfUrl, "_blank", "noopener,noreferrer");
+                };
+
+                const download = document.createElement("button");
+                download.className = "btn";
+                download.type = "button";
+                download.textContent = "⬇️ Download PDF";
+                download.onclick = () => {
+                    window.open(data.pdfUrl, "_blank", "noopener,noreferrer");
+                };
+
+                buttons.appendChild(view);
+                buttons.appendChild(download);
+
+                card.appendChild(buttons);
+            }
+
+            list.appendChild(card);
+        });
+
+    }catch(error){
+
+        console.error("Announcements error:", error);
+
+        list.innerHTML =
+            '<div class="empty error">Unable to load announcements. Please try again later.</div>';
+    }
+}
+
+onAuthStateChanged(auth, user => {
+
+    if(!user){
+        window.location.href = "login.html";
+        return;
+    }
+
+    loadAnnouncements();
+});
+</script>
+
+</body>
+</html>
