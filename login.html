@@ -89,15 +89,7 @@ input:focus{border-color:#d4af37}
 
     </form>
 
-    <a href="#" id="forgotPassword" class="forgot">
-        Forgot Password?
-    </a>
-
     <div id="message" class="message"></div>
-
-    <a href="#" id="resendVerification" class="forgot" style="display:none;">
-        Resend verification email
-    </a>
 
     <div class="signup">
         Don't have an account?
@@ -118,9 +110,6 @@ from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import {
     getAuth,
     signInWithEmailAndPassword,
-    sendEmailVerification,
-    sendPasswordResetEmail,
-    signOut
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
@@ -140,10 +129,7 @@ const auth = getAuth(app);
 const loginForm = document.getElementById("loginForm");
 const loginButton = document.getElementById("loginButton");
 const message = document.getElementById("message");
-const resendVerification = document.getElementById("resendVerification");
-const forgotPassword = document.getElementById("forgotPassword");
 
-let unverifiedUser = null;
 
 
 function showMessage(text) {
@@ -162,7 +148,6 @@ loginForm.addEventListener("submit", async (e) => {
     const password =
         document.getElementById("password").value;
 
-    resendVerification.style.display = "none";
     message.style.display = "none";
 
     loginButton.disabled = true;
@@ -178,29 +163,6 @@ loginForm.addEventListener("submit", async (e) => {
             );
 
         const user = credential.user;
-
-        /*
-         * IMPORTANT:
-         * The account must have a verified email address.
-         */
-        if (!user.emailVerified) {
-
-            unverifiedUser = user;
-
-            showMessage(
-                "Your email is not verified yet. " +
-                "Please open the verification email and verify your address before logging in."
-            );
-
-            resendVerification.style.display = "block";
-
-            await signOut(auth);
-
-            loginButton.disabled = false;
-            loginButton.textContent = "Login";
-
-            return;
-        }
 
         window.location.href = "dashboard.html";
 
@@ -241,79 +203,7 @@ loginForm.addEventListener("submit", async (e) => {
 });
 
 
-forgotPassword.addEventListener("click", async (e) => {
-    e.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
-
-    if (!email) {
-        showMessage("Please enter your registered email address first.");
-        document.getElementById("email").focus();
-        return;
-    }
-
-    if (!email.includes("@")) {
-        showMessage("Please enter a valid email address.");
-        return;
-    }
-
-    forgotPassword.style.pointerEvents = "none";
-    forgotPassword.textContent = "Sending reset email...";
-
-    try {
-        await sendPasswordResetEmail(auth, email);
-
-        showMessage(
-            "Password reset email sent to " + email +
-            ". Please check your inbox and follow the link to create a new password."
-        );
-    } catch (error) {
-        console.error(error);
-
-        if (error.code === "auth/user-not-found") {
-            showMessage("No account was found with this email address.");
-        } else if (error.code === "auth/invalid-email") {
-            showMessage("Please enter a valid email address.");
-        } else if (error.code === "auth/too-many-requests") {
-            showMessage("Too many requests. Please wait a while and try again.");
-        } else {
-            showMessage("Unable to send the reset email. Please try again.");
-        }
-    } finally {
-        forgotPassword.style.pointerEvents = "auto";
-        forgotPassword.textContent = "Forgot Password?";
-    }
-});
-
-resendVerification.addEventListener("click", async (e) => {
-
-    e.preventDefault();
-
-    if (!unverifiedUser) {
-        showMessage(
-            "Please login with your registered email and password first."
-        );
-        return;
-    }
-
-    try {
-
-        await sendEmailVerification(unverifiedUser);
-
-        showMessage(
-            "A new verification email has been sent to " +
-            unverifiedUser.email + "."
-        );
-
-    } catch (error) {
-
-        console.error(error);
-
-        showMessage(
-            "Unable to send the verification email right now. Please try again later."
-        );
-    }
-});
 
 </script>
 
