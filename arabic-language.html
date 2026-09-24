@@ -336,7 +336,8 @@ from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 import {
     getFirestore,
     doc,
-    getDoc
+    getDoc,
+    Timestamp
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -453,9 +454,27 @@ onAuthStateChanged(auth, async (user) => {
             studentSnap.data();
 
 
-        const hasArabicAccess =
-            studentData.arabicLanguageActive === true;
+        let arabicExpiry = null;
 
+        if (studentData.arabicExpiryAt) {
+            const rawExpiry = studentData.arabicExpiryAt;
+            arabicExpiry = rawExpiry.toDate ? rawExpiry.toDate() : new Date(rawExpiry);
+        } else if (studentData.arabicLanguagePurchasedAt) {
+            const rawPurchased = studentData.arabicLanguagePurchasedAt;
+            const purchasedDate = rawPurchased.toDate ? rawPurchased.toDate() : new Date(rawPurchased);
+            if (!isNaN(purchasedDate.getTime())) {
+                arabicExpiry = new Date(purchasedDate.getTime() + 30 * 24 * 60 * 60 * 1000);
+            }
+        }
+
+        const hasArabicAccess =
+            studentData.arabicLanguageActive === true &&
+            (!arabicExpiry || arabicExpiry.getTime() > Date.now());
+
+        if (hasArabicAccess && arabicExpiry) {
+            accessText.textContent =
+                `You have full access to the Arabic Language course until ${arabicExpiry.toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'})}.`;
+        }
 
         setCourseAccess(
             hasArabicAccess
