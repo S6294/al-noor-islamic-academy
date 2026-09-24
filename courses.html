@@ -487,14 +487,96 @@ onAuthStateChanged(auth, async (user) => {
 
         const data = studentSnap.data();
 
-        if (data.tajweedActive === true) {
-            tajweedBtn.textContent = "Open Tajweed Course";
-            tajweedBtn.href = "quran-course.html";
+        // Tajweed access is valid only while the 30-day subscription is active.
+        let tajweedExpiry = null;
+
+        if (data.tajweedExpiryAt) {
+            if (typeof data.tajweedExpiryAt.toDate === "function") {
+                tajweedExpiry = data.tajweedExpiryAt.toDate();
+            } else if (data.tajweedExpiryAt.seconds) {
+                tajweedExpiry = new Date(data.tajweedExpiryAt.seconds * 1000);
+            } else {
+                const parsedExpiry = new Date(data.tajweedExpiryAt);
+                if (!isNaN(parsedExpiry.getTime())) tajweedExpiry = parsedExpiry;
+            }
         }
 
-        if (data.arabicLanguageActive === true) {
+        // Support old users who have tajweedPurchasedAt but no expiry field.
+        if (!tajweedExpiry && data.tajweedPurchasedAt) {
+            let purchasedAt = null;
+
+            if (typeof data.tajweedPurchasedAt.toDate === "function") {
+                purchasedAt = data.tajweedPurchasedAt.toDate();
+            } else if (data.tajweedPurchasedAt.seconds) {
+                purchasedAt = new Date(data.tajweedPurchasedAt.seconds * 1000);
+            } else {
+                const parsedPurchase = new Date(data.tajweedPurchasedAt);
+                if (!isNaN(parsedPurchase.getTime())) purchasedAt = parsedPurchase;
+            }
+
+            if (purchasedAt) {
+                tajweedExpiry = new Date(purchasedAt.getTime() + 30 * 24 * 60 * 60 * 1000);
+            }
+        }
+
+        const tajweedActiveNow =
+            data.tajweedActive === true &&
+            (!tajweedExpiry || tajweedExpiry.getTime() > Date.now());
+
+        if (tajweedActiveNow) {
+            tajweedBtn.textContent = "Open Tajweed Course";
+            tajweedBtn.href = "quran-course.html";
+        } else if (data.tajweedActive === true) {
+            tajweedBtn.textContent = "Renew Tajweed — ₹10";
+            tajweedBtn.href = "payment.html?course=tajweed&name=Tajweed&price=10";
+        }
+
+        // Arabic access is valid only while the 30-day subscription is active.
+        let arabicExpiry = null;
+
+        if (data.arabicExpiryAt) {
+            const rawExpiry = data.arabicExpiryAt;
+            if (typeof rawExpiry.toDate === "function") {
+                arabicExpiry = rawExpiry.toDate();
+            } else if (rawExpiry.seconds) {
+                arabicExpiry = new Date(rawExpiry.seconds * 1000);
+            } else {
+                const parsedExpiry = new Date(rawExpiry);
+                if (!isNaN(parsedExpiry.getTime())) arabicExpiry = parsedExpiry;
+            }
+        }
+
+        // Support old users who have arabicLanguagePurchasedAt but no expiry field.
+        if (!arabicExpiry && data.arabicLanguagePurchasedAt) {
+            const rawPurchase = data.arabicLanguagePurchasedAt;
+            let purchasedAt = null;
+
+            if (typeof rawPurchase.toDate === "function") {
+                purchasedAt = rawPurchase.toDate();
+            } else if (rawPurchase.seconds) {
+                purchasedAt = new Date(rawPurchase.seconds * 1000);
+            } else {
+                const parsedPurchase = new Date(rawPurchase);
+                if (!isNaN(parsedPurchase.getTime())) purchasedAt = parsedPurchase;
+            }
+
+            if (purchasedAt) {
+                arabicExpiry = new Date(
+                    purchasedAt.getTime() + 30 * 24 * 60 * 60 * 1000
+                );
+            }
+        }
+
+        const arabicActiveNow =
+            data.arabicLanguageActive === true &&
+            (!arabicExpiry || arabicExpiry.getTime() > Date.now());
+
+        if (arabicActiveNow) {
             arabicBtn.textContent = "Open Arabic Course";
             arabicBtn.href = "arabic-language.html";
+        } else if (data.arabicLanguageActive === true) {
+            arabicBtn.textContent = "Renew Arabic — ₹10";
+            arabicBtn.href = "payment.html?course=arabic-language&name=Arabic%20Language&price=10";
         }
 
     } catch (error) {
