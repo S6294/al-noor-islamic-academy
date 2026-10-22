@@ -292,6 +292,9 @@ const auth = getAuth(app);
 
 const db = getFirestore(app);
 
+// Apps Script Push Notification API URL
+const PUSH_API_URL = "https://script.google.com/macros/s/AKfycbzhSq7yQ2ZwRxDC9vCJqJEsmTQGA2FtqXvlC1QqLk00EVT5QhmV0tpImmRFAwXlymQ6Og/exec";
+
 
 const loading =
 document.getElementById("loading");
@@ -548,6 +551,7 @@ sendBtn.addEventListener("click", async () => {
 
         }else{
 
+            // Save the in-app notification first.
             await addDoc(
                 collection(db,"notifications"),
                 {
@@ -559,8 +563,31 @@ sendBtn.addEventListener("click", async () => {
                 }
             );
 
+            // Submit a push request to the Apps Script endpoint.
+            // no-cors means the browser cannot read/confirm the API response.
+            const currentUser = auth.currentUser;
+            if (!currentUser) {
+                throw new Error("Admin login required.");
+            }
+
+            const idToken = await currentUser.getIdToken();
+
+            await fetch(PUSH_API_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify({
+                    idToken: idToken,
+                    title: title,
+                    message: message,
+                    icon: icon
+                })
+            });
+
             alert(
-                "Notification sent successfully."
+                "Notification saved. Push request submitted, but delivery is not confirmed."
             );
         }
 
@@ -693,4 +720,4 @@ function escapeHtml(value){
 </script>
 
 </body>
-    </html>
+</html>
