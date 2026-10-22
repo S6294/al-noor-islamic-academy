@@ -103,16 +103,26 @@ input:focus{border-color:#d4af37}
 </div>
 
 <script type="module">
-
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 import {
     getAuth,
-    signInWithEmailAndPassword,
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+import {
+    getMessaging,
+    getToken,
+    isSupported
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-messaging.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
@@ -123,88 +133,89 @@ const firebaseConfig = {
     appId: "1:571799539455:web:d42728685908430296c6ca"
 };
 
+const VAPID_PUBLIC_KEY = "BNm7LJcTW9-vJtp97wRF8OIFYZGxvCRqZ9a-RrZDUAvVHzWNQx7CQDoQEpcWfSCMCanInOwBgAyv7_3ISGRli6s";
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 const loginForm = document.getElementById("loginForm");
 const loginButton = document.getElementById("loginButton");
 const message = document.getElementById("message");
-
-
 
 function showMessage(text) {
     message.style.display = "block";
     message.textContent = text;
 }
 
+// Called after a successful login to enable push notifications for existing accounts.
+// If permission is denied or push is unsupported, login still succeeds.
+async function enablePushForExistingStudent(user) {
+    try {
+        if (!("Notification" in window) || !("serviceWorker" in navigator)) return;
+        if (!(await isSupported())) return;
+
+        let permission = Notification.permission;
+        if (permission === "default") {
+            permission = await Notification.requestPermission();
+        }
+        if (permission !== "granted") return;
+
+        const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
+        const messaging = getMessaging(app);
+        const token = await getToken(messaging, {
+            vapidKey: VAPID_PUBLIC_KEY,
+            serviceWorkerRegistration: registration
+        });
+
+        if (token) {
+            await setDoc(doc(db, "students", user.uid), {
+                fcmToken: token,
+                fcmTokenUpdatedAt: serverTimestamp()
+            }, { merge: true });
+        }
+    } catch (err) {
+        // Keep login working even if notification setup fails.
+        console.error("Push notification setup failed:", err);
+    }
+}
 
 loginForm.addEventListener("submit", async (e) => {
-
     e.preventDefault();
 
-    const email =
-        document.getElementById("email").value.trim();
-
-    const password =
-        document.getElementById("password").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
     message.style.display = "none";
-
     loginButton.disabled = true;
     loginButton.textContent = "Logging in...";
 
     try {
-
-        const credential =
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
+        const credential = await signInWithEmailAndPassword(auth, email, password);
         const user = credential.user;
 
+        await enablePushForExistingStudent(user);
         window.location.href = "dashboard.html";
 
     } catch (error) {
-
         console.error(error);
 
         if (error.code === "auth/invalid-credential" ||
             error.code === "auth/wrong-password" ||
             error.code === "auth/user-not-found") {
-
-            showMessage(
-                "Incorrect email or password. Please check your registered email and password."
-            );
-
+            showMessage("Incorrect email or password. Please check your registered email and password.");
         } else if (error.code === "auth/invalid-email") {
-
-            showMessage(
-                "Please enter a valid email address."
-            );
-
+            showMessage("Please enter a valid email address.");
         } else if (error.code === "auth/too-many-requests") {
-
-            showMessage(
-                "Too many login attempts. Please wait a while and try again."
-            );
-
+            showMessage("Too many login attempts. Please wait a while and try again.");
         } else {
-
-            showMessage(
-                "Login failed. Please try again."
-            );
+            showMessage("Login failed. Please try again.");
         }
 
         loginButton.disabled = false;
         loginButton.textContent = "Login";
     }
 });
-
-
-
-
 </script>
 
 </body>
