@@ -90,8 +90,25 @@
             outline: none;
         }
 
-        input:focus {
+        input:focus,
+        select:focus {
             border-color: #d4af37;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px;
+            background: #071a17;
+            color: white;
+            border: 1px solid #42635a;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        select option {
+            background: #071a17;
+            color: white;
         }
 
         .signup-button {
@@ -239,6 +256,15 @@
             </div>
 
 
+            <div class="input-group">
+                <label for="language">Preferred Language *</label>
+                <select id="language" name="language" required>
+                    <option value="" disabled selected>Select your language</option>
+                    <option value="Bengali">বাংলা (Bengali)</option>
+                    <option value="Urdu">اردو (Urdu)</option>
+                </select>
+            </div>
+
             <button
                 type="submit"
                 class="signup-button"
@@ -285,12 +311,6 @@
         } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
         import {
-            getMessaging,
-            getToken,
-            isSupported
-        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-messaging.js";
-
-        import {
             getFirestore,
             doc,
             setDoc,
@@ -320,40 +340,6 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Firebase Cloud Messaging Web Push public key
-        const VAPID_PUBLIC_KEY = "BNm7LJcTW9-vJtp97wRF8OIFYZGxvCRqZ9a-RrZDUAvVHzWNQx7CQDoQEpcWfSCMCanInOwBgAyv7_3ISGRli6s";
-
-        async function requestPushPermissionAndGetToken() {
-            try {
-                if (!("Notification" in window) || !("serviceWorker" in navigator)) {
-                    return null;
-                }
-
-                const supported = await isSupported();
-                if (!supported) return null;
-
-                // Called from the signup submit interaction.
-                let permission = Notification.permission;
-                if (permission === "default") {
-                    permission = await Notification.requestPermission();
-                }
-                if (permission !== "granted") return null;
-
-                const registration = await navigator.serviceWorker.register(
-                    "/firebase-messaging-sw.js"
-                );
-                const messaging = getMessaging(app);
-
-                return await getToken(messaging, {
-                    vapidKey: VAPID_PUBLIC_KEY,
-                    serviceWorkerRegistration: registration
-                });
-            } catch (error) {
-                console.warn("Push permission/token setup skipped:", error);
-                return null; // Notification setup must not prevent account creation.
-            }
-        }
-
 
         const signupForm =
             document.getElementById("signupForm");
@@ -379,6 +365,9 @@
             const mobile =
                 document.getElementById("mobile").value.trim();
 
+            const language =
+                document.getElementById("language").value;
+
 
             const password =
                 document.getElementById("password").value;
@@ -387,6 +376,11 @@
             const confirmPassword =
                 document.getElementById("confirmPassword").value;
 
+
+            if (!language) {
+                alert("Please select your preferred language.");
+                return;
+            }
 
             if (password !== confirmPassword) {
 
@@ -419,9 +413,6 @@
 
             signupButton.textContent = "Creating Account...";
 
-            // Ask for notification permission during the signup action.
-            // If declined or unsupported, account creation continues normally.
-            const pushTokenPromise = requestPushPermissionAndGetToken();
 
             try {
 
@@ -445,22 +436,14 @@
 
                 // Save the student's profile in Firestore so the
                 // mobile number is available on the payment page.
-                const studentData = {
+                await setDoc(doc(db, "students", user.uid), {
                     uid: user.uid,
                     name: name,
                     email: user.email || email,
                     mobile: mobile,
+                    language: language,
                     createdAt: serverTimestamp()
-                };
-
-                // Save the device token only if the student granted permission.
-                const pushToken = await pushTokenPromise;
-                if (pushToken) {
-                    studentData.fcmToken = pushToken;
-                    studentData.fcmTokenUpdatedAt = serverTimestamp();
-                }
-
-                await setDoc(doc(db, "students", user.uid), studentData, { merge: true });
+                });
 
 
                 alert(
