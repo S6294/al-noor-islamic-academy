@@ -285,6 +285,10 @@ function renderStudents(items){
         const email = data.email || "Email not available";
         const mobile = data.mobile || data.phone || data.phoneNumber || "Not available";
         const membership = data.membership || data.plan || data.membershipPlan || "Not assigned";
+        const languageValue = String(data.language || "").trim();
+        const language = languageValue
+            ? ({ bengali: "Bengali", urdu: "Urdu" }[languageValue.toLowerCase()] || languageValue)
+            : "Not selected";
 
         const tajweedPaid = data.tajweedPaymentId || data.tajweedActive === true;
         const arabicPaid = data.arabicLanguagePaymentId || data.arabicLanguageActive === true;
@@ -317,6 +321,7 @@ function renderStudents(items){
             </div>
             <div class="details">
                 📱 Mobile: ${esc(mobile)}<br>
+                🌐 Language: ${esc(language)}<br>
                 💎 Membership: <span class="badge basic">${esc(membership)}</span><br>
                 💳 Payment: <span class="badge premium">${esc(generalPaymentStatus)}</span><br>
                 📚 Paid Course: ${esc(generalPaymentCourse)}<br>
@@ -408,7 +413,8 @@ search.addEventListener("input", () => {
             studentName(data, uid),
             data.email,
             data.mobile,
-            data.phone
+            data.phone,
+            data.language
         ].filter(Boolean).join(" ").toLowerCase();
 
         return text.includes(term);
