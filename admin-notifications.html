@@ -292,9 +292,6 @@ const auth = getAuth(app);
 
 const db = getFirestore(app);
 
-// Apps Script Push Notification API URL
-const PUSH_API_URL = "https://script.google.com/macros/s/AKfycbzhSq7yQ2ZwRxDC9vCJqJEsmTQGA2FtqXvlC1QqLk00EVT5QhmV0tpImmRFAwXlymQ6Og/exec";
-
 
 const loading =
 document.getElementById("loading");
@@ -563,32 +560,53 @@ sendBtn.addEventListener("click", async () => {
                 }
             );
 
-            // Submit a push request to the Apps Script endpoint.
-            // no-cors means the browser cannot read/confirm the API response.
+            // Send a push request to the Apps Script API.
+            // no-cors is required for this simple cross-origin request,
+            // but the browser will not expose the API response to this page.
             const currentUser = auth.currentUser;
             if (!currentUser) {
-                throw new Error("Admin login required.");
+                throw new Error("Admin login required. Please sign in again.");
             }
 
             const idToken = await currentUser.getIdToken();
 
-            await fetch(PUSH_API_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8"
-                },
-                body: JSON.stringify({
-                    idToken: idToken,
-                    title: title,
-                    message: message,
-                    icon: icon
-                })
-            });
+            const pushApiUrl =
+                "https://script.google.com/macros/s/AKfycbzhSq7yQ2ZwRxDC9vCJqJEsmTQGA2FtqXvlC1QqLk00EVT5QhmV0tpImmRFAwXlymQ6Og/exec";
 
-            alert(
-                "Notification saved. Push request submitted, but delivery is not confirmed."
-            );
+            let pushRequestSubmitted = false;
+
+            try {
+                await fetch(pushApiUrl, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8"
+                    },
+                    body: JSON.stringify({
+                        idToken: idToken,
+                        title: title,
+                        message: message,
+                        icon: icon
+                    })
+                });
+
+                pushRequestSubmitted = true;
+            } catch (pushError) {
+                console.error("Push request failed to submit:", pushError);
+            }
+
+            if (pushRequestSubmitted) {
+                alert(
+                    "Notification saved in the website.\n" +
+                    "Push request submitted to Firebase backend, but phone delivery is NOT confirmed.\n\n" +
+                    "If the phone receives nothing, check the Apps Script FCM summary and the student's device token."
+                );
+            } else {
+                alert(
+                    "Notification saved in the website, but the push request could not be submitted.\n" +
+                    "Check your internet connection and Apps Script deployment URL."
+                );
+            }
         }
 
 
