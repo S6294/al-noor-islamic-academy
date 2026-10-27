@@ -783,14 +783,14 @@ onAuthStateChanged(auth, async (user) => {
                 tajweedCard,
                 tajweedStatus,
                 tajweedExpiry
-                    ? "Tajweed Expired — Renew ₹10"
+                    ? "Tajweed Expired — Renew ₹299"
                     : "Tajweed Purchase Required"
             );
 
             tajweedCard.onclick = (e) => {
                 e.preventDefault();
                 window.location.href =
-                    "payment.html?course=tajweed&name=Tajweed&price=10";
+                    "payment.html?course=tajweed&name=Tajweed&price=299";
             };
         }
 
@@ -833,10 +833,10 @@ onAuthStateChanged(auth, async (user) => {
                 : "";
             unlock(arabicCard, arabicStatus, "Arabic Active" + expiryText, "arabic-language.html");
         } else {
-            lock(arabicCard, arabicStatus, arabicExpiry ? "Arabic Expired — Renew ₹10" : "Arabic Purchase Required");
+            lock(arabicCard, arabicStatus, arabicExpiry ? "Arabic Expired — Renew ₹299" : "Arabic Purchase Required");
             arabicCard.onclick = (e) => {
                 e.preventDefault();
-                window.location.href = "payment.html?course=arabic-language&name=Arabic%20Language&price=10";
+                window.location.href = "payment.html?course=arabic-language&name=Arabic%20Language&price=299";
             };
         }
 
