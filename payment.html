@@ -360,6 +360,14 @@ document.getElementById("payBtn")
     }
 
 
+    // Display the product and price returned by the backend, not only URL parameters.
+    if (typeof data.price === "number") {
+      document.getElementById("planPrice").textContent = String(data.price);
+    }
+    if (data.course_name) {
+      document.getElementById("planName").textContent = data.course_name;
+    }
+
     // =========================
     // RAZORPAY CHECKOUT
     // =========================
@@ -462,6 +470,14 @@ document.getElementById("payBtn")
               return;
             }
 
+            // Prevent activating a different course than the one in the verified Razorpay order.
+            if (verifyResult.course && verifyResult.course !== course) {
+              message.textContent = "The verified payment does not match this course. Please contact admin.";
+              button.disabled = false;
+              button.textContent = "Pay Now";
+              return;
+            }
+
             try {
 
               const studentRef =
@@ -494,7 +510,7 @@ document.getElementById("payBtn")
                 [purchaseField]: serverTimestamp()
               };
 
-              // Tajweed / Arabic: ₹10 = 30 days.
+              // Tajweed / Arabic: ₹299 = 30 days.
               // Renewal adds 30 days to the existing active expiry.
               if (course === "tajweed" || course === "arabic-language") {
                 const oldSnap = await getDoc(studentRef);
