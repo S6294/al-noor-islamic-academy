@@ -292,6 +292,9 @@ const auth = getAuth(app);
 
 const db = getFirestore(app);
 
+// Apps Script Push Notification API URL
+const PUSH_API_URL = "https://script.google.com/macros/s/AKfycbzhSq7yQ2ZwRxDC9vCJqJEsmTQGA2FtqXvlC1QqLk00EVT5QhmV0tpImmRFAwXlymQ6Og/exec";
+
 
 const loading =
 document.getElementById("loading");
@@ -548,65 +551,47 @@ sendBtn.addEventListener("click", async () => {
 
         }else{
 
-            // Save the in-app notification first.
-            await addDoc(
-                collection(db,"notifications"),
+            const currentUser = auth.currentUser;
+            if (!currentUser) {
+                throw new Error("Admin login required.");
+            }
+
+            // Save the in-app notification and retain its ID so the Apps Script
+            // backend can write the actual FCM result back to this document.
+            const notificationRef = await addDoc(
+                collection(db, "notifications"),
                 {
                     title: title,
                     message: message,
                     icon: icon,
                     isNew: true,
+                    deliveryStatus: "pending",
+                    deliveryMessage: "Push request is being processed.",
                     createdAt: serverTimestamp()
                 }
             );
 
-            // Send a push request to the Apps Script API.
-            // no-cors is required for this simple cross-origin request,
-            // but the browser will not expose the API response to this page.
-            const currentUser = auth.currentUser;
-            if (!currentUser) {
-                throw new Error("Admin login required. Please sign in again.");
-            }
-
             const idToken = await currentUser.getIdToken();
 
-            const pushApiUrl =
-                "https://script.google.com/macros/s/AKfycbzhSq7yQ2ZwRxDC9vCJqJEsmTQGA2FtqXvlC1QqLk00EVT5QhmV0tpImmRFAwXlymQ6Og/exec";
+            // Apps Script ContentService responses are often opaque to browser
+            // fetch because of cross-origin redirects. We therefore send with
+            // no-cors and read the delivery result from the Firestore document.
+            await fetch(PUSH_API_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify({
+                    idToken: idToken,
+                    title: title,
+                    message: message,
+                    icon: icon,
+                    notificationId: notificationRef.id
+                })
+            });
 
-            let pushRequestSubmitted = false;
-
-            try {
-                await fetch(pushApiUrl, {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: {
-                        "Content-Type": "text/plain;charset=utf-8"
-                    },
-                    body: JSON.stringify({
-                        idToken: idToken,
-                        title: title,
-                        message: message,
-                        icon: icon
-                    })
-                });
-
-                pushRequestSubmitted = true;
-            } catch (pushError) {
-                console.error("Push request failed to submit:", pushError);
-            }
-
-            if (pushRequestSubmitted) {
-                alert(
-                    "Notification saved in the website.\n" +
-                    "Push request submitted to Firebase backend, but phone delivery is NOT confirmed.\n\n" +
-                    "If the phone receives nothing, check the Apps Script FCM summary and the student's device token."
-                );
-            } else {
-                alert(
-                    "Notification saved in the website, but the push request could not be submitted.\n" +
-                    "Check your internet connection and Apps Script deployment URL."
-                );
-            }
+            alert(await waitForPushResult(notificationRef.id));
         }
 
 
@@ -629,6 +614,40 @@ sendBtn.addEventListener("click", async () => {
     }
 
 });
+
+
+// Poll Firestore for the delivery result written by Apps Script.
+// Requires the matching Code.gs patch to update deliveryStatus fields.
+async function waitForPushResult(notificationId) {
+    const ref = doc(db, "notifications", notificationId);
+    const deadline = Date.now() + 60000;
+
+    while (Date.now() < deadline) {
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        const snap = await getDoc(ref);
+        if (!snap.exists()) continue;
+
+        const data = snap.data();
+        if (data.deliveryStatus === "sent") {
+            return "Notification saved.\n" +
+                "Student tokens found: " + (data.deliveryTokenCount ?? 0) + "\n" +
+                "FCM accepted: " + (data.deliverySent ?? 0) + "\n" +
+                "FCM failed: " + (data.deliveryFailed ?? 0) + "\n\n" +
+                "Firebase accepted the messages; phone delivery is not guaranteed.";
+        }
+
+        if (data.deliveryStatus === "failed") {
+            let details = data.deliveryMessage || "Push sending failed.";
+            if (data.deliveryErrorsText) {
+                details += "\n" + data.deliveryErrorsText;
+            }
+            return "Notification saved, but push sending failed.\n" + details;
+        }
+    }
+
+    return "Notification saved. Push result is still pending.\n" +
+        "The backend must update deliveryStatus in Firestore. Check the latest Apps Script execution if this continues.";
+}
 
 
 // EDIT
