@@ -244,6 +244,7 @@ footer{
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-functions.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBvugRPCyDcq0gJsE_eUsaoVExi5Rc614k",
@@ -258,7 +259,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const API_BASE_URL = "PASTE_YOUR_DEPLOYED_BACKEND_URL_HERE";
+const functions = getFunctions(app, "us-central1");
+const deleteStudentAccountCall = httpsCallable(functions, "deleteStudentAccount");
 const list = document.getElementById("studentsList");
 const search = document.querySelector(".search");
 
@@ -285,21 +287,61 @@ function renderStudents(items){
         const email = data.email || "Email not available";
         const mobile = data.mobile || data.phone || data.phoneNumber || "Not available";
         const membership = data.membership || data.plan || data.membershipPlan || "Not assigned";
-        const languageValue = String(data.language || "").trim();
-        const language = languageValue
-            ? ({ bengali: "Bengali", urdu: "Urdu" }[languageValue.toLowerCase()] || languageValue)
-            : "Not selected";
 
-        const tajweedPaid = data.tajweedPaymentId || data.tajweedActive === true;
-        const arabicPaid = data.arabicLanguagePaymentId || data.arabicLanguageActive === true;
+        // Payment history and course access are separate:
+        // a successful past payment stays "Paid", while access can be Active or Expired.
+        function toDate(value) {
+            if (!value) return null;
+            let date = null;
+            if (typeof value.toDate === "function") {
+                date = value.toDate(); // Firestore Timestamp
+            } else if (typeof value === "object" && typeof value.seconds === "number") {
+                date = new Date(value.seconds * 1000); // serialized Timestamp
+            } else {
+                date = new Date(value);
+            }
+            return date && !Number.isNaN(date.getTime()) ? date : null;
+        }
 
-        const tajweedStatus = tajweedPaid
-            ? `✓ Paid${data.tajweedPaymentId ? " • " + esc(data.tajweedPaymentId) : ""}`
-            : "None";
+        function courseState({paymentId, active, expiryValue, purchasedValue}) {
+            const expiry = toDate(expiryValue) ||
+                (() => {
+                    const purchased = toDate(purchasedValue);
+                    return purchased ? new Date(purchased.getTime() + 30 * 24 * 60 * 60 * 1000) : null;
+                })();
+            const paid = Boolean(paymentId) || active === true;
+            if (!paid) return { paid: false, label: "Not paid", css: "course-inactive", expiry };
+            if (expiry && expiry.getTime() <= Date.now()) {
+                return { paid: true, label: "✓ Paid • Expired", css: "course-expired", expiry };
+            }
+            if (active === true) {
+                const dateText = expiry ? " • Expires " + expiry.toLocaleDateString("en-IN", {
+                    day: "2-digit", month: "short", year: "numeric"
+                }) : "";
+                return { paid: true, label: "✓ Paid • Active" + dateText, css: "course-active", expiry };
+            }
+            return { paid: true, label: "✓ Paid • Inactive", css: "course-inactive", expiry };
+        }
 
-        const arabicStatus = arabicPaid
-            ? `✓ Paid${data.arabicLanguagePaymentId ? " • " + esc(data.arabicLanguagePaymentId) : ""}`
-            : "None";
+        const tajweed = courseState({
+            paymentId: data.tajweedPaymentId,
+            active: data.tajweedActive,
+            expiryValue: data.tajweedExpiryAt,
+            purchasedValue: data.tajweedPurchasedAt
+        });
+        const arabic = courseState({
+            paymentId: data.arabicLanguagePaymentId,
+            active: data.arabicLanguageActive,
+            expiryValue: data.arabicExpiryAt,
+            purchasedValue: data.arabicLanguagePurchasedAt
+        });
+        const tajweedPaid = tajweed.paid;
+        const arabicPaid = arabic.paid;
+
+        const tajweedStatus = tajweed.label +
+            (data.tajweedPaymentId ? " • " + esc(data.tajweedPaymentId) : "");
+        const arabicStatus = arabic.label +
+            (data.arabicLanguagePaymentId ? " • " + esc(data.arabicLanguagePaymentId) : "");
 
         const generalPaymentStatus = data.paymentStatus || data.lastPaymentStatus ||
             (tajweedPaid || arabicPaid ? "Paid" : "None");
@@ -321,14 +363,13 @@ function renderStudents(items){
             </div>
             <div class="details">
                 📱 Mobile: ${esc(mobile)}<br>
-                🌐 Language: ${esc(language)}<br>
                 💎 Membership: <span class="badge basic">${esc(membership)}</span><br>
                 💳 Payment: <span class="badge premium">${esc(generalPaymentStatus)}</span><br>
                 📚 Paid Course: ${esc(generalPaymentCourse)}<br>
                 💰 Amount: ${generalPaymentAmount != null ? "₹" + esc(generalPaymentAmount) : "None"}<br>
                 🧾 Payment ID: ${esc(generalPaymentId)}<br>
-                📖 Tajweed: <span class="${tajweedPaid ? "active" : ""}">${tajweedStatus}</span><br>
-                🕌 Arabic Language: <span class="${arabicPaid ? "active" : ""}">${arabicStatus}</span><br>
+                📖 Tajweed: <span class="${tajweed.css}">${tajweedStatus}</span><br>
+                🕌 Arabic Language: <span class="${arabic.css}">${arabicStatus}</span><br>
                 🆔 UID: ${esc(uid)}
                 <button class="delete-btn" data-delete-uid="${esc(uid)}">🗑️ Delete Account</button>
             </div>
@@ -362,45 +403,38 @@ async function deleteStudent(uid){
     const student = allStudents.find(x => x.uid === uid);
     const name = student ? studentName(student.data, uid) : uid;
 
-    if(!confirm(`Delete "${name}" completely?\n\nThis will delete the Firebase Authentication account and students/${uid}.\n\nThis cannot be undone.`)){
-        return;
-    }
-
-    if(API_BASE_URL.includes("PASTE_YOUR")){
-        alert("Backend URL is not configured yet.");
+    if(!confirm(`Permanently delete "${name}"?\\n\\nThis removes their Firebase Authentication login and students/${uid} Firestore document.\\n\\nThis cannot be undone.`)){
         return;
     }
 
     const user = auth.currentUser;
     if(!user){
-        alert("Admin login expired. Please login again.");
+        alert("Admin login expired. Please log in again.");
         return;
     }
 
+    const button = list.querySelector(`[data-delete-uid="${CSS.escape(uid)}"]`);
+    if(button){
+        button.disabled = true;
+        button.textContent = "Deleting...";
+    }
+
     try{
-        const token = await user.getIdToken(true);
+        // Firebase callable functions send the signed-in user's ID token automatically.
+        // The server independently verifies the caller against admins/{uid}.
+        const response = await deleteStudentAccountCall({ uid });
+        const result = response.data || {};
 
-        const response = await fetch(
-            `${API_BASE_URL.replace(/\/$/, "")}/students/${encodeURIComponent(uid)}`,
-            {
-                method: "DELETE",
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            }
-        );
-
-        const result = await response.json().catch(() => ({}));
-
-        if(!response.ok){
-            throw new Error(result.error || "Delete failed.");
-        }
-
-        alert("Account deleted successfully.");
+        alert(result.message || "Student account deleted successfully.");
         await loadStudents();
     }catch(error){
-        console.error(error);
-        alert("Delete failed: " + error.message);
+        console.error("Delete student account failed:", error);
+        const message = error?.message || "Unknown error";
+        alert("Delete failed: " + message);
+        if(button){
+            button.disabled = false;
+            button.textContent = "🗑️ Delete Account";
+        }
     }
 }
 
@@ -413,8 +447,7 @@ search.addEventListener("input", () => {
             studentName(data, uid),
             data.email,
             data.mobile,
-            data.phone,
-            data.language
+            data.phone
         ].filter(Boolean).join(" ").toLowerCase();
 
         return text.includes(term);
