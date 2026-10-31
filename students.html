@@ -3,247 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Students | Al Noor Islamic Academy</title>
-
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#071c16;
-    color:white;
-}
-
-/* Header */
-
-header{
-    background:#0b261e;
-    padding:18px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #d4af37;
-}
-
-.logo{
-    color:#d4af37;
-    font-size:21px;
-    font-weight:bold;
-}
-
-.admin{
-    color:#d4af37;
-    font-size:14px;
-}
-
-/* Container */
-
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:30px 18px;
-}
-
-h1{
-    text-align:center;
-    color:#d4af37;
-    margin-bottom:8px;
-}
-
-.subtitle{
-    text-align:center;
-    color:#9fb3ab;
-    margin-bottom:30px;
-}
-
-/* Search */
-
-.search{
-    width:100%;
-    padding:14px;
-    background:#0b261e;
-    border:1px solid #31594d;
-    border-radius:10px;
-    color:white;
-    outline:none;
-    margin-bottom:20px;
-}
-
-.search:focus{
-    border-color:#d4af37;
-}
-
-.search::placeholder{
-    color:#718b82;
-}
-
-/* Student Card */
-
-.student{
-    background:#0b261e;
-    border:1px solid #31594d;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:15px;
-}
-
-.student-top{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.avatar{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:#d4af37;
-    color:#071c16;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-}
-
-.name{
-    font-size:18px;
-    font-weight:bold;
-}
-
-.email{
-    color:#8fa69e;
-    font-size:13px;
-    margin-top:4px;
-}
-
-.details{
-    margin-top:15px;
-    padding-top:15px;
-    border-top:1px solid #23463b;
-    line-height:1.8;
-    color:#b9c9c3;
-}
-
-.badge{
-    display:inline-block;
-    margin-top:10px;
-    padding:5px 10px;
-    border-radius:7px;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.premium{
-    background:#d4af37;
-    color:#071c16;
-}
-
-.basic{
-    background:#183d31;
-    color:#d4af37;
-}
-
-.active{
-    color:#6fd39b;
-}
-
-/* Back */
-
-.back{
-    display:block;
-    text-align:center;
-    margin-top:30px;
-    color:#d4af37;
-    text-decoration:none;
-}
-
-/* Footer */
-
-footer{
-    text-align:center;
-    color:#718b82;
-    padding:30px 10px;
-    margin-top:20px;
-    border-top:1px solid #193b31;
-}
-
-
-.delete-btn{
-    margin-top:15px;
-    width:100%;
-    padding:11px;
-    border:1px solid #7b3f3f;
-    border-radius:9px;
-    background:#3a2020;
-    color:#ffb0b0;
-    font-weight:bold;
-    cursor:pointer;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#071c16;color:white}
+header{background:#0b261e;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #d4af37}
+.logo{color:#d4af37;font-size:21px;font-weight:bold}
+.admin{color:#d4af37;font-size:14px}
+.container{max-width:1000px;margin:auto;padding:30px 18px}
+h1{text-align:center;color:#d4af37;margin-bottom:8px}
+.subtitle{text-align:center;color:#9fb3ab;margin-bottom:30px}
+.search{width:100%;padding:14px;background:#0b261e;border:1px solid #31594d;border-radius:10px;color:white;outline:none;margin-bottom:20px}
+.search:focus{border-color:#d4af37}
+.search::placeholder{color:#718b82}
+.student{background:#0b261e;border:1px solid #31594d;border-radius:15px;padding:20px;margin-bottom:15px}
+.student-top{display:flex;align-items:center;gap:15px}
+.avatar{width:50px;height:50px;border-radius:50%;background:#d4af37;color:#071c16;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.name{font-size:18px;font-weight:bold}
+.email{color:#8fa69e;font-size:13px;margin-top:4px}
+.details{margin-top:15px;padding-top:15px;border-top:1px solid #23463b;line-height:1.8;color:#b9c9c3}
+.badge{display:inline-block;margin-top:10px;padding:5px 10px;border-radius:7px;font-size:12px;font-weight:bold}
+.premium{background:#d4af37;color:#071c16}
+.basic{background:#183d31;color:#d4af37}
+.active{color:#6fd39b}
+.language-badge{display:inline-block;background:#183d31;border:1px solid #d4af37;color:#f1d987;padding:4px 10px;border-radius:7px;font-size:12px;font-weight:bold}
+.back{display:block;text-align:center;margin-top:30px;color:#d4af37;text-decoration:none}
+footer{text-align:center;color:#718b82;padding:30px 10px;margin-top:20px;border-top:1px solid #193b31}
+.delete-btn{margin-top:15px;width:100%;padding:11px;border:1px solid #7b3f3f;border-radius:9px;background:#3a2020;color:#ffb0b0;font-weight:bold;cursor:pointer}
 .delete-btn:hover{background:#522525}
 #studentsList{margin-top:5px}
 .status{padding:15px;text-align:center;color:#aabbb5}
 </style>
 </head>
-
 <body>
-
 <header>
-
-    <div class="logo">
-        AL NOOR
-    </div>
-
-    <div class="admin">
-        👑 Admin
-    </div>
-
+    <div class="logo">AL NOOR</div>
+    <div class="admin">👑 Admin</div>
 </header>
-
-
 <div class="container">
-
     <h1>Students</h1>
-
-    <p class="subtitle">
-        Manage registered academy students
-    </p>
-
-
-    <input
-        type="text"
-        class="search"
-        placeholder="🔍 Search student..."
-    >
-
-
-    <div id="studentsList">
-        <div class="status">Loading students...</div>
-    </div>
-
-    <a href="admin.html" class="back">
-        ← Back to Admin Dashboard
-    </a>
-
+    <p class="subtitle">Manage registered academy students</p>
+    <input type="text" class="search" placeholder="🔍 Search student...">
+    <div id="studentsList"><div class="status">Loading students...</div></div>
+    <a href="admin.html" class="back">← Back to Admin Dashboard</a>
 </div>
-
-
-<footer>
-
-    © 2026 Al Noor Islamic Academy
-
-</footer>
-
+<footer>© 2026 Al Noor Islamic Academy</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, query } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-functions.js";
 
 const firebaseConfig = {
@@ -258,12 +67,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-
 const functions = getFunctions(app, "us-central1");
 const deleteStudentAccountCall = httpsCallable(functions, "deleteStudentAccount");
 const list = document.getElementById("studentsList");
 const search = document.querySelector(".search");
-
 let allStudents = [];
 
 function esc(value){
@@ -287,6 +94,7 @@ function renderStudents(items){
         const email = data.email || "Email not available";
         const mobile = data.mobile || data.phone || data.phoneNumber || "Not available";
         const membership = data.membership || data.plan || data.membershipPlan || "Not assigned";
+        const language = data.language || "Not selected";
 
         // Payment history and course access are separate:
         // a successful past payment stays "Paid", while access can be Active or Expired.
@@ -294,9 +102,9 @@ function renderStudents(items){
             if (!value) return null;
             let date = null;
             if (typeof value.toDate === "function") {
-                date = value.toDate(); // Firestore Timestamp
+                date = value.toDate();
             } else if (typeof value === "object" && typeof value.seconds === "number") {
-                date = new Date(value.seconds * 1000); // serialized Timestamp
+                date = new Date(value.seconds * 1000);
             } else {
                 date = new Date(value);
             }
@@ -337,12 +145,10 @@ function renderStudents(items){
         });
         const tajweedPaid = tajweed.paid;
         const arabicPaid = arabic.paid;
-
         const tajweedStatus = tajweed.label +
             (data.tajweedPaymentId ? " • " + esc(data.tajweedPaymentId) : "");
         const arabicStatus = arabic.label +
             (data.arabicLanguagePaymentId ? " • " + esc(data.arabicLanguagePaymentId) : "");
-
         const generalPaymentStatus = data.paymentStatus || data.lastPaymentStatus ||
             (tajweedPaid || arabicPaid ? "Paid" : "None");
         const generalPaymentCourse = data.paymentCourse || data.lastPaymentCourse ||
@@ -363,6 +169,7 @@ function renderStudents(items){
             </div>
             <div class="details">
                 📱 Mobile: ${esc(mobile)}<br>
+                🌐 Preferred Language: <span class="language-badge">${esc(language)}</span><br>
                 💎 Membership: <span class="badge basic">${esc(membership)}</span><br>
                 💳 Payment: <span class="badge premium">${esc(generalPaymentStatus)}</span><br>
                 📚 Paid Course: ${esc(generalPaymentCourse)}<br>
@@ -386,12 +193,10 @@ async function loadStudents(){
     try{
         const q = query(collection(db, "students"));
         const snap = await getDocs(q);
-
         allStudents = [];
         snap.forEach(docSnap => {
             allStudents.push({uid: docSnap.id, data: docSnap.data()});
         });
-
         renderStudents(allStudents);
     }catch(error){
         console.error(error);
@@ -402,29 +207,24 @@ async function loadStudents(){
 async function deleteStudent(uid){
     const student = allStudents.find(x => x.uid === uid);
     const name = student ? studentName(student.data, uid) : uid;
-
-    if(!confirm(`Permanently delete "${name}"?\\n\\nThis removes their Firebase Authentication login and students/${uid} Firestore document.\\n\\nThis cannot be undone.`)){
+    if(!confirm(`Permanently delete "${name}"?\n\nThis removes their Firebase Authentication login and students/${uid} Firestore document.\n\nThis cannot be undone.`)){
         return;
     }
-
     const user = auth.currentUser;
     if(!user){
         alert("Admin login expired. Please log in again.");
         return;
     }
-
     const button = list.querySelector(`[data-delete-uid="${CSS.escape(uid)}"]`);
     if(button){
         button.disabled = true;
         button.textContent = "Deleting...";
     }
-
     try{
-        // Firebase callable functions send the signed-in user's ID token automatically.
+        // Callable Functions automatically send the signed-in user's ID token.
         // The server independently verifies the caller against admins/{uid}.
         const response = await deleteStudentAccountCall({ uid });
         const result = response.data || {};
-
         alert(result.message || "Student account deleted successfully.");
         await loadStudents();
     }catch(error){
@@ -440,19 +240,17 @@ async function deleteStudent(uid){
 
 search.addEventListener("input", () => {
     const term = search.value.trim().toLowerCase();
-
     const filtered = allStudents.filter(({uid, data}) => {
         const text = [
             uid,
             studentName(data, uid),
             data.email,
             data.mobile,
-            data.phone
+            data.phone,
+            data.language
         ].filter(Boolean).join(" ").toLowerCase();
-
         return text.includes(term);
     });
-
     renderStudents(filtered);
 });
 
@@ -464,6 +262,5 @@ onAuthStateChanged(auth, user => {
     loadStudents();
 });
 </script>
-
 </body>
 </html>
